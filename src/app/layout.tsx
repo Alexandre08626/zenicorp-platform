@@ -77,9 +77,7 @@ export default function RootLayout({
         <header className="sticky top-0 z-50 bg-zenicorp-black/95 backdrop-blur border-b border-zenicorp-darkGray">
           <div className="container-zenicorp flex items-center justify-between py-4">
             <a href="/" className="flex items-center gap-2">
-              <span className="text-2xl font-heading font-bold text-white">
-                Zeni<span className="text-zenicorp-gold">Corp</span>
-              </span>
+              <img src="/logo.png" alt="ZeniCorp" className="h-10 w-auto" />
             </a>
             <nav className="hidden md:flex items-center gap-8">
               <a href="/#nos-divisions" className="text-sm text-zenicorp-silver hover:text-zenicorp-gold transition-colors">Nos divisions</a>
@@ -94,9 +92,7 @@ export default function RootLayout({
           <div className="container-zenicorp py-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               <div>
-                <div className="text-xl font-heading font-bold text-white mb-4">
-                  Zeni<span className="text-zenicorp-gold">Corp</span>
-                </div>
+                <img src="/logo.png" alt="ZeniCorp" className="h-9 w-auto mb-4" />
                 <p className="text-sm text-zenicorp-silver leading-relaxed">
                   La plateforme de rénovation qui connecte clients et entrepreneurs certifiés.
                   Dépôt client de 305 $, inscription entrepreneur gratuite, chèque de 70 % par contrat.
