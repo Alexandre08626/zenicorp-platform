@@ -9,6 +9,8 @@ type Step = 'projet' | 'depot' | 'confirmation';
 export default function ProjetPage() {
   const [step, setStep] = useState<Step>('projet');
   const [division, setDivision] = useState('');
+  const [envoi, setEnvoi] = useState(false);
+  const [erreur, setErreur] = useState('');
   const [form, setForm] = useState({
     nom: '',
     telephone: '',
@@ -25,9 +27,31 @@ export default function ProjetPage() {
   const projetComplet =
     form.nom && form.telephone && form.email && form.adresse && form.ville && form.codePostal && form.superficie && form.description && division;
 
-  const handleSubmitProjet = (e: React.FormEvent) => {
+  const handleSubmitProjet = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStep('depot');
+    setErreur('');
+    setEnvoi(true);
+    try {
+      const res = await fetch('/api/soumission', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, division }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setErreur(data?.error || 'Une erreur est survenue. Réessayez.');
+        setEnvoi(false);
+        return;
+      }
+      if (data.paylinkUrl) {
+        window.location.href = data.paylinkUrl;
+        return;
+      }
+      setStep('depot');
+    } catch {
+      setErreur('Problème de connexion. Réessayez.');
+      setEnvoi(false);
+    }
   };
 
   const handleConfirmerDepot = () => {
@@ -155,8 +179,14 @@ export default function ProjetPage() {
                 </div>
               </div>
 
-              <button type="submit" disabled={!projetComplet} className={`btn-gold w-full text-lg py-5 ${!projetComplet ? 'opacity-40 cursor-not-allowed' : ''}`}>
-                CONTINUER VERS LE DÉPÔT — 305 $
+              {erreur && (
+                <div className="mb-6 p-4 bg-red-50 border-2 border-red-200 text-red-700 text-sm">
+                  {erreur}
+                </div>
+              )}
+
+              <button type="submit" disabled={!projetComplet || envoi} className={`btn-gold w-full text-lg py-5 ${!projetComplet || envoi ? 'opacity-40 cursor-not-allowed' : ''}`}>
+                {envoi ? 'ENVOI EN COURS...' : 'CONTINUER VERS LE DÉPÔT — 305 $'}
               </button>
             </form>
           </div>
@@ -189,18 +219,18 @@ export default function ProjetPage() {
               <h3 className="heading-3 mb-2">Dépôt de réservation — 305 $</h3>
               <p className="body-base mb-6">
                 Ce dépôt est <strong>gardé par ZeniCorp</strong> et sécurise votre projet dans le réseau.
-                Un entrepreneur certifié vous contacte sous 24 h pour planifier la job.
+                Le paiement s&apos;effectue en ligne, de façon sécurisée, via ZeniPay.
               </p>
               <div className="flex items-center justify-between mb-6">
-                <span className="font-semibold">Total à payer aujourd'hui</span>
+                <span className="font-semibold">Total à payer aujourd&apos;hui</span>
                 <span className="text-3xl font-heading font-bold text-zenicorp-gold">305 $</span>
               </div>
               <button onClick={handleConfirmerDepot} className="btn-gold w-full text-lg py-5">
-                PAYER LE DÉPÔT DE 305 $
+                OUVRIR LA PAGE DE PAIEMENT
               </button>
               <p className="text-center text-sm text-zenicorp-mediumGray mt-4">
-                Paiement sécurisé. Reçu fourni. Mode de paiement en ligne à venir — pour l'instant, un
-                conseiller vous appelle pour finaliser.
+                Paiement sécurisé via ZeniPay. Reçu fourni. Si vous n&apos;avez pas été redirigé vers
+                la page de paiement, cliquez sur le bouton ci-dessus.
               </p>
             </div>
 
@@ -227,8 +257,8 @@ export default function ProjetPage() {
               <h3 className="heading-3 mb-4">Prochaines étapes</h3>
               <ol className="space-y-4">
                 {[
-                  'Un conseiller ZeniCorp vous appelle sous 24 h pour finaliser le dépôt.',
-                  'Un entrepreneur certifié est jumelé à votre projet.',
+                  'Le dépôt de 305 $ est payé en ligne — votre projet est réservé.',
+                  'Un entrepreneur certifié est jumelé à votre projet sous 24 h.',
                   'L\'entrepreneur vous contacte pour planifier une visite et la job.',
                   'Travaux réalisés. Vous payez le solde. Vous gardez vos garanties.',
                 ].map((item, i) => (

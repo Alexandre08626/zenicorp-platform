@@ -6,6 +6,8 @@ import { divisionsData } from '@/lib/divisions-data';
 
 export default function EntrepreneurPage() {
   const [envoye, setEnvoye] = useState(false);
+  const [envoi, setEnvoi] = useState(false);
+  const [erreur, setErreur] = useState('');
   const [form, setForm] = useState({
     nom: '',
     entreprise: '',
@@ -22,9 +24,27 @@ export default function EntrepreneurPage() {
   const complet =
     form.nom && form.entreprise && form.telephone && form.email && form.rbq && form.assurances && form.division;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setEnvoye(true);
+    setErreur('');
+    setEnvoi(true);
+    try {
+      const res = await fetch('/api/entrepreneur', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setErreur(data?.error || 'Une erreur est survenue. Réessayez.');
+        setEnvoi(false);
+        return;
+      }
+      setEnvoye(true);
+    } catch {
+      setErreur('Problème de connexion. Réessayez.');
+      setEnvoi(false);
+    }
   };
 
   if (envoye) {
@@ -185,8 +205,14 @@ export default function EntrepreneurPage() {
               />
             </div>
 
-            <button type="submit" disabled={!complet} className={`btn-gold w-full text-lg py-5 ${!complet ? 'opacity-40 cursor-not-allowed' : ''}`}>
-              M'INSCRIRE GRATUITEMENT
+            {erreur && (
+              <div className="mb-6 p-4 bg-red-50 border-2 border-red-200 text-red-700 text-sm">
+                {erreur}
+              </div>
+            )}
+
+            <button type="submit" disabled={!complet || envoi} className={`btn-gold w-full text-lg py-5 ${!complet || envoi ? 'opacity-40 cursor-not-allowed' : ''}`}>
+              {envoi ? 'ENVOI EN COURS...' : 'M\'INSCRIRE GRATUITEMENT'}
             </button>
             <p className="text-center text-sm text-zenicorp-mediumGray mt-4">
               Aucun frais d'inscription. Aucun abonnement. Vous ne payez rien pour obtenir du travail.
