@@ -49,7 +49,7 @@ export default function HomePage() {
           <p className="body-large max-w-2xl mx-auto mb-10 animate-fade-up animate-delay-200">
             Soumettez votre projet, <span className="text-white font-semibold">gratuitement</span>. Notre système
             IA vous redirige vers la bonne division et sélectionne l'entrepreneur idéal. ZeniCorp prend{' '}
-            <span className="text-cyan font-semibold">30 %</span> seulement à la signature du contrat.
+            <span className="text-white font-semibold">30 %</span> seulement à la signature du contrat.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up animate-delay-300">
@@ -68,7 +68,7 @@ export default function HomePage() {
               <div className="text-sm text-muted mt-1">soumission gratuite pour le client</div>
             </div>
             <div className="glass glass-hover p-5 text-left">
-              <div className="text-3xl font-heading font-bold text-cyan">30 %</div>
+              <div className="text-3xl font-heading font-bold text-white">30 %</div>
               <div className="text-sm text-muted mt-1">à ZeniCorp à la signature du contrat</div>
             </div>
             <div className="glass glass-hover p-5 text-left">
@@ -92,7 +92,7 @@ export default function HomePage() {
                 href={d.site}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="chip hover:bg-cyan/[0.12] hover:text-cyanBright transition-colors"
+                className="chip hover:bg-white/[0.08] hover:text-white transition-colors"
               >
                 {d.name.replace('ZeniCorp ', '')}
               </a>
@@ -119,12 +119,12 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {/* Client */}
             <div className="glass glass-hover p-8">
-              <div className="w-12 h-12 grid place-items-center rounded-xl bg-white/[0.06] border border-line text-cyan mb-5">
+              <div className="w-12 h-12 grid place-items-center rounded-xl bg-white/[0.06] border border-line text-silver mb-5">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V10" />
                 </svg>
               </div>
-              <div className="text-xs font-semibold uppercase tracking-widest text-cyan mb-2">1 · Client</div>
+              <div className="text-xs font-semibold uppercase tracking-widest text-muted mb-2">1 · Client</div>
               <h3 className="heading-3 mb-3">Je soumets mon projet</h3>
               <p className="body-base text-sm">
                 Je décris mes travaux en 2 minutes, gratuitement. Je suis redirigé vers la bonne division.
@@ -132,7 +132,7 @@ export default function HomePage() {
             </div>
 
             {/* ZeniCorp */}
-            <div className="glass-strong p-8 border-cyan/30 shadow-glow-cyan">
+            <div className="glass-strong p-8 border-cyan/25">
               <div className="flex items-center justify-between mb-5">
                 <img src="/logo.png" alt="ZeniCorp" className="h-9 w-auto" />
                 <span className="chip">L'image · L'outil · Le garant</span>
@@ -152,12 +152,12 @@ export default function HomePage() {
 
             {/* Entrepreneur */}
             <div className="glass glass-hover p-8">
-              <div className="w-12 h-12 grid place-items-center rounded-xl bg-white/[0.06] border border-line text-cyan mb-5">
+              <div className="w-12 h-12 grid place-items-center rounded-xl bg-white/[0.06] border border-line text-silver mb-5">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M16 11V7a4 4 0 00-8 0v4M5 21h14a1 1 0 001-1v-7a1 1 0 00-1-1H5a1 1 0 00-1 1v7a1 1 0 001 1z" />
                 </svg>
               </div>
-              <div className="text-xs font-semibold uppercase tracking-widest text-cyan mb-2">3 · Entrepreneur</div>
+              <div className="text-xs font-semibold uppercase tracking-widest text-muted mb-2">3 · Entrepreneur</div>
               <h3 className="heading-3 mb-3">Il réalise la job</h3>
               <p className="body-base text-sm">
                 Contrat signé → ZeniCorp prend 30 %, l'entrepreneur garde 70 % et réalise les travaux.
@@ -169,7 +169,7 @@ export default function HomePage() {
           <div className="mt-10 glass-strong p-8">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="flex items-center gap-3 sm:w-44">
-                <div className="text-4xl font-heading font-bold text-cyan">70 %</div>
+                <div className="text-4xl font-heading font-bold text-white">70 %</div>
                 <p className="text-sm text-muted">à l'entrepreneur après la job</p>
               </div>
               <div className="flex-1 w-full h-3 rounded-full bg-black/40 border border-line overflow-hidden flex">
@@ -217,7 +217,7 @@ export default function HomePage() {
               { n: '04', t: 'La job est faite', d: 'Travaux réalisés par l\'entrepreneur sélectionné. Garanties incluses.' },
             ].map((item) => (
               <div key={item.n} className="glass glass-hover p-7">
-                <div className="text-sm font-semibold text-cyan mb-4">PHASE {item.n}</div>
+                <div className="text-sm font-semibold text-muted mb-4">PHASE {item.n}</div>
                 <h3 className="heading-3 mb-3">{item.t}</h3>
                 <p className="body-base text-sm">{item.d}</p>
               </div>
@@ -310,7 +310,7 @@ export default function HomePage() {
                 href={division.site}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative h-[340px] rounded-2xl overflow-hidden border border-line hover:border-cyan/40 transition-colors"
+                className="group relative h-[340px] rounded-2xl overflow-hidden border border-line hover:border-white/25 transition-colors"
               >
                 <img
                   src={divisionImages[division.slug]}
@@ -321,7 +321,7 @@ export default function HomePage() {
                 <div className="absolute inset-x-0 bottom-0 p-7">
                   <div className="flex items-center justify-between">
                     <h3 className="heading-3">{division.name.replace('ZeniCorp ', '')}</h3>
-                    <span className="flex items-center gap-2 text-sm text-white/80 group-hover:text-cyanBright transition-colors">
+                    <span className="flex items-center gap-2 text-sm text-white/80 group-hover:text-white transition-colors">
                       Voir le site <ArrowIcon />
                     </span>
                   </div>
@@ -355,7 +355,7 @@ export default function HomePage() {
                   'Vous ne payez que lorsque la soumission est acceptée et le contrat signé.',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
-                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-cyan/15 text-cyan text-xs font-bold flex-shrink-0">✓</span>
+                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-white/10 text-silver text-xs font-bold flex-shrink-0">✓</span>
                     <span className="text-sm leading-relaxed">{item}</span>
                   </li>
                 ))}
@@ -372,7 +372,7 @@ export default function HomePage() {
                   'Zéro marketing à faire : les clients viennent à nous.',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
-                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-cyan/15 text-cyan text-xs font-bold flex-shrink-0">✓</span>
+                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-white/10 text-silver text-xs font-bold flex-shrink-0">✓</span>
                     <span className="text-sm leading-relaxed">{item}</span>
                   </li>
                 ))}
@@ -398,10 +398,10 @@ export default function HomePage() {
               { q: 'L\'inscription entrepreneur est-elle vraiment gratuite ?', a: 'Oui. Créer un compte, recevoir des contrats et soumissionner ne coûte rien. ZeniCorp prend 30 % seulement à la signature du contrat.' },
               { q: 'Quelles divisions sont disponibles ?', a: 'ZeniCorp Epoxy, Asphalte, Toiture et Isolation. D\'autres divisions s\'ajouteront pour couvrir tous les domaines de la construction.' },
             ].map((item) => (
-              <details key={item.q} className="group glass p-6 open:border-cyan/30 transition-colors">
+              <details key={item.q} className="group glass p-6 open:border-white/25 transition-colors">
                 <summary className="heading-3 flex items-center justify-between gap-4 cursor-pointer list-none">
                   <span className="text-lg">{item.q}</span>
-                  <span className="text-cyan text-xl transition-transform group-open:rotate-45 flex-shrink-0">+</span>
+                  <span className="text-silver text-xl transition-transform group-open:rotate-45 flex-shrink-0">+</span>
                 </summary>
                 <p className="body-base text-sm mt-4 border-t border-line pt-4">{item.a}</p>
               </details>

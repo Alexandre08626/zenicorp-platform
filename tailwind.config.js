@@ -26,15 +26,15 @@ module.exports = {
         heading: ['var(--font-space)', 'var(--font-inter)', 'sans-serif'],
       },
       boxShadow: {
-        'glow-cyan': '0 0 40px -10px rgba(34,211,238,0.4)',
+        'glow-cyan': '0 0 40px -14px rgba(34,211,238,0.5)',
         'card': '0 20px 50px -20px rgba(0,0,0,0.7)',
         'card-lg': '0 40px 80px -30px rgba(0,0,0,0.85)',
       },
       backgroundImage: {
         'mesh':
-          'radial-gradient(60% 50% at 15% 0%, rgba(34,211,238,0.10), transparent 60%), radial-gradient(50% 40% at 90% 10%, rgba(8,145,178,0.10), transparent 60%), radial-gradient(60% 60% at 60% 100%, rgba(34,211,238,0.06), transparent 60%)',
+          'radial-gradient(55% 45% at 15% 0%, rgba(34,211,238,0.05), transparent 60%), radial-gradient(50% 40% at 90% 10%, rgba(8,145,178,0.05), transparent 60%), radial-gradient(60% 60% at 60% 100%, rgba(34,211,238,0.03), transparent 60%)',
         'mesh-blue':
-          'radial-gradient(55% 45% at 20% 0%, rgba(34,211,238,0.14), transparent 55%), radial-gradient(45% 40% at 90% 20%, rgba(2,132,199,0.12), transparent 55%)',
+          'radial-gradient(55% 45% at 20% 0%, rgba(34,211,238,0.07), transparent 55%), radial-gradient(45% 40% at 90% 20%, rgba(2,132,199,0.06), transparent 55%)',
       },
       keyframes: {
         'fade-up': {

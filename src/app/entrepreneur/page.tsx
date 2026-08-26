@@ -52,7 +52,7 @@ export default function EntrepreneurPage() {
       <main className="flex-1">
         <section className="section-pad bg-black">
           <div className="container-z max-w-2xl text-center">
-            <div className="w-20 h-20 mx-auto grid place-items-center rounded-2xl bg-cyan/10 border border-cyan/40 mb-6 text-4xl">✓</div>
+            <div className="w-20 h-20 mx-auto grid place-items-center rounded-2xl bg-white/[0.06] border border-white/20 mb-6 text-4xl">✓</div>
             <h2 className="heading-2 mb-4">Votre inscription est reçue !</h2>
             <p className="body-large mb-8">
               Merci <span className="text-white font-semibold">{form.entreprise}</span> ! Un conseiller ZeniCorp
@@ -110,19 +110,19 @@ export default function EntrepreneurPage() {
               <ul className="space-y-2.5">
                 {['Inscription gratuite', 'Profil entrepreneur', 'Réception de contrats', 'Aucun abonnement'].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
-                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-cyan/15 text-cyan text-xs font-bold flex-shrink-0">✓</span>
+                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-white/10 text-silver text-xs font-bold flex-shrink-0">✓</span>
                     <span className="text-sm">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="glass-strong p-8 border-cyan/30 shadow-glow-cyan">
+            <div className="glass-strong p-8 border-white/15">
               <h3 className="heading-3 mb-4">Ce que vous recevez</h3>
               <div className="text-5xl font-heading font-bold text-cyan mb-4">70 %</div>
               <ul className="space-y-2.5">
                 {['70 % à chaque contrat signé', 'Clients qualifiés, soumission gratuite côté client', 'Jumelage IA selon votre secteur et la job', 'Zéro marketing à faire'].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
-                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-cyan/15 text-cyan text-xs font-bold flex-shrink-0">✓</span>
+                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-white/10 text-silver text-xs font-bold flex-shrink-0">✓</span>
                     <span className="text-sm">{item}</span>
                   </li>
                 ))}
@@ -139,7 +139,7 @@ export default function EntrepreneurPage() {
                 <div className="font-heading text-3xl font-bold text-white">10 000 $</div>
                 <div className="text-xs text-muted mt-2">soumission gratuite</div>
               </div>
-              <div className="rounded-xl bg-black/30 border border-cyan/40 p-6 shadow-glow-cyan">
+              <div className="rounded-xl bg-black/30 border border-line p-6">
                 <div className="text-sm text-dim mb-2">Votre part</div>
                 <div className="font-heading text-3xl font-bold text-cyan">7 000 $</div>
                 <div className="text-xs text-muted mt-2">70 % du contrat</div>

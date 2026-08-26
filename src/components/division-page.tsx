@@ -41,7 +41,7 @@ export default function DivisionPage({ division }: { division: DivisionData }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {division.services.map((service) => (
               <article key={service} className="glass glass-hover p-6">
-                <div className="text-lg font-semibold text-cyan mb-1">›</div>
+                <div className="text-lg font-semibold text-muted mb-1">›</div>
                 <h3 className="heading-3 mb-2">{service}</h3>
                 <p className="body-base text-sm">
                   Réalisé par nos entrepreneurs certifiés RBQ, jumelés via le système ZeniCorp.
@@ -79,7 +79,7 @@ export default function DivisionPage({ division }: { division: DivisionData }) {
               { t: 'Signature', d: 'Soumission acceptée et contrat signé. ZeniCorp prend 30 %, l\'entrepreneur garde 70 %.', n: '04' },
             ].map((item) => (
               <div key={item.n} className="glass glass-hover p-7">
-                <div className="text-sm font-semibold text-cyan mb-4">PHASE {item.n}</div>
+                <div className="text-sm font-semibold text-muted mb-4">PHASE {item.n}</div>
                 <h3 className="heading-3 mb-3">{item.t}</h3>
                 <p className="body-base text-sm">{item.d}</p>
               </div>
@@ -102,10 +102,10 @@ export default function DivisionPage({ division }: { division: DivisionData }) {
               { q: 'Combien ça coûte pour commencer ?', a: 'La soumission est 100 % gratuite. Vous ne payez que lorsque la soumission est acceptée et le contrat signé.' },
               { q: 'Quand l\'entrepreneur reçoit-il son paiement ?', a: 'L\'entrepreneur garde 70 % du montant du contrat. ZeniCorp prélève 30 % à la signature du contrat.' },
             ].map((item) => (
-              <details key={item.q} className="group glass p-6 open:border-cyan/30 transition-colors">
+              <details key={item.q} className="group glass p-6 open:border-white/25 transition-colors">
                 <summary className="heading-3 flex items-center justify-between gap-4 cursor-pointer list-none">
                   <span className="text-lg">{item.q}</span>
-                  <span className="text-cyan text-xl transition-transform group-open:rotate-45 flex-shrink-0">+</span>
+                  <span className="text-silver text-xl transition-transform group-open:rotate-45 flex-shrink-0">+</span>
                 </summary>
                 <p className="body-base text-sm mt-4 border-t border-line pt-4">{item.a}</p>
               </details>
