@@ -7,21 +7,21 @@ export default function DivisionPage({ division }: { division: DivisionData }) {
       {/* Hero */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-black">
         <div className="absolute inset-0 bg-grid opacity-60 animate-grid-pan bg-grid-fade" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full bg-gold/10 blur-[130px] animate-pulse-glow" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full bg-cyan/10 blur-[130px] animate-pulse-glow" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black to-transparent" />
 
         <div className="relative container-zenicorp z-10 text-center py-20">
-          <Link href="/" className="inline-flex items-center gap-2 text-goldBright hover:text-gold transition-colors mb-8">
+          <Link href="/" className="inline-flex items-center gap-2 text-cyanBright hover:text-cyan transition-colors mb-8">
             <span>←</span> Retour à la plateforme
           </Link>
-          <div className="w-16 h-16 mx-auto grid place-items-center rounded-2xl bg-panel2 border border-gold/30 text-4xl mb-6 shadow-glow-gold-sm">
+          <div className="w-16 h-16 mx-auto grid place-items-center rounded-2xl bg-panel2 border border-cyan/30 text-4xl mb-6 shadow-glow-cyan-sm">
             {division.icon}
           </div>
           <h1 className="heading-1 mb-5">
-            <span className="text-gradient-gold">{division.name}</span>
+            <span className="text-gradient-cyan">{division.name}</span>
           </h1>
           <p className="body-large max-w-2xl mx-auto mb-9">{division.positioning}</p>
-          <Link href="/projet" className="btn-gold text-lg px-10 py-5">
+          <Link href="/projet" className="btn-cyan text-lg px-10 py-5">
             Soumettre mon projet — dépôt 305 $
           </Link>
         </div>
@@ -45,7 +45,7 @@ export default function DivisionPage({ division }: { division: DivisionData }) {
                 <p className="body-base text-sm mb-4">
                   Réalisé par nos entrepreneurs certifiés RBQ, jumelés via le système ZeniCorp.
                 </p>
-                <Link href="/projet" className="inline-flex items-center gap-2 text-goldBright font-semibold text-sm group">
+                <Link href="/projet" className="inline-flex items-center gap-2 text-cyanBright font-semibold text-sm group">
                   Soumettre un projet
                   <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -73,8 +73,8 @@ export default function DivisionPage({ division }: { division: DivisionData }) {
               { title: 'Paiement', desc: 'Vous payez le solde à la complétion. L\'entrepreneur reçoit son chèque de 70 %.', step: '04' },
             ].map((item) => (
               <div key={item.title} className="panel panel-hover corner p-7 relative overflow-hidden">
-                <span className="font-tech text-6xl font-bold text-gold/15 absolute -top-2 -right-1">{item.step}</span>
-                <div className="text-sm font-tech text-goldBright tracking-widest mb-4">PHASE {item.step}</div>
+                <span className="font-tech text-6xl font-bold text-cyan/15 absolute -top-2 -right-1">{item.step}</span>
+                <div className="text-sm font-tech text-cyanBright tracking-widest mb-4">PHASE {item.step}</div>
                 <h3 className="heading-3 mb-3">{item.title}</h3>
                 <p className="body-base text-sm">{item.desc}</p>
               </div>
@@ -98,10 +98,10 @@ export default function DivisionPage({ division }: { division: DivisionData }) {
               { q: 'Quand est-ce que l\'entrepreneur reçoit son paiement ?', a: 'L\'entrepreneur reçoit un chèque de 70 % du montant du contrat, une fois la job complétée et acceptée par le client.' },
               { q: 'Y a-t-il des garanties ?', a: 'Oui. Les travaux sont réalisés par des entrepreneurs certifiés RBQ avec garanties en place, et le suivi ZeniCorp encadre le projet de A à Z.' },
             ].map((item) => (
-              <details key={item.q} className="group panel p-6 open:border-gold/40 transition-colors">
+              <details key={item.q} className="group panel p-6 open:border-cyan/40 transition-colors">
                 <summary className="heading-3 flex items-center justify-between gap-4 cursor-pointer list-none">
                   <span>{item.q}</span>
-                  <span className="text-goldBright text-xl transition-transform group-open:rotate-45 flex-shrink-0">+</span>
+                  <span className="text-cyanBright text-xl transition-transform group-open:rotate-45 flex-shrink-0">+</span>
                 </summary>
                 <p className="body-base text-sm mt-4 border-t border-line pt-4">{item.a}</p>
               </details>
@@ -115,12 +115,12 @@ export default function DivisionPage({ division }: { division: DivisionData }) {
         <div className="absolute inset-0 bg-grid opacity-40 bg-grid-fade" />
         <div className="relative container-zenicorp">
           <h2 className="heading-2 max-w-3xl mx-auto mb-6">
-            Prêt pour votre projet <span className="text-gradient-gold">{division.name.replace('ZeniCorp ', '')}</span> ?
+            Prêt pour votre projet <span className="text-gradient-cyan">{division.name.replace('ZeniCorp ', '')}</span> ?
           </h2>
           <p className="body-large max-w-2xl mx-auto mb-10">
             Dépôt de 305 $, entrepreneur jumelé sous 24 h, job complétée et garantie.
           </p>
-          <Link href="/projet" className="btn-gold text-lg px-10 py-5">Soumettre mon projet</Link>
+          <Link href="/projet" className="btn-cyan text-lg px-10 py-5">Soumettre mon projet</Link>
         </div>
       </section>
     </main>

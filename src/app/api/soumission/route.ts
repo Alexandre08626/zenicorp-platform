@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
           <p>Bonjour <strong>${prenom}</strong>,</p>
           <p>Nous avons bien reçu votre soumission pour <strong>${division}</strong>.</p>
           ${paylinkUrl ? `<p>Pour réserver votre projet, payez le dépôt de <strong>305 $</strong> :</p>
-          <p><a href="${paylinkUrl}" style="display:inline-block;background:#D4AF37;color:#000;padding:14px 28px;text-decoration:none;font-weight:bold">PAYER LE DÉPÔT DE 305 $</a></p>` : ''}
+          <p><a href="${paylinkUrl}" style="display:inline-block;background:#00E5FF;color:#000;padding:14px 28px;text-decoration:none;font-weight:bold">PAYER LE DÉPÔT DE 305 $</a></p>` : ''}
           <p>Un conseiller ZeniCorp vous contactera sous 24 h.</p>
           <p style="color:#666;font-size:13px">ZeniCorp — Votre projet. Notre expertise.</p>
         </div>`,

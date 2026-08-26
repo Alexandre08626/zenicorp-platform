@@ -52,10 +52,10 @@ export default function EntrepreneurPage() {
       <main className="flex-1">
         <section className="py-16 sm:py-24 bg-black">
           <div className="container-zenicorp max-w-2xl text-center">
-            <div className="w-20 h-20 mx-auto grid place-items-center rounded-2xl bg-gold/10 border border-gold/40 mb-6 text-4xl animate-pulse-glow">✓</div>
+            <div className="w-20 h-20 mx-auto grid place-items-center rounded-2xl bg-cyan/10 border border-cyan/40 mb-6 text-4xl animate-pulse-glow">✓</div>
             <h2 className="heading-2 mb-4">Votre inscription est reçue !</h2>
             <p className="body-large mb-8">
-              Merci <strong className="text-goldBright">{form.entreprise}</strong> ! Un conseiller ZeniCorp
+              Merci <strong className="text-cyanBright">{form.entreprise}</strong> ! Un conseiller ZeniCorp
               vous contacte sous 24 h pour activer votre profil d'entrepreneur.
             </p>
             <div className="panel p-8 text-left mb-10">
@@ -68,7 +68,7 @@ export default function EntrepreneurPage() {
                   'Job complétée = chèque de 70 % du contrat.',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-4">
-                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-gold-gradient text-black font-bold flex-shrink-0">{i + 1}</span>
+                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-cyan-gradient text-black font-bold flex-shrink-0">{i + 1}</span>
                     <span className="body-base text-sm">{item}</span>
                   </li>
                 ))}
@@ -86,18 +86,18 @@ export default function EntrepreneurPage() {
       {/* Hero */}
       <section className="relative py-24 overflow-hidden bg-black">
         <div className="absolute inset-0 bg-grid opacity-50 bg-grid-fade" />
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-gold/10 blur-[120px]" />
+        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-cyan/10 blur-[120px]" />
         <div className="relative container-zenicorp z-10 text-center">
-          <Link href="/" className="inline-flex items-center gap-2 text-goldBright hover:text-gold transition-colors mb-6">
+          <Link href="/" className="inline-flex items-center gap-2 text-cyanBright hover:text-cyan transition-colors mb-6">
             <span>←</span> Retour à ZeniCorp
           </Link>
           <h1 className="heading-1 mb-5">
-            Espace <span className="text-gradient-gold">entrepreneur</span>
+            Espace <span className="text-gradient-cyan">entrepreneur</span>
           </h1>
           <p className="body-large max-w-2xl mx-auto">
-            <strong className="text-goldBright">Inscription 100 % gratuite.</strong> ZeniCorp trouve les leads,
+            <strong className="text-cyanBright">Inscription 100 % gratuite.</strong> ZeniCorp trouve les leads,
             sélectionne les jobs de votre secteur et vous les assigne. Vous recevez votre chèque de{' '}
-            <strong className="text-goldBright">70 %</strong>.
+            <strong className="text-cyanBright">70 %</strong>.
           </p>
         </div>
       </section>
@@ -108,23 +108,23 @@ export default function EntrepreneurPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
             <div className="panel panel-hover p-8">
               <h3 className="heading-3 mb-4">Ce que vous payez</h3>
-              <div className="font-tech text-5xl font-bold text-gradient-gold mb-4">0 $</div>
+              <div className="font-tech text-5xl font-bold text-gradient-cyan mb-4">0 $</div>
               <ul className="space-y-2.5">
                 {['Inscription gratuite', 'Profil entrepreneur', 'Réception de contrats', 'Aucun abonnement'].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
-                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-gold/15 text-goldBright text-xs font-bold flex-shrink-0">✓</span>
+                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-cyan/15 text-cyanBright text-xs font-bold flex-shrink-0">✓</span>
                     <span className="text-sm">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="panel panel-glow corner p-8 border-gold/40 shadow-glow-gold-sm">
+            <div className="panel panel-glow corner p-8 border-cyan/40 shadow-glow-cyan-sm">
               <h3 className="heading-3 mb-4">Ce que vous recevez</h3>
-              <div className="font-tech text-5xl font-bold text-gradient-gold mb-4">70 %</div>
+              <div className="font-tech text-5xl font-bold text-gradient-cyan mb-4">70 %</div>
               <ul className="space-y-2.5">
                 {['Chèque de 70 % par contrat complété', 'Clients qualifiés qui ont déjà payé leur dépôt', 'Jumelage IA selon votre secteur et la job', 'Zéro marketing à faire'].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
-                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-gold/15 text-goldBright text-xs font-bold flex-shrink-0">✓</span>
+                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-cyan/15 text-cyanBright text-xs font-bold flex-shrink-0">✓</span>
                     <span className="text-sm">{item}</span>
                   </li>
                 ))}
@@ -141,9 +141,9 @@ export default function EntrepreneurPage() {
                 <div className="font-tech text-3xl font-bold text-white">10 000 $</div>
                 <div className="text-xs text-muted mt-2">dont 305 $ de dépôt déjà payé</div>
               </div>
-              <div className="rounded-xl bg-black/50 border border-gold/50 p-6 shadow-glow-gold-sm">
+              <div className="rounded-xl bg-black/50 border border-cyan/50 p-6 shadow-glow-cyan-sm">
                 <div className="text-sm text-dim mb-2">Votre chèque à la complétion</div>
-                <div className="font-tech text-3xl font-bold text-gradient-gold">7 000 $</div>
+                <div className="font-tech text-3xl font-bold text-gradient-cyan">7 000 $</div>
                 <div className="text-xs text-muted mt-2">70 % du contrat</div>
               </div>
               <div className="rounded-xl bg-black/50 border border-line p-6">
@@ -209,7 +209,7 @@ export default function EntrepreneurPage() {
               </div>
             )}
 
-            <button type="submit" disabled={!complet || envoi} className={`btn-gold w-full text-lg py-5 ${!complet || envoi ? 'opacity-40 cursor-not-allowed' : ''}`}>
+            <button type="submit" disabled={!complet || envoi} className={`btn-cyan w-full text-lg py-5 ${!complet || envoi ? 'opacity-40 cursor-not-allowed' : ''}`}>
               {envoi ? 'ENVOI EN COURS...' : 'M\'INSCRIRE GRATUITEMENT'}
             </button>
             <p className="text-center text-sm text-dim mt-4">

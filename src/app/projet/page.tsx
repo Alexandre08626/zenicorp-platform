@@ -63,16 +63,16 @@ export default function ProjetPage() {
       {/* Hero */}
       <section className="relative py-24 overflow-hidden bg-black">
         <div className="absolute inset-0 bg-grid opacity-50 bg-grid-fade" />
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-gold/10 blur-[120px]" />
+        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-cyan/10 blur-[120px]" />
         <div className="relative container-zenicorp z-10 text-center">
-          <Link href="/" className="inline-flex items-center gap-2 text-goldBright hover:text-gold transition-colors mb-6">
+          <Link href="/" className="inline-flex items-center gap-2 text-cyanBright hover:text-cyan transition-colors mb-6">
             <span>←</span> Retour à ZeniCorp
           </Link>
           <h1 className="heading-1 mb-5">
-            Soumettre <span className="text-gradient-gold">mon projet</span>
+            Soumettre <span className="text-gradient-cyan">mon projet</span>
           </h1>
           <p className="body-large max-w-2xl mx-auto">
-            Dépôt de réservation de <strong className="text-goldBright">305 $</strong> — gardé par ZeniCorp.
+            Dépôt de réservation de <strong className="text-cyanBright">305 $</strong> — gardé par ZeniCorp.
             Notre système sélectionne l'entrepreneur idéal et il vous contacte sous 24 h.
           </p>
         </div>
@@ -89,7 +89,7 @@ export default function ProjetPage() {
             ].map((s, i) => (
               <div key={s.id} className="flex items-center gap-4">
                 <div className={`flex items-center gap-2 ${step === s.id ? 'text-white' : 'text-dim'}`}>
-                  <span className={`w-8 h-8 flex items-center justify-center rounded-full border text-sm font-bold transition-colors ${step === s.id ? 'border-gold bg-gold-gradient text-black' : 'border-line'}`}>
+                  <span className={`w-8 h-8 flex items-center justify-center rounded-full border text-sm font-bold transition-colors ${step === s.id ? 'border-cyan bg-cyan-gradient text-black' : 'border-line'}`}>
                     {step === s.id ? s.label[0] : i + 1}
                   </span>
                   <span className="font-medium text-sm hidden sm:block">{s.label}</span>
@@ -116,7 +116,7 @@ export default function ProjetPage() {
                       key={d.slug}
                       type="button"
                       onClick={() => setDivision(d.slug)}
-                      className={`panel p-6 text-center transition-all duration-200 border ${division === d.slug ? 'border-gold shadow-glow-gold-sm' : 'border-line hover:border-silver'}`}
+                      className={`panel p-6 text-center transition-all duration-200 border ${division === d.slug ? 'border-cyan shadow-glow-cyan-sm' : 'border-line hover:border-silver'}`}
                     >
                       <div className="text-4xl mb-3">{d.icon}</div>
                       <div className="font-semibold text-sm">{d.name.replace('ZeniCorp ', '')}</div>
@@ -188,7 +188,7 @@ export default function ProjetPage() {
                 </div>
               )}
 
-              <button type="submit" disabled={!projetComplet || envoi} className={`btn-gold w-full text-lg py-5 ${!projetComplet || envoi ? 'opacity-40 cursor-not-allowed' : ''}`}>
+              <button type="submit" disabled={!projetComplet || envoi} className={`btn-cyan w-full text-lg py-5 ${!projetComplet || envoi ? 'opacity-40 cursor-not-allowed' : ''}`}>
                 {envoi ? 'ENVOI EN COURS...' : 'CONTINUER VERS LE DÉPÔT — 305 $'}
               </button>
             </form>
@@ -218,17 +218,17 @@ export default function ProjetPage() {
               </dl>
             </div>
 
-            <div className="panel corner p-8 border border-gold/50 shadow-glow-gold-sm mb-8">
+            <div className="panel corner p-8 border border-cyan/50 shadow-glow-cyan-sm mb-8">
               <h3 className="heading-3 mb-2">Dépôt de réservation — 305 $</h3>
               <p className="body-base mb-6">
-                Ce dépôt est <strong className="text-goldBright">gardé par ZeniCorp</strong> et sécurise votre
+                Ce dépôt est <strong className="text-cyanBright">gardé par ZeniCorp</strong> et sécurise votre
                 projet dans le réseau. Le paiement s'effectue en ligne, de façon sécurisée, via ZeniPay.
               </p>
               <div className="flex items-center justify-between mb-6">
                 <span className="font-semibold text-silver">Total à payer aujourd'hui</span>
-                <span className="font-tech text-4xl font-bold text-gradient-gold">305 $</span>
+                <span className="font-tech text-4xl font-bold text-gradient-cyan">305 $</span>
               </div>
-              <button onClick={handleConfirmerDepot} className="btn-gold w-full text-lg py-5">
+              <button onClick={handleConfirmerDepot} className="btn-cyan w-full text-lg py-5">
                 Ouvrir la page de paiement
               </button>
               <p className="text-center text-sm text-dim mt-4">
@@ -249,10 +249,10 @@ export default function ProjetPage() {
       {step === 'confirmation' && (
         <section className="py-16 sm:py-24 bg-black">
           <div className="container-zenicorp max-w-2xl text-center">
-            <div className="w-20 h-20 mx-auto grid place-items-center rounded-2xl bg-gold/10 border border-gold/40 mb-6 text-4xl animate-pulse-glow">✓</div>
+            <div className="w-20 h-20 mx-auto grid place-items-center rounded-2xl bg-cyan/10 border border-cyan/40 mb-6 text-4xl animate-pulse-glow">✓</div>
             <h2 className="heading-2 mb-4">Votre projet est réservé !</h2>
             <p className="body-large mb-8">
-              Merci <strong className="text-goldBright">{form.nom}</strong> ! Votre projet{' '}
+              Merci <strong className="text-cyanBright">{form.nom}</strong> ! Votre projet{' '}
               <strong className="text-silver">{divisionsData.find((d) => d.slug === division)?.name}</strong>{' '}
               a été enregistré avec le dépôt de 305 $.
             </p>
@@ -266,7 +266,7 @@ export default function ProjetPage() {
                   'Travaux réalisés. Vous payez le solde. Vous gardez vos garanties.',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-4">
-                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-gold-gradient text-black font-bold flex-shrink-0">{i + 1}</span>
+                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-cyan-gradient text-black font-bold flex-shrink-0">{i + 1}</span>
                     <span className="body-base text-sm">{item}</span>
                   </li>
                 ))}

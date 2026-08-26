@@ -36,7 +36,7 @@
   }
 
   ::selection {
-    background: rgba(212, 175, 55, 0.85);
+    background: rgba(0, 229, 255, 0.85);
     color: #050505;
   }
 
@@ -62,26 +62,26 @@
   }
 
   /* ====== BOUTONS ====== */
-  .btn-gold {
+  .btn-cyan {
     @apply relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-black uppercase tracking-wider
-      bg-gold-gradient bg-[length:200%_auto] bg-left hover:bg-right
-      transition-all duration-500 shadow-glow-gold-sm
+      bg-cyan-gradient bg-[length:200%_auto] bg-left hover:bg-right
+      transition-all duration-500 shadow-glow-cyan-sm
       focus:outline-none focus:ring-2 focus:ring-[rgba(242,201,76,0.6)] focus:ring-offset-2 focus:ring-offset-black;
     clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
   }
-  .btn-gold:hover {
+  .btn-cyan:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 50px -8px rgba(242, 201, 76, 0.75);
   }
 
   .btn-ghost {
     @apply inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-silver uppercase tracking-wider
-      bg-transparent border border-line hover:border-gold hover:text-goldBright
-      transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold/40;
+      bg-transparent border border-line hover:border-cyan hover:text-cyanBright
+      transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan/40;
     clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
   }
   .btn-ghost:hover {
-    background: rgba(212, 175, 55, 0.06);
+    background: rgba(0, 229, 255, 0.06);
   }
 
   .btn-sm {
@@ -99,7 +99,7 @@
     @apply text-xl sm:text-2xl font-heading font-semibold tracking-tight text-white;
   }
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.35em] text-goldBright;
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.35em] text-cyanBright;
   }
   .body-large {
     @apply text-lg sm:text-xl text-muted leading-relaxed;
@@ -107,8 +107,8 @@
   .body-base {
     @apply text-base text-muted leading-relaxed;
   }
-  .text-gradient-gold {
-    @apply bg-gold-gradient bg-clip-text text-transparent;
+  .text-gradient-cyan {
+    @apply bg-cyan-gradient bg-clip-text text-transparent;
   }
 
   /* ====== LAYOUT ====== */
@@ -122,13 +122,13 @@
     backdrop-filter: blur(8px);
   }
   .panel-hover {
-    @apply transition-all duration-300 hover:border-gold/60 hover:shadow-glow-gold-sm hover:-translate-y-1;
+    @apply transition-all duration-300 hover:border-cyan/60 hover:shadow-glow-cyan-sm hover:-translate-y-1;
   }
   .panel-glow::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.1), transparent 60%);
+    background: radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.1), transparent 60%);
     pointer-events: none;
   }
   .corner::after,
@@ -137,7 +137,7 @@
     position: absolute;
     width: 18px;
     height: 18px;
-    border-color: rgba(212, 175, 55, 0.6);
+    border-color: rgba(0, 229, 255, 0.6);
     border-style: solid;
     pointer-events: none;
   }
@@ -155,7 +155,7 @@
   /* ====== FORMULAIRE ====== */
   .input-field {
     @apply w-full px-4 py-3.5 text-white bg-black2/80 border border-line rounded-lg
-      placeholder:text-dim focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/25
+      placeholder:text-dim focus:outline-none focus:border-cyan focus:ring-2 focus:ring-cyan/25
       transition-all duration-200;
   }
   .label {
@@ -167,18 +167,18 @@
 
   /* ====== DIVISEUR / DÉCOR ====== */
   .hud-divider {
-    @apply h-px w-full bg-gradient-to-r from-transparent via-gold/50 to-transparent;
+    @apply h-px w-full bg-gradient-to-r from-transparent via-cyan/50 to-transparent;
   }
   .tech-chip {
-    @apply inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-goldBright border border-gold/30 bg-gold/5 rounded-full;
+    @apply inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-cyanBright border border-cyan/30 bg-cyan/5 rounded-full;
   }
 }
 
 @layer utilities {
   .bg-grid {
     background-image:
-      linear-gradient(rgba(212, 175, 55, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(212, 175, 55, 0.06) 1px, transparent 1px);
+      linear-gradient(rgba(0, 229, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 229, 255, 0.06) 1px, transparent 1px);
     background-size: 56px 56px;
   }
   .bg-grid-fade {

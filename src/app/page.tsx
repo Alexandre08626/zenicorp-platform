@@ -8,12 +8,12 @@ export default function HomePage() {
       <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-black">
         {/* Fond animé */}
         <div className="absolute inset-0 bg-grid opacity-60 animate-grid-pan bg-grid-fade" />
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] rounded-full bg-gold/10 blur-[140px] animate-pulse-glow" />
-        <div className="absolute top-1/3 -left-32 w-96 h-96 rounded-full bg-gold/5 blur-[100px] animate-pulse-glow" />
-        <div className="absolute bottom-0 -right-32 w-[500px] h-[400px] rounded-full bg-amber-700/10 blur-[120px]" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] rounded-full bg-cyan/10 blur-[140px] animate-pulse-glow" />
+        <div className="absolute top-1/3 -left-32 w-96 h-96 rounded-full bg-cyan/5 blur-[100px] animate-pulse-glow" />
+        <div className="absolute bottom-0 -right-32 w-[500px] h-[400px] rounded-full bg-cyan/10 blur-[120px]" />
 
         {/* Ligne de scan */}
-        <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent animate-scan-line" />
+        <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan/70 to-transparent animate-scan-line" />
 
         {/* Voile bas */}
         <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black to-transparent" />
@@ -22,25 +22,25 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto text-center">
             <span className="tech-chip animate-fade-in">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-goldBright opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-goldBright" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyanBright opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyanBright" />
               </span>
               SYSTÈME IA DE LA CONSTRUCTION — QUÉBEC
             </span>
 
             <h1 className="heading-1 mt-8 mb-7 text-balance animate-fade-up animate-delay-100">
               LE FUTUR DE LA<br />
-              <span className="text-gradient-gold">CONSTRUCTION.</span>
+              <span className="text-gradient-cyan">CONSTRUCTION.</span>
             </h1>
 
             <p className="body-large max-w-2xl mx-auto mb-11 animate-fade-up animate-delay-200">
               Vous soumettez votre projet. Notre système IA sélectionne l'entrepreneur idéal dans notre
               réseau certifié. ZeniCorp gère la soumission, le jumelage et la facturation —
-              <span className="text-goldBright font-semibold"> l'entrepreneur garde 70 %</span> de chaque contrat.
+              <span className="text-cyanBright font-semibold"> l'entrepreneur garde 70 %</span> de chaque contrat.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up animate-delay-300">
-              <Link href="/projet" className="btn-gold text-lg px-10 py-5 w-full sm:w-auto">
+              <Link href="/projet" className="btn-cyan text-lg px-10 py-5 w-full sm:w-auto">
                 Je suis client — soumettre
               </Link>
               <Link href="/entrepreneur" className="btn-ghost text-lg px-10 py-5 w-full sm:w-auto">
@@ -61,7 +61,7 @@ export default function HomePage() {
               { k: '24 h', v: 'pour jumeler un entrepreneur certifié à votre projet' },
             ].map((s) => (
               <div key={s.k} className="panel panel-glow panel-hover corner p-6">
-                <div className="font-tech text-4xl font-bold text-gradient-gold">{s.k}</div>
+                <div className="font-tech text-4xl font-bold text-gradient-cyan">{s.k}</div>
                 <div className="mt-2 text-sm text-muted leading-relaxed">{s.v}</div>
               </div>
             ))}
@@ -75,7 +75,7 @@ export default function HomePage() {
           <header className="text-center max-w-3xl mx-auto mb-16">
             <span className="eyebrow">Le modèle</span>
             <h2 className="heading-2 mt-4 mb-6">
-              ZeniCorp est <span className="text-gradient-gold">l'outil</span> entre les deux
+              ZeniCorp est <span className="text-gradient-cyan">l'outil</span> entre les deux
             </h2>
             <p className="body-large">
               Nous ne connectons pas deux inconnus. Nous sommes l'image marketing, l'outil technologique
@@ -99,18 +99,18 @@ export default function HomePage() {
                 Je décris mes travaux en 2 minutes. Je paye le dépôt de 305 $. Mon projet entre dans le système.
               </p>
               <ul className="mt-5 space-y-2 text-sm text-muted">
-                <li className="flex gap-2"><span className="text-goldBright">›</span>Division + superficie + adresse</li>
-                <li className="flex gap-2"><span className="text-goldBright">›</span>Dépôt sécurisé par ZeniCorp</li>
+                <li className="flex gap-2"><span className="text-cyanBright">›</span>Division + superficie + adresse</li>
+                <li className="flex gap-2"><span className="text-cyanBright">›</span>Dépôt sécurisé par ZeniCorp</li>
               </ul>
             </div>
 
             {/* ZeniCorp (centre, mise en avant) */}
-            <div className="panel panel-glow corner p-8 border-gold/40 shadow-glow-gold-sm relative">
+            <div className="panel panel-glow corner p-8 border-cyan/40 shadow-glow-cyan-sm relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 tech-chip">L'IMAGE · L'OUTIL · LE GARANT</div>
               <div className="flex items-center gap-3 mb-4 mt-2">
-                <div className="w-11 h-11 grid place-items-center rounded-lg bg-gold-gradient font-tech font-black text-black">Z</div>
+                <div className="w-11 h-11 grid place-items-center rounded-lg bg-cyan-gradient font-tech font-black text-black">Z</div>
                 <div>
-                  <div className="font-tech text-xs uppercase tracking-widest text-goldBright">2 · ZeniCorp</div>
+                  <div className="font-tech text-xs uppercase tracking-widest text-cyanBright">2 · ZeniCorp</div>
                   <h3 className="heading-3">Le système sélectionne</h3>
                 </div>
               </div>
@@ -118,11 +118,11 @@ export default function HomePage() {
                 Notre IA analyse la job, la région et le secteur, puis assigne l'entrepreneur le mieux qualifié
                 de notre banque. ZeniCorp gère la soumission, la facture et le suivi.
               </p>
-              <div className="mt-5 rounded-lg bg-black/50 border border-line p-4 font-mono text-xs text-goldBright/80 space-y-1">
+              <div className="mt-5 rounded-lg bg-black/50 border border-line p-4 font-mono text-xs text-cyanBright/80 space-y-1">
                 <div>› Analyse de la demande…</div>
                 <div>› Correspondance avec {`{banque: '1 200+ entrepreneurs'}`}</div>
-                <div>› Sélection : <span className="text-goldBright">qualifié · dispo · noté</span></div>
-                <div className="animate-pulse text-gold">▌ Jumelage confirmé sous 24 h</div>
+                <div>› Sélection : <span className="text-cyanBright">qualifié · dispo · noté</span></div>
+                <div className="animate-pulse text-cyan">▌ Jumelage confirmé sous 24 h</div>
               </div>
             </div>
 
@@ -137,11 +137,11 @@ export default function HomePage() {
               </div>
               <p className="body-base text-sm">
                 L'entrepreneur sélectionné réalise les travaux. Le client paye le solde. L'entrepreneur reçoit
-                son chèque de <strong className="text-goldBright">70 %</strong>.
+                son chèque de <strong className="text-cyanBright">70 %</strong>.
               </p>
               <ul className="mt-5 space-y-2 text-sm text-muted">
-                <li className="flex gap-2"><span className="text-goldBright">›</span>Travaux supervisés + garanties</li>
-                <li className="flex gap-2"><span className="text-goldBright">›</span>Chèque de 70 % à la complétion</li>
+                <li className="flex gap-2"><span className="text-cyanBright">›</span>Travaux supervisés + garanties</li>
+                <li className="flex gap-2"><span className="text-cyanBright">›</span>Chèque de 70 % à la complétion</li>
               </ul>
             </div>
           </div>
@@ -150,11 +150,11 @@ export default function HomePage() {
           <div className="mt-12 panel p-8">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-3">
-                <div className="font-tech text-3xl sm:text-4xl font-bold text-gradient-gold">70 %</div>
+                <div className="font-tech text-3xl sm:text-4xl font-bold text-gradient-cyan">70 %</div>
                 <p className="text-sm text-muted max-w-[220px]">à l'entrepreneur après les travaux</p>
               </div>
               <div className="flex-1 w-full h-3 rounded-full bg-black2 border border-line overflow-hidden flex">
-                <div className="h-full w-[70%] bg-gold-gradient"></div>
+                <div className="h-full w-[70%] bg-cyan-gradient"></div>
                 <div className="h-full w-[30%] bg-white/10"></div>
               </div>
               <div className="flex items-center gap-3">
@@ -185,8 +185,8 @@ export default function HomePage() {
               { step: '04', title: 'La job est faite', desc: 'Travaux réalisés. Vous payez le solde. Vous gardez vos garanties.' },
             ].map((item) => (
               <div key={item.step} className="panel panel-hover corner p-7 relative overflow-hidden">
-                <span className="font-tech text-6xl font-bold text-gold/15 absolute -top-2 -right-1">{item.step}</span>
-                <div className="text-sm font-tech text-goldBright tracking-widest mb-4">PHASE {item.step}</div>
+                <span className="font-tech text-6xl font-bold text-cyan/15 absolute -top-2 -right-1">{item.step}</span>
+                <div className="text-sm font-tech text-cyanBright tracking-widest mb-4">PHASE {item.step}</div>
                 <h3 className="heading-3 mb-3">{item.title}</h3>
                 <p className="body-base text-sm">{item.desc}</p>
               </div>
@@ -202,7 +202,7 @@ export default function HomePage() {
           <header className="text-center max-w-3xl mx-auto mb-16">
             <span className="eyebrow">Côté entrepreneur</span>
             <h2 className="heading-2 mt-4 mb-6">
-              Du travail. Sans payer. <span className="text-gradient-gold">Sans chasser les contrats.</span>
+              Du travail. Sans payer. <span className="text-gradient-cyan">Sans chasser les contrats.</span>
             </h2>
             <p className="body-large">
               Créez votre compte gratuitement. ZeniCorp vous envoie des contrats. Vous faites la job.
@@ -217,7 +217,7 @@ export default function HomePage() {
               { t: 'Chèque de 70 %', d: 'Job complétée = chèque de 70 %. ZeniCorp couvre la plateforme avec le reste.', i: 'M3' },
             ].map((c) => (
               <div key={c.t} className="panel panel-hover panel-glow p-8">
-                <div className="font-tech text-gold/20 text-5xl font-bold mb-5">{c.i}</div>
+                <div className="font-tech text-cyan/20 text-5xl font-bold mb-5">{c.i}</div>
                 <h3 className="heading-3 mb-3">{c.t}</h3>
                 <p className="body-base text-sm">{c.d}</p>
               </div>
@@ -237,9 +237,9 @@ export default function HomePage() {
                   <div className="font-tech text-2xl font-bold text-white">10 000 $</div>
                   <div className="text-xs text-muted mt-1">dont 305 $ de dépôt</div>
                 </div>
-                <div className="rounded-xl bg-black/50 border border-gold/50 p-5 shadow-glow-gold-sm">
+                <div className="rounded-xl bg-black/50 border border-cyan/50 p-5 shadow-glow-cyan-sm">
                   <div className="text-xs text-dim uppercase tracking-widest mb-1">Votre chèque</div>
-                  <div className="font-tech text-2xl font-bold text-gradient-gold">7 000 $</div>
+                  <div className="font-tech text-2xl font-bold text-gradient-cyan">7 000 $</div>
                   <div className="text-xs text-muted mt-1">70 % à la complétion</div>
                 </div>
                 <div className="rounded-xl bg-black/50 border border-line p-5">
@@ -252,7 +252,7 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/entrepreneur" className="btn-gold text-lg px-10 py-5">
+            <Link href="/entrepreneur" className="btn-cyan text-lg px-10 py-5">
               Créer mon compte entrepreneur — gratuit
             </Link>
           </div>
@@ -265,7 +265,7 @@ export default function HomePage() {
           <header className="text-center max-w-3xl mx-auto mb-16">
             <span className="eyebrow">Nos divisions</span>
             <h2 className="heading-2 mt-4 mb-6">
-              Quatre spécialités. <span className="text-gradient-gold">Un seul réseau.</span>
+              Quatre spécialités. <span className="text-gradient-cyan">Un seul réseau.</span>
             </h2>
             <p className="body-large">
               Chaque division partage la même plateforme, la même banque d'entrepreneurs et les mêmes standards.
@@ -279,20 +279,20 @@ export default function HomePage() {
                 href={`/${division.slug}`}
                 className="panel panel-hover group p-7 flex flex-col"
               >
-                <div className="w-12 h-12 grid place-items-center rounded-lg bg-panel2 border border-line text-2xl mb-5 group-hover:border-gold/50 transition-colors">
+                <div className="w-12 h-12 grid place-items-center rounded-lg bg-panel2 border border-line text-2xl mb-5 group-hover:border-cyan/50 transition-colors">
                   {division.icon}
                 </div>
-                <h3 className="heading-3 mb-2 group-hover:text-goldBright transition-colors">{division.name}</h3>
+                <h3 className="heading-3 mb-2 group-hover:text-cyanBright transition-colors">{division.name}</h3>
                 <p className="body-base text-sm mb-6 flex-1">{division.positioning}</p>
                 <ul className="space-y-2 mb-7">
                   {division.services.slice(0, 3).map((s) => (
                     <li key={s} className="flex items-start gap-2 text-sm text-muted">
-                      <span className="text-goldBright mt-0.5">›</span>
+                      <span className="text-cyanBright mt-0.5">›</span>
                       {s}
                     </li>
                   ))}
                 </ul>
-                <span className="inline-flex items-center gap-2 text-goldBright font-semibold text-sm">
+                <span className="inline-flex items-center gap-2 text-cyanBright font-semibold text-sm">
                   Voir la division
                   <svg className="w-4 h-4 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -309,7 +309,7 @@ export default function HomePage() {
         <div className="container-zenicorp">
           <header className="text-center max-w-3xl mx-auto mb-16">
             <span className="eyebrow">Pourquoi ZeniCorp</span>
-            <h2 className="heading-2 mt-4 mb-6">Une plateforme, <span className="text-gradient-gold">deux gagnants</span></h2>
+            <h2 className="heading-2 mt-4 mb-6">Une plateforme, <span className="text-gradient-cyan">deux gagnants</span></h2>
           </header>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -326,7 +326,7 @@ export default function HomePage() {
                   'Vous gardez vos garanties et le suivi ZeniCorp de A à Z.',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
-                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-gold/15 text-goldBright text-xs font-bold flex-shrink-0">✓</span>
+                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-cyan/15 text-cyanBright text-xs font-bold flex-shrink-0">✓</span>
                     <span className="text-sm leading-relaxed">{item}</span>
                   </li>
                 ))}
@@ -346,7 +346,7 @@ export default function HomePage() {
                   'Zéro marketing à faire : les clients viennent à nous.',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
-                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-gold/15 text-goldBright text-xs font-bold flex-shrink-0">✓</span>
+                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-cyan/15 text-cyanBright text-xs font-bold flex-shrink-0">✓</span>
                     <span className="text-sm leading-relaxed">{item}</span>
                   </li>
                 ))}
@@ -373,10 +373,10 @@ export default function HomePage() {
               { q: 'Quelles divisions sont disponibles ?', a: 'ZeniCorp Epoxy, Asphalte, Toiture et Isolation. D\'autres divisions s\'ajouteront sur la plateforme pour couvrir tous les domaines de la construction.' },
               { q: 'Est-ce que ça devient une application ?', a: 'Oui. La plateforme est conçue pour devenir une application mobile : soumission, suivi de projet et paiements directement depuis votre téléphone.' },
             ].map((item) => (
-              <details key={item.q} className="group panel p-6 open:border-gold/40 transition-colors">
+              <details key={item.q} className="group panel p-6 open:border-cyan/40 transition-colors">
                 <summary className="heading-3 flex items-center justify-between gap-4 cursor-pointer list-none">
                   <span>{item.q}</span>
-                  <span className="text-goldBright text-xl transition-transform group-open:rotate-45 flex-shrink-0">+</span>
+                  <span className="text-cyanBright text-xl transition-transform group-open:rotate-45 flex-shrink-0">+</span>
                 </summary>
                 <p className="body-base text-sm mt-4 border-t border-line pt-4">{item.a}</p>
               </details>
@@ -388,16 +388,16 @@ export default function HomePage() {
       {/* ================= CTA FINAL ================= */}
       <section className="relative py-24 sm:py-32 bg-black overflow-hidden text-center">
         <div className="absolute inset-0 bg-grid opacity-40 bg-grid-fade" />
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-gold/10 blur-[120px]" />
+        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-cyan/10 blur-[120px]" />
         <div className="relative container-zenicorp">
           <h2 className="heading-2 max-w-3xl mx-auto mb-6 text-balance">
-            Rejoignez la plateforme qui va <span className="text-gradient-gold">redéfinir la construction</span>
+            Rejoignez la plateforme qui va <span className="text-gradient-cyan">redéfinir la construction</span>
           </h2>
           <p className="body-large max-w-2xl mx-auto mb-11">
             Client ou entrepreneur ? Le futur de la construction commence ici.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/projet" className="btn-gold text-lg px-10 py-5 w-full sm:w-auto">Soumettre mon projet</Link>
+            <Link href="/projet" className="btn-cyan text-lg px-10 py-5 w-full sm:w-auto">Soumettre mon projet</Link>
             <Link href="/entrepreneur" className="btn-ghost text-lg px-10 py-5 w-full sm:w-auto">Créer mon compte entrepreneur</Link>
           </div>
         </div>

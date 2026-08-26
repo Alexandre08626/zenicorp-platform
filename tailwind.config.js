@@ -17,10 +17,10 @@ module.exports = {
         silver: '#C9CBCF',
         muted: '#8A8D93',
         dim: '#5C5F66',
-        gold: '#D4AF37',
-        goldBright: '#F2C94C',
-        goldSoft: '#E8C66A',
-        goldDim: '#8C7420',
+        cyan: '#00E5FF',
+        cyanBright: '#7DF9FF',
+        cyanSoft: '#67E8F9',
+        cyanDim: '#0E7490',
         white: '#FFFFFF',
       },
       fontFamily: {
@@ -29,13 +29,13 @@ module.exports = {
         tech: ['var(--font-orbitron)', 'sans-serif'],
       },
       boxShadow: {
-        'glow-gold': '0 0 40px -8px rgba(212,175,55,0.45)',
-        'glow-gold-sm': '0 0 20px -6px rgba(212,175,55,0.5)',
-        'glow-amber': '0 0 60px -10px rgba(242,201,76,0.5)',
+        'glow-cyan': '0 0 40px -8px rgba(0,229,255,0.45)',
+        'glow-cyan-sm': '0 0 20px -6px rgba(0,229,255,0.5)',
+        'glow-cyan-soft': '0 0 60px -10px rgba(34,211,238,0.5)',
         'card-dark': '0 20px 60px -20px rgba(0,0,0,0.9)',
       },
       backgroundImage: {
-        'gold-gradient': 'linear-gradient(120deg, #8C7420 0%, #D4AF37 40%, #F2C94C 60%, #D4AF37 100%)',
+        'cyan-gradient': 'linear-gradient(120deg, #0E7490 0%, #22D3EE 40%, #7DF9FF 60%, #22D3EE 100%)',
       },
       keyframes: {
         floaty: {

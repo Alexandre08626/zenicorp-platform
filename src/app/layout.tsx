@@ -92,22 +92,22 @@ export default function RootLayout({
         <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-line">
           <div className="container-zenicorp flex items-center justify-between py-3.5">
             <a href="/" className="flex items-center gap-2 group">
-              <div className="relative w-10 h-10 grid place-items-center rounded-lg bg-gold-gradient shadow-glow-gold-sm">
+              <div className="relative w-10 h-10 grid place-items-center rounded-lg bg-cyan-gradient shadow-glow-cyan-sm">
                 <span className="font-tech font-black text-black text-lg leading-none">Z</span>
               </div>
               <span className="font-heading text-lg font-bold tracking-tight">
-                Zeni<span className="text-gradient-gold">Corp</span>
+                Zeni<span className="text-gradient-cyan">Corp</span>
               </span>
             </a>
 
             <nav className="hidden md:flex items-center gap-9">
-              <a href="/#modele" className="text-sm text-silver hover:text-goldBright transition-colors">Le modèle</a>
-              <a href="/#divisions" className="text-sm text-silver hover:text-goldBright transition-colors">Divisions</a>
-              <a href="/entrepreneur" className="text-sm text-silver hover:text-goldBright transition-colors">Entrepreneurs</a>
-              <a href="/projet" className="btn-gold btn-sm">Soumettre un projet</a>
+              <a href="/#modele" className="text-sm text-silver hover:text-cyanBright transition-colors">Le modèle</a>
+              <a href="/#divisions" className="text-sm text-silver hover:text-cyanBright transition-colors">Divisions</a>
+              <a href="/entrepreneur" className="text-sm text-silver hover:text-cyanBright transition-colors">Entrepreneurs</a>
+              <a href="/projet" className="btn-cyan btn-sm">Soumettre un projet</a>
             </nav>
 
-            <a href="/projet" className="md:hidden btn-gold btn-sm">Mon projet</a>
+            <a href="/projet" className="md:hidden btn-cyan btn-sm">Mon projet</a>
           </div>
         </header>
 
@@ -119,11 +119,11 @@ export default function RootLayout({
             <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
               <div className="md:col-span-2">
                 <a href="/" className="flex items-center gap-2 mb-4">
-                  <div className="relative w-9 h-9 grid place-items-center rounded-lg bg-gold-gradient">
+                  <div className="relative w-9 h-9 grid place-items-center rounded-lg bg-cyan-gradient">
                     <span className="font-tech font-black text-black text-base leading-none">Z</span>
                   </div>
                   <span className="font-heading text-lg font-bold">
-                    Zeni<span className="text-gradient-gold">Corp</span>
+                    Zeni<span className="text-gradient-cyan">Corp</span>
                   </span>
                 </a>
                 <p className="text-sm text-muted leading-relaxed max-w-sm">
@@ -133,26 +133,26 @@ export default function RootLayout({
                 </p>
                 <p className="mt-4 text-sm text-silver">
                   <span className="text-muted">Une question ? Appelez-nous :</span>{' '}
-                  <a href="tel:5817487017" className="text-goldBright hover:text-gold font-semibold">581-748-7017</a>
+                  <a href="tel:5817487017" className="text-cyanBright hover:text-cyan font-semibold">581-748-7017</a>
                 </p>
               </div>
 
               <div>
-                <h4 className="font-tech text-xs font-semibold text-goldBright uppercase tracking-widest mb-4">Divisions</h4>
+                <h4 className="font-tech text-xs font-semibold text-cyanBright uppercase tracking-widest mb-4">Divisions</h4>
                 <ul className="space-y-2.5">
-                  <li><a href="/epoxy" className="text-sm text-silver hover:text-goldBright transition-colors">ZeniCorp Epoxy</a></li>
-                  <li><a href="/asphalte" className="text-sm text-silver hover:text-goldBright transition-colors">ZeniCorp Asphalte</a></li>
-                  <li><a href="/toiture" className="text-sm text-silver hover:text-goldBright transition-colors">ZeniCorp Toiture</a></li>
-                  <li><a href="/isolation" className="text-sm text-silver hover:text-goldBright transition-colors">ZeniCorp Isolation</a></li>
+                  <li><a href="/epoxy" className="text-sm text-silver hover:text-cyanBright transition-colors">ZeniCorp Epoxy</a></li>
+                  <li><a href="/asphalte" className="text-sm text-silver hover:text-cyanBright transition-colors">ZeniCorp Asphalte</a></li>
+                  <li><a href="/toiture" className="text-sm text-silver hover:text-cyanBright transition-colors">ZeniCorp Toiture</a></li>
+                  <li><a href="/isolation" className="text-sm text-silver hover:text-cyanBright transition-colors">ZeniCorp Isolation</a></li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="font-tech text-xs font-semibold text-goldBright uppercase tracking-widest mb-4">Plateforme</h4>
+                <h4 className="font-tech text-xs font-semibold text-cyanBright uppercase tracking-widest mb-4">Plateforme</h4>
                 <ul className="space-y-2.5">
-                  <li><a href="/projet" className="text-sm text-silver hover:text-goldBright transition-colors">Soumettre un projet</a></li>
-                  <li><a href="/entrepreneur" className="text-sm text-silver hover:text-goldBright transition-colors">Espace entrepreneur — gratuit</a></li>
-                  <li><a href="/#modele" className="text-sm text-silver hover:text-goldBright transition-colors">Le modèle 70/30</a></li>
+                  <li><a href="/projet" className="text-sm text-silver hover:text-cyanBright transition-colors">Soumettre un projet</a></li>
+                  <li><a href="/entrepreneur" className="text-sm text-silver hover:text-cyanBright transition-colors">Espace entrepreneur — gratuit</a></li>
+                  <li><a href="/#modele" className="text-sm text-silver hover:text-cyanBright transition-colors">Le modèle 70/30</a></li>
                 </ul>
               </div>
             </div>
