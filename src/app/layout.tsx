@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Inter, Space_Grotesk, Orbitron } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({
@@ -8,19 +8,38 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-const playfair = Playfair_Display({
+const space = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-playfair',
+  variable: '--font-space',
+});
+
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-orbitron',
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://zenicorp.ca'),
   title: {
-    default: 'ZeniCorp - Votre projet. Notre expertise.',
+    default: 'ZeniCorp — Le futur de la construction, piloté par IA',
     template: '%s | ZeniCorp',
   },
-  description: 'ZeniCorp simplifie vos projets de construction en vous donnant accès à un réseau d\'entrepreneurs spécialisés, coordonné par une plateforme technologique centralisée.',
-  keywords: ['construction', 'rénovation', 'entrepreneur', 'Québec', 'ZeniCorp', 'époxy', 'asphalte', 'toiture', 'isolation'],
+  description:
+    "ZeniCorp est la plateforme technologique qui connecte les clients et les entrepreneurs certifiés du Québec. Vous soumettez votre projet, notre système IA sélectionne l'entrepreneur idéal, et vous gardez vos garanties. Inscription entrepreneur gratuite, chèque de 70 % par contrat.",
+  keywords: [
+    'construction',
+    'rénovation',
+    'entrepreneur',
+    'Québec',
+    'ZeniCorp',
+    'époxy',
+    'asphalte',
+    'toiture',
+    'isolation',
+    'plateforme IA',
+  ],
   authors: [{ name: 'ZeniCorp' }],
   creator: 'ZeniCorp',
   publisher: 'ZeniCorp',
@@ -30,30 +49,28 @@ export const metadata: Metadata = {
     locale: 'fr_CA',
     url: 'https://zenicorp.ca',
     siteName: 'ZeniCorp',
-    title: 'ZeniCorp - Votre projet. Notre expertise.',
-    description: 'ZeniCorp simplifie vos projets de construction en vous donnant accès à un réseau d\'entrepreneurs spécialisés.',
+    title: 'ZeniCorp — Le futur de la construction, piloté par IA',
+    description:
+      'Vous soumettez votre projet. Notre système IA sélectionne l\'entrepreneur idéal. Chèque de 70 % pour l\'entrepreneur, garanties pour le client.',
     images: [
       {
         url: '/og/zenicorp.jpg',
         width: 1200,
         height: 630,
-        alt: 'ZeniCorp - Construction network',
+        alt: 'ZeniCorp - Le futur de la construction',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ZeniCorp - Votre projet. Notre expertise.',
-    description: 'Réseau d\'entrepreneurs spécialisés en construction au Québec.',
+    title: 'ZeniCorp — Le futur de la construction',
+    description: 'Plateforme IA connectant clients et entrepreneurs certifiés au Québec.',
     images: ['/og/zenicorp.jpg'],
-  },
-  verification: {
-    google: 'google-site-verification-code',
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#000000',
+  themeColor: '#050505',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -65,59 +82,87 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr-CA" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="fr-CA" className={`${inter.variable} ${space.variable} ${orbitron.variable}`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="icon" href="/logos/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/logos/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/logo.png" sizes="any" />
       </head>
-      <body className="min-h-screen flex flex-col">
-        <header className="sticky top-0 z-50 bg-zenicorp-black/95 backdrop-blur border-b border-zenicorp-darkGray">
-          <div className="container-zenicorp flex items-center justify-between py-4">
-            <a href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="ZeniCorp" className="h-10 w-auto" />
+      <body className="min-h-screen flex flex-col bg-zenicorp-black text-white">
+        <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-line">
+          <div className="container-zenicorp flex items-center justify-between py-3.5">
+            <a href="/" className="flex items-center gap-2 group">
+              <div className="relative w-10 h-10 grid place-items-center rounded-lg bg-gold-gradient shadow-glow-gold-sm">
+                <span className="font-tech font-black text-black text-lg leading-none">Z</span>
+              </div>
+              <span className="font-heading text-lg font-bold tracking-tight">
+                Zeni<span className="text-gradient-gold">Corp</span>
+              </span>
             </a>
-            <nav className="hidden md:flex items-center gap-8">
-              <a href="/#nos-divisions" className="text-sm text-zenicorp-silver hover:text-zenicorp-gold transition-colors">Nos divisions</a>
-              <a href="/entrepreneur" className="text-sm text-zenicorp-silver hover:text-zenicorp-gold transition-colors">Entrepreneurs</a>
-              <a href="/projet" className="btn-gold text-sm px-6 py-3">SOUMETTRE UN PROJET</a>
+
+            <nav className="hidden md:flex items-center gap-9">
+              <a href="/#modele" className="text-sm text-silver hover:text-goldBright transition-colors">Le modèle</a>
+              <a href="/#divisions" className="text-sm text-silver hover:text-goldBright transition-colors">Divisions</a>
+              <a href="/entrepreneur" className="text-sm text-silver hover:text-goldBright transition-colors">Entrepreneurs</a>
+              <a href="/projet" className="btn-gold btn-sm">Soumettre un projet</a>
             </nav>
-            <a href="/projet" className="md:hidden btn-gold text-sm px-4 py-2">MON PROJET</a>
+
+            <a href="/projet" className="md:hidden btn-gold btn-sm">Mon projet</a>
           </div>
         </header>
+
         {children}
-        <footer className="bg-zenicorp-black border-t border-zenicorp-darkGray">
-          <div className="container-zenicorp py-12">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-              <div>
-                <img src="/logo.png" alt="ZeniCorp" className="h-9 w-auto mb-4" />
-                <p className="text-sm text-zenicorp-silver leading-relaxed">
-                  La plateforme de rénovation qui connecte clients et entrepreneurs certifiés.
-                  Dépôt client de 305 $, inscription entrepreneur gratuite, chèque de 70 % par contrat.
+
+        <footer className="relative bg-black border-t border-line overflow-hidden">
+          <div className="absolute inset-0 bg-grid opacity-40 bg-grid-fade pointer-events-none" />
+          <div className="relative container-zenicorp py-16">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+              <div className="md:col-span-2">
+                <a href="/" className="flex items-center gap-2 mb-4">
+                  <div className="relative w-9 h-9 grid place-items-center rounded-lg bg-gold-gradient">
+                    <span className="font-tech font-black text-black text-base leading-none">Z</span>
+                  </div>
+                  <span className="font-heading text-lg font-bold">
+                    Zeni<span className="text-gradient-gold">Corp</span>
+                  </span>
+                </a>
+                <p className="text-sm text-muted leading-relaxed max-w-sm">
+                  La plateforme technologique qui connecte les clients et les entrepreneurs certifiés du Québec.
+                  ZeniCorp trouve les leads, sélectionne l'entrepreneur idéal par IA et gère la facturation.
+                  L'entrepreneur garde 70 % de chaque contrat.
+                </p>
+                <p className="mt-4 text-sm text-silver">
+                  <span className="text-muted">Une question ? Appelez-nous :</span>{' '}
+                  <a href="tel:5817487017" className="text-goldBright hover:text-gold font-semibold">581-748-7017</a>
                 </p>
               </div>
+
               <div>
-                <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Nos divisions</h4>
-                <ul className="space-y-2">
-                  <li><a href="/epoxy" className="text-sm text-zenicorp-silver hover:text-zenicorp-gold transition-colors">ZeniCorp Epoxy</a></li>
-                  <li><a href="/asphalte" className="text-sm text-zenicorp-silver hover:text-zenicorp-gold transition-colors">ZeniCorp Asphalte</a></li>
-                  <li><a href="/toiture" className="text-sm text-zenicorp-silver hover:text-zenicorp-gold transition-colors">ZeniCorp Toiture</a></li>
-                  <li><a href="/isolation" className="text-sm text-zenicorp-silver hover:text-zenicorp-gold transition-colors">ZeniCorp Isolation</a></li>
+                <h4 className="font-tech text-xs font-semibold text-goldBright uppercase tracking-widest mb-4">Divisions</h4>
+                <ul className="space-y-2.5">
+                  <li><a href="/epoxy" className="text-sm text-silver hover:text-goldBright transition-colors">ZeniCorp Epoxy</a></li>
+                  <li><a href="/asphalte" className="text-sm text-silver hover:text-goldBright transition-colors">ZeniCorp Asphalte</a></li>
+                  <li><a href="/toiture" className="text-sm text-silver hover:text-goldBright transition-colors">ZeniCorp Toiture</a></li>
+                  <li><a href="/isolation" className="text-sm text-silver hover:text-goldBright transition-colors">ZeniCorp Isolation</a></li>
                 </ul>
               </div>
+
               <div>
-                <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Plateforme</h4>
-                <ul className="space-y-2">
-                  <li><a href="/projet" className="text-sm text-zenicorp-silver hover:text-zenicorp-gold transition-colors">Soumettre un projet — 305 $</a></li>
-                  <li><a href="/entrepreneur" className="text-sm text-zenicorp-silver hover:text-zenicorp-gold transition-colors">Espace entrepreneur — gratuit</a></li>
+                <h4 className="font-tech text-xs font-semibold text-goldBright uppercase tracking-widest mb-4">Plateforme</h4>
+                <ul className="space-y-2.5">
+                  <li><a href="/projet" className="text-sm text-silver hover:text-goldBright transition-colors">Soumettre un projet</a></li>
+                  <li><a href="/entrepreneur" className="text-sm text-silver hover:text-goldBright transition-colors">Espace entrepreneur — gratuit</a></li>
+                  <li><a href="/#modele" className="text-sm text-silver hover:text-goldBright transition-colors">Le modèle 70/30</a></li>
                 </ul>
               </div>
             </div>
-            <div className="mt-10 pt-6 border-t border-zenicorp-darkGray text-center">
-              <p className="text-xs text-zenicorp-silver/60">
-                © {new Date().getFullYear()} ZeniCorp. Tous droits réservés. Plateforme en développement — bientôt en application mobile (app GO).
+
+            <div className="mt-12 pt-6 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="text-xs text-dim">
+                © {new Date().getFullYear()} ZeniCorp. Tous droits réservés.
+              </p>
+              <p className="font-tech text-[10px] tracking-widest text-dim uppercase">
+                Le futur de la construction · Propulsé par ZeniCorp AI
               </p>
             </div>
           </div>
