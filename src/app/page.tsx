@@ -318,6 +318,9 @@ export default function HomePage() {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-t ${divisionTint[division.slug]} via-black/50 to-black/10`} />
+                <div className="absolute top-5 left-5 w-16 h-16 rounded-xl overflow-hidden bg-black/50 backdrop-blur border border-white/20 shadow-card">
+                  <img src={division.logo} alt={`Logo ${division.name}`} className="w-full h-full object-cover" />
+                </div>
                 <div className="absolute inset-x-0 bottom-0 p-7">
                   <div className="flex items-center justify-between">
                     <h3 className="heading-3">{division.name.replace('ZeniCorp ', '')}</h3>
