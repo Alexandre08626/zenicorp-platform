@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Space_Grotesk, Orbitron } from 'next/font/google';
+import { divisionsData } from '@/lib/divisions-data';
 import './globals.css';
 
 const inter = Inter({
@@ -130,10 +131,13 @@ export default function RootLayout({
               <div>
                 <h4 className="font-tech text-xs font-semibold text-cyanBright uppercase tracking-widest mb-4">Divisions</h4>
                 <ul className="space-y-2.5">
-                  <li><a href="/epoxy" className="text-sm text-silver hover:text-cyanBright transition-colors">ZeniCorp Epoxy</a></li>
-                  <li><a href="/asphalte" className="text-sm text-silver hover:text-cyanBright transition-colors">ZeniCorp Asphalte</a></li>
-                  <li><a href="/toiture" className="text-sm text-silver hover:text-cyanBright transition-colors">ZeniCorp Toiture</a></li>
-                  <li><a href="/isolation" className="text-sm text-silver hover:text-cyanBright transition-colors">ZeniCorp Isolation</a></li>
+                  {divisionsData.map((d) => (
+                    <li key={d.slug}>
+                      <a href={d.site} target="_blank" rel="noopener noreferrer" className="text-sm text-silver hover:text-cyanBright transition-colors">
+                        {d.name}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </div>
 

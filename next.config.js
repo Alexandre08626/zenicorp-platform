@@ -31,23 +31,27 @@ const nextConfig = {
       },
     ];
   },
-  async rewrites() {
+  async redirects() {
     return [
       {
         source: '/epoxy/:path*',
-        destination: '/epoxy/:path*',
+        destination: 'https://zenicorp-epoxy.vercel.app/:path*',
+        permanent: true,
       },
       {
         source: '/asphalte/:path*',
-        destination: '/asphalte/:path*',
+        destination: 'https://zenicorp-asphalte.vercel.app/:path*',
+        permanent: true,
       },
       {
         source: '/toiture/:path*',
-        destination: '/toiture/:path*',
+        destination: 'https://zenicorp-toiture.vercel.app/:path*',
+        permanent: true,
       },
       {
         source: '/isolation/:path*',
-        destination: '/isolation/:path*',
+        destination: 'https://zenicorp-isolation.vercel.app/:path*',
+        permanent: true,
       },
     ];
   },

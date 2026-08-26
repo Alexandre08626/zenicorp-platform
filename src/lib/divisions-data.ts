@@ -6,6 +6,7 @@ export interface DivisionData {
   services: string[];
   color: string;
   gradient: string;
+  site: string;
 }
 
 export const divisionsData: DivisionData[] = [
@@ -16,6 +17,7 @@ export const divisionsData: DivisionData[] = [
     icon: '🏠',
     color: '#1E3A8A',
     gradient: 'from-blue-900 to-blue-700',
+    site: 'https://zenicorp-epoxy.vercel.app/',
     services: [
       'Époxy résidentiel (garages, sous-sols)',
       'Époxy commercial (boutiques, restaurants)',
@@ -33,6 +35,7 @@ export const divisionsData: DivisionData[] = [
     icon: '🛣️',
     color: '#374151',
     gradient: 'from-gray-800 to-gray-600',
+    site: 'https://zenicorp-asphalte.vercel.app/',
     services: [
       'Scellant d\'asphalte protection UV',
       'Réparation fissures injection à chaud',
@@ -50,6 +53,7 @@ export const divisionsData: DivisionData[] = [
     icon: '🏠',
     color: '#7F1D1D',
     gradient: 'from-red-900 to-red-700',
+    site: 'https://zenicorp-toiture.vercel.app/',
     services: [
       'Installation bardeaux asphaltiques',
       'Toiture membrane TPO blanche',
@@ -67,6 +71,7 @@ export const divisionsData: DivisionData[] = [
     icon: '🌡️',
     color: '#14532D',
     gradient: 'from-green-900 to-green-700',
+    site: 'https://zenicorp-isolation.vercel.app/',
     services: [
       'Isolation grenier cellulose soufflée',
       'Isolation murs polyuréthane giclé',

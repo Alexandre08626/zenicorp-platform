@@ -274,9 +274,11 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {divisionsData.map((division, index) => (
-              <Link
+              <a
                 key={division.slug}
-                href={`/${division.slug}`}
+                href={division.site}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="panel panel-hover group p-7 flex flex-col"
               >
                 <div className="w-12 h-12 grid place-items-center rounded-lg bg-panel2 border border-line text-2xl mb-5 group-hover:border-cyan/50 transition-colors">
@@ -298,7 +300,7 @@ export default function HomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </span>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
