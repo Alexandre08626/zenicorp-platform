@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { divisionsData } from '@/lib/divisions-data';
 
 const divisionImages: Record<string, string> = {
-  epoxy: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80',
-  asphalte: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
-  toiture: 'https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=800&q=80',
-  isolation: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80',
+  epoxy: '/div/epoxy.jpg',
+  asphalte: '/div/asphalte.jpg',
+  toiture: '/div/toiture.jpg',
+  isolation: '/div/isolation.jpg',
 };
 
 const divisionTint: Record<string, string> = {
