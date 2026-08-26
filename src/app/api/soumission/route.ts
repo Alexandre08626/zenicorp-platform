@@ -5,6 +5,24 @@ import { getDivisionBySlug } from '@/lib/divisions-data';
 
 export const dynamic = 'force-dynamic';
 
+// Push la soumission vers le Command Center Zenitech (/global) — non bloquant.
+async function pushToCommandCenter(payload: Record<string, unknown>) {
+  try {
+    const url = process.env.ZENITECH_INGEST_URL;
+    const key = process.env.ZENICORP_INGEST_KEY;
+    if (!url || !key) return;
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': key },
+      body: JSON.stringify(payload),
+      cache: 'no-store',
+      signal: AbortSignal.timeout(8000),
+    });
+  } catch {
+    // Ne casse jamais le flux principal.
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -78,6 +96,21 @@ export async function POST(req: NextRequest) {
           <p><strong>Description :</strong><br/>${description.replace(/\n/g, '<br/>')}</p>
           ${divisionSite ? `<p><strong>RDV division :</strong> <a href="${divisionSite}">${divisionSite}</a></p>` : ''}
         </div>`,
+    });
+
+    // Push vers le Command Center Zenitech (/global) — en arrière-plan, non bloquant.
+    void pushToCommandCenter({
+      division,
+      nom,
+      prenom,
+      email,
+      telephone,
+      adresse,
+      ville,
+      codePostal,
+      superficie,
+      description,
+      source: 'zenicorp-platform',
     });
 
     return NextResponse.json({ success: true, id: row.id, divisionSite });
