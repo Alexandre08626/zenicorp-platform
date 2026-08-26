@@ -92,12 +92,7 @@ export default function RootLayout({
         <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-line">
           <div className="container-zenicorp flex items-center justify-between py-3.5">
             <a href="/" className="flex items-center gap-2 group">
-              <div className="relative w-10 h-10 grid place-items-center rounded-lg bg-cyan-gradient shadow-glow-cyan-sm">
-                <span className="font-tech font-black text-black text-lg leading-none">Z</span>
-              </div>
-              <span className="font-heading text-lg font-bold tracking-tight">
-                Zeni<span className="text-gradient-cyan">Corp</span>
-              </span>
+              <img src="/logo.png" alt="ZeniCorp" className="h-9 w-auto drop-shadow-[0_0_12px_rgba(0,229,255,0.35)]" />
             </a>
 
             <nav className="hidden md:flex items-center gap-9">
@@ -119,12 +114,7 @@ export default function RootLayout({
             <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
               <div className="md:col-span-2">
                 <a href="/" className="flex items-center gap-2 mb-4">
-                  <div className="relative w-9 h-9 grid place-items-center rounded-lg bg-cyan-gradient">
-                    <span className="font-tech font-black text-black text-base leading-none">Z</span>
-                  </div>
-                  <span className="font-heading text-lg font-bold">
-                    Zeni<span className="text-gradient-cyan">Corp</span>
-                  </span>
+                  <img src="/logo.png" alt="ZeniCorp" className="h-8 w-auto drop-shadow-[0_0_10px_rgba(0,229,255,0.3)]" />
                 </a>
                 <p className="text-sm text-muted leading-relaxed max-w-sm">
                   La plateforme technologique qui connecte les clients et les entrepreneurs certifiés du Québec.

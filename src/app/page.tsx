@@ -108,7 +108,7 @@ export default function HomePage() {
             <div className="panel panel-glow corner p-8 border-cyan/40 shadow-glow-cyan-sm relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 tech-chip">L'IMAGE · L'OUTIL · LE GARANT</div>
               <div className="flex items-center gap-3 mb-4 mt-2">
-                <div className="w-11 h-11 grid place-items-center rounded-lg bg-cyan-gradient font-tech font-black text-black">Z</div>
+                <img src="/logo.png" alt="ZeniCorp" className="w-12 h-9 object-contain drop-shadow-[0_0_10px_rgba(0,229,255,0.3)]" />
                 <div>
                   <div className="font-tech text-xs uppercase tracking-widest text-cyanBright">2 · ZeniCorp</div>
                   <h3 className="heading-3">Le système sélectionne</h3>
