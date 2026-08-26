@@ -64,8 +64,8 @@ export default function EntrepreneurPage() {
                 {[
                   'Vérification de votre RBQ et de vos assurances (gratuit).',
                   'Activation de votre profil dans la division choisie.',
-                  'Les clients paient via la plateforme — les contrats vous sont assignés par le système.',
-                  'Job complétée = chèque de 70 % du contrat.',
+                  'Les clients soumettent gratuitement — les contrats vous sont assignés par le système.',
+                  'Soumission acceptée et contrat signé = vous gardez 70 %.',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-4">
                     <span className="w-8 h-8 flex items-center justify-center rounded-full bg-cyan-gradient text-black font-bold flex-shrink-0">{i + 1}</span>
@@ -96,8 +96,8 @@ export default function EntrepreneurPage() {
           </h1>
           <p className="body-large max-w-2xl mx-auto">
             <strong className="text-cyanBright">Inscription 100 % gratuite.</strong> ZeniCorp trouve les leads,
-            sélectionne les jobs de votre secteur et vous les assigne. Vous recevez votre chèque de{' '}
-            <strong className="text-cyanBright">70 %</strong>.
+            sélectionne les jobs de votre secteur et vous les assigne. Soumission acceptée et contrat signé,
+            vous gardez <strong className="text-cyanBright">70 %</strong>.
           </p>
         </div>
       </section>
@@ -122,7 +122,7 @@ export default function EntrepreneurPage() {
               <h3 className="heading-3 mb-4">Ce que vous recevez</h3>
               <div className="font-tech text-5xl font-bold text-gradient-cyan mb-4">70 %</div>
               <ul className="space-y-2.5">
-                {['Chèque de 70 % par contrat complété', 'Clients qualifiés qui ont déjà payé leur dépôt', 'Jumelage IA selon votre secteur et la job', 'Zéro marketing à faire'].map((item) => (
+                {['70 % à chaque contrat signé', 'Clients qualifiés, soumission gratuite côté client', 'Jumelage IA selon votre secteur et la job', 'Zéro marketing à faire'].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
                     <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-cyan/15 text-cyanBright text-xs font-bold flex-shrink-0">✓</span>
                     <span className="text-sm">{item}</span>
@@ -137,19 +137,19 @@ export default function EntrepreneurPage() {
             <h3 className="heading-3 mb-6">Exemple concret — Contrat de 10 000 $</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
               <div className="rounded-xl bg-black/50 border border-line p-6">
-                <div className="text-sm text-dim mb-2">Client paie via ZeniCorp</div>
+                <div className="text-sm text-dim mb-2">Client paie (contrat signé)</div>
                 <div className="font-tech text-3xl font-bold text-white">10 000 $</div>
-                <div className="text-xs text-muted mt-2">dont 305 $ de dépôt déjà payé</div>
+                <div className="text-xs text-muted mt-2">soumission gratuite côté client</div>
               </div>
               <div className="rounded-xl bg-black/50 border border-cyan/50 p-6 shadow-glow-cyan-sm">
-                <div className="text-sm text-dim mb-2">Votre chèque à la complétion</div>
+                <div className="text-sm text-dim mb-2">Votre part</div>
                 <div className="font-tech text-3xl font-bold text-gradient-cyan">7 000 $</div>
                 <div className="text-xs text-muted mt-2">70 % du contrat</div>
               </div>
               <div className="rounded-xl bg-black/50 border border-line p-6">
-                <div className="text-sm text-dim mb-2">Couvre la plateforme</div>
+                <div className="text-sm text-dim mb-2">Plateforme</div>
                 <div className="font-tech text-3xl font-bold text-white/60">3 000 $</div>
-                <div className="text-xs text-muted mt-2">30 % + dépôt pour ZeniCorp</div>
+                <div className="text-xs text-muted mt-2">30 % à ZeniCorp à la signature</div>
               </div>
             </div>
           </div>

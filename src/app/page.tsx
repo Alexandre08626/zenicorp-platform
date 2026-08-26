@@ -34,9 +34,9 @@ export default function HomePage() {
             </h1>
 
             <p className="body-large max-w-2xl mx-auto mb-11 animate-fade-up animate-delay-200">
-              Vous soumettez votre projet. Notre système IA sélectionne l'entrepreneur idéal dans notre
-              réseau certifié. ZeniCorp gère la soumission, le jumelage et la facturation —
-              <span className="text-cyanBright font-semibold"> l'entrepreneur garde 70 %</span> de chaque contrat.
+              Vous soumettez votre projet, gratuitement. Vous êtes redirigé vers la bonne division pour prendre
+              RDV. Notre système IA sélectionne l'entrepreneur idéal — et à la signature du contrat,
+              <span className="text-cyanBright font-semibold"> l'entrepreneur garde 70 %</span>.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up animate-delay-300">
@@ -49,16 +49,16 @@ export default function HomePage() {
             </div>
 
             <p className="mt-7 text-sm text-dim animate-fade-up animate-delay-400">
-              Dépôt de réservation 305 $ · Inscription entrepreneur 0 $ · Jumelage par IA sous 24 h
+              Soumission gratuite · RDV dans la bonne division · 30 % seulement à la signature du contrat
             </p>
           </div>
 
           {/* Bandeau statistiques / modèle */}
           <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4 animate-fade-up animate-delay-500">
             {[
-              { k: '30 %', v: 'à ZeniCorp — plateforme, leads, jumelage IA, support' },
-              { k: '70 %', v: "à l'entrepreneur — à chaque contrat complété" },
-              { k: '24 h', v: 'pour jumeler un entrepreneur certifié à votre projet' },
+              { k: '0 $', v: 'soumission gratuite — le client ne paie rien pour soumettre' },
+              { k: '70 %', v: "à l'entrepreneur — après signature du contrat" },
+              { k: '30 %', v: 'à ZeniCorp — prélevés à la soumission acceptée' },
             ].map((s) => (
               <div key={s.k} className="panel panel-glow panel-hover corner p-6">
                 <div className="font-tech text-4xl font-bold text-gradient-cyan">{s.k}</div>
@@ -96,11 +96,11 @@ export default function HomePage() {
                 </div>
               </div>
               <p className="body-base text-sm">
-                Je décris mes travaux en 2 minutes. Je paye le dépôt de 305 $. Mon projet entre dans le système.
+                Je décris mes travaux en 2 minutes. C'est gratuit. Mon projet est redirigé vers la bonne division.
               </p>
               <ul className="mt-5 space-y-2 text-sm text-muted">
                 <li className="flex gap-2"><span className="text-cyanBright">›</span>Division + superficie + adresse</li>
-                <li className="flex gap-2"><span className="text-cyanBright">›</span>Dépôt sécurisé par ZeniCorp</li>
+                <li className="flex gap-2"><span className="text-cyanBright">›</span>Je prends RDV dans la bonne division</li>
               </ul>
             </div>
 
@@ -136,12 +136,12 @@ export default function HomePage() {
                 </div>
               </div>
               <p className="body-base text-sm">
-                L'entrepreneur sélectionné réalise les travaux. Le client paye le solde. L'entrepreneur reçoit
-                son chèque de <strong className="text-cyanBright">70 %</strong>.
+                L'entrepreneur sélectionné réalise la soumission et signe le contrat avec le client. ZeniCorp
+                prend <strong className="text-cyanBright">30 %</strong> à la signature, l'entrepreneur garde 70 %.
               </p>
               <ul className="mt-5 space-y-2 text-sm text-muted">
                 <li className="flex gap-2"><span className="text-cyanBright">›</span>Travaux supervisés + garanties</li>
-                <li className="flex gap-2"><span className="text-cyanBright">›</span>Chèque de 70 % à la complétion</li>
+                <li className="flex gap-2"><span className="text-cyanBright">›</span>70 % à l'entrepreneur après la job</li>
               </ul>
             </div>
           </div>
@@ -151,7 +151,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-3">
                 <div className="font-tech text-3xl sm:text-4xl font-bold text-gradient-cyan">70 %</div>
-                <p className="text-sm text-muted max-w-[220px]">à l'entrepreneur après les travaux</p>
+                <p className="text-sm text-muted max-w-[220px]">à l'entrepreneur après la job</p>
               </div>
               <div className="flex-1 w-full h-3 rounded-full bg-black2 border border-line overflow-hidden flex">
                 <div className="h-full w-[70%] bg-cyan-gradient"></div>
@@ -159,7 +159,7 @@ export default function HomePage() {
               </div>
               <div className="flex items-center gap-3">
                 <div className="font-tech text-3xl sm:text-4xl font-bold text-white/40">30 %</div>
-                <p className="text-sm text-muted max-w-[220px]">à ZeniCorp — plateforme, leads, support</p>
+                <p className="text-sm text-muted max-w-[220px]">à ZeniCorp — à la signature du contrat</p>
               </div>
             </div>
           </div>
@@ -179,10 +179,10 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { step: '01', title: 'Soumettez votre projet', desc: 'Décrivez vos travaux en 2 minutes : division, superficie, adresse, photos.' },
-              { step: '02', title: 'Dépôt de 305 $', desc: 'Dépôt sécurisé par ZeniCorp pour réserver votre projet. Sans surprise.' },
-              { step: '03', title: 'Jumelage par IA', desc: 'Notre système sélectionne l\'entrepreneur idéal. Il vous contacte sous 24 h.' },
-              { step: '04', title: 'La job est faite', desc: 'Travaux réalisés. Vous payez le solde. Vous gardez vos garanties.' },
+              { step: '01', title: 'Soumettez votre projet', desc: 'Décrivez vos travaux en 2 minutes : division, superficie, adresse. C\'est gratuit.' },
+              { step: '02', title: 'RDV dans la bonne division', desc: 'Vous êtes redirigé vers la division ZeniCorp adaptée pour planifier une visite et une soumission.' },
+              { step: '03', title: 'Contrat signé', desc: 'Soumission acceptée et contrat signé. ZeniCorp prend 30 %, l\'entrepreneur garde 70 %.' },
+              { step: '04', title: 'La job est faite', desc: 'Travaux réalisés par l\'entrepreneur sélectionné. Vous gardez vos garanties.' },
             ].map((item) => (
               <div key={item.step} className="panel panel-hover corner p-7 relative overflow-hidden">
                 <span className="font-tech text-6xl font-bold text-cyan/15 absolute -top-2 -right-1">{item.step}</span>
@@ -205,8 +205,8 @@ export default function HomePage() {
               Du travail. Sans payer. <span className="text-gradient-cyan">Sans chasser les contrats.</span>
             </h2>
             <p className="body-large">
-              Créez votre compte gratuitement. ZeniCorp vous envoie des contrats. Vous faites la job.
-              Vous recevez votre chèque de 70 %.
+              Créez votre compte gratuitement. ZeniCorp vous envoie des contrats. Quand la soumission est
+              acceptée et le contrat signé, vous gardez 70 %.
             </p>
           </header>
 
@@ -214,7 +214,7 @@ export default function HomePage() {
             {[
               { t: 'Inscription gratuite', d: 'RBQ, assurances, spécialités. Zéro frais pour vous rejoindre.', i: 'M1' },
               { t: 'Contrats assignés par IA', d: 'Le système vous jumelle aux jobs de votre secteur. Vous recevez les mandats.', i: 'M2' },
-              { t: 'Chèque de 70 %', d: 'Job complétée = chèque de 70 %. ZeniCorp couvre la plateforme avec le reste.', i: 'M3' },
+              { t: '70 % à la signature', d: 'Soumission acceptée et contrat signé = vous gardez 70 %. ZeniCorp prend 30 %.', i: 'M3' },
             ].map((c) => (
               <div key={c.t} className="panel panel-hover panel-glow p-8">
                 <div className="font-tech text-cyan/20 text-5xl font-bold mb-5">{c.i}</div>
@@ -235,17 +235,17 @@ export default function HomePage() {
                 <div className="rounded-xl bg-black/50 border border-line p-5">
                   <div className="text-xs text-dim uppercase tracking-widest mb-1">Client paie</div>
                   <div className="font-tech text-2xl font-bold text-white">10 000 $</div>
-                  <div className="text-xs text-muted mt-1">dont 305 $ de dépôt</div>
+                  <div className="text-xs text-muted mt-1">soumission gratuite</div>
                 </div>
                 <div className="rounded-xl bg-black/50 border border-cyan/50 p-5 shadow-glow-cyan-sm">
                   <div className="text-xs text-dim uppercase tracking-widest mb-1">Votre chèque</div>
                   <div className="font-tech text-2xl font-bold text-gradient-cyan">7 000 $</div>
-                  <div className="text-xs text-muted mt-1">70 % à la complétion</div>
+                  <div className="text-xs text-muted mt-1">70 % après la job</div>
                 </div>
                 <div className="rounded-xl bg-black/50 border border-line p-5">
                   <div className="text-xs text-dim uppercase tracking-widest mb-1">Plateforme</div>
                   <div className="font-tech text-2xl font-bold text-white/60">3 000 $</div>
-                  <div className="text-xs text-muted mt-1">30 % à ZeniCorp</div>
+                  <div className="text-xs text-muted mt-1">30 % à la signature</div>
                 </div>
               </div>
             </div>
@@ -323,8 +323,10 @@ export default function HomePage() {
               <ul className="space-y-3.5">
                 {[
                   'Votre projet est réellement pris en charge : pas de ghosting d\'entrepreneur.',
-                  'Le dépôt de 305 $ sécurise votre place et garantit qu\'un entrepreneur se présente.',
+                  'La soumission est gratuite et sans engagement.',
+                  'Vous êtes redirigé vers la bonne division pour planifier un RDV et une visite.',
                   'L\'entrepreneur est sélectionné par notre système selon votre secteur et votre job.',
+                  'Vous ne payez que lorsque la soumission est acceptée et le contrat signé.',
                   'Vous gardez vos garanties et le suivi ZeniCorp de A à Z.',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
@@ -344,7 +346,7 @@ export default function HomePage() {
                 {[
                   'Inscription 100 % gratuite : rien à payer pour obtenir du travail.',
                   'ZeniCorp trouve les leads et sélectionne les meilleures jobs pour vous.',
-                  'Vous recevez un chèque de 70 % à chaque contrat complété.',
+                  'Vous gardez 70 % du contrat, prélevé après la soumission acceptée et signée.',
                   'Zéro marketing à faire : les clients viennent à nous.',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
@@ -368,10 +370,10 @@ export default function HomePage() {
 
           <div className="space-y-4">
             {[
-              { q: 'Le dépôt de 305 $ est-il remboursable ?', a: 'Non. Le dépôt de 305 $ est gardé par ZeniCorp. Il sécurise votre projet et garantit qu\'un entrepreneur se présente. C\'est ce qui nous permet d\'offrir un service fiable des deux côtés.' },
-              { q: 'Combien l\'entrepreneur reçoit-il vraiment ?', a: 'L\'entrepreneur reçoit un chèque de 70 % du montant du contrat, une fois la job complétée et acceptée. Les 30 % restants financent la plateforme, le jumelage IA, les leads et le support.' },
+              { q: 'Combien coûte la soumission ?', a: 'La soumission est 100 % gratuite pour le client. Vous décrivez votre projet, vous êtes redirigé vers la bonne division pour prendre RDV et recevoir une soumission détaillée. Vous ne payez que lorsque la soumission est acceptée et le contrat signé.' },
+              { q: 'Quand ZeniCorp prend-il sa part ?', a: 'ZeniCorp prélève 30 % du montant du contrat au moment où la soumission est acceptée et le contrat signé. L\'entrepreneur garde 70 % du montant.' },
               { q: 'Le client choisit-il son entrepreneur ?', a: 'Non. C\'est notre force : ZeniCorp sélectionne l\'entrepreneur dans sa banque de données selon le secteur et la job. Vous n\'avez pas à magasiner : on vous donne le meilleur profil pour vos travaux.' },
-              { q: 'L\'inscription entrepreneur est-elle vraiment gratuite ?', a: 'Oui. Créer un compte, recevoir des contrats et soumissionner ne coûte rien. C\'est notre modèle inversé : les clients paient, nous jumelons, vous travaillez.' },
+              { q: 'L\'inscription entrepreneur est-elle vraiment gratuite ?', a: 'Oui. Créer un compte, recevoir des contrats et soumissionner ne coûte rien. C\'est notre modèle inversé : le client soumet gratuitement, nous jumelons, et ZeniCorp prend 30 % à la signature du contrat.' },
               { q: 'Quelles divisions sont disponibles ?', a: 'ZeniCorp Epoxy, Asphalte, Toiture et Isolation. D\'autres divisions s\'ajouteront sur la plateforme pour couvrir tous les domaines de la construction.' },
               { q: 'Est-ce que ça devient une application ?', a: 'Oui. La plateforme est conçue pour devenir une application mobile : soumission, suivi de projet et paiements directement depuis votre téléphone.' },
             ].map((item) => (

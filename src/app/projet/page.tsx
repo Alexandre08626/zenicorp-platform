@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { divisionsData } from '@/lib/divisions-data';
 
-type Step = 'projet' | 'depot' | 'confirmation';
+type Step = 'projet' | 'confirmation';
 
 export default function ProjetPage() {
   const [step, setStep] = useState<Step>('projet');
@@ -27,6 +27,8 @@ export default function ProjetPage() {
   const projetComplet =
     form.nom && form.telephone && form.email && form.adresse && form.ville && form.codePostal && form.superficie && form.description && division;
 
+  const divisionSite = divisionsData.find((d) => d.slug === division)?.site || '/';
+
   const handleSubmitProjet = async (e: React.FormEvent) => {
     e.preventDefault();
     setErreur('');
@@ -43,19 +45,11 @@ export default function ProjetPage() {
         setEnvoi(false);
         return;
       }
-      if (data.paylinkUrl) {
-        window.location.href = data.paylinkUrl;
-        return;
-      }
-      setStep('depot');
+      setStep('confirmation');
     } catch {
       setErreur('Problème de connexion. Réessayez.');
       setEnvoi(false);
     }
-  };
-
-  const handleConfirmerDepot = () => {
-    setStep('confirmation');
   };
 
   return (
@@ -72,32 +66,10 @@ export default function ProjetPage() {
             Soumettre <span className="text-gradient-cyan">mon projet</span>
           </h1>
           <p className="body-large max-w-2xl mx-auto">
-            Dépôt de réservation de <strong className="text-cyanBright">305 $</strong> — gardé par ZeniCorp.
-            Notre système sélectionne l'entrepreneur idéal et il vous contacte sous 24 h.
+            <strong className="text-cyanBright">100 % gratuit.</strong> Décrivez votre projet et nous vous
+            redirigeons vers la bonne division pour prendre RDV et recevoir une soumission.
+            Vous ne payez que si la soumission est acceptée.
           </p>
-        </div>
-      </section>
-
-      {/* Stepper */}
-      <section className="py-8 bg-black2 border-y border-line">
-        <div className="container-zenicorp">
-          <div className="flex items-center justify-center gap-4">
-            {[
-              { id: 'projet' as Step, label: '1. Mon projet' },
-              { id: 'depot' as Step, label: '2. Dépôt 305 $' },
-              { id: 'confirmation' as Step, label: '3. Confirmation' },
-            ].map((s, i) => (
-              <div key={s.id} className="flex items-center gap-4">
-                <div className={`flex items-center gap-2 ${step === s.id ? 'text-white' : 'text-dim'}`}>
-                  <span className={`w-8 h-8 flex items-center justify-center rounded-full border text-sm font-bold transition-colors ${step === s.id ? 'border-cyan bg-cyan-gradient text-black' : 'border-line'}`}>
-                    {step === s.id ? s.label[0] : i + 1}
-                  </span>
-                  <span className="font-medium text-sm hidden sm:block">{s.label}</span>
-                </div>
-                {i < 2 && <div className="w-10 h-px bg-line" />}
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -109,7 +81,7 @@ export default function ProjetPage() {
               {/* Division */}
               <div className="mb-10">
                 <h2 className="heading-2 mb-2">Quelle division pour vos travaux ?</h2>
-                <p className="body-base mb-6">Choisissez la division ZeniCorp qui réalisera votre projet.</p>
+                <p className="body-base mb-6">Choisissez la division ZeniCorp correspondant à votre projet.</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {divisionsData.map((d) => (
                     <button
@@ -173,10 +145,11 @@ export default function ProjetPage() {
                 <div className="flex items-start gap-4">
                   <div className="text-3xl flex-shrink-0">💡</div>
                   <div>
-                    <h3 className="heading-3 mb-1">Pourquoi le dépôt de 305 $ ?</h3>
+                    <h3 className="heading-3 mb-1">C'est gratuit, sans engagement</h3>
                     <p className="body-base text-sm">
-                      Le dépôt est gardé par ZeniCorp. Il garantit que votre projet est réel et qu'un
-                      entrepreneur de notre réseau se présentera. Pas de ghosting, pas de perte de temps.
+                      La soumission ne vous coûte rien. Nous vous redirigeons vers la bonne division pour
+                      prendre RDV. ZeniCorp prend 30 % uniquement lorsque la soumission est acceptée
+                      et le contrat signé.
                     </p>
                   </div>
                 </div>
@@ -189,81 +162,32 @@ export default function ProjetPage() {
               )}
 
               <button type="submit" disabled={!projetComplet || envoi} className={`btn-cyan w-full text-lg py-5 ${!projetComplet || envoi ? 'opacity-40 cursor-not-allowed' : ''}`}>
-                {envoi ? 'ENVOI EN COURS...' : 'CONTINUER VERS LE DÉPÔT — 305 $'}
+                {envoi ? 'ENVOI EN COURS...' : 'SOUMETTRE GRATUITEMENT'}
               </button>
             </form>
           </div>
         </section>
       )}
 
-      {/* ============ ÉTAPE 2 : DÉPÔT ============ */}
-      {step === 'depot' && (
-        <section className="py-16 sm:py-24 bg-black">
-          <div className="container-zenicorp max-w-2xl">
-            <div className="panel p-8 mb-8">
-              <h2 className="heading-2 mb-6">Récapitulatif</h2>
-              <dl className="space-y-3 mb-8">
-                {[
-                  { k: 'Division', v: divisionsData.find((d) => d.slug === division)?.name || '' },
-                  { k: 'Client', v: form.nom },
-                  { k: 'Téléphone', v: form.telephone },
-                  { k: 'Adresse', v: `${form.adresse}, ${form.ville} ${form.codePostal}` },
-                  { k: 'Superficie', v: form.superficie },
-                ].map((row) => (
-                  <div key={row.k} className="flex justify-between border-b border-line pb-3">
-                    <dt className="text-dim">{row.k}</dt>
-                    <dd className="font-medium text-right text-silver">{row.v}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-
-            <div className="panel corner p-8 border border-cyan/50 shadow-glow-cyan-sm mb-8">
-              <h3 className="heading-3 mb-2">Dépôt de réservation — 305 $</h3>
-              <p className="body-base mb-6">
-                Ce dépôt est <strong className="text-cyanBright">gardé par ZeniCorp</strong> et sécurise votre
-                projet dans le réseau. Le paiement s'effectue en ligne, de façon sécurisée, via ZeniPay.
-              </p>
-              <div className="flex items-center justify-between mb-6">
-                <span className="font-semibold text-silver">Total à payer aujourd'hui</span>
-                <span className="font-tech text-4xl font-bold text-gradient-cyan">305 $</span>
-              </div>
-              <button onClick={handleConfirmerDepot} className="btn-cyan w-full text-lg py-5">
-                Ouvrir la page de paiement
-              </button>
-              <p className="text-center text-sm text-dim mt-4">
-                Paiement sécurisé via ZeniPay. Reçu fourni. Si vous n'avez pas été redirigé, cliquez ci-dessus.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <button onClick={() => setStep('projet')} className="text-dim underline hover:text-silver transition-colors">
-                ← Revenir à mon projet
-              </button>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ============ ÉTAPE 3 : CONFIRMATION ============ */}
+      {/* ============ ÉTAPE 2 : CONFIRMATION + RDV ============ */}
       {step === 'confirmation' && (
         <section className="py-16 sm:py-24 bg-black">
           <div className="container-zenicorp max-w-2xl text-center">
             <div className="w-20 h-20 mx-auto grid place-items-center rounded-2xl bg-cyan/10 border border-cyan/40 mb-6 text-4xl animate-pulse-glow">✓</div>
-            <h2 className="heading-2 mb-4">Votre projet est réservé !</h2>
+            <h2 className="heading-2 mb-4">Votre projet est reçu !</h2>
             <p className="body-large mb-8">
               Merci <strong className="text-cyanBright">{form.nom}</strong> ! Votre projet{' '}
               <strong className="text-silver">{divisionsData.find((d) => d.slug === division)?.name}</strong>{' '}
-              a été enregistré avec le dépôt de 305 $.
+              a bien été transmis. Aucun paiement requis.
             </p>
             <div className="panel p-8 text-left mb-10">
               <h3 className="heading-3 mb-4">Prochaines étapes</h3>
               <ol className="space-y-4">
                 {[
-                  'Le dépôt de 305 $ est payé en ligne — votre projet est réservé.',
-                  'Notre système sélectionne un entrepreneur certifié et il vous contacte sous 24 h.',
-                  'L\'entrepreneur planifie une visite et réalise la job.',
-                  'Travaux réalisés. Vous payez le solde. Vous gardez vos garanties.',
+                  'Vous êtes redirigé vers la bonne division pour planifier votre RDV.',
+                  'Un conseiller de la division vous contacte pour confirmer la visite et la soumission.',
+                  'La soumission est préparée et envoyée pour acceptation.',
+                  'Contrat signé → ZeniCorp prend 30 %, l\'entrepreneur garde 70 %.',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-4">
                     <span className="w-8 h-8 flex items-center justify-center rounded-full bg-cyan-gradient text-black font-bold flex-shrink-0">{i + 1}</span>
@@ -272,7 +196,14 @@ export default function ProjetPage() {
                 ))}
               </ol>
             </div>
-            <Link href="/" className="btn-ghost">Retour à l'accueil</Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href={divisionSite} target="_blank" rel="noopener noreferrer" className="btn-cyan text-lg px-10 py-5 w-full sm:w-auto">
+                Prendre mon RDV dans la division
+              </a>
+            </div>
+            <div className="mt-5">
+              <Link href="/" className="text-dim underline hover:text-silver transition-colors">Retour à l'accueil</Link>
+            </div>
           </div>
         </section>
       )}

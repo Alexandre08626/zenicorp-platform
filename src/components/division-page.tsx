@@ -22,7 +22,7 @@ export default function DivisionPage({ division }: { division: DivisionData }) {
           </h1>
           <p className="body-large max-w-2xl mx-auto mb-9">{division.positioning}</p>
           <Link href="/projet" className="btn-cyan text-lg px-10 py-5">
-            Soumettre mon projet — dépôt 305 $
+            Soumettre mon projet — gratuit
           </Link>
         </div>
       </section>
@@ -67,10 +67,10 @@ export default function DivisionPage({ division }: { division: DivisionData }) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { title: 'Soumission', desc: 'Décrivez votre projet et payez le dépôt de 305 $. Le système jumelle un entrepreneur certifié sous 24 h.', step: '01' },
+              { title: 'Soumission', desc: 'Décrivez votre projet, gratuitement. Vous êtes redirigé vers la bonne division pour prendre RDV.', step: '01' },
               { title: 'Planification', desc: 'Visite sur site, prix ferme, calendrier des travaux, commande des matériaux.', step: '02' },
               { title: 'Réalisation', desc: 'Travaux réalisés par l\'entrepreneur, supervisés par la plateforme, photos à chaque étape.', step: '03' },
-              { title: 'Paiement', desc: 'Vous payez le solde à la complétion. L\'entrepreneur reçoit son chèque de 70 %.', step: '04' },
+              { title: 'Signature', desc: 'Soumission acceptée et contrat signé. ZeniCorp prend 30 %, l\'entrepreneur garde 70 %.', step: '04' },
             ].map((item) => (
               <div key={item.title} className="panel panel-hover corner p-7 relative overflow-hidden">
                 <span className="font-tech text-6xl font-bold text-cyan/15 absolute -top-2 -right-1">{item.step}</span>
@@ -94,8 +94,8 @@ export default function DivisionPage({ division }: { division: DivisionData }) {
           <div className="space-y-4">
             {[
               { q: 'Qui réalise mes travaux ?', a: 'Un entrepreneur certifié de notre réseau, sélectionné par notre système selon votre secteur et votre job. Vous gardez vos garanties et le suivi ZeniCorp.' },
-              { q: 'Combien ça coûte pour commencer ?', a: 'Le dépôt de réservation de 305 $ est gardé par ZeniCorp. Il sécurise votre projet et garantit qu\'un entrepreneur se présente chez vous.' },
-              { q: 'Quand est-ce que l\'entrepreneur reçoit son paiement ?', a: 'L\'entrepreneur reçoit un chèque de 70 % du montant du contrat, une fois la job complétée et acceptée par le client.' },
+              { q: 'Combien ça coûte pour commencer ?', a: 'La soumission est 100 % gratuite. Vous ne payez que lorsque la soumission est acceptée et le contrat signé.' },
+              { q: 'Quand est-ce que l\'entrepreneur reçoit son paiement ?', a: 'L\'entrepreneur garde 70 % du montant du contrat. ZeniCorp prélève 30 % à la signature du contrat.' },
               { q: 'Y a-t-il des garanties ?', a: 'Oui. Les travaux sont réalisés par des entrepreneurs certifiés RBQ avec garanties en place, et le suivi ZeniCorp encadre le projet de A à Z.' },
             ].map((item) => (
               <details key={item.q} className="group panel p-6 open:border-cyan/40 transition-colors">
@@ -118,7 +118,7 @@ export default function DivisionPage({ division }: { division: DivisionData }) {
             Prêt pour votre projet <span className="text-gradient-cyan">{division.name.replace('ZeniCorp ', '')}</span> ?
           </h2>
           <p className="body-large max-w-2xl mx-auto mb-10">
-            Dépôt de 305 $, entrepreneur jumelé sous 24 h, job complétée et garantie.
+            Soumission gratuite, RDV dans la bonne division, 30 % seulement à la signature du contrat.
           </p>
           <Link href="/projet" className="btn-cyan text-lg px-10 py-5">Soumettre mon projet</Link>
         </div>
