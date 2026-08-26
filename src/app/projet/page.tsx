@@ -4,10 +4,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { divisionsData } from '@/lib/divisions-data';
 
-type Step = 'projet' | 'confirmation';
-
 export default function ProjetPage() {
-  const [step, setStep] = useState<Step>('projet');
+  const [step, setStep] = useState<'projet' | 'confirmation'>('projet');
   const [division, setDivision] = useState('');
   const [envoi, setEnvoi] = useState(false);
   const [erreur, setErreur] = useState('');
@@ -55,30 +53,26 @@ export default function ProjetPage() {
   return (
     <main className="flex-1">
       {/* Hero */}
-      <section className="relative py-24 overflow-hidden bg-black">
-        <div className="absolute inset-0 bg-grid opacity-50 bg-grid-fade" />
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-cyan/10 blur-[120px]" />
-        <div className="relative container-zenicorp z-10 text-center">
-          <Link href="/" className="inline-flex items-center gap-2 text-cyanBright hover:text-cyan transition-colors mb-6">
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-mesh opacity-60" />
+        <div className="relative container-z z-10 text-center">
+          <Link href="/" className="inline-flex items-center gap-2 text-cyan hover:text-cyanBright transition-colors mb-6">
             <span>←</span> Retour à ZeniCorp
           </Link>
           <h1 className="heading-1 mb-5">
-            Soumettre <span className="text-gradient-cyan">mon projet</span>
+            Soumettre <span className="text-gradient">mon projet</span>
           </h1>
           <p className="body-large max-w-2xl mx-auto">
-            <strong className="text-cyanBright">100 % gratuit.</strong> Décrivez votre projet et nous vous
-            redirigeons vers la bonne division pour prendre RDV et recevoir une soumission.
-            Vous ne payez que si la soumission est acceptée.
+            <span className="text-white font-semibold">100 % gratuit.</span> Décrivez votre projet et nous vous
+            redirigeons vers la bonne division pour prendre RDV. Vous ne payez que si la soumission est acceptée.
           </p>
         </div>
       </section>
 
-      {/* ============ ÉTAPE 1 : PROJET ============ */}
       {step === 'projet' && (
-        <section className="py-16 sm:py-24 bg-black">
-          <div className="container-zenicorp max-w-4xl">
+        <section className="section-pad pt-10 bg-black">
+          <div className="container-z max-w-4xl">
             <form onSubmit={handleSubmitProjet}>
-              {/* Division */}
               <div className="mb-10">
                 <h2 className="heading-2 mb-2">Quelle division pour vos travaux ?</h2>
                 <p className="body-base mb-6">Choisissez la division ZeniCorp correspondant à votre projet.</p>
@@ -88,16 +82,15 @@ export default function ProjetPage() {
                       key={d.slug}
                       type="button"
                       onClick={() => setDivision(d.slug)}
-                      className={`panel p-6 text-center transition-all duration-200 border ${division === d.slug ? 'border-cyan shadow-glow-cyan-sm' : 'border-line hover:border-silver'}`}
+                      className={`glass glass-hover p-6 text-center border ${division === d.slug ? 'border-cyan/60 shadow-glow-cyan' : ''}`}
                     >
-                      <div className="text-4xl mb-3">{d.icon}</div>
+                      <div className="text-3xl mb-3">{d.icon}</div>
                       <div className="font-semibold text-sm">{d.name.replace('ZeniCorp ', '')}</div>
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Coordonnées */}
               <h2 className="heading-2 mb-6">Vos informations</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                 <div>
@@ -141,9 +134,9 @@ export default function ProjetPage() {
                 />
               </div>
 
-              <div className="panel panel-glow p-6 mb-10">
+              <div className="glass p-6 mb-10">
                 <div className="flex items-start gap-4">
-                  <div className="text-3xl flex-shrink-0">💡</div>
+                  <div className="text-2xl flex-shrink-0">💡</div>
                   <div>
                     <h3 className="heading-3 mb-1">C'est gratuit, sans engagement</h3>
                     <p className="body-base text-sm">
@@ -156,12 +149,12 @@ export default function ProjetPage() {
               </div>
 
               {erreur && (
-                <div className="mb-6 p-4 bg-red-950/50 border-2 border-red-800 text-red-300 text-sm rounded-lg">
+                <div className="mb-6 p-4 bg-red-950/50 border border-red-800 text-red-300 text-sm rounded-xl">
                   {erreur}
                 </div>
               )}
 
-              <button type="submit" disabled={!projetComplet || envoi} className={`btn-cyan w-full text-lg py-5 ${!projetComplet || envoi ? 'opacity-40 cursor-not-allowed' : ''}`}>
+              <button type="submit" disabled={!projetComplet || envoi} className={`btn-primary w-full text-lg py-5 ${!projetComplet || envoi ? 'opacity-40 cursor-not-allowed' : ''}`}>
                 {envoi ? 'ENVOI EN COURS...' : 'SOUMETTRE GRATUITEMENT'}
               </button>
             </form>
@@ -169,18 +162,17 @@ export default function ProjetPage() {
         </section>
       )}
 
-      {/* ============ ÉTAPE 2 : CONFIRMATION + RDV ============ */}
       {step === 'confirmation' && (
-        <section className="py-16 sm:py-24 bg-black">
-          <div className="container-zenicorp max-w-2xl text-center">
-            <div className="w-20 h-20 mx-auto grid place-items-center rounded-2xl bg-cyan/10 border border-cyan/40 mb-6 text-4xl animate-pulse-glow">✓</div>
+        <section className="section-pad pt-10 bg-black">
+          <div className="container-z max-w-2xl text-center">
+            <div className="w-20 h-20 mx-auto grid place-items-center rounded-2xl bg-cyan/10 border border-cyan/40 mb-6 text-4xl">✓</div>
             <h2 className="heading-2 mb-4">Votre projet est reçu !</h2>
             <p className="body-large mb-8">
-              Merci <strong className="text-cyanBright">{form.nom}</strong> ! Votre projet{' '}
-              <strong className="text-silver">{divisionsData.find((d) => d.slug === division)?.name}</strong>{' '}
+              Merci <span className="text-white font-semibold">{form.nom}</span> ! Votre projet{' '}
+              <span className="text-white font-semibold">{divisionsData.find((d) => d.slug === division)?.name}</span>{' '}
               a bien été transmis. Aucun paiement requis.
             </p>
-            <div className="panel p-8 text-left mb-10">
+            <div className="glass-strong p-8 text-left mb-10">
               <h3 className="heading-3 mb-4">Prochaines étapes</h3>
               <ol className="space-y-4">
                 {[
@@ -190,14 +182,14 @@ export default function ProjetPage() {
                   'Contrat signé → ZeniCorp prend 30 %, l\'entrepreneur garde 70 %.',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-4">
-                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-cyan-gradient text-black font-bold flex-shrink-0">{i + 1}</span>
+                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-b from-cyan to-cyanDeep text-black font-bold flex-shrink-0">{i + 1}</span>
                     <span className="body-base text-sm">{item}</span>
                   </li>
                 ))}
               </ol>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href={divisionSite} target="_blank" rel="noopener noreferrer" className="btn-cyan text-lg px-10 py-5 w-full sm:w-auto">
+              <a href={divisionSite} target="_blank" rel="noopener noreferrer" className="btn-primary text-lg px-10 py-5 w-full sm:w-auto">
                 Prendre mon RDV dans la division
               </a>
             </div>

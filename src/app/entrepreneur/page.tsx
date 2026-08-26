@@ -50,15 +50,15 @@ export default function EntrepreneurPage() {
   if (envoye) {
     return (
       <main className="flex-1">
-        <section className="py-16 sm:py-24 bg-black">
-          <div className="container-zenicorp max-w-2xl text-center">
-            <div className="w-20 h-20 mx-auto grid place-items-center rounded-2xl bg-cyan/10 border border-cyan/40 mb-6 text-4xl animate-pulse-glow">✓</div>
+        <section className="section-pad bg-black">
+          <div className="container-z max-w-2xl text-center">
+            <div className="w-20 h-20 mx-auto grid place-items-center rounded-2xl bg-cyan/10 border border-cyan/40 mb-6 text-4xl">✓</div>
             <h2 className="heading-2 mb-4">Votre inscription est reçue !</h2>
             <p className="body-large mb-8">
-              Merci <strong className="text-cyanBright">{form.entreprise}</strong> ! Un conseiller ZeniCorp
+              Merci <span className="text-white font-semibold">{form.entreprise}</span> ! Un conseiller ZeniCorp
               vous contacte sous 24 h pour activer votre profil d'entrepreneur.
             </p>
-            <div className="panel p-8 text-left mb-10">
+            <div className="glass-strong p-8 text-left mb-10">
               <h3 className="heading-3 mb-4">Ce qui vous attend</h3>
               <ol className="space-y-4">
                 {[
@@ -68,7 +68,7 @@ export default function EntrepreneurPage() {
                   'Soumission acceptée et contrat signé = vous gardez 70 %.',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-4">
-                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-cyan-gradient text-black font-bold flex-shrink-0">{i + 1}</span>
+                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-b from-cyan to-cyanDeep text-black font-bold flex-shrink-0">{i + 1}</span>
                     <span className="body-base text-sm">{item}</span>
                   </li>
                 ))}
@@ -84,47 +84,45 @@ export default function EntrepreneurPage() {
   return (
     <main className="flex-1">
       {/* Hero */}
-      <section className="relative py-24 overflow-hidden bg-black">
-        <div className="absolute inset-0 bg-grid opacity-50 bg-grid-fade" />
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-cyan/10 blur-[120px]" />
-        <div className="relative container-zenicorp z-10 text-center">
-          <Link href="/" className="inline-flex items-center gap-2 text-cyanBright hover:text-cyan transition-colors mb-6">
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-mesh opacity-60" />
+        <div className="relative container-z z-10 text-center">
+          <Link href="/" className="inline-flex items-center gap-2 text-cyan hover:text-cyanBright transition-colors mb-6">
             <span>←</span> Retour à ZeniCorp
           </Link>
           <h1 className="heading-1 mb-5">
-            Espace <span className="text-gradient-cyan">entrepreneur</span>
+            Espace <span className="text-gradient">entrepreneur</span>
           </h1>
           <p className="body-large max-w-2xl mx-auto">
-            <strong className="text-cyanBright">Inscription 100 % gratuite.</strong> ZeniCorp trouve les leads,
+            <span className="text-white font-semibold">Inscription 100 % gratuite.</span> ZeniCorp trouve les leads,
             sélectionne les jobs de votre secteur et vous les assigne. Soumission acceptée et contrat signé,
-            vous gardez <strong className="text-cyanBright">70 %</strong>.
+            vous gardez <span className="text-cyan font-semibold">70 %</span>.
           </p>
         </div>
       </section>
 
-      {/* Le deal */}
-      <section className="py-16 sm:py-24 bg-black2">
-        <div className="container-zenicorp max-w-4xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
-            <div className="panel panel-hover p-8">
+      <section className="section-pad pt-10 bg-black">
+        <div className="container-z max-w-4xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-14">
+            <div className="glass glass-hover p-8">
               <h3 className="heading-3 mb-4">Ce que vous payez</h3>
-              <div className="font-tech text-5xl font-bold text-gradient-cyan mb-4">0 $</div>
+              <div className="text-5xl font-heading font-bold text-cyan mb-4">0 $</div>
               <ul className="space-y-2.5">
                 {['Inscription gratuite', 'Profil entrepreneur', 'Réception de contrats', 'Aucun abonnement'].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
-                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-cyan/15 text-cyanBright text-xs font-bold flex-shrink-0">✓</span>
+                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-cyan/15 text-cyan text-xs font-bold flex-shrink-0">✓</span>
                     <span className="text-sm">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="panel panel-glow corner p-8 border-cyan/40 shadow-glow-cyan-sm">
+            <div className="glass-strong p-8 border-cyan/30 shadow-glow-cyan">
               <h3 className="heading-3 mb-4">Ce que vous recevez</h3>
-              <div className="font-tech text-5xl font-bold text-gradient-cyan mb-4">70 %</div>
+              <div className="text-5xl font-heading font-bold text-cyan mb-4">70 %</div>
               <ul className="space-y-2.5">
                 {['70 % à chaque contrat signé', 'Clients qualifiés, soumission gratuite côté client', 'Jumelage IA selon votre secteur et la job', 'Zéro marketing à faire'].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
-                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-cyan/15 text-cyanBright text-xs font-bold flex-shrink-0">✓</span>
+                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-cyan/15 text-cyan text-xs font-bold flex-shrink-0">✓</span>
                     <span className="text-sm">{item}</span>
                   </li>
                 ))}
@@ -133,23 +131,23 @@ export default function EntrepreneurPage() {
           </div>
 
           {/* Exemple concret */}
-          <div className="panel p-8 mb-14">
+          <div className="glass-strong p-8 mb-14">
             <h3 className="heading-3 mb-6">Exemple concret — Contrat de 10 000 $</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-              <div className="rounded-xl bg-black/50 border border-line p-6">
-                <div className="text-sm text-dim mb-2">Client paie (contrat signé)</div>
-                <div className="font-tech text-3xl font-bold text-white">10 000 $</div>
-                <div className="text-xs text-muted mt-2">soumission gratuite côté client</div>
+              <div className="rounded-xl bg-black/30 border border-line p-6">
+                <div className="text-sm text-dim mb-2">Client (contrat signé)</div>
+                <div className="font-heading text-3xl font-bold text-white">10 000 $</div>
+                <div className="text-xs text-muted mt-2">soumission gratuite</div>
               </div>
-              <div className="rounded-xl bg-black/50 border border-cyan/50 p-6 shadow-glow-cyan-sm">
+              <div className="rounded-xl bg-black/30 border border-cyan/40 p-6 shadow-glow-cyan">
                 <div className="text-sm text-dim mb-2">Votre part</div>
-                <div className="font-tech text-3xl font-bold text-gradient-cyan">7 000 $</div>
+                <div className="font-heading text-3xl font-bold text-cyan">7 000 $</div>
                 <div className="text-xs text-muted mt-2">70 % du contrat</div>
               </div>
-              <div className="rounded-xl bg-black/50 border border-line p-6">
+              <div className="rounded-xl bg-black/30 border border-line p-6">
                 <div className="text-sm text-dim mb-2">Plateforme</div>
-                <div className="font-tech text-3xl font-bold text-white/60">3 000 $</div>
-                <div className="text-xs text-muted mt-2">30 % à ZeniCorp à la signature</div>
+                <div className="font-heading text-3xl font-bold text-white/60">3 000 $</div>
+                <div className="text-xs text-muted mt-2">30 % à la signature</div>
               </div>
             </div>
           </div>
@@ -184,7 +182,7 @@ export default function EntrepreneurPage() {
               </div>
               <div>
                 <label className="label">Division souhaitée *</label>
-                <select className="input-field bg-black2" value={form.division} onChange={(e) => update('division', e.target.value)} required>
+                <select className="input-field bg-ink" value={form.division} onChange={(e) => update('division', e.target.value)} required>
                   <option value="">Choisir une division...</option>
                   {divisionsData.map((d) => (
                     <option key={d.slug} value={d.slug}>{d.name}</option>
@@ -204,12 +202,12 @@ export default function EntrepreneurPage() {
             </div>
 
             {erreur && (
-              <div className="mb-6 p-4 bg-red-950/50 border-2 border-red-800 text-red-300 text-sm rounded-lg">
+              <div className="mb-6 p-4 bg-red-950/50 border border-red-800 text-red-300 text-sm rounded-xl">
                 {erreur}
               </div>
             )}
 
-            <button type="submit" disabled={!complet || envoi} className={`btn-cyan w-full text-lg py-5 ${!complet || envoi ? 'opacity-40 cursor-not-allowed' : ''}`}>
+            <button type="submit" disabled={!complet || envoi} className={`btn-primary w-full text-lg py-5 ${!complet || envoi ? 'opacity-40 cursor-not-allowed' : ''}`}>
               {envoi ? 'ENVOI EN COURS...' : 'M\'INSCRIRE GRATUITEMENT'}
             </button>
             <p className="text-center text-sm text-dim mt-4">

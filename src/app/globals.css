@@ -3,94 +3,54 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 5 5% 2%;
-    --foreground: 0 0% 96%;
-    --primary: 0 0% 96%;
-    --primary-foreground: 5 5% 2%;
-    --secondary: 240 6% 10%;
-    --secondary-foreground: 0 0% 96%;
-    --accent: 43 68% 53%;
-    --accent-foreground: 5 5% 2%;
-    --muted: 240 6% 8%;
-    --muted-foreground: 220 4% 58%;
-    --border: 230 7% 16%;
-    --ring: 43 68% 53%;
-  }
-
   * {
-    border-color: var(--border);
+    border-color: #26282D;
   }
-
   html {
     scroll-behavior: smooth;
-    background: #050505;
+    background: #060607;
   }
-
   body {
-    background: #050505;
-    color: #e6e7ea;
+    background: #060607;
+    color: #E8EAF0;
     -webkit-font-smoothing: antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
     overflow-x: hidden;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
-
   ::selection {
-    background: rgba(0, 229, 255, 0.85);
-    color: #050505;
+    background: rgba(34, 211, 238, 0.85);
+    color: #060607;
   }
-
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #0a0a0b;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #2a2b31;
-    border-radius: 8px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #8c7420;
-  }
+  ::-webkit-scrollbar { width: 9px; height: 9px; }
+  ::-webkit-scrollbar-track { background: #0B0C0E; }
+  ::-webkit-scrollbar-thumb { background: #26282D; border-radius: 8px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3a3d44; }
 }
 
 @layer components {
-  .container-zenicorp {
-    @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-12;
+  .container-z {
+    @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-10;
   }
 
   /* ====== BOUTONS ====== */
-  .btn-cyan {
-    @apply relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-black uppercase tracking-wider
-      bg-cyan-gradient bg-[length:200%_auto] bg-left hover:bg-right
-      transition-all duration-500 shadow-glow-cyan-sm
-      focus:outline-none focus:ring-2 focus:ring-[rgba(242,201,76,0.6)] focus:ring-offset-2 focus:ring-offset-black;
-    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-black
+      bg-gradient-to-b from-cyan to-cyanDeep rounded-full
+      hover:brightness-110 hover:-translate-y-0.5
+      transition-all duration-300 shadow-glow-cyan
+      focus:outline-none focus:ring-2 focus:ring-cyan/50 focus:ring-offset-2 focus:ring-offset-black;
   }
-  .btn-cyan:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 50px -8px rgba(242, 201, 76, 0.75);
-  }
-
   .btn-ghost {
-    @apply inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-silver uppercase tracking-wider
-      bg-transparent border border-line hover:border-cyan hover:text-cyanBright
-      transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan/40;
-    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-silver
+      bg-white/[0.04] border border-line backdrop-blur rounded-full
+      hover:bg-white/[0.08] hover:border-cyan/50 hover:text-white
+      transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan/30;
   }
-  .btn-ghost:hover {
-    background: rgba(0, 229, 255, 0.06);
-  }
-
-  .btn-sm {
-    @apply px-5 py-2.5 text-sm;
-  }
+  .btn-sm { @apply px-5 py-2.5 text-sm; }
 
   /* ====== TYPO ====== */
   .heading-1 {
-    @apply text-4xl sm:text-5xl lg:text-7xl font-heading font-bold tracking-tight text-white;
+    @apply text-[2.75rem] leading-[1.05] sm:text-6xl lg:text-7xl font-heading font-bold tracking-tight text-white;
   }
   .heading-2 {
     @apply text-3xl sm:text-4xl lg:text-5xl font-heading font-bold tracking-tight text-white;
@@ -99,95 +59,52 @@
     @apply text-xl sm:text-2xl font-heading font-semibold tracking-tight text-white;
   }
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.35em] text-cyanBright;
+    @apply inline-flex items-center gap-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-cyan;
   }
-  .body-large {
-    @apply text-lg sm:text-xl text-muted leading-relaxed;
+  .eyebrow::before {
+    content: '';
+    @apply w-6 h-px bg-gradient-to-r from-transparent to-cyan;
   }
-  .body-base {
-    @apply text-base text-muted leading-relaxed;
+  .eyebrow::after {
+    content: '';
+    @apply w-6 h-px bg-gradient-to-l from-transparent to-cyan;
   }
-  .text-gradient-cyan {
-    @apply bg-cyan-gradient bg-clip-text text-transparent;
+  .body-large { @apply text-lg sm:text-xl text-muted leading-relaxed; }
+  .body-base { @apply text-base text-muted leading-relaxed; }
+  .text-gradient {
+    @apply bg-gradient-to-r from-cyan via-cyanBright to-cyanDeep bg-clip-text text-transparent;
   }
 
   /* ====== LAYOUT ====== */
-  .section-padding {
-    @apply py-20 sm:py-28 lg:py-36;
-  }
+  .section-pad { @apply py-20 sm:py-28 lg:py-32; }
 
-  /* ====== CARTES / PANNEAUX ====== */
-  .panel {
-    @apply relative bg-panel/80 border border-line rounded-xl overflow-hidden;
-    backdrop-filter: blur(8px);
+  /* ====== CARTES / GLASS ====== */
+  .glass {
+    @apply relative rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl overflow-hidden;
   }
-  .panel-hover {
-    @apply transition-all duration-300 hover:border-cyan/60 hover:shadow-glow-cyan-sm hover:-translate-y-1;
-  }
-  .panel-glow::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.1), transparent 60%);
-    pointer-events: none;
-  }
-  .corner::after,
-  .corner::before {
-    content: '';
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border-color: rgba(0, 229, 255, 0.6);
-    border-style: solid;
-    pointer-events: none;
-  }
-  .corner::before {
-    top: -1px;
-    left: -1px;
-    border-width: 2px 0 0 2px;
-  }
-  .corner::after {
-    bottom: -1px;
-    right: -1px;
-    border-width: 0 2px 2px 0;
+  .glass-hover { @apply transition-all duration-300 hover:border-cyan/40 hover:bg-white/[0.06] hover:-translate-y-1 hover:shadow-card; }
+  .glass-strong {
+    @apply relative rounded-2xl border border-white/[0.10] bg-[#101214]/80 backdrop-blur-2xl overflow-hidden;
   }
 
   /* ====== FORMULAIRE ====== */
   .input-field {
-    @apply w-full px-4 py-3.5 text-white bg-black2/80 border border-line rounded-lg
-      placeholder:text-dim focus:outline-none focus:border-cyan focus:ring-2 focus:ring-cyan/25
+    @apply w-full px-4 py-3.5 text-white bg-white/[0.04] border border-line rounded-xl
+      placeholder:text-dim focus:outline-none focus:border-cyan/60 focus:ring-2 focus:ring-cyan/20
       transition-all duration-200;
   }
-  .label {
-    @apply block text-sm font-medium text-silver mb-2;
-  }
-  .field-hint {
-    @apply text-xs text-dim mt-2;
-  }
+  .label { @apply block text-sm font-medium text-silver mb-2; }
+  .field-hint { @apply text-xs text-dim mt-2; }
 
-  /* ====== DIVISEUR / DÉCOR ====== */
-  .hud-divider {
-    @apply h-px w-full bg-gradient-to-r from-transparent via-cyan/50 to-transparent;
+  /* ====== DIVERS ====== */
+  .chip {
+    @apply inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-cyan border border-cyan/25 bg-cyan/[0.06] rounded-full;
   }
-  .tech-chip {
-    @apply inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-cyanBright border border-cyan/30 bg-cyan/5 rounded-full;
-  }
+  .divider { @apply h-px w-full bg-gradient-to-r from-transparent via-line to-transparent; }
 }
 
 @layer utilities {
-  .bg-grid {
-    background-image:
-      linear-gradient(rgba(0, 229, 255, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 229, 255, 0.06) 1px, transparent 1px);
-    background-size: 56px 56px;
-  }
-  .bg-grid-fade {
-    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-  }
-  .text-balance {
-    text-wrap: balance;
-  }
+  .text-balance { text-wrap: balance; }
   .animate-delay-100 { animation-delay: 0.1s; }
   .animate-delay-200 { animation-delay: 0.2s; }
   .animate-delay-300 { animation-delay: 0.3s; }
