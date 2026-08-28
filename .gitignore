@@ -11,3 +11,6 @@ npm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 .vercel
+
+.env.pulled
+.env*.tmp
