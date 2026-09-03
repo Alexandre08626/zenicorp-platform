@@ -199,8 +199,8 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
               },
               {
                 n: '02',
-                t: `Dépôt ${MODEL.deposit}`,
-                d: 'Confirmé avec vous par un conseiller avant assignation.',
+                t: 'Soumission gratuite',
+                d: 'Votre demande est validée par un conseiller, sans engagement.',
               },
               {
                 n: '03',
@@ -209,8 +209,8 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
               },
               {
                 n: '04',
-                t: 'Exécution',
-                d: `Travaux réalisés, puis ${MODEL.contractorShare} du contrat lui sont versés.`,
+                t: 'Contrat et exécution',
+                d: `Vous payez ${MODEL.signingShare} à la signature ; l'entrepreneur conserve ${MODEL.contractorShare} du contrat.`,
               },
             ].map((s, i) => (
               <Reveal key={s.n} delay={i * 60}>
@@ -304,8 +304,8 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
 
           <Reveal delay={280}>
             <p className="body-base mx-auto mt-8 max-w-lg">
-              Dépôt unique de {MODEL.deposit}. Un entrepreneur certifié du réseau vous
-              contacte sous {MODEL.contactDelay}.
+              Soumission gratuite, sans engagement. Un entrepreneur certifié du réseau
+              vous contacte sous {MODEL.contactDelay}.
             </p>
 
             <div className="mt-11 flex flex-col items-center justify-center gap-4 sm:flex-row">

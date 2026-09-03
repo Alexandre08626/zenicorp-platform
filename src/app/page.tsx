@@ -14,7 +14,7 @@ import {
 const TICKER = [
   'Entrepreneurs certifiés RBQ',
   'Québec',
-  `Dépôt unique ${MODEL.deposit}`,
+  'Soumission gratuite',
   'Époxy',
   'Asphalte',
   'Toiture',
@@ -28,12 +28,12 @@ const STEPS = [
   {
     n: '01',
     t: 'Vous décrivez le projet',
-    d: 'Division, superficie, adresse, contexte. Deux minutes, sans appel commercial, sans comparateur à remplir dix fois.',
+    d: 'Division, superficie, adresse, contexte. Deux minutes, gratuit, sans engagement.',
   },
   {
     n: '02',
-    t: `Dépôt unique de ${MODEL.deposit}`,
-    d: 'Le dépôt réserve votre projet dans le réseau. Il est confirmé avec vous par un conseiller avant toute assignation.',
+    t: 'Aucun dépôt pour soumettre',
+    d: 'Votre demande est transmise au réseau. Rien n’est facturé avant la signature d’un contrat.',
   },
   {
     n: '03',
@@ -42,8 +42,8 @@ const STEPS = [
   },
   {
     n: '04',
-    t: 'Les travaux sont exécutés',
-    d: `Le chantier est réalisé par le spécialiste. Sur le contrat, il conserve ${MODEL.contractorShare} et la plateforme ${MODEL.platformShare}.`,
+    t: 'Contrat signé, travaux exécutés',
+    d: `Vous payez ${MODEL.signingShare} du contrat à la signature ; le solde suit les modalités convenues. L'entrepreneur conserve ${MODEL.contractorShare} du contrat.`,
   },
 ];
 
@@ -114,10 +114,10 @@ export default function HomePage() {
           <Reveal delay={800}>
             <dl className="mt-12 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-6 border-t border-zenicorp-line/70 pt-6 sm:mt-14 lg:max-w-none lg:grid-cols-4">
               {[
-                { v: MODEL.deposit, l: 'Dépôt client unique' },
+                { v: 'Gratuit', l: 'Soumission de projet' },
+                { v: MODEL.signingShare, l: 'Payé à la signature' },
                 { v: MODEL.contractorShare, l: "Reversé à l'entrepreneur" },
                 { v: MODEL.contactDelay, l: 'Délai de prise de contact' },
-                { v: '04', l: 'Divisions spécialisées' },
               ].map((s) => (
                 <div key={s.l}>
                   <dt className="font-heading text-2xl font-semibold text-zenicorp-text sm:text-3xl">
@@ -397,9 +397,9 @@ export default function HomePage() {
                     d: 'Part du contrat que vous conservez sur chaque chantier réalisé.',
                   },
                   {
-                    k: MODEL.deposit,
-                    t: 'Déjà déposé',
-                    d: 'Les clients assignés ont engagé un dépôt : les demandes sont sérieuses.',
+                    k: MODEL.signingShare,
+                    t: 'Payé à la signature',
+                    d: 'Le client règle cette part du contrat au moment de la signature.',
                   },
                   {
                     k: 'RBQ',

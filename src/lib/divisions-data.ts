@@ -20,11 +20,13 @@ export const ZENICORP_PHONE = '581-748-7017';
 export const ZENICORP_PHONE_HREF = 'tel:+15817487017';
 export const ZENICORP_EMAIL = 'info@zenicorp.ca';
 
-/** Modèle commercial — source unique de vérité pour éviter les contradictions entre pages */
+/** Modèle commercial — source unique de vérité pour éviter les contradictions entre pages.
+ *  Soumission gratuite. Aucun dépôt : le client paie 30 % du contrat à la signature
+ *  (part retenue par la plateforme), l'entrepreneur conserve 70 % du contrat. */
 export const MODEL = {
-  deposit: '305 $',
   contractorShare: '70 %',
   platformShare: '30 %',
+  signingShare: '30 %',
   contactDelay: '24 h',
 } as const;
 

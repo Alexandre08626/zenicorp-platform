@@ -97,8 +97,8 @@ export default function EntrepreneurPage() {
               {[
                 'Vérification de votre licence RBQ et de vos assurances — sans frais.',
                 'Activation de votre profil dans la division choisie.',
-                `Réception de projets de clients ayant engagé un dépôt de ${MODEL.deposit}.`,
-                `Travaux réalisés : vous conservez ${MODEL.contractorShare} du contrat.`,
+                'Réception de projets qualifiés selon votre secteur et votre spécialité.',
+                `Contrat signé : vous conservez ${MODEL.contractorShare} du contrat.`,
               ].map((item, i) => (
                 <li
                   key={i}
@@ -188,9 +188,9 @@ export default function EntrepreneurPage() {
                 d: 'Sur chaque contrat que vous réalisez.',
               },
               {
-                k: MODEL.deposit,
-                t: 'Déjà engagé',
-                d: 'Par le client avant assignation du projet.',
+                k: MODEL.signingShare,
+                t: 'À la signature',
+                d: 'Part du contrat versée par le client à la signature.',
               },
               { k: 'RBQ', t: 'Vérifié', d: 'Licence et assurances contrôlées à l’entrée.' },
             ].map((x, i) => (

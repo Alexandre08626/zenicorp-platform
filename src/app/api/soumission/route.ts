@@ -102,9 +102,10 @@ export async function POST(req: NextRequest) {
           <h2 style="color:#111;margin:0 0 16px">Votre projet est entre de bonnes mains</h2>
           <p>Bonjour <strong>${escapeHtml(prenom)}</strong>,</p>
           <p>Nous avons bien reçu votre demande pour <strong>${escapeHtml(divisionNom)}</strong>.</p>
-          <p>Un conseiller ZeniCorp valide votre demande et confirme avec vous le dépôt unique de
-             <strong>${MODEL.deposit}</strong> qui réserve votre projet dans le réseau. Un entrepreneur
-             certifié RBQ vous contacte ensuite sous <strong>${MODEL.contactDelay}</strong>.</p>
+          <p>Un conseiller ZeniCorp valide votre demande, sans engagement de votre part. Un
+             entrepreneur certifié RBQ vous contacte ensuite sous <strong>${MODEL.contactDelay}</strong>
+             pour la visite et le prix ferme. Au contrat signé, vous payez <strong>${MODEL.signingShare}</strong>
+             à la signature ; l'entrepreneur conserve <strong>${MODEL.contractorShare}</strong> du contrat.</p>
           <p style="margin:24px 0">
             <a href="${escapeHtml(divisionSite)}" style="display:inline-block;background:#2F6FED;color:#05070B;padding:14px 28px;text-decoration:none;font-weight:bold;border-radius:6px">Découvrir la division</a>
           </p>

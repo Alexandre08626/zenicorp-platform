@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     default: 'ZeniCorp — Plateforme de construction et rénovation au Québec',
     template: '%s | ZeniCorp',
   },
-  description: `ZeniCorp connecte les clients à des entrepreneurs certifiés RBQ : dépôt unique de ${MODEL.deposit}, inscription entrepreneur gratuite, ${MODEL.contractorShare} du contrat à l'entrepreneur, contact sous ${MODEL.contactDelay}.`,
+  description: `ZeniCorp connecte les clients à des entrepreneurs certifiés RBQ : soumission gratuite, ${MODEL.signingShare} du contrat à la signature, ${MODEL.contractorShare} reversé à l'entrepreneur, contact sous ${MODEL.contactDelay}.`,
   keywords: [
     'construction',
     'rénovation',

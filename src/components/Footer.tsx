@@ -90,7 +90,7 @@ export default function Footer() {
                 Soumettre un projet
               </Link>
               <span className="font-mono text-[10px] uppercase tracking-widest text-zenicorp-faint">
-                Dépôt {MODEL.deposit}
+                Soumission gratuite
               </span>
               <Link
                 href="/entrepreneur"

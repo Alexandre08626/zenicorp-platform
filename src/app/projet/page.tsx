@@ -119,10 +119,10 @@ function ProjetForm() {
           <Reveal delay={300}>
             <ol className="mx-auto mt-14 max-w-xl text-left">
               {[
-                `Un conseiller valide votre demande et confirme avec vous le dépôt de ${MODEL.deposit}.`,
+                'Un conseiller valide votre demande — aucun paiement à cette étape.',
                 'Un entrepreneur certifié RBQ de la division est assigné à votre projet.',
                 `Il vous contacte sous ${MODEL.contactDelay} pour la visite et le prix ferme.`,
-                `Les travaux sont réalisés, puis ${MODEL.contractorShare} du contrat lui sont versés.`,
+                `Contrat signé : vous payez ${MODEL.signingShare} à la signature, l'entrepreneur conserve ${MODEL.contractorShare} du contrat.`,
               ].map((item, i) => (
                 <li
                   key={i}
@@ -404,9 +404,9 @@ function ProjetForm() {
                   <span className="tech-label">Le modèle, sans ambiguïté</span>
                   <dl className="mt-7 grid gap-8 sm:grid-cols-3">
                     {[
-                      { k: MODEL.deposit, l: 'Dépôt unique, confirmé par un conseiller avant assignation' },
-                      { k: MODEL.contractorShare, l: "Part du contrat versée à l'entrepreneur" },
-                      { k: MODEL.platformShare, l: 'Part retenue par la plateforme' },
+                      { k: 'Gratuit', l: 'Soumission de votre projet, sans engagement' },
+                      { k: MODEL.signingShare, l: 'Payé par vous à la signature du contrat' },
+                      { k: MODEL.contractorShare, l: "Reversé à l'entrepreneur sur le contrat" },
                     ].map((x) => (
                       <div key={x.l}>
                         <dt className="font-heading text-3xl font-semibold text-zenicorp-gold">
