@@ -52,7 +52,7 @@ export default function EntrepreneurPage() {
       <main className="flex-1">
         <section className="section-pad bg-black">
           <div className="container-z max-w-2xl text-center">
-            <div className="w-20 h-20 mx-auto grid place-items-center rounded-2xl bg-white/[0.06] border border-white/20 mb-6 text-4xl">✓</div>
+            <div className="w-20 h-20 mx-auto grid place-items-center rounded-2xl bg-zenicorp-darkGray/[0.06] border border-white/20 mb-6 text-4xl">✓</div>
             <h2 className="heading-2 mb-4">Votre inscription est reçue !</h2>
             <p className="body-large mb-8">
               Merci <span className="text-white font-semibold">{form.entreprise}</span> ! Un conseiller ZeniCorp
@@ -110,7 +110,7 @@ export default function EntrepreneurPage() {
               <ul className="space-y-2.5">
                 {['Inscription gratuite', 'Profil entrepreneur', 'Réception de contrats', 'Aucun abonnement'].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
-                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-white/10 text-silver text-xs font-bold flex-shrink-0">✓</span>
+                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-zenicorp-darkGray/10 text-silver text-xs font-bold flex-shrink-0">✓</span>
                     <span className="text-sm">{item}</span>
                   </li>
                 ))}
@@ -122,7 +122,7 @@ export default function EntrepreneurPage() {
               <ul className="space-y-2.5">
                 {['70 % à chaque contrat signé', 'Clients qualifiés, soumission gratuite côté client', 'Jumelage IA selon votre secteur et la job', 'Zéro marketing à faire'].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-muted">
-                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-white/10 text-silver text-xs font-bold flex-shrink-0">✓</span>
+                    <span className="w-5 h-5 mt-0.5 grid place-items-center rounded-full bg-zenicorp-darkGray/10 text-silver text-xs font-bold flex-shrink-0">✓</span>
                     <span className="text-sm">{item}</span>
                   </li>
                 ))}

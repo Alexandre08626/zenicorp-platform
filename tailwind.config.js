@@ -8,52 +8,56 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        black: '#060607',
-        black2: '#0B0C0E',
-        ink: '#101214',
-        panel: '#141619',
-        line: '#26282D',
-        silver: '#E8EAF0',
-        muted: '#9BA1AB',
-        dim: '#5C626B',
-        cyan: '#22D3EE',
-        cyanBright: '#67E8F9',
-        cyanDeep: '#0891B2',
-        white: '#FFFFFF',
+        zenicorp: {
+          black: '#05070B',
+          silver: '#C0C0C0',
+          gold: '#D4AF37',
+          white: '#FFFFFF',
+          darkGray: '#12161D',
+          mediumGray: '#8A94A6',
+          lightGray: '#0E1117',
+          border: '#1E2530',
+          surface: '#0A0D13',
+          line: '#232B38',
+          text: '#E8EDF4',
+          dim: '#A5B0C2',
+        },
+        divisions: {
+          epoxy: '#0E95D9',
+          toiture: '#E0603A',
+          asphalte: '#5B6472',
+          isolation: '#2FA086',
+        },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        heading: ['var(--font-space)', 'var(--font-inter)', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['Playfair Display', 'serif'],
       },
-      boxShadow: {
-        'glow-cyan': '0 0 40px -14px rgba(34,211,238,0.5)',
-        'card': '0 20px 50px -20px rgba(0,0,0,0.7)',
-        'card-lg': '0 40px 80px -30px rgba(0,0,0,0.85)',
-      },
-      backgroundImage: {
-        'mesh':
-          'radial-gradient(55% 45% at 15% 0%, rgba(34,211,238,0.05), transparent 60%), radial-gradient(50% 40% at 90% 10%, rgba(8,145,178,0.05), transparent 60%), radial-gradient(60% 60% at 60% 100%, rgba(34,211,238,0.03), transparent 60%)',
-        'mesh-blue':
-          'radial-gradient(55% 45% at 20% 0%, rgba(34,211,238,0.07), transparent 55%), radial-gradient(45% 40% at 90% 20%, rgba(2,132,199,0.06), transparent 55%)',
+      container: {
+        center: true,
+        padding: '2rem',
+        screens: {
+          '2xl': '1400px',
+        },
       },
       keyframes: {
         'fade-up': {
-          from: { opacity: '0', transform: 'translateY(26px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
+          '0%': { opacity: '0', transform: 'translateY(24px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        'fade-in': {
-          from: { opacity: '0' },
-          to: { opacity: '1' },
+        'float-y': {
+          '0%,100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-14px)' },
         },
-        floaty: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-12px)' },
+        'scan': {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '0 0' },
         },
       },
       animation: {
-        'fade-up': 'fade-up 0.8s cubic-bezier(0.16,1,0.3,1) both',
-        'fade-in': 'fade-in 1s ease-out both',
-        floaty: 'floaty 7s ease-in-out infinite',
+        'fade-up': 'fade-up 0.7s cubic-bezier(0.16,1,0.3,1) both',
+        'float-y': 'float-y 6s ease-in-out infinite',
+        scan: 'scan 3s linear infinite',
       },
     },
   },
