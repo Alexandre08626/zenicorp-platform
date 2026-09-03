@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowUpRight, Phone, Mail, MapPin } from 'lucide-react';
 import {
   divisionsData,
@@ -38,11 +39,9 @@ export default function Footer() {
         {/* Colonnes */}
         <div className="grid gap-12 py-16 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
-            <div className="flex items-center gap-3.5">
-              <span className="grid h-9 w-9 place-items-center bg-zenicorp-gold">
-                <span className="font-heading text-lg font-bold leading-none text-zenicorp-black">
-                  Z
-                </span>
+            <div className="flex items-center gap-3">
+              <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md">
+                <Image src="/logo-mark.png" alt="" fill sizes="40px" className="object-cover" />
               </span>
               <span className="leading-none">
                 <span className="block font-heading text-lg font-semibold text-zenicorp-text">

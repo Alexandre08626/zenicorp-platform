@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
@@ -56,12 +57,16 @@ export default function Header() {
             }`}
           >
             {/* Marque */}
-            <Link href="/" className="group flex items-center gap-3.5" aria-label="ZeniCorp, accueil">
-              <span className="relative grid h-9 w-9 place-items-center overflow-hidden bg-zenicorp-gold">
-                <span className="font-heading text-lg font-bold leading-none text-zenicorp-black">
-                  Z
-                </span>
-                <span className="absolute inset-0 -translate-x-full bg-white/30 transition-transform duration-700 ease-premium group-hover:translate-x-full" />
+            <Link href="/" className="group flex items-center gap-3" aria-label="ZeniCorp, accueil">
+              <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-md">
+                <Image
+                  src="/logo-mark.png"
+                  alt=""
+                  fill
+                  sizes="36px"
+                  className="object-cover transition-transform duration-700 ease-premium group-hover:scale-110"
+                  priority
+                />
               </span>
               <span className="leading-none">
                 <span className="block font-heading text-lg font-semibold tracking-tight text-zenicorp-text">

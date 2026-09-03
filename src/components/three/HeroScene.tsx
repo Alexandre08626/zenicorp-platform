@@ -48,7 +48,7 @@ const BlueprintMaterial = /* @__PURE__ */ (() => {
         uniforms: {
           uTime: { value: 0 },
           uGrid: { value: new THREE.Color('#7C8BA8') },
-          uGold: { value: new THREE.Color('#D4AF37') },
+          uGold: { value: new THREE.Color('#2F6FED') },
         },
         vertexShader: /* glsl */ `
           varying vec2 vUv;
@@ -168,7 +168,7 @@ function Structure() {
           )}
           <Edges threshold={15} scale={1.0015}>
             <lineBasicMaterial
-              color={b.solid ? '#D4AF37' : '#8C9BB5'}
+              color={b.solid ? '#2F6FED' : '#8C9BB5'}
               transparent
               opacity={b.solid ? 0.5 : 0.26}
             />
@@ -273,13 +273,13 @@ function Core({ glow }: { glow: THREE.Texture | null }) {
     <group position={[0, -0.15, 0]}>
       <mesh ref={ref}>
         <octahedronGeometry args={[0.2, 0]} />
-        <meshBasicMaterial color="#F0D468" />
+        <meshBasicMaterial color="#6FB1FF" />
       </mesh>
       {glow && (
         <sprite scale={[2.6, 2.6, 2.6]}>
           <spriteMaterial
             map={glow}
-            color="#D4AF37"
+            color="#2F6FED"
             transparent
             opacity={0.5}
             blending={THREE.AdditiveBlending}
@@ -287,7 +287,7 @@ function Core({ glow }: { glow: THREE.Texture | null }) {
           />
         </sprite>
       )}
-      <pointLight intensity={3.2} distance={7} color="#D4AF37" />
+      <pointLight intensity={3.2} distance={7} color="#2F6FED" />
     </group>
   );
 }
@@ -416,7 +416,7 @@ function SceneContents({ colors, interactive, quality }: Required<HeroSceneProps
         <Structure />
         <Core glow={glow} />
         {orbits.map((o, i) => (
-          <DivisionNode key={i} color={colors[i] ?? '#D4AF37'} glow={glow} {...o} />
+          <DivisionNode key={i} color={colors[i] ?? '#2F6FED'} glow={glow} {...o} />
         ))}
       </group>
 

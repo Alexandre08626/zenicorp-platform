@@ -71,7 +71,7 @@ export default function HeroCanvas({ colors }: { colors: string[] }) {
       {/* Repli statique : toujours rendu, sert de fond si WebGL est absent
           ou si l'utilisateur demande un mouvement réduit. */}
       <div className="absolute inset-0 bp-grid mask-fade-b opacity-[0.5]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_45%_at_50%_45%,rgba(212,175,55,0.13),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_45%_at_50%_45%,rgba(47, 111, 237,0.13),transparent_70%)]" />
 
       {mount && (
         <div

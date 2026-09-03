@@ -357,7 +357,7 @@ export default function HomePage() {
           ═══════════════════════════════════════════════════════ */}
       <section className="relative section-padding overflow-hidden border-t border-zenicorp-line/70">
         <div className="absolute inset-0 bp-grid-fine opacity-30" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_80%_35%,rgba(212,175,55,0.075),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_80%_35%,rgba(47, 111, 237,0.075),transparent_70%)]" />
 
         <div className="container-zenicorp relative">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
@@ -433,7 +433,7 @@ export default function HomePage() {
           ═══════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden border-t border-zenicorp-line/70 py-section">
         <div className="absolute inset-0 bp-grid opacity-[0.45]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_120%,rgba(212,175,55,0.12),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_120%,rgba(47, 111, 237,0.12),transparent_70%)]" />
 
         <div className="container-zenicorp relative text-center">
           <Reveal>

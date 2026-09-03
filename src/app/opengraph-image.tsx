@@ -26,7 +26,7 @@ export default async function Image() {
               width: 68,
               height: 68,
               borderRadius: 16,
-              background: '#D4AF37',
+              background: '#2F6FED',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -55,7 +55,7 @@ export default async function Image() {
             }}
           >
             <span>Votre projet.</span>
-            <span style={{ color: '#D4AF37' }}>Notre réseau d&apos;entrepreneurs.</span>
+            <span style={{ color: '#2F6FED' }}>Notre réseau d&apos;entrepreneurs.</span>
           </div>
           <div style={{ fontSize: 30, color: '#A5B0C2' }}>
             Époxy · Asphalte · Toiture · Isolation — Québec

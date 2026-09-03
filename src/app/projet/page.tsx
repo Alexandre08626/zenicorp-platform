@@ -64,7 +64,7 @@ function ProjetForm() {
     division;
 
   const divisionChoisie = divisionsData.find((d) => d.slug === division);
-  const accent = divisionChoisie?.color ?? '#D4AF37';
+  const accent = divisionChoisie?.color ?? '#2F6FED';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -168,7 +168,7 @@ function ProjetForm() {
       {/* En-tête */}
       <section className="relative overflow-hidden border-b border-zenicorp-line/70">
         <div className="absolute inset-0 bp-grid opacity-40" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_25%_0%,rgba(212,175,55,0.11),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_25%_0%,rgba(47, 111, 237,0.11),transparent_70%)]" />
 
         <div className="container-zenicorp relative pb-16 pt-36">
           <Reveal>

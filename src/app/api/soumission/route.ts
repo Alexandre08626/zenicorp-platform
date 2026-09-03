@@ -106,7 +106,7 @@ export async function POST(req: NextRequest) {
              <strong>${MODEL.deposit}</strong> qui réserve votre projet dans le réseau. Un entrepreneur
              certifié RBQ vous contacte ensuite sous <strong>${MODEL.contactDelay}</strong>.</p>
           <p style="margin:24px 0">
-            <a href="${escapeHtml(divisionSite)}" style="display:inline-block;background:#D4AF37;color:#05070B;padding:14px 28px;text-decoration:none;font-weight:bold;border-radius:6px">Découvrir la division</a>
+            <a href="${escapeHtml(divisionSite)}" style="display:inline-block;background:#2F6FED;color:#05070B;padding:14px 28px;text-decoration:none;font-weight:bold;border-radius:6px">Découvrir la division</a>
           </p>
           <p>Une question ? Appelez-nous au <strong>${ZENICORP_PHONE}</strong>.</p>
           <p style="color:#666;font-size:13px;margin-top:28px">ZeniCorp — Votre projet. Notre réseau d'entrepreneurs certifiés.</p>

@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'ZeniCorp' }],
   alternates: { canonical: '/' },
   robots: { index: true, follow: true },
-  icons: { icon: '/logo.png', apple: '/logo.png' },
+  icons: { icon: '/logo-mark.png', apple: '/logo-mark.png' },
   openGraph: {
     type: 'website',
     locale: 'fr_CA',
@@ -85,7 +85,7 @@ const organizationJsonLd = {
   '@type': 'Organization',
   name: 'ZeniCorp',
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
+  logo: `${SITE_URL}/logo-wordmark.png`,
   email: ZENICORP_EMAIL,
   telephone: ZENICORP_PHONE,
   areaServed: { '@type': 'AdministrativeArea', name: 'Québec, Canada' },

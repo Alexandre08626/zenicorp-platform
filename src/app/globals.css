@@ -24,7 +24,7 @@
     /* Pas de background-attachment: fixed — coûteux au scroll et cassé sur iOS. */
     background-image: radial-gradient(
       ellipse 90% 55% at 50% -10%,
-      rgba(212, 175, 55, 0.055),
+      rgba(47, 111, 237, 0.055),
       transparent 70%
     );
     background-repeat: no-repeat;
@@ -43,12 +43,12 @@
   }
 
   ::selection {
-    background: rgba(212, 175, 55, 0.28);
+    background: rgba(47, 111, 237, 0.28);
     color: #fff;
   }
 
   :focus-visible {
-    outline: 2px solid rgba(212, 175, 55, 0.7);
+    outline: 2px solid rgba(47, 111, 237, 0.7);
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -111,10 +111,10 @@
   }
   .btn-gold {
     @apply btn bg-zenicorp-gold text-zenicorp-black;
-    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 0 0 rgba(47, 111, 237, 0.4);
   }
   .btn-gold:hover {
-    box-shadow: 0 10px 34px -6px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 10px 34px -6px rgba(47, 111, 237, 0.5);
     transform: translateY(-2px);
   }
   .btn-outline-gold {
@@ -264,7 +264,7 @@
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   }
   .text-gold-gradient {
-    background: linear-gradient(100deg, #f0d468 0%, #d4af37 45%, #9c7c22 100%);
+    background: linear-gradient(100deg, #8fc4ff 0%, #2f6fed 45%, #0f3e9e 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
