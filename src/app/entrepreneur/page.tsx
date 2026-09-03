@@ -2,7 +2,16 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Check, Phone, AlertCircle, Calculator } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  Phone,
+  AlertCircle,
+  Loader2,
+} from 'lucide-react';
+import Magnetic from '@/components/Magnetic';
+import { Reveal, RevealLines } from '@/components/Reveal';
 import {
   divisionsData,
   MODEL,
@@ -60,320 +69,369 @@ export default function EntrepreneurPage() {
     }
   };
 
-  /* ─────────── CONFIRMATION ─────────── */
+  /* ═══════════════ CONFIRMATION ═══════════════ */
   if (envoye) {
     return (
-      <main className="flex-1 bg-zenicorp-black">
-        <section className="section-padding">
-          <div className="container-zenicorp max-w-2xl text-center">
-            <div className="w-16 h-16 mx-auto grid place-items-center rounded-2xl bg-zenicorp-gold/10 border border-zenicorp-gold/40 mb-6">
-              <Check className="w-8 h-8 text-zenicorp-gold" />
-            </div>
-            <h1 className="heading-2 mb-4">Votre inscription est reçue</h1>
-            <p className="body-large mb-10">
-              Merci{' '}
-              <span className="text-zenicorp-text font-semibold">{form.entreprise}</span>. Un
-              conseiller ZeniCorp vous contacte sous {MODEL.contactDelay} pour activer votre profil.
+      <main className="relative flex flex-1 items-center overflow-x-clip">
+        <div className="absolute inset-0 bp-grid-fine opacity-25" />
+        <section className="container-tight relative py-40 text-center">
+          <Reveal>
+            <span className="mx-auto grid h-16 w-16 place-items-center border border-zenicorp-gold/50 bg-zenicorp-gold/[0.08]">
+              <Check className="h-7 w-7 text-zenicorp-gold" />
+            </span>
+          </Reveal>
+
+          <h1 className="mt-10 font-heading text-display-md font-semibold">
+            <RevealLines lines={[<>Inscription reçue.</>]} />
+          </h1>
+
+          <Reveal delay={200}>
+            <p className="body-large mx-auto mt-7 max-w-lg">
+              Merci <span className="text-zenicorp-text">{form.entreprise}</span>. Un
+              conseiller vous contacte sous {MODEL.contactDelay} pour activer votre profil.
             </p>
+          </Reveal>
 
-            <div className="card p-8 text-left mb-10">
-              <h2 className="heading-3 text-lg mb-5">Ce qui vous attend</h2>
-              <ol className="space-y-4">
-                {[
-                  'Vérification de votre licence RBQ et de vos assurances — sans frais.',
-                  'Activation de votre profil dans la division choisie.',
-                  `Réception de projets de clients ayant déposé ${MODEL.deposit}.`,
-                  `Travaux réalisés : vous conservez ${MODEL.contractorShare} du contrat.`,
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-4">
-                    <span className="w-7 h-7 shrink-0 grid place-items-center rounded-full bg-zenicorp-gold text-zenicorp-black text-sm font-bold">
-                      {i + 1}
-                    </span>
-                    <span className="body-base text-sm">{item}</span>
-                  </li>
-                ))}
-              </ol>
-            </div>
+          <Reveal delay={300}>
+            <ol className="mx-auto mt-14 max-w-xl text-left">
+              {[
+                'Vérification de votre licence RBQ et de vos assurances — sans frais.',
+                'Activation de votre profil dans la division choisie.',
+                `Réception de projets de clients ayant engagé un dépôt de ${MODEL.deposit}.`,
+                `Travaux réalisés : vous conservez ${MODEL.contractorShare} du contrat.`,
+              ].map((item, i) => (
+                <li
+                  key={i}
+                  className="grid grid-cols-[auto_1fr] gap-6 border-t border-zenicorp-line/70 py-5"
+                >
+                  <span className="font-mono text-xs text-zenicorp-gold">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className="text-sm leading-relaxed text-zenicorp-dim">{item}</span>
+                </li>
+              ))}
+              <li className="border-t border-zenicorp-line/70" />
+            </ol>
+          </Reveal>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href={ZENICORP_PHONE_HREF} className="btn-gold px-8 py-4">
-                <Phone className="w-4 h-4 mr-2" />
+          <Reveal delay={400}>
+            <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <a href={ZENICORP_PHONE_HREF} className="btn-gold px-9 py-4">
+                <Phone className="h-4 w-4" />
                 {ZENICORP_PHONE}
               </a>
-              <Link href="/" className="btn-secondary px-8 py-4">
+              <Link href="/" className="btn-secondary px-9 py-4">
                 Retour à l&apos;accueil
               </Link>
             </div>
-          </div>
+          </Reveal>
         </section>
       </main>
     );
   }
 
-  /* ─────────── PAGE ─────────── */
+  /* ═══════════════ PAGE ═══════════════ */
   return (
-    <main className="flex-1 bg-zenicorp-black">
-      <section className="relative py-20 overflow-hidden border-b border-zenicorp-line">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_30%_0%,rgba(212,175,55,0.09),transparent)]" />
-        <div className="absolute inset-0 bg-[url('/patterns/grid.svg')] opacity-[0.05]" />
-        <div className="container-zenicorp relative">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 mb-6 text-sm text-zenicorp-dim hover:text-zenicorp-gold transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Retour à ZeniCorp
-          </Link>
-          <span className="badge-gold mb-5">Inscription gratuite</span>
-          <h1 className="heading-1 mb-5 text-balance max-w-3xl">Espace entrepreneur</h1>
-          <p className="body-large max-w-2xl">
-            ZeniCorp qualifie les clients et vous assigne les projets de votre secteur. Vous
-            conservez {MODEL.contractorShare} du contrat, sans frais d&apos;adhésion ni abonnement.
-          </p>
-        </div>
-      </section>
+    <main className="flex-1 overflow-x-clip">
+      {/* En-tête */}
+      <section className="relative overflow-hidden border-b border-zenicorp-line/70">
+        <div className="absolute inset-0 bp-grid opacity-40" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_75%_0%,rgba(212,175,55,0.11),transparent_70%)]" />
 
-      <section className="section-padding">
-        <div className="container-zenicorp max-w-4xl">
-          {/* Ce que vous payez / recevez */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <div className="card p-8">
-              <h2 className="heading-3 text-lg mb-3">Ce que vous payez</h2>
-              <div className="font-heading font-bold text-5xl text-zenicorp-gold mb-5">0 $</div>
-              <ul className="space-y-3">
-                {[
-                  'Inscription au réseau',
-                  'Création du profil entrepreneur',
-                  'Réception des projets',
-                  'Aucun abonnement mensuel',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <Check className="w-4 h-4 mt-0.5 shrink-0 text-zenicorp-gold" />
-                    <span className="text-sm text-zenicorp-dim">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="card p-8 border-zenicorp-gold/30">
-              <h2 className="heading-3 text-lg mb-3">Ce que vous recevez</h2>
-              <div className="font-heading font-bold text-5xl text-zenicorp-gold mb-5">
-                {MODEL.contractorShare}
-              </div>
-              <ul className="space-y-3">
-                {[
-                  `${MODEL.contractorShare} du montant de chaque contrat`,
-                  `Clients qualifiés ayant déposé ${MODEL.deposit}`,
-                  'Projets assignés selon votre secteur et votre spécialité',
-                  'Aucun démarchage à faire',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <Check className="w-4 h-4 mt-0.5 shrink-0 text-zenicorp-gold" />
-                    <span className="text-sm text-zenicorp-dim">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Exemple de calcul */}
-          <div className="card p-8 mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-10 h-10 shrink-0 rounded-xl bg-zenicorp-gold/10 border border-zenicorp-gold/30 grid place-items-center">
-                <Calculator className="w-5 h-5 text-zenicorp-gold" />
-              </span>
-              <h2 className="heading-3 text-lg">
-                Exemple de calcul — contrat de 10 000 $
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[
-                { l: 'Contrat de travaux', v: '10 000 $', s: 'montant facturé au client', gold: false },
-                { l: 'Votre part', v: '7 000 $', s: `${MODEL.contractorShare} du contrat`, gold: true },
-                {
-                  l: 'Part plateforme',
-                  v: '3 000 $',
-                  s: `${MODEL.platformShare} — qualification et gestion`,
-                  gold: false,
-                },
-              ].map((x) => (
-                <div
-                  key={x.l}
-                  className="rounded-lg bg-zenicorp-black/50 border border-zenicorp-line p-6 text-center"
-                >
-                  <div className="text-xs uppercase tracking-wider text-zenicorp-dim mb-2">
-                    {x.l}
-                  </div>
-                  <div
-                    className={`font-heading text-3xl font-bold ${
-                      x.gold ? 'text-zenicorp-gold' : 'text-zenicorp-text'
-                    }`}
-                  >
-                    {x.v}
-                  </div>
-                  <div className="text-xs text-zenicorp-dim mt-2">{x.s}</div>
-                </div>
-              ))}
-            </div>
-            <p className="text-xs text-zenicorp-dim/70 mt-5">
-              Exemple fourni à titre illustratif. Le montant réel dépend du contrat signé avec le
-              client.
-            </p>
-          </div>
-
-          {/* Formulaire */}
-          <h2 className="heading-2 mb-6">Créer mon compte entrepreneur</h2>
-          <form onSubmit={handleSubmit} noValidate>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-              <div>
-                <label className="label" htmlFor="nom">
-                  Nom complet <span className="text-zenicorp-gold">*</span>
-                </label>
-                <input
-                  id="nom"
-                  className="input-field"
-                  value={form.nom}
-                  onChange={(e) => update('nom', e.target.value)}
-                  placeholder="Votre nom"
-                  autoComplete="name"
-                  required
-                />
-              </div>
-              <div>
-                <label className="label" htmlFor="entreprise">
-                  Nom de l&apos;entreprise <span className="text-zenicorp-gold">*</span>
-                </label>
-                <input
-                  id="entreprise"
-                  className="input-field"
-                  value={form.entreprise}
-                  onChange={(e) => update('entreprise', e.target.value)}
-                  placeholder="Ex. : Rénos Tremblay Inc."
-                  autoComplete="organization"
-                  required
-                />
-              </div>
-              <div>
-                <label className="label" htmlFor="telephone">
-                  Téléphone <span className="text-zenicorp-gold">*</span>
-                </label>
-                <input
-                  id="telephone"
-                  className="input-field"
-                  type="tel"
-                  value={form.telephone}
-                  onChange={(e) => update('telephone', e.target.value)}
-                  placeholder="581-748-7017"
-                  autoComplete="tel"
-                  required
-                />
-              </div>
-              <div>
-                <label className="label" htmlFor="email">
-                  Courriel <span className="text-zenicorp-gold">*</span>
-                </label>
-                <input
-                  id="email"
-                  className="input-field"
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => update('email', e.target.value)}
-                  placeholder="vous@entreprise.com"
-                  autoComplete="email"
-                  required
-                />
-              </div>
-              <div>
-                <label className="label" htmlFor="rbq">
-                  Numéro de licence RBQ <span className="text-zenicorp-gold">*</span>
-                </label>
-                <input
-                  id="rbq"
-                  className="input-field"
-                  value={form.rbq}
-                  onChange={(e) => update('rbq', e.target.value)}
-                  placeholder="Ex. : 1234-5678-01"
-                  required
-                />
-              </div>
-              <div>
-                <label className="label" htmlFor="assurances">
-                  Assurances (responsabilité civile){' '}
-                  <span className="text-zenicorp-gold">*</span>
-                </label>
-                <input
-                  id="assurances"
-                  className="input-field"
-                  value={form.assurances}
-                  onChange={(e) => update('assurances', e.target.value)}
-                  placeholder="Ex. : 2 M$ responsabilité civile"
-                  required
-                />
-              </div>
-              <div className="md:col-span-2">
-                <label className="label" htmlFor="division">
-                  Division souhaitée <span className="text-zenicorp-gold">*</span>
-                </label>
-                <select
-                  id="division"
-                  className="input-field"
-                  value={form.division}
-                  onChange={(e) => update('division', e.target.value)}
-                  required
-                >
-                  <option value="">Choisir une division...</option>
-                  {divisionsData.map((d) => (
-                    <option key={d.slug} value={d.slug}>
-                      {d.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="mb-10">
-              <label className="label" htmlFor="experience">
-                Expérience et spécialités (optionnel)
-              </label>
-              <textarea
-                id="experience"
-                className="input-field min-h-[110px]"
-                value={form.experience}
-                onChange={(e) => update('experience', e.target.value)}
-                placeholder="Années d'expérience, spécialités, taille des équipes, secteurs desservis..."
-              />
-            </div>
-
-            {erreur && (
-              <div
-                role="alert"
-                className="mb-6 flex items-start gap-3 p-4 rounded-md bg-red-950/40 border border-red-800/60 text-red-200 text-sm"
-              >
-                <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
-                <span>{erreur}</span>
-              </div>
-            )}
-
-            <button
-              type="submit"
-              disabled={!complet || envoi}
-              className={`btn-gold w-full text-base py-5 ${
-                !complet || envoi ? 'opacity-40 cursor-not-allowed' : ''
-              }`}
+        <div className="container-zenicorp relative pb-16 pt-36">
+          <Reveal>
+            <Link
+              href="/"
+              className="group inline-flex items-center gap-2.5 font-mono text-label uppercase text-zenicorp-dim transition-colors hover:text-zenicorp-gold"
             >
-              {envoi ? 'Envoi en cours...' : "M'inscrire gratuitement"}
-              {!envoi && <ArrowRight className="w-4 h-4 ml-2" />}
-            </button>
+              <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-500 ease-premium group-hover:-translate-x-1" />
+              Plateforme ZeniCorp
+            </Link>
+          </Reveal>
 
-            <p className="text-center text-sm text-zenicorp-dim mt-5">
-              Aucun frais d&apos;inscription, aucun abonnement.{' '}
-              <a href={ZENICORP_PHONE_HREF} className="text-zenicorp-gold hover:underline">
-                {ZENICORP_PHONE}
-              </a>
-            </p>
-          </form>
+          <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-8">
+              <span className="badge-gold">Inscription gratuite</span>
+              <h1 className="mt-7 font-heading text-display-lg font-semibold">
+                <RevealLines
+                  delay={80}
+                  lines={[
+                    <>Des contrats.</>,
+                    <span key="b" className="text-zenicorp-faint">
+                      Pas de démarchage.
+                    </span>,
+                  ]}
+                />
+              </h1>
+            </div>
+            <div className="lg:col-span-4">
+              <Reveal delay={300}>
+                <p className="body-base max-w-sm">
+                  La plateforme qualifie les clients et vous assigne les projets de votre
+                  secteur. Vous conservez {MODEL.contractorShare} du contrat.
+                </p>
+              </Reveal>
+            </div>
+          </div>
         </div>
       </section>
+
+      {/* Chiffres */}
+      <section className="border-b border-zenicorp-line/70">
+        <div className="container-zenicorp">
+          <dl className="grid gap-px bg-zenicorp-line/40 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { k: '0 $', t: 'Adhésion', d: 'Aucun frais, aucun abonnement mensuel.' },
+              {
+                k: MODEL.contractorShare,
+                t: 'Votre part',
+                d: 'Sur chaque contrat que vous réalisez.',
+              },
+              {
+                k: MODEL.deposit,
+                t: 'Déjà engagé',
+                d: 'Par le client avant assignation du projet.',
+              },
+              { k: 'RBQ', t: 'Vérifié', d: 'Licence et assurances contrôlées à l’entrée.' },
+            ].map((x, i) => (
+              <Reveal key={x.t} delay={i * 60}>
+                <div className="group h-full bg-zenicorp-black px-8 py-12 transition-colors duration-500 hover:bg-zenicorp-surface">
+                  <dt className="font-heading text-4xl font-semibold text-zenicorp-gold sm:text-5xl">
+                    {x.k}
+                  </dt>
+                  <dd className="mt-6">
+                    <span className="block font-mono text-label uppercase text-zenicorp-text">
+                      {x.t}
+                    </span>
+                    <span className="mt-3 block text-sm leading-relaxed text-zenicorp-faint transition-colors duration-500 group-hover:text-zenicorp-dim">
+                      {x.d}
+                    </span>
+                  </dd>
+                </div>
+              </Reveal>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* Exemple de calcul */}
+      <section className="section-padding border-b border-zenicorp-line/70">
+        <div className="container-zenicorp">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
+            <div className="lg:col-span-4">
+              <Reveal>
+                <span className="eyebrow">Exemple de calcul</span>
+                <h2 className="heading-3 mt-7">
+                  Sur un contrat
+                  <br />
+                  de 10 000 $.
+                </h2>
+                <p className="mt-6 max-w-sm text-xs leading-relaxed text-zenicorp-faint">
+                  Exemple fourni à titre illustratif. Le montant réel dépend du contrat
+                  signé avec le client.
+                </p>
+              </Reveal>
+            </div>
+
+            <div className="lg:col-span-8">
+              <div className="grid gap-px bg-zenicorp-line/40 sm:grid-cols-3">
+                {[
+                  { l: 'Contrat de travaux', v: '10 000 $', s: 'facturé au client', gold: false },
+                  {
+                    l: 'Votre part',
+                    v: '7 000 $',
+                    s: `${MODEL.contractorShare} du contrat`,
+                    gold: true,
+                  },
+                  {
+                    l: 'Plateforme',
+                    v: '3 000 $',
+                    s: `${MODEL.platformShare} — qualification et gestion`,
+                    gold: false,
+                  },
+                ].map((x, i) => (
+                  <Reveal key={x.l} delay={i * 70}>
+                    <div className="h-full bg-zenicorp-black p-8">
+                      <span className="tech-label">{x.l}</span>
+                      <div
+                        className={`mt-6 font-heading text-3xl font-semibold sm:text-4xl ${
+                          x.gold ? 'text-zenicorp-gold' : 'text-zenicorp-text'
+                        }`}
+                      >
+                        {x.v}
+                      </div>
+                      <p className="mt-3 text-xs text-zenicorp-faint">{x.s}</p>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Formulaire */}
+      <form onSubmit={handleSubmit} noValidate>
+        <section className="section-padding">
+          <div className="container-zenicorp">
+            <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
+              <div className="lg:col-span-4">
+                <div className="lg:sticky lg:top-32">
+                  <Reveal>
+                    <span className="eyebrow">Votre inscription</span>
+                    <h2 className="heading-2 mt-7">
+                      Rejoindre
+                      <br />
+                      <span className="text-zenicorp-faint">le réseau.</span>
+                    </h2>
+                    <p className="body-base mt-6 max-w-sm">
+                      Nous vérifions votre licence et vos assurances avant de vous assigner
+                      des projets.
+                    </p>
+                  </Reveal>
+                </div>
+              </div>
+
+              <div className="lg:col-span-8">
+                <div className="grid gap-x-10 gap-y-9 sm:grid-cols-2">
+                  {[
+                    { id: 'nom', l: 'Nom complet', ph: 'Votre nom', ac: 'name', type: 'text' },
+                    {
+                      id: 'entreprise',
+                      l: "Nom de l'entreprise",
+                      ph: 'Ex. : Rénos Tremblay Inc.',
+                      ac: 'organization',
+                      type: 'text',
+                    },
+                    {
+                      id: 'telephone',
+                      l: 'Téléphone',
+                      ph: '581 748 7017',
+                      ac: 'tel',
+                      type: 'tel',
+                    },
+                    {
+                      id: 'email',
+                      l: 'Courriel',
+                      ph: 'vous@entreprise.com',
+                      ac: 'email',
+                      type: 'email',
+                    },
+                    {
+                      id: 'rbq',
+                      l: 'Numéro de licence RBQ',
+                      ph: 'Ex. : 1234-5678-01',
+                      ac: 'off',
+                      type: 'text',
+                    },
+                    {
+                      id: 'assurances',
+                      l: 'Assurances (responsabilité civile)',
+                      ph: 'Ex. : 2 M$ responsabilité civile',
+                      ac: 'off',
+                      type: 'text',
+                    },
+                  ].map((f) => (
+                    <div key={f.id}>
+                      <label className="label" htmlFor={f.id}>
+                        {f.l} <span className="text-zenicorp-gold">*</span>
+                      </label>
+                      <input
+                        id={f.id}
+                        type={f.type}
+                        className="input-field"
+                        value={form[f.id as keyof typeof form]}
+                        onChange={(e) => update(f.id, e.target.value)}
+                        placeholder={f.ph}
+                        autoComplete={f.ac}
+                        required
+                      />
+                    </div>
+                  ))}
+
+                  <div className="sm:col-span-2">
+                    <label className="label" htmlFor="division">
+                      Division souhaitée <span className="text-zenicorp-gold">*</span>
+                    </label>
+                    <select
+                      id="division"
+                      className="input-field"
+                      value={form.division}
+                      onChange={(e) => update('division', e.target.value)}
+                      required
+                    >
+                      <option value="">Choisir une division…</option>
+                      {divisionsData.map((d) => (
+                        <option key={d.slug} value={d.slug}>
+                          {d.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="sm:col-span-2">
+                    <label className="label" htmlFor="experience">
+                      Expérience et spécialités{' '}
+                      <span className="text-zenicorp-faint">(optionnel)</span>
+                    </label>
+                    <textarea
+                      id="experience"
+                      className="input-field min-h-[140px]"
+                      value={form.experience}
+                      onChange={(e) => update('experience', e.target.value)}
+                      placeholder="Années d'expérience, spécialités, taille des équipes, secteurs desservis…"
+                    />
+                  </div>
+                </div>
+
+                {erreur && (
+                  <div
+                    role="alert"
+                    className="mt-8 flex items-start gap-3 border border-red-900/60 bg-red-950/30 p-5 text-sm text-red-200"
+                  >
+                    <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+                    <span>{erreur}</span>
+                  </div>
+                )}
+
+                <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+                  <Magnetic strength={0.16}>
+                    <button
+                      type="submit"
+                      disabled={!complet || envoi}
+                      className={`btn-gold group px-10 py-4 text-base ${
+                        !complet || envoi ? 'cursor-not-allowed opacity-40' : ''
+                      }`}
+                    >
+                      {envoi ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          Envoi en cours
+                        </>
+                      ) : (
+                        <>
+                          M&apos;inscrire gratuitement
+                          <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-1.5" />
+                        </>
+                      )}
+                    </button>
+                  </Magnetic>
+
+                  <p className="text-sm text-zenicorp-faint">
+                    Aucun frais d&apos;inscription.{' '}
+                    <a
+                      href={ZENICORP_PHONE_HREF}
+                      className="link-underline text-zenicorp-gold"
+                    >
+                      {ZENICORP_PHONE}
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </form>
     </main>
   );
 }

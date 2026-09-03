@@ -4,7 +4,16 @@ import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import { ArrowLeft, ArrowRight, Check, Info, Phone, AlertCircle } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  Phone,
+  AlertCircle,
+  Loader2,
+} from 'lucide-react';
+import Magnetic from '@/components/Magnetic';
+import { Reveal, RevealLines } from '@/components/Reveal';
 import {
   divisionsData,
   MODEL,
@@ -55,6 +64,7 @@ function ProjetForm() {
     division;
 
   const divisionChoisie = divisionsData.find((d) => d.slug === division);
+  const accent = divisionChoisie?.color ?? '#D4AF37';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,321 +89,391 @@ function ProjetForm() {
     }
   };
 
-  /* ─────────── CONFIRMATION ─────────── */
+  /* ═══════════════ CONFIRMATION ═══════════════ */
   if (step === 'confirmation') {
     return (
-      <main className="flex-1 bg-zenicorp-black">
-        <section className="section-padding">
-          <div className="container-zenicorp max-w-2xl text-center">
-            <div className="w-16 h-16 mx-auto grid place-items-center rounded-2xl bg-zenicorp-gold/10 border border-zenicorp-gold/40 mb-6">
-              <Check className="w-8 h-8 text-zenicorp-gold" />
-            </div>
-            <h1 className="heading-2 mb-4">Votre projet est enregistré</h1>
-            <p className="body-large mb-10">
-              Merci <span className="text-zenicorp-text font-semibold">{form.nom}</span>. Votre
-              demande{' '}
-              <span className="text-zenicorp-text font-semibold">
-                {divisionChoisie?.name}
-              </span>{' '}
-              a été transmise au réseau.
+      <main className="flex flex-1 items-center overflow-x-clip">
+        <div className="absolute inset-0 bp-grid-fine opacity-25" />
+        <section className="container-tight relative py-40 text-center">
+          <Reveal>
+            <span
+              className="mx-auto grid h-16 w-16 place-items-center border"
+              style={{ borderColor: `${accent}66`, background: `${accent}14` }}
+            >
+              <Check className="h-7 w-7" style={{ color: accent }} />
+            </span>
+          </Reveal>
+
+          <h1 className="mt-10 font-heading text-display-md font-semibold">
+            <RevealLines lines={[<>Projet enregistré.</>]} />
+          </h1>
+
+          <Reveal delay={200}>
+            <p className="body-large mx-auto mt-7 max-w-lg">
+              Merci <span className="text-zenicorp-text">{form.nom}</span>. Votre demande{' '}
+              <span className="text-zenicorp-text">{divisionChoisie?.name}</span> a été
+              transmise au réseau.
             </p>
+          </Reveal>
 
-            <div className="card p-8 text-left mb-10">
-              <h2 className="heading-3 text-lg mb-5">Prochaines étapes</h2>
-              <ol className="space-y-4">
-                {[
-                  `Un conseiller ZeniCorp valide votre demande et confirme avec vous le dépôt de ${MODEL.deposit}.`,
-                  `Un entrepreneur certifié RBQ de la division est assigné à votre projet.`,
-                  `Il vous contacte sous ${MODEL.contactDelay} pour la visite et le prix ferme.`,
-                  `Les travaux sont réalisés, puis l'entrepreneur reçoit ${MODEL.contractorShare} du contrat.`,
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-4">
-                    <span className="w-7 h-7 shrink-0 grid place-items-center rounded-full bg-zenicorp-gold text-zenicorp-black text-sm font-bold">
-                      {i + 1}
-                    </span>
-                    <span className="body-base text-sm">{item}</span>
-                  </li>
-                ))}
-              </ol>
-            </div>
+          <Reveal delay={300}>
+            <ol className="mx-auto mt-14 max-w-xl text-left">
+              {[
+                `Un conseiller valide votre demande et confirme avec vous le dépôt de ${MODEL.deposit}.`,
+                'Un entrepreneur certifié RBQ de la division est assigné à votre projet.',
+                `Il vous contacte sous ${MODEL.contactDelay} pour la visite et le prix ferme.`,
+                `Les travaux sont réalisés, puis ${MODEL.contractorShare} du contrat lui sont versés.`,
+              ].map((item, i) => (
+                <li
+                  key={i}
+                  className="grid grid-cols-[auto_1fr] gap-6 border-t border-zenicorp-line/70 py-5"
+                >
+                  <span className="font-mono text-xs text-zenicorp-gold">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className="text-sm leading-relaxed text-zenicorp-dim">{item}</span>
+                </li>
+              ))}
+              <li className="border-t border-zenicorp-line/70" />
+            </ol>
+          </Reveal>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href={ZENICORP_PHONE_HREF} className="btn-gold px-8 py-4">
-                <Phone className="w-4 h-4 mr-2" />
+          <Reveal delay={400}>
+            <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <a href={ZENICORP_PHONE_HREF} className="btn-gold px-9 py-4">
+                <Phone className="h-4 w-4" />
                 {ZENICORP_PHONE}
               </a>
               {divisionChoisie && (
-                <Link href={`/${divisionChoisie.slug}`} className="btn-secondary px-8 py-4">
+                <Link href={`/${divisionChoisie.slug}`} className="btn-secondary px-9 py-4">
                   Voir la division {divisionChoisie.short}
                 </Link>
               )}
             </div>
-
-            <div className="mt-6">
-              <Link
-                href="/"
-                className="text-sm text-zenicorp-dim underline hover:text-zenicorp-gold transition-colors"
-              >
-                Retour à l&apos;accueil
-              </Link>
-            </div>
-          </div>
+            <Link
+              href="/"
+              className="link-underline mt-8 inline-block text-sm text-zenicorp-faint hover:text-zenicorp-gold"
+            >
+              Retour à l&apos;accueil
+            </Link>
+          </Reveal>
         </section>
       </main>
     );
   }
 
-  /* ─────────── FORMULAIRE ─────────── */
+  /* ═══════════════ FORMULAIRE ═══════════════ */
   return (
-    <main className="flex-1 bg-zenicorp-black">
-      <section className="relative py-20 overflow-hidden border-b border-zenicorp-line">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_30%_0%,rgba(212,175,55,0.09),transparent)]" />
-        <div className="absolute inset-0 bg-[url('/patterns/grid.svg')] opacity-[0.05]" />
-        <div className="container-zenicorp relative">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 mb-6 text-sm text-zenicorp-dim hover:text-zenicorp-gold transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Retour à ZeniCorp
-          </Link>
-          <span className="badge-gold mb-5">Dépôt unique de {MODEL.deposit}</span>
-          <h1 className="heading-1 mb-5 text-balance max-w-3xl">Soumettre mon projet</h1>
-          <p className="body-large max-w-2xl">
-            Décrivez vos travaux. Un entrepreneur certifié RBQ du réseau est assigné à votre
-            projet et vous contacte sous {MODEL.contactDelay}.
-          </p>
+    <main className="flex-1 overflow-x-clip">
+      {/* En-tête */}
+      <section className="relative overflow-hidden border-b border-zenicorp-line/70">
+        <div className="absolute inset-0 bp-grid opacity-40" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_25%_0%,rgba(212,175,55,0.11),transparent_70%)]" />
+
+        <div className="container-zenicorp relative pb-16 pt-36">
+          <Reveal>
+            <Link
+              href="/"
+              className="group inline-flex items-center gap-2.5 font-mono text-label uppercase text-zenicorp-dim transition-colors hover:text-zenicorp-gold"
+            >
+              <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-500 ease-premium group-hover:-translate-x-1" />
+              Plateforme ZeniCorp
+            </Link>
+          </Reveal>
+
+          <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-8">
+              <h1 className="font-heading text-display-lg font-semibold">
+                <RevealLines
+                  delay={80}
+                  lines={[<>Soumettre</>, <>mon projet.</>]}
+                />
+              </h1>
+            </div>
+            <div className="lg:col-span-4">
+              <Reveal delay={300}>
+                <p className="body-base max-w-sm">
+                  Décrivez vos travaux. Un entrepreneur certifié du réseau vous contacte
+                  sous {MODEL.contactDelay}.
+                </p>
+              </Reveal>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="section-padding">
-        <div className="container-zenicorp max-w-4xl">
-          <form onSubmit={handleSubmit} noValidate>
-            {/* Division */}
-            <fieldset className="mb-12">
-              <legend className="heading-2 mb-2">Quelle division pour vos travaux&nbsp;?</legend>
-              <p className="body-base mb-6">
-                Choisissez la spécialité qui correspond à votre projet.
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {divisionsData.map((d) => {
-                  const actif = division === d.slug;
-                  return (
-                    <button
-                      key={d.slug}
-                      type="button"
-                      onClick={() => setDivision(d.slug)}
-                      aria-pressed={actif}
-                      className="group relative overflow-hidden rounded-lg border bg-zenicorp-surface text-left transition-all duration-200"
-                      style={{
-                        borderColor: actif ? d.color : '#232B38',
-                        boxShadow: actif ? `0 0 0 1px ${d.color}, 0 0 26px ${d.color}33` : 'none',
-                      }}
-                    >
-                      <span className="relative block h-24">
-                        <Image
-                          src={d.photo}
-                          alt=""
-                          fill
-                          sizes="200px"
-                          className={`object-cover transition-all duration-300 ${
-                            actif ? 'opacity-70' : 'opacity-35 group-hover:opacity-55'
-                          }`}
-                        />
-                        <span className="absolute inset-0 bg-gradient-to-t from-zenicorp-surface to-transparent" />
-                      </span>
-                      <span className="flex items-center justify-between gap-2 px-4 py-3">
-                        <span className="font-semibold text-sm text-zenicorp-text">
-                          {d.short}
-                        </span>
-                        <span
-                          className="w-4 h-4 shrink-0 rounded-full grid place-items-center border"
-                          style={{
-                            borderColor: actif ? d.color : '#3A4453',
-                            background: actif ? d.color : 'transparent',
-                          }}
+      <form onSubmit={handleSubmit} noValidate>
+        {/* ─────────── 01 · Division ─────────── */}
+        <section className="section-padding border-b border-zenicorp-line/70">
+          <div className="container-zenicorp">
+            <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
+              <div className="lg:col-span-4">
+                <div className="lg:sticky lg:top-32">
+                  <Reveal>
+                    <span className="eyebrow">01 · Division</span>
+                    <h2 className="heading-3 mt-7">Quelle spécialité&nbsp;?</h2>
+                    <p className="body-base mt-5 max-w-sm">
+                      Sélectionnez la division correspondant à vos travaux.
+                    </p>
+                  </Reveal>
+                </div>
+              </div>
+
+              <div className="lg:col-span-8">
+                <fieldset>
+                  <legend className="sr-only">Division des travaux</legend>
+                  <div className="grid gap-px bg-zenicorp-line/40 sm:grid-cols-2">
+                    {divisionsData.map((d) => {
+                      const actif = division === d.slug;
+                      return (
+                        <button
+                          key={d.slug}
+                          type="button"
+                          onClick={() => setDivision(d.slug)}
+                          aria-pressed={actif}
+                          className="group relative overflow-hidden bg-zenicorp-black text-left transition-colors duration-500"
                         >
-                          {actif && <Check className="w-2.5 h-2.5 text-zenicorp-black" />}
-                        </span>
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </fieldset>
+                          <span className="relative block aspect-[16/7] overflow-hidden">
+                            <Image
+                              src={d.photo}
+                              alt=""
+                              fill
+                              sizes="(max-width: 640px) 100vw, 420px"
+                              className={`object-cover transition-all duration-[900ms] ease-premium ${
+                                actif
+                                  ? 'scale-105 opacity-70 grayscale-0'
+                                  : 'opacity-30 grayscale group-hover:opacity-50'
+                              }`}
+                            />
+                            <span
+                              className="absolute inset-0 transition-opacity duration-700"
+                              style={{
+                                background: d.color,
+                                opacity: actif ? 0.18 : 0.4,
+                                mixBlendMode: 'color',
+                              }}
+                            />
+                          </span>
 
-            {/* Coordonnées */}
-            <fieldset className="mb-12">
-              <legend className="heading-2 mb-6">Vos informations</legend>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="label" htmlFor="nom">
-                    Nom complet <span className="text-zenicorp-gold">*</span>
-                  </label>
-                  <input
-                    id="nom"
-                    className="input-field"
-                    value={form.nom}
-                    onChange={(e) => update('nom', e.target.value)}
-                    placeholder="Jean Tremblay"
-                    autoComplete="name"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="label" htmlFor="telephone">
-                    Téléphone <span className="text-zenicorp-gold">*</span>
-                  </label>
-                  <input
-                    id="telephone"
-                    className="input-field"
-                    type="tel"
-                    value={form.telephone}
-                    onChange={(e) => update('telephone', e.target.value)}
-                    placeholder="581-748-7017"
-                    autoComplete="tel"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="label" htmlFor="email">
-                    Courriel <span className="text-zenicorp-gold">*</span>
-                  </label>
-                  <input
-                    id="email"
-                    className="input-field"
-                    type="email"
-                    value={form.email}
-                    onChange={(e) => update('email', e.target.value)}
-                    placeholder="jean@exemple.com"
-                    autoComplete="email"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="label" htmlFor="adresse">
-                    Adresse du projet <span className="text-zenicorp-gold">*</span>
-                  </label>
-                  <input
-                    id="adresse"
-                    className="input-field"
-                    value={form.adresse}
-                    onChange={(e) => update('adresse', e.target.value)}
-                    placeholder="1234 rue Principale"
-                    autoComplete="street-address"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="label" htmlFor="ville">
-                    Ville <span className="text-zenicorp-gold">*</span>
-                  </label>
-                  <input
-                    id="ville"
-                    className="input-field"
-                    value={form.ville}
-                    onChange={(e) => update('ville', e.target.value)}
-                    placeholder="Québec"
-                    autoComplete="address-level2"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="label" htmlFor="codePostal">
-                    Code postal <span className="text-zenicorp-gold">*</span>
-                  </label>
-                  <input
-                    id="codePostal"
-                    className="input-field"
-                    value={form.codePostal}
-                    onChange={(e) => update('codePostal', e.target.value)}
-                    placeholder="G1A 1A1"
-                    autoComplete="postal-code"
-                    required
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <label className="label" htmlFor="superficie">
-                    Superficie approximative <span className="text-zenicorp-gold">*</span>
-                  </label>
-                  <input
-                    id="superficie"
-                    className="input-field"
-                    value={form.superficie}
-                    onChange={(e) => update('superficie', e.target.value)}
-                    placeholder="Ex. : 400 pi²"
-                    required
-                  />
+                          <span className="flex items-center justify-between gap-3 px-6 py-5">
+                            <span>
+                              <span className="block font-heading text-lg font-semibold text-zenicorp-text">
+                                {d.short}
+                              </span>
+                              <span className="mt-1 block font-mono text-[10px] uppercase tracking-widest text-zenicorp-faint">
+                                {d.services.length} prestations
+                              </span>
+                            </span>
+                            <span
+                              className="grid h-6 w-6 shrink-0 place-items-center border transition-all duration-500"
+                              style={{
+                                borderColor: actif ? d.color : '#3A4453',
+                                background: actif ? d.color : 'transparent',
+                              }}
+                            >
+                              {actif && (
+                                <Check className="h-3.5 w-3.5 text-zenicorp-black" />
+                              )}
+                            </span>
+                          </span>
+
+                          <span
+                            className="absolute bottom-0 left-0 h-px transition-all duration-[900ms] ease-premium"
+                            style={{
+                              background: d.color,
+                              width: actif ? '100%' : '0%',
+                            }}
+                          />
+                        </button>
+                      );
+                    })}
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────── 02 · Coordonnées ─────────── */}
+        <section className="section-padding border-b border-zenicorp-line/70">
+          <div className="container-zenicorp">
+            <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
+              <div className="lg:col-span-4">
+                <div className="lg:sticky lg:top-32">
+                  <Reveal>
+                    <span className="eyebrow">02 · Coordonnées</span>
+                    <h2 className="heading-3 mt-7">Où et pour qui&nbsp;?</h2>
+                    <p className="body-base mt-5 max-w-sm">
+                      L&apos;adresse sert à assigner un entrepreneur qui couvre votre
+                      secteur.
+                    </p>
+                  </Reveal>
                 </div>
               </div>
-            </fieldset>
 
-            {/* Description */}
-            <fieldset className="mb-10">
-              <legend className="heading-2 mb-6">Votre projet</legend>
-              <label className="label" htmlFor="description">
-                Décrivez les travaux <span className="text-zenicorp-gold">*</span>
-              </label>
-              <textarea
-                id="description"
-                className="input-field min-h-[150px]"
-                value={form.description}
-                onChange={(e) => update('description', e.target.value)}
-                placeholder="État actuel, résultat souhaité, contraintes, délais..."
-                required
-              />
-            </fieldset>
+              <div className="lg:col-span-8">
+                <div className="grid gap-x-10 gap-y-9 sm:grid-cols-2">
+                  {[
+                    { id: 'nom', l: 'Nom complet', ph: 'Jean Tremblay', ac: 'name', type: 'text' },
+                    { id: 'telephone', l: 'Téléphone', ph: '581 748 7017', ac: 'tel', type: 'tel' },
+                    { id: 'email', l: 'Courriel', ph: 'jean@exemple.com', ac: 'email', type: 'email' },
+                    {
+                      id: 'adresse',
+                      l: 'Adresse du projet',
+                      ph: '1234 rue Principale',
+                      ac: 'street-address',
+                      type: 'text',
+                    },
+                    { id: 'ville', l: 'Ville', ph: 'Québec', ac: 'address-level2', type: 'text' },
+                    {
+                      id: 'codePostal',
+                      l: 'Code postal',
+                      ph: 'G1A 1A1',
+                      ac: 'postal-code',
+                      type: 'text',
+                    },
+                  ].map((f) => (
+                    <div key={f.id}>
+                      <label className="label" htmlFor={f.id}>
+                        {f.l} <span className="text-zenicorp-gold">*</span>
+                      </label>
+                      <input
+                        id={f.id}
+                        type={f.type}
+                        className="input-field"
+                        value={form[f.id as keyof typeof form]}
+                        onChange={(e) => update(f.id, e.target.value)}
+                        placeholder={f.ph}
+                        autoComplete={f.ac}
+                        required
+                      />
+                    </div>
+                  ))}
 
-            {/* Modèle — transparent */}
-            <div className="card p-6 mb-10">
-              <div className="flex items-start gap-4">
-                <span className="w-10 h-10 shrink-0 rounded-xl bg-zenicorp-gold/10 border border-zenicorp-gold/30 grid place-items-center">
-                  <Info className="w-5 h-5 text-zenicorp-gold" />
-                </span>
-                <div>
-                  <h3 className="heading-3 text-base mb-2">
-                    Comment fonctionne le dépôt de {MODEL.deposit}
-                  </h3>
-                  <p className="body-base text-sm">
-                    Le dépôt unique de {MODEL.deposit} réserve votre projet dans le réseau et est
-                    confirmé avec vous par un conseiller avant l&apos;assignation. Sur le contrat de
-                    travaux, l&apos;entrepreneur conserve {MODEL.contractorShare} et ZeniCorp{' '}
-                    {MODEL.platformShare}.
-                  </p>
+                  <div className="sm:col-span-2">
+                    <label className="label" htmlFor="superficie">
+                      Superficie approximative <span className="text-zenicorp-gold">*</span>
+                    </label>
+                    <input
+                      id="superficie"
+                      className="input-field"
+                      value={form.superficie}
+                      onChange={(e) => update('superficie', e.target.value)}
+                      placeholder="Ex. : 400 pi²"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            {erreur && (
-              <div
-                role="alert"
-                className="mb-6 flex items-start gap-3 p-4 rounded-md bg-red-950/40 border border-red-800/60 text-red-200 text-sm"
-              >
-                <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
-                <span>{erreur}</span>
+        {/* ─────────── 03 · Le projet ─────────── */}
+        <section className="section-padding">
+          <div className="container-zenicorp">
+            <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
+              <div className="lg:col-span-4">
+                <div className="lg:sticky lg:top-32">
+                  <Reveal>
+                    <span className="eyebrow">03 · Le projet</span>
+                    <h2 className="heading-3 mt-7">Décrivez les travaux.</h2>
+                    <p className="body-base mt-5 max-w-sm">
+                      Plus le contexte est précis, plus le prix ferme sera juste dès la
+                      première visite.
+                    </p>
+                  </Reveal>
+                </div>
               </div>
-            )}
 
-            <button
-              type="submit"
-              disabled={!complet || envoi}
-              className={`btn-gold w-full text-base py-5 ${
-                !complet || envoi ? 'opacity-40 cursor-not-allowed' : ''
-              }`}
-            >
-              {envoi ? 'Envoi en cours...' : 'Envoyer ma demande'}
-              {!envoi && <ArrowRight className="w-4 h-4 ml-2" />}
-            </button>
+              <div className="lg:col-span-8">
+                <label className="label" htmlFor="description">
+                  Description <span className="text-zenicorp-gold">*</span>
+                </label>
+                <textarea
+                  id="description"
+                  className="input-field min-h-[190px]"
+                  value={form.description}
+                  onChange={(e) => update('description', e.target.value)}
+                  placeholder="État actuel, résultat souhaité, contraintes d'accès, délais visés..."
+                  required
+                />
 
-            <p className="text-center text-sm text-zenicorp-dim mt-5">
-              Une question avant d&apos;envoyer ?{' '}
-              <a href={ZENICORP_PHONE_HREF} className="text-zenicorp-gold hover:underline">
-                {ZENICORP_PHONE}
-              </a>
-            </p>
-          </form>
-        </div>
-      </section>
+                {/* Modèle commercial — transparence */}
+                <div className="mt-12 border border-zenicorp-line/70 bg-zenicorp-surface/50 p-8">
+                  <span className="tech-label">Le modèle, sans ambiguïté</span>
+                  <dl className="mt-7 grid gap-8 sm:grid-cols-3">
+                    {[
+                      { k: MODEL.deposit, l: 'Dépôt unique, confirmé par un conseiller avant assignation' },
+                      { k: MODEL.contractorShare, l: "Part du contrat versée à l'entrepreneur" },
+                      { k: MODEL.platformShare, l: 'Part retenue par la plateforme' },
+                    ].map((x) => (
+                      <div key={x.l}>
+                        <dt className="font-heading text-3xl font-semibold text-zenicorp-gold">
+                          {x.k}
+                        </dt>
+                        <dd className="mt-3 text-xs leading-relaxed text-zenicorp-faint">
+                          {x.l}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+
+                {erreur && (
+                  <div
+                    role="alert"
+                    className="mt-8 flex items-start gap-3 border border-red-900/60 bg-red-950/30 p-5 text-sm text-red-200"
+                  >
+                    <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+                    <span>{erreur}</span>
+                  </div>
+                )}
+
+                <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+                  <Magnetic strength={0.16}>
+                    <button
+                      type="submit"
+                      disabled={!complet || envoi}
+                      className={`btn-gold group px-10 py-4 text-base ${
+                        !complet || envoi ? 'cursor-not-allowed opacity-40' : ''
+                      }`}
+                    >
+                      {envoi ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          Envoi en cours
+                        </>
+                      ) : (
+                        <>
+                          Envoyer ma demande
+                          <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-1.5" />
+                        </>
+                      )}
+                    </button>
+                  </Magnetic>
+
+                  <p className="text-sm text-zenicorp-faint">
+                    Une question&nbsp;?{' '}
+                    <a
+                      href={ZENICORP_PHONE_HREF}
+                      className="link-underline text-zenicorp-gold"
+                    >
+                      {ZENICORP_PHONE}
+                    </a>
+                  </p>
+                </div>
+
+                {!complet && (
+                  <p className="mt-5 font-mono text-[10px] uppercase tracking-widest text-zenicorp-faint">
+                    Tous les champs marqués * sont requis
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      </form>
     </main>
   );
 }
@@ -402,9 +482,9 @@ export default function ProjetPage() {
   return (
     <Suspense
       fallback={
-        <main className="flex-1 bg-zenicorp-black">
-          <div className="container-zenicorp section-padding">
-            <p className="body-base">Chargement du formulaire...</p>
+        <main className="flex-1">
+          <div className="container-zenicorp py-40">
+            <p className="tech-label">Chargement du formulaire…</p>
           </div>
         </main>
       }

@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SmoothScroll from '@/components/SmoothScroll';
+import RevealObserver from '@/components/RevealObserver';
 import {
   divisionsData,
   MODEL,
@@ -16,10 +18,20 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-const playfair = Playfair_Display({
+/** Display architectural : géométrique, technique, sans le côté « mariage » d'un didone. */
+const display = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-playfair',
+  weight: ['500', '600', '700'],
+  variable: '--font-display',
+});
+
+/** Annotations type plan technique (numéros d'étapes, labels, chiffres). */
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500'],
+  variable: '--font-mono',
 });
 
 const SITE_URL = 'https://www.zeniva.ca';
@@ -96,20 +108,25 @@ const organizationJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr-CA" className={`${inter.variable} ${playfair.variable} dark`}>
-      <body className="min-h-screen flex flex-col bg-zenicorp-black text-zenicorp-text antialiased">
+    <html
+      lang="fr-CA"
+      className={`${inter.variable} ${display.variable} ${mono.variable} dark`}
+    >
+      <body className="flex min-h-screen flex-col bg-zenicorp-black font-sans text-zenicorp-text antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <a
           href="#contenu"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-md focus:bg-zenicorp-gold focus:text-zenicorp-black focus:font-semibold"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-[100] focus:bg-zenicorp-gold focus:px-4 focus:py-2 focus:font-semibold focus:text-zenicorp-black"
         >
           Aller au contenu
         </a>
+        <SmoothScroll />
+        <RevealObserver />
         <Header />
-        <div id="contenu" className="flex flex-col flex-1">
+        <div id="contenu" className="flex flex-1 flex-col">
           {children}
         </div>
         <Footer />

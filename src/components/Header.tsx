@@ -1,166 +1,218 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
-import { Menu, X, ChevronDown, ClipboardList, Phone } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { Menu, X, Phone, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { divisionsData, ZENICORP_PHONE, ZENICORP_PHONE_HREF } from '@/lib/divisions-data';
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [divOpen, setDivOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const reduced = useReducedMotion();
+
+  // Passe en mode « verre » dès qu'on quitte le haut de page
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Ferme le menu à la navigation
+  useEffect(() => setOpen(false), [pathname]);
+
+  // Verrouille le défilement quand le menu plein écran est ouvert
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 glass border-x-0 border-t-0 rounded-none">
-      <div className="container-zenicorp">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-zenicorp-gold flex items-center justify-center shadow-[0_0_22px_rgba(212,175,55,0.3)]">
-              <span className="font-heading font-bold text-xl text-zenicorp-black">Z</span>
-            </div>
-            <div className="leading-tight">
-              <span className="font-heading font-bold text-xl text-zenicorp-text block">
-                ZeniCorp
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ease-premium ${
+          scrolled || open
+            ? 'border-b border-zenicorp-line/70 bg-zenicorp-black/80 backdrop-blur-xl'
+            : 'border-b border-transparent bg-transparent'
+        }`}
+      >
+        <div className="container-zenicorp">
+          <div
+            className={`flex items-center justify-between transition-all duration-700 ease-premium ${
+              scrolled ? 'h-16' : 'h-20 lg:h-24'
+            }`}
+          >
+            {/* Marque */}
+            <Link href="/" className="group flex items-center gap-3.5" aria-label="ZeniCorp, accueil">
+              <span className="relative grid h-9 w-9 place-items-center overflow-hidden bg-zenicorp-gold">
+                <span className="font-heading text-lg font-bold leading-none text-zenicorp-black">
+                  Z
+                </span>
+                <span className="absolute inset-0 -translate-x-full bg-white/30 transition-transform duration-700 ease-premium group-hover:translate-x-full" />
               </span>
-              <span className="text-[9px] uppercase tracking-[0.24em] text-zenicorp-dim">
-                Plateforme
+              <span className="leading-none">
+                <span className="block font-heading text-lg font-semibold tracking-tight text-zenicorp-text">
+                  ZeniCorp
+                </span>
+                <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.28em] text-zenicorp-faint">
+                  Plateforme
+                </span>
               </span>
-            </div>
-          </Link>
-
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            <Link
-              href="/"
-              className="px-4 py-2.5 text-sm font-medium text-zenicorp-dim hover:text-zenicorp-text hover:bg-zenicorp-surface rounded-md transition-colors"
-            >
-              Accueil
             </Link>
 
-            <div className="relative group">
-              <button className="flex items-center gap-1 px-4 py-2.5 text-sm font-medium text-zenicorp-dim hover:text-zenicorp-text hover:bg-zenicorp-surface rounded-md transition-colors">
-                Divisions
-                <ChevronDown className="w-3.5 h-3.5" />
-              </button>
-              <div className="absolute left-0 top-full pt-2 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
-                <div className="w-56 glass rounded-md p-1.5 shadow-2xl">
-                  {divisionsData.map((d) => (
-                    <Link
-                      key={d.slug}
-                      href={`/${d.slug}`}
-                      className="flex items-center gap-2.5 px-3 py-2 text-sm text-zenicorp-dim hover:text-zenicorp-text hover:bg-zenicorp-surface rounded-md transition-colors"
-                    >
-                      <span
-                        className="w-2 h-2 rounded-full shrink-0"
-                        style={{ background: d.color }}
-                      />
-                      {d.short}
-                    </Link>
-                  ))}
+            {/* Navigation bureau */}
+            <nav className="hidden items-center gap-9 lg:flex">
+              <div className="group relative">
+                <button className="flex items-center gap-2 py-2 font-mono text-label uppercase text-zenicorp-dim transition-colors duration-300 group-hover:text-zenicorp-text">
+                  Divisions
+                  <span className="h-1 w-1 bg-zenicorp-gold transition-transform duration-500 group-hover:scale-150" />
+                </button>
+
+                {/* Panneau divisions */}
+                <div className="invisible absolute left-1/2 top-full w-[27rem] -translate-x-1/2 pt-5 opacity-0 transition-all duration-500 ease-premium group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                  <div className="glass grid grid-cols-2 gap-px bg-zenicorp-line/40 p-px">
+                    {divisionsData.map((d) => (
+                      <Link
+                        key={d.slug}
+                        href={`/${d.slug}`}
+                        className="group/i relative bg-zenicorp-black/90 p-5 transition-colors duration-300 hover:bg-zenicorp-surface"
+                      >
+                        <span
+                          className="absolute left-0 top-0 h-full w-px transition-all duration-500"
+                          style={{ background: d.color }}
+                        />
+                        <span className="flex items-center justify-between">
+                          <span className="font-heading text-base font-semibold text-zenicorp-text">
+                            {d.short}
+                          </span>
+                          <ArrowUpRight className="h-3.5 w-3.5 text-zenicorp-faint transition-all duration-300 group-hover/i:-translate-y-0.5 group-hover/i:translate-x-0.5 group-hover/i:text-zenicorp-gold" />
+                        </span>
+                        <span className="mt-1.5 block text-xs leading-snug text-zenicorp-faint">
+                          {d.services[0]}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
+
+              <Link
+                href="/entrepreneur"
+                className="link-underline py-2 font-mono text-label uppercase text-zenicorp-dim transition-colors duration-300 hover:text-zenicorp-text"
+              >
+                Entrepreneurs
+              </Link>
+
+              <a
+                href={ZENICORP_PHONE_HREF}
+                className="flex items-center gap-2 py-2 font-mono text-label uppercase text-zenicorp-dim transition-colors duration-300 hover:text-zenicorp-gold"
+              >
+                <Phone className="h-3.5 w-3.5 text-zenicorp-gold" />
+                {ZENICORP_PHONE}
+              </a>
+
+              <Link href="/projet" className="btn-gold group px-6 py-3">
+                Soumettre un projet
+                <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-1" />
+              </Link>
+            </nav>
+
+            {/* Actions mobile */}
+            <div className="flex items-center gap-1 lg:hidden">
+              <a
+                href={ZENICORP_PHONE_HREF}
+                className="p-3 text-zenicorp-gold"
+                aria-label={`Appeler le ${ZENICORP_PHONE}`}
+              >
+                <Phone className="h-5 w-5" />
+              </a>
+              <button
+                onClick={() => setOpen((v) => !v)}
+                className="p-3 text-zenicorp-text"
+                aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
+                aria-expanded={open}
+              >
+                {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
             </div>
-
-            <Link
-              href="/entrepreneur"
-              className="px-4 py-2.5 text-sm font-medium text-zenicorp-dim hover:text-zenicorp-text hover:bg-zenicorp-surface rounded-md transition-colors"
-            >
-              Entrepreneurs
-            </Link>
-          </nav>
-
-          <div className="hidden lg:flex items-center gap-2">
-            <a
-              href={ZENICORP_PHONE_HREF}
-              className="inline-flex items-center gap-2 px-3 py-2.5 text-sm font-semibold text-zenicorp-text hover:text-zenicorp-gold transition-colors"
-            >
-              <Phone className="w-4 h-4 text-zenicorp-gold" />
-              {ZENICORP_PHONE}
-            </a>
-            <Link href="/projet" className="btn-gold">
-              <ClipboardList className="w-4 h-4 mr-2" />
-              Soumettre un projet
-            </Link>
-          </div>
-
-          {/* Mobile: téléphone toujours visible + toggle */}
-          <div className="flex items-center gap-1 lg:hidden">
-            <a
-              href={ZENICORP_PHONE_HREF}
-              className="p-2.5 text-zenicorp-gold hover:bg-zenicorp-surface rounded-md transition-colors"
-              aria-label={`Appeler ${ZENICORP_PHONE}`}
-            >
-              <Phone className="w-5 h-5" />
-            </a>
-            <button
-              className="p-2 text-zenicorp-dim hover:text-zenicorp-text rounded-md"
-              onClick={() => setOpen(!open)}
-              aria-label="Menu"
-              aria-expanded={open}
-            >
-              {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile menu */}
-      {open && (
-        <div className="lg:hidden glass border-x-0 border-t-0 rounded-none">
-          <div className="container-zenicorp py-4 space-y-1">
-            <Link
-              href="/"
-              className="block px-3 py-2.5 text-sm font-medium text-zenicorp-dim hover:text-zenicorp-text hover:bg-zenicorp-surface rounded-md"
-              onClick={() => setOpen(false)}
-            >
-              Accueil
-            </Link>
+      {/* ─────────── Menu plein écran (mobile) ─────────── */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fixed inset-0 z-40 flex flex-col bg-zenicorp-black lg:hidden"
+            initial={reduced ? { opacity: 0 } : { clipPath: 'inset(0 0 100% 0)' }}
+            animate={reduced ? { opacity: 1 } : { clipPath: 'inset(0 0 0% 0)' }}
+            exit={reduced ? { opacity: 0 } : { clipPath: 'inset(0 0 100% 0)' }}
+            transition={{ duration: 0.7, ease: EASE }}
+          >
+            <div className="absolute inset-0 bp-grid-fine opacity-40" />
 
-            <button
-              className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium text-zenicorp-dim rounded-md"
-              onClick={() => setDivOpen(!divOpen)}
-              aria-expanded={divOpen}
-            >
-              Divisions
-              <ChevronDown
-                className={`w-4 h-4 transition-transform ${divOpen ? 'rotate-180' : ''}`}
-              />
-            </button>
-            {divOpen && (
-              <div className="pl-4 space-y-1">
-                {divisionsData.map((d) => (
+            <nav className="container-zenicorp relative flex flex-1 flex-col justify-center gap-1 pt-24 pb-10">
+              <span className="tech-label mb-6 block">Divisions</span>
+              {divisionsData.map((d, i) => (
+                <motion.div
+                  key={d.slug}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 + i * 0.06, duration: 0.6, ease: EASE }}
+                >
                   <Link
-                    key={d.slug}
                     href={`/${d.slug}`}
-                    className="flex items-center gap-2.5 px-3 py-2 text-sm text-zenicorp-dim hover:text-zenicorp-text hover:bg-zenicorp-surface rounded-md"
-                    onClick={() => setOpen(false)}
+                    className="flex items-center justify-between border-b border-zenicorp-line/70 py-4"
                   >
-                    <span className="w-2 h-2 rounded-full shrink-0" style={{ background: d.color }} />
-                    {d.short}
+                    <span className="flex items-center gap-4">
+                      <span
+                        className="h-2 w-2 shrink-0 rounded-full"
+                        style={{ background: d.color }}
+                      />
+                      <span className="font-heading text-2xl font-semibold text-zenicorp-text">
+                        {d.short}
+                      </span>
+                    </span>
+                    <ArrowUpRight className="h-4 w-4 text-zenicorp-faint" />
                   </Link>
-                ))}
-              </div>
-            )}
+                </motion.div>
+              ))}
 
-            <Link
-              href="/entrepreneur"
-              className="block px-3 py-2.5 text-sm font-medium text-zenicorp-dim hover:text-zenicorp-text hover:bg-zenicorp-surface rounded-md"
-              onClick={() => setOpen(false)}
-            >
-              Entrepreneurs
-            </Link>
-
-            <Link href="/projet" className="btn-gold w-full mt-3" onClick={() => setOpen(false)}>
-              <ClipboardList className="w-4 h-4 mr-2" />
-              Soumettre un projet
-            </Link>
-            <a href={ZENICORP_PHONE_HREF} className="btn-secondary w-full mt-2">
-              <Phone className="w-4 h-4 mr-2" />
-              {ZENICORP_PHONE}
-            </a>
-          </div>
-        </div>
-      )}
-    </header>
+              <motion.div
+                className="mt-10 flex flex-col gap-3"
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45, duration: 0.6, ease: EASE }}
+              >
+                <Link href="/projet" className="btn-gold w-full py-4">
+                  Soumettre un projet
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link href="/entrepreneur" className="btn-secondary w-full py-4">
+                  Je suis entrepreneur
+                </Link>
+                <a href={ZENICORP_PHONE_HREF} className="btn-outline-gold w-full py-4">
+                  <Phone className="h-4 w-4" />
+                  {ZENICORP_PHONE}
+                </a>
+              </motion.div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
