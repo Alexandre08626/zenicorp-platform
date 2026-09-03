@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseAdmin } from '@/lib/supabase';
-import { sendEmail } from '@/lib/email';
+import { sendEmail, escapeHtml, escapeHtmlMultiline } from '@/lib/email';
+import { getDivisionBySlug, MODEL, ZENICORP_PHONE } from '@/lib/divisions-data';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,6 +16,12 @@ export async function POST(req: NextRequest) {
     if (!String(email).includes('@')) {
       return NextResponse.json({ error: 'Courriel invalide' }, { status: 400 });
     }
+
+    const divisionData = getDivisionBySlug(String(division));
+    if (!divisionData) {
+      return NextResponse.json({ error: 'Division inconnue' }, { status: 400 });
+    }
+    const divisionNom = divisionData.name;
 
     const nomParts = String(nom).trim().split(/\s+/);
     const prenom = nomParts.shift() || '';
@@ -44,29 +51,33 @@ export async function POST(req: NextRequest) {
       to: String(email),
       subject: 'ZeniCorp — Inscription entrepreneur reçue',
       html: `
-        <div style="font-family:Arial,sans-serif;max-width:560px;margin:auto">
-          <h2 style="color:#000">Bienvenue dans le réseau ZeniCorp</h2>
-          <p>Bonjour <strong>${prenom}</strong>,</p>
-          <p>Votre inscription (<strong>${entreprise}</strong>) est bien reçue pour la division <strong>${division}</strong>.</p>
-          <p>Un conseiller vous contactera sous 24 h après vérification de votre RBQ et de vos assurances.</p>
-          <p style="color:#666;font-size:13px">ZeniCorp — Votre projet. Notre expertise.</p>
+        <div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;color:#111">
+          <h2 style="color:#111;margin:0 0 16px">Bienvenue dans le réseau ZeniCorp</h2>
+          <p>Bonjour <strong>${escapeHtml(prenom)}</strong>,</p>
+          <p>Votre inscription (<strong>${escapeHtml(entreprise)}</strong>) est bien reçue pour la division
+             <strong>${escapeHtml(divisionNom)}</strong>.</p>
+          <p>Un conseiller vous contacte sous <strong>${MODEL.contactDelay}</strong> après vérification de votre
+             licence RBQ et de vos assurances. L'inscription au réseau est gratuite&nbsp;: vous conservez
+             <strong>${MODEL.contractorShare}</strong> du montant de chaque contrat réalisé.</p>
+          <p>Une question ? Appelez-nous au <strong>${ZENICORP_PHONE}</strong>.</p>
+          <p style="color:#666;font-size:13px;margin-top:28px">ZeniCorp — Votre projet. Notre réseau d'entrepreneurs certifiés.</p>
         </div>`,
     });
 
     await sendEmail({
       to: process.env.SMTP_USER || 'zenipay@zeniva.ca',
-      subject: `NOUVEL ENTREPRENEUR — ${entreprise} — ${division}`,
+      subject: `NOUVEL ENTREPRENEUR — ${entreprise} — ${divisionNom}`,
       html: `
         <div style="font-family:Arial,sans-serif">
           <h3>Nouvelle inscription entrepreneur</h3>
-          <p><strong>Nom :</strong> ${nom}<br/>
-          <strong>Entreprise :</strong> ${entreprise}<br/>
-          <strong>Courriel :</strong> ${email}<br/>
-          <strong>Téléphone :</strong> ${telephone}<br/>
-          <strong>RBQ :</strong> ${rbq}<br/>
-          <strong>Assurances :</strong> ${assurances}<br/>
-          <strong>Division :</strong> ${division}</p>
-          ${experience ? `<p><strong>Expérience :</strong><br/>${experience.replace(/\n/g, '<br/>')}</p>` : ''}
+          <p><strong>Nom :</strong> ${escapeHtml(nom)}<br/>
+          <strong>Entreprise :</strong> ${escapeHtml(entreprise)}<br/>
+          <strong>Courriel :</strong> ${escapeHtml(email)}<br/>
+          <strong>Téléphone :</strong> ${escapeHtml(telephone)}<br/>
+          <strong>RBQ :</strong> ${escapeHtml(rbq)}<br/>
+          <strong>Assurances :</strong> ${escapeHtml(assurances)}<br/>
+          <strong>Division :</strong> ${escapeHtml(divisionNom)}</p>
+          ${experience ? `<p><strong>Expérience :</strong><br/>${escapeHtmlMultiline(experience)}</p>` : ''}
         </div>`,
     });
 

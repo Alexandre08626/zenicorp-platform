@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseAdmin } from '@/lib/supabase';
-import { sendEmail } from '@/lib/email';
-import { getDivisionBySlug } from '@/lib/divisions-data';
+import { sendEmail, escapeHtml, escapeHtmlMultiline } from '@/lib/email';
+import { getDivisionBySlug, MODEL, ZENICORP_PHONE } from '@/lib/divisions-data';
 
 export const dynamic = 'force-dynamic';
 
@@ -36,12 +36,17 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Courriel invalide' }, { status: 400 });
     }
 
+    const divisionData = getDivisionBySlug(String(division));
+    if (!divisionData) {
+      return NextResponse.json({ error: 'Division inconnue' }, { status: 400 });
+    }
+
     const nomParts = String(nom).trim().split(/\s+/);
     const prenom = nomParts.shift() || '';
     const nomFamille = nomParts.join(' ');
 
-    const divisionData = getDivisionBySlug(String(division));
-    const divisionSite = divisionData?.site || null;
+    const divisionSite = divisionData.site;
+    const divisionNom = divisionData.name;
 
     const soumission = {
       prenom,
@@ -91,33 +96,37 @@ export async function POST(req: NextRequest) {
 
     await sendEmail({
       to: String(email),
-      subject: 'ZeniCorp — Votre soumission est bien reçue',
+      subject: 'ZeniCorp — Votre demande de projet est reçue',
       html: `
-        <div style="font-family:Arial,sans-serif;max-width:560px;margin:auto">
-          <h2 style="color:#000">Votre projet est entre de bonnes mains</h2>
-          <p>Bonjour <strong>${prenom}</strong>,</p>
-          <p>Nous avons bien reçu votre soumission pour <strong>${division}</strong>.</p>
-          ${divisionSite ? `<p>Pour planifier votre RDV et recevoir votre soumission, visitez la division :</p>
-          <p><a href="${divisionSite}" style="display:inline-block;background:#00E5FF;color:#000;padding:14px 28px;text-decoration:none;font-weight:bold">PRENDRE MON RDV</a></p>` : ''}
-          <p>Un conseiller ZeniCorp vous contactera pour confirmer la suite. Aucun paiement n'est requis à cette étape.</p>
-          <p style="color:#666;font-size:13px">ZeniCorp — Votre projet. Notre expertise.</p>
+        <div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;color:#111">
+          <h2 style="color:#111;margin:0 0 16px">Votre projet est entre de bonnes mains</h2>
+          <p>Bonjour <strong>${escapeHtml(prenom)}</strong>,</p>
+          <p>Nous avons bien reçu votre demande pour <strong>${escapeHtml(divisionNom)}</strong>.</p>
+          <p>Un conseiller ZeniCorp valide votre demande et confirme avec vous le dépôt unique de
+             <strong>${MODEL.deposit}</strong> qui réserve votre projet dans le réseau. Un entrepreneur
+             certifié RBQ vous contacte ensuite sous <strong>${MODEL.contactDelay}</strong>.</p>
+          <p style="margin:24px 0">
+            <a href="${escapeHtml(divisionSite)}" style="display:inline-block;background:#D4AF37;color:#05070B;padding:14px 28px;text-decoration:none;font-weight:bold;border-radius:6px">Découvrir la division</a>
+          </p>
+          <p>Une question ? Appelez-nous au <strong>${ZENICORP_PHONE}</strong>.</p>
+          <p style="color:#666;font-size:13px;margin-top:28px">ZeniCorp — Votre projet. Notre réseau d'entrepreneurs certifiés.</p>
         </div>`,
     });
 
     await sendEmail({
       to: process.env.SMTP_USER || 'zenipay@zeniva.ca',
-      subject: `NOUVELLE SOUMISSION — ${division} — ${nom}`,
+      subject: `NOUVELLE SOUMISSION — ${divisionNom} — ${nom}`,
       html: `
         <div style="font-family:Arial,sans-serif">
           <h3>Nouvelle soumission ZeniCorp</h3>
-          <p><strong>Client :</strong> ${nom}<br/>
-          <strong>Courriel :</strong> ${email}<br/>
-          <strong>Téléphone :</strong> ${telephone || '—'}<br/>
-          <strong>Adresse :</strong> ${adresse || '—'}, ${ville || ''} ${codePostal || ''}<br/>
-          <strong>Division :</strong> ${division}<br/>
-          <strong>Superficie :</strong> ${superficie || '—'}</p>
-          <p><strong>Description :</strong><br/>${description.replace(/\n/g, '<br/>')}</p>
-          ${divisionSite ? `<p><strong>RDV division :</strong> <a href="${divisionSite}">${divisionSite}</a></p>` : ''}
+          <p><strong>Client :</strong> ${escapeHtml(nom)}<br/>
+          <strong>Courriel :</strong> ${escapeHtml(email)}<br/>
+          <strong>Téléphone :</strong> ${escapeHtml(telephone) || '—'}<br/>
+          <strong>Adresse :</strong> ${escapeHtml(adresse) || '—'}, ${escapeHtml(ville)} ${escapeHtml(codePostal)}<br/>
+          <strong>Division :</strong> ${escapeHtml(divisionNom)}<br/>
+          <strong>Superficie :</strong> ${escapeHtml(superficie) || '—'}</p>
+          <p><strong>Description :</strong><br/>${escapeHtmlMultiline(description)}</p>
+          <p><strong>Site division :</strong> <a href="${escapeHtml(divisionSite)}">${escapeHtml(divisionSite)}</a></p>
         </div>`,
     });
 

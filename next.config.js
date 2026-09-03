@@ -7,7 +7,6 @@ const nextConfig = {
     '@zenicorp/zenitech-core',
   ],
   images: {
-    domains: ['localhost', 'zenicorp.ca', 'cdn.zenicorp.ca'],
     formats: ['image/avif', 'image/webp'],
   },
   async headers() {
@@ -31,30 +30,10 @@ const nextConfig = {
       },
     ];
   },
-  async redirects() {
-    return [
-      {
-        source: '/epoxy/:path*',
-        destination: 'https://zenicorp-epoxy.vercel.app/:path*',
-        permanent: true,
-      },
-      {
-        source: '/asphalte/:path*',
-        destination: 'https://zenicorp-asphalte.vercel.app/:path*',
-        permanent: true,
-      },
-      {
-        source: '/toiture/:path*',
-        destination: 'https://zenicorp-toiture.vercel.app/:path*',
-        permanent: true,
-      },
-      {
-        source: '/isolation/:path*',
-        destination: 'https://zenicorp-isolation.vercel.app/:path*',
-        permanent: true,
-      },
-    ];
-  },
+  // Aucune redirection sur /epoxy, /asphalte, /toiture, /isolation :
+  // ces routes sont servies par la plateforme (voir src/app/<division>/page.tsx).
+  // Les sites de marque restent accessibles via le lien "site de la division"
+  // présent sur chaque page (champ `site` dans src/lib/divisions-data.ts).
 };
 
 module.exports = nextConfig;
