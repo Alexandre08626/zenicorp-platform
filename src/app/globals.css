@@ -19,12 +19,12 @@
   }
 
   body {
-    @apply bg-zenicorp-void text-zenicorp-text antialiased;
+    @apply bg-zenicorp-black text-zenicorp-text antialiased;
     font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1;
     /* Pas de background-attachment: fixed — coûteux au scroll et cassé sur iOS. */
     background-image: radial-gradient(
       ellipse 90% 55% at 50% -10%,
-      rgba(47, 111, 237, 0.05),
+      rgba(34, 211, 238, 0.06),
       transparent 70%
     );
     background-repeat: no-repeat;
@@ -43,12 +43,12 @@
   }
 
   ::selection {
-    background: rgba(47, 111, 237, 0.22);
-    color: #002244;
+    background: rgba(34, 211, 238, 0.25);
+    color: #fff;
   }
 
   :focus-visible {
-    outline: 2px solid rgba(47, 111, 237, 0.7);
+    outline: 2px solid rgba(34, 211, 238, 0.7);
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -94,11 +94,11 @@
 
   /* Annotation type plan d'architecte */
   .eyebrow {
-    @apply inline-flex items-center gap-2.5 font-mono text-label uppercase text-zenicorp-gold;
+    @apply inline-flex items-center gap-2.5 font-mono text-label uppercase text-cyan-300;
   }
   .eyebrow::before {
     content: '';
-    @apply h-px w-8 bg-zenicorp-gold/50;
+    @apply h-px w-8 bg-cyan-400/50;
   }
   .tech-label {
     @apply font-mono text-label uppercase text-zenicorp-faint;
@@ -107,28 +107,28 @@
   /* ─────────── BOUTONS ─────────── */
   .btn {
     @apply relative inline-flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap
-           px-7 py-3.5 text-sm font-semibold transition-all duration-500 ease-premium;
+           rounded-full px-7 py-3.5 text-sm font-bold tracking-tight transition-all duration-500 ease-premium;
   }
   .btn-gold {
-    @apply btn bg-zenicorp-gold text-zenicorp-black;
-    box-shadow: 0 0 0 0 rgba(47, 111, 237, 0.4);
+    @apply btn bg-gradient-to-r from-cyan-400 to-blue-600 text-black;
+    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.4);
   }
   .btn-gold:hover {
-    box-shadow: 0 10px 34px -6px rgba(47, 111, 237, 0.5);
-    transform: translateY(-2px);
+    box-shadow: 0 10px 40px -6px rgba(34, 211, 238, 0.55);
+    transform: translateY(-2px) scale(1.01);
   }
   .btn-outline-gold {
-    @apply btn border border-zenicorp-gold/35 text-zenicorp-gold;
+    @apply btn border border-cyan-400/40 text-cyan-300;
   }
   .btn-outline-gold:hover {
-    @apply border-zenicorp-gold bg-zenicorp-gold/10;
+    @apply border-cyan-400 bg-cyan-400/10;
     transform: translateY(-2px);
   }
   .btn-secondary {
-    @apply btn border border-zenicorp-line text-zenicorp-text;
+    @apply btn border border-white/15 text-white bg-white/5 backdrop-blur;
   }
   .btn-secondary:hover {
-    @apply border-zenicorp-dim/40 bg-zenicorp-black/5;
+    @apply border-cyan-400/50 bg-cyan-400/10;
     transform: translateY(-2px);
   }
 
@@ -147,31 +147,31 @@
 
   /* ─────────── SURFACES ─────────── */
   .card {
-    @apply relative overflow-hidden border border-zenicorp-line bg-white
+    @apply relative overflow-hidden border border-white/10 bg-white/[0.03]
            transition-all duration-500 ease-premium;
   }
   .card:hover {
-    @apply border-zenicorp-gold/40 bg-white;
+    @apply border-cyan-400/30 bg-white/[0.05];
   }
   .glass {
-    @apply border border-zenicorp-line bg-white/80 backdrop-blur-xl;
-    box-shadow: 0 24px 60px -24px rgba(5, 7, 11, 0.18);
+    @apply border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+    box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.6);
   }
 
   /* Trait de règle graduée — vocabulaire du plan technique */
   .rule-ticks {
     background-image: repeating-linear-gradient(
       to right,
-      rgba(165, 176, 194, 0.28) 0 1px,
+      rgba(161, 161, 176, 0.28) 0 1px,
       transparent 1px 10px
     );
   }
 
   /* ─────────── FORMULAIRES ─────────── */
   .input-field {
-    @apply w-full border-0 border-b border-zenicorp-line bg-transparent px-0 py-3.5
+    @apply w-full border-0 border-b border-white/15 bg-transparent px-0 py-3.5
            text-zenicorp-text transition-colors duration-300
-           placeholder:text-zenicorp-faint/70 focus:border-zenicorp-gold focus:outline-none;
+           placeholder:text-zenicorp-faint/70 focus:border-cyan-400 focus:outline-none;
   }
   .input-field:focus-visible {
     outline: none;
@@ -180,8 +180,8 @@
     @apply appearance-none pr-8;
   }
   select.input-field option {
-    background-color: #ffffff;
-    color: #12151d;
+    background-color: #0a0a0f;
+    color: #ffffff;
   }
   textarea.input-field {
     @apply resize-y;
@@ -191,8 +191,8 @@
   }
 
   .badge-gold {
-    @apply inline-flex items-center gap-2 border border-zenicorp-gold/30 bg-zenicorp-gold/[0.07]
-           px-3 py-1.5 font-mono text-label uppercase text-zenicorp-gold;
+    @apply inline-flex items-center gap-2 border border-cyan-400/30 bg-cyan-400/[0.07]
+           px-3 py-1.5 font-mono text-label uppercase text-cyan-300;
   }
 }
 
@@ -244,15 +244,15 @@
     transform: none;
   }
 
-  /* Grille de plan — variante claire (fond neutre) */
+  /* Grille de plan — sur fond noir */
   .bp-grid {
-    background-image: linear-gradient(rgba(18, 21, 29, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(18, 21, 29, 0.05) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     background-size: 72px 72px;
   }
   .bp-grid-fine {
-    background-image: linear-gradient(rgba(18, 21, 29, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(18, 21, 29, 0.035) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
     background-size: 18px 18px;
   }
   /* Grille de plan — variante sombre (sections noires) */
@@ -275,7 +275,7 @@
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   }
   .text-gold-gradient {
-    background: linear-gradient(100deg, #3f82f0 0%, #2f6fed 45%, #14449e 100%);
+    background: linear-gradient(100deg, #89f6ff 0%, #22d3ee 45%, #3b82f6 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -293,13 +293,13 @@
     height: 9px;
   }
   ::-webkit-scrollbar-track {
-    background: #f4f4f1;
+    background: #05070b;
   }
   ::-webkit-scrollbar-thumb {
-    background: #d0d4da;
+    background: #23232d;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #b6bcc6;
+    background: #3a3a46;
   }
 }
 

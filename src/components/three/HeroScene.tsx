@@ -47,8 +47,8 @@ const BlueprintMaterial = /* @__PURE__ */ (() => {
         depthWrite: false,
         uniforms: {
           uTime: { value: 0 },
-          uGrid: { value: new THREE.Color('#7C8BA8') },
-          uGold: { value: new THREE.Color('#2F6FED') },
+          uGrid: { value: new THREE.Color('#334155') },
+          uGold: { value: new THREE.Color('#22D3EE') },
         },
         vertexShader: /* glsl */ `
           varying vec2 vUv;
@@ -168,9 +168,9 @@ function Structure() {
           )}
           <Edges threshold={15} scale={1.0015}>
             <lineBasicMaterial
-              color={b.solid ? '#2F6FED' : '#8C9BB5'}
+              color={b.solid ? '#22D3EE' : '#8C9BB5'}
               transparent
-              opacity={b.solid ? 0.5 : 0.26}
+              opacity={b.solid ? 0.6 : 0.26}
             />
           </Edges>
         </mesh>
@@ -273,13 +273,13 @@ function Core({ glow }: { glow: THREE.Texture | null }) {
     <group position={[0, -0.15, 0]}>
       <mesh ref={ref}>
         <octahedronGeometry args={[0.2, 0]} />
-        <meshBasicMaterial color="#6FB1FF" />
+        <meshBasicMaterial color="#67E8F9" />
       </mesh>
       {glow && (
         <sprite scale={[2.6, 2.6, 2.6]}>
           <spriteMaterial
             map={glow}
-            color="#2F6FED"
+            color="#22D3EE"
             transparent
             opacity={0.5}
             blending={THREE.AdditiveBlending}
@@ -287,7 +287,7 @@ function Core({ glow }: { glow: THREE.Texture | null }) {
           />
         </sprite>
       )}
-      <pointLight intensity={3.2} distance={7} color="#2F6FED" />
+      <pointLight intensity={3.2} distance={7} color="#22D3EE" />
     </group>
   );
 }
@@ -416,7 +416,7 @@ function SceneContents({ colors, interactive, quality }: Required<HeroSceneProps
         <Structure />
         <Core glow={glow} />
         {orbits.map((o, i) => (
-          <DivisionNode key={i} color={colors[i] ?? '#2F6FED'} glow={glow} {...o} />
+          <DivisionNode key={i} color={colors[i] ?? '#22D3EE'} glow={glow} {...o} />
         ))}
       </group>
 

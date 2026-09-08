@@ -55,16 +55,24 @@ export default function Header() {
             }`}
           >
             {/* Marque */}
-            <Link href="/" className="group flex items-center" aria-label="ZeniCorp, accueil">
-              <span className="relative h-9 w-auto overflow-hidden rounded-md ring-1 ring-white/10">
+            <Link href="/" className="group flex items-center gap-2.5" aria-label="ZeniCorp, accueil">
+              <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-lg ring-1 ring-white/15">
                 <Image
-                  src="/logo.png"
-                  alt="ZeniCorp"
-                  width={400}
-                  height={267}
+                  src="/logo-mark.png"
+                  alt=""
+                  fill
+                  sizes="32px"
                   priority
-                  className="h-9 w-auto object-contain transition-transform duration-700 ease-premium group-hover:scale-[1.04]"
+                  className="object-cover transition-transform duration-700 ease-premium group-hover:scale-110"
                 />
+              </span>
+              <span className="leading-none">
+                <span className="block font-heading text-base font-black tracking-tight text-white sm:text-lg">
+                  ZENI<span className="bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent">CORP</span>
+                </span>
+                <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.28em] text-white/50">
+                  Plateforme
+                </span>
               </span>
             </Link>
 

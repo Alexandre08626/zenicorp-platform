@@ -75,7 +75,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#F4F4F1',
+  themeColor: '#05070B',
   width: 'device-width',
   initialScale: 1,
 };
@@ -112,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="fr-CA"
       className={`${inter.variable} ${display.variable} ${mono.variable} dark`}
     >
-      <body className="flex min-h-screen flex-col bg-zenicorp-void font-sans text-zenicorp-text antialiased">
+      <body className="flex min-h-screen flex-col bg-zenicorp-black font-sans text-zenicorp-text antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

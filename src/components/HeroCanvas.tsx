@@ -72,7 +72,7 @@ export default function HeroCanvas({ colors }: { colors: string[] }) {
           ou si l'utilisateur demande un mouvement réduit. */}
       <div className="absolute inset-0 bg-zenicorp-noir/40" />
       <div className="absolute inset-0 bp-grid-noir mask-fade-b opacity-[0.5]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_45%_at_50%_45%,rgba(47, 111, 237,0.18),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_45%_at_50%_45%,rgba(34, 211, 238,0.14),transparent_70%)]" />
 
       {mount && (
         <div

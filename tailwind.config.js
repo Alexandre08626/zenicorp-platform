@@ -8,26 +8,25 @@ module.exports = {
     extend: {
       colors: {
         zenicorp: {
-          // Noir profond des sections contrastées (hero, CTA, footer, cartes)
-          noir: '#05070B',
-          noirSub: '#0B0E14',
-          noirLine: '#1E2632',
-          // Fond clair / neutre du site
-          black: '#0A0B0E',
-          void: '#F4F4F1',
-          surface: '#FFFFFF',
-          darkGray: '#E8EAED',
-          lightGray: '#FAFAF8',
-          line: '#E2E5E9',
-          border: '#EDEFF2',
-          text: '#12151D',
-          dim: '#4A5361',
-          faint: '#8A94A6',
-          gold: '#2F6FED',
-          goldLight: '#6FB1FF',
+          // Noir profond — même langage que les sites de division
+          noir: '#000000',
+          noirSub: '#0A0A0F',
+          noirLine: '#1E1E26',
+          black: '#05070B',
+          void: '#0A0A0F',
+          surface: '#0E0E14',
+          darkGray: '#14141B',
+          lightGray: '#1A1A22',
+          line: '#23232D',
+          border: '#1E1E26',
+          text: '#FFFFFF',
+          dim: '#A1A1B0',
+          faint: '#6B6B7A',
+          gold: '#22D3EE',
+          goldLight: '#67E8F9',
           white: '#FFFFFF',
           silver: '#C0C0C0',
-          mediumGray: '#8A94A6',
+          mediumGray: '#8A8A98',
         },
         // Doit rester synchronisé avec `color` dans src/lib/divisions-data.ts
         divisions: {

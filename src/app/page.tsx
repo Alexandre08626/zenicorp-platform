@@ -263,7 +263,7 @@ export default function HomePage() {
           ═══════════════════════════════════════════════════════ */}
       <section
         id="nos-divisions"
-        className="section-padding relative border-t border-zenicorp-line/70 bg-zenicorp-void/40"
+        className="section-padding relative border-t border-zenicorp-line/70 bg-zenicorp-black"
       >
         <div className="container-zenicorp">
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
@@ -272,7 +272,7 @@ export default function HomePage() {
               <h2 className="heading-2 mt-8 max-w-xl">
                 Quatre spécialités.
                 <br />
-                <span className="text-zenicorp-faint">Un seul interlocuteur.</span>
+                <span className="bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent">Un seul interlocuteur.</span>
               </h2>
             </Reveal>
             <Reveal delay={150}>
@@ -288,7 +288,7 @@ export default function HomePage() {
               <Reveal key={d.slug} delay={50}>
                 <Link
                   href={`/${d.slug}`}
-                  className="group relative grid items-center gap-8 border-t border-zenicorp-line/70 py-10 lg:grid-cols-12 lg:gap-10 lg:py-14"
+                  className="group relative grid items-center gap-8 border-t border-white/10 py-10 lg:grid-cols-12 lg:gap-10 lg:py-14"
                 >
                   {/* Filet coloré qui se déploie au survol */}
                   <span
@@ -307,7 +307,7 @@ export default function HomePage() {
                   </div>
 
                   <div className="lg:col-span-4">
-                    <h3 className="font-heading text-3xl font-semibold text-zenicorp-text sm:text-4xl">
+                    <h3 className="font-heading text-3xl font-semibold text-white sm:text-4xl">
                       {d.short}
                     </h3>
                     <p className="mt-3 max-w-sm text-sm leading-relaxed text-zenicorp-dim">
@@ -319,35 +319,35 @@ export default function HomePage() {
                     {d.services.slice(0, 3).map((s) => (
                       <li
                         key={s}
-                        className="border-b border-zenicorp-line/50 py-2 text-xs text-zenicorp-faint transition-colors duration-500 group-hover:text-zenicorp-dim"
+                        className="border-b border-white/10 py-2 text-xs text-zenicorp-faint transition-colors duration-500 group-hover:text-zenicorp-dim"
                       >
                         {s}
                       </li>
                     ))}
                   </ul>
 
-                  <div className="relative aspect-[16/10] overflow-hidden lg:col-span-3 lg:aspect-[16/11]">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl lg:col-span-3 lg:aspect-[16/11]">
                     <Image
                       src={d.photo}
                       alt={`Travaux ${d.short} réalisés par le réseau ZeniCorp`}
                       fill
                       sizes="(max-width: 1024px) 100vw, 30vw"
-                      className="object-cover opacity-70 grayscale transition-all duration-[900ms] ease-premium group-hover:scale-[1.04] group-hover:opacity-100 group-hover:grayscale-0"
+                      className="object-cover transition-all duration-[900ms] ease-premium group-hover:scale-[1.06]"
                     />
                     <span
-                      className="pointer-events-none absolute inset-0 opacity-40 mix-blend-color transition-opacity duration-700 group-hover:opacity-0"
+                      className="pointer-events-none absolute inset-0 opacity-30 mix-blend-color transition-opacity duration-700 group-hover:opacity-0"
                       style={{ background: d.color }}
                     />
                   </div>
 
-                  <span className="flex items-center gap-2 font-mono text-label uppercase text-zenicorp-gold lg:col-span-1 lg:justify-end">
+                  <span className="flex items-center gap-2 font-mono text-label uppercase text-cyan-300 lg:col-span-1 lg:justify-end">
                     Voir
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:-translate-y-1 group-hover:translate-x-1" />
+                    <ArrowUpRight className="h-4 w-4 text-cyan-300 transition-transform duration-500 ease-premium group-hover:-translate-y-1 group-hover:translate-x-1" />
                   </span>
                 </Link>
               </Reveal>
             ))}
-            <span className="block border-t border-zenicorp-line/70" />
+            <span className="block border-t border-white/10" />
           </div>
         </div>
       </section>
@@ -355,9 +355,9 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           ENTREPRENEURS — panneau inversé
           ═══════════════════════════════════════════════════════ */}
-      <section className="relative section-padding overflow-hidden border-t border-zenicorp-line/70 bg-[#FCFCFA]">
+      <section className="relative section-padding overflow-hidden border-t border-zenicorp-line/70 bg-zenicorp-surface/60">
         <div className="absolute inset-0 bp-grid opacity-[0.5]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_80%_35%,rgba(47, 111, 237,0.06),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_80%_35%,rgba(34, 211, 238,0.06),transparent_70%)]" />
 
         <div className="container-zenicorp relative">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
@@ -384,7 +384,7 @@ export default function HomePage() {
             </div>
 
             <div className="lg:col-span-7">
-              <Stagger className="grid gap-px border border-zenicorp-line/70 bg-zenicorp-line/40 sm:grid-cols-2">
+              <Stagger className="grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2">
                 {[
                   {
                     k: '0 $',
@@ -409,9 +409,9 @@ export default function HomePage() {
                 ].map((b) => (
                   <StaggerItem
                     key={b.t}
-                    className="group bg-zenicorp-noir p-8 transition-colors duration-500 hover:bg-zenicorp-noirSub sm:p-10"
+                    className="group bg-zenicorp-noir p-8 transition-all duration-500 hover:bg-zenicorp-darkGray sm:p-10"
                   >
-                    <div className="font-heading text-4xl font-semibold text-zenicorp-gold sm:text-5xl">
+                    <div className="bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text font-heading text-4xl font-black text-transparent sm:text-5xl">
                       {b.k}
                     </div>
                     <h3 className="mt-6 font-mono text-label uppercase text-white">
@@ -433,7 +433,7 @@ export default function HomePage() {
           ═══════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden border-t border-zenicorp-noirLine bg-zenicorp-noir py-section">
         <div className="absolute inset-0 bp-grid-noir opacity-[0.5]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_120%,rgba(47, 111, 237,0.18),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_120%,rgba(34, 211, 238,0.14),transparent_70%)]" />
 
         <div className="container-zenicorp relative text-center">
           <Reveal>

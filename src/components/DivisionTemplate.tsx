@@ -194,7 +194,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
             </h2>
           </Reveal>
 
-          <div className="mt-16 grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 n: '01',
@@ -218,7 +218,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
               },
             ].map((s, i) => (
               <Reveal key={s.n} delay={i * 60}>
-                <div className="group h-full bg-zenicorp-noir p-8 transition-colors duration-500 hover:bg-zenicorp-noirSub sm:p-9">
+                <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.03] p-8 transition-colors duration-500 hover:border-cyan-400/40 hover:bg-white/[0.05] sm:p-9">
                   <span
                     className="font-mono text-xs transition-colors duration-500"
                     style={{ color: accent }}

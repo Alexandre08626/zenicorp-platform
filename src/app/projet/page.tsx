@@ -94,7 +94,7 @@ function ProjetForm() {
     return (
       <main className="flex flex-1 items-center overflow-x-clip">
         <div className="absolute inset-0 bp-grid-fine opacity-25" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_0%,rgba(47, 111, 237,0.05),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_0%,rgba(34, 211, 238,0.07),transparent_70%)]" />
         <section className="container-tight relative py-40 text-center">
           <Reveal>
             <span
@@ -169,7 +169,7 @@ function ProjetForm() {
       {/* En-tête */}
       <section className="relative overflow-hidden border-b border-zenicorp-line/70">
         <div className="absolute inset-0 bp-grid opacity-40" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_25%_0%,rgba(47, 111, 237,0.11),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_25%_0%,rgba(34, 211, 238,0.09),transparent_70%)]" />
 
         <div className="container-zenicorp relative pb-16 pt-36">
           <Reveal>
@@ -223,7 +223,7 @@ function ProjetForm() {
               <div className="lg:col-span-8">
                 <fieldset>
                   <legend className="sr-only">Division des travaux</legend>
-                  <div className="grid gap-px bg-zenicorp-line/40 sm:grid-cols-2">
+                  <div className="grid gap-4 sm:grid-cols-2">
                     {divisionsData.map((d) => {
                       const actif = division === d.slug;
                       return (
@@ -232,7 +232,7 @@ function ProjetForm() {
                           type="button"
                           onClick={() => setDivision(d.slug)}
                           aria-pressed={actif}
-                          className="group relative overflow-hidden bg-zenicorp-noir text-left transition-colors duration-500"
+                          className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-left transition-all duration-500 hover:border-cyan-400/40"
                         >
                           <span className="relative block aspect-[16/7] overflow-hidden">
                             <Image
@@ -424,7 +424,7 @@ function ProjetForm() {
                 {erreur && (
                   <div
                     role="alert"
-                    className="mt-8 flex items-start gap-3 border border-red-200 bg-red-50 p-5 text-sm text-red-700"
+                    className="mt-8 flex items-start gap-3 border border-red-500/30 bg-red-500/10 p-5 text-sm text-red-300"
                   >
                     <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                     <span>{erreur}</span>

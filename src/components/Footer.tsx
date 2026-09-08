@@ -40,14 +40,24 @@ export default function Footer() {
         <div className="grid gap-12 py-16 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
             <div className="flex items-center">
-              <span className="inline-flex overflow-hidden rounded-md ring-1 ring-white/10">
-                <Image
-                  src="/logo.png"
-                  alt="ZeniCorp"
-                  width={180}
-                  height={120}
-                  className="h-10 w-auto object-contain"
-                />
+              <span className="inline-flex items-center gap-2.5">
+                <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-lg ring-1 ring-white/15">
+                  <Image
+                    src="/logo-mark.png"
+                    alt="ZeniCorp"
+                    fill
+                    sizes="32px"
+                    className="object-cover"
+                  />
+                </span>
+                <span className="leading-none">
+                  <span className="block font-heading text-lg font-black tracking-tight text-white">
+                    ZENI<span className="bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent">CORP</span>
+                  </span>
+                  <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.28em] text-white/50">
+                    Plateforme
+                  </span>
+                </span>
               </span>
             </div>
             <p className="mt-7 max-w-xs text-sm leading-relaxed text-white/55">
