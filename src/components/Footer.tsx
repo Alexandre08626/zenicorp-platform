@@ -41,18 +41,18 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <div className="flex items-center">
               <span className="inline-flex items-center gap-2.5">
-                <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-lg ring-1 ring-white/15">
+                <span className="relative h-10 w-auto shrink-0 overflow-hidden rounded-md ring-1 ring-white/15">
                   <Image
-                    src="/logo-mark.png"
+                    src="/logo.png"
                     alt="Zeniva"
-                    fill
-                    sizes="32px"
-                    className="object-cover"
+                    width={400}
+                    height={267}
+                    className="h-10 w-auto object-contain"
                   />
                 </span>
                 <span className="leading-none">
                   <span className="block font-heading text-lg font-black tracking-tight text-white">
-                    ZENI<span className="bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent">VA</span>
+                    ZENIVA
                   </span>
                   <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.28em] text-white/50">
                     Plateforme
