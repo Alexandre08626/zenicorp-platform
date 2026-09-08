@@ -7,6 +7,10 @@ export interface DivisionData {
   color: string;
   /** Photo réelle présente dans /public/div */
   photo: string;
+  /** Photo hero plein écran présente dans /public/div/realisations */
+  hero: string;
+  /** Galerie de réalisations présente dans /public/div/realisations */
+  gallery: string[];
   /** Logo réel présent dans /public */
   logo: string;
   /** Site de marque de la division (sous-domaine vérifié actif) */
@@ -39,6 +43,14 @@ export const divisionsData: DivisionData[] = [
       'Revêtements époxy et polyaspartique haut de gamme pour garages, commerces et espaces industriels.',
     color: '#0E95D9',
     photo: '/div/epoxy.jpg',
+    hero: '/div/realisations/epoxy-hero.jpg',
+    gallery: [
+      '/div/realisations/epoxy-1.jpg',
+      '/div/realisations/epoxy-2.jpg',
+      '/div/realisations/epoxy-3.jpg',
+      '/div/realisations/epoxy-4.jpg',
+      '/div/realisations/epoxy-5.jpg',
+    ],
     logo: '/logo-epoxy.png',
     site: 'https://epoxy.zeniva.ca',
     services: [
@@ -73,6 +85,13 @@ export const divisionsData: DivisionData[] = [
       'Entretien, réparation et protection des surfaces asphaltées, résidentielles et commerciales.',
     color: '#8A94A6',
     photo: '/div/asphalte.jpg',
+    hero: '/div/realisations/asphalte-hero.jpg',
+    gallery: [
+      '/div/realisations/asphalte-1.jpg',
+      '/div/realisations/asphalte-2.jpg',
+      '/div/realisations/asphalte-3.jpg',
+      '/div/realisations/asphalte-4.jpg',
+    ],
     logo: '/logo-asphalte.png',
     site: 'https://asphalte.zeniva.ca',
     services: [
@@ -107,6 +126,13 @@ export const divisionsData: DivisionData[] = [
       'Couvreurs certifiés pour toiture résidentielle et commerciale : bardeaux, TPO et EPDM.',
     color: '#E0603A',
     photo: '/div/toiture.jpg',
+    hero: '/div/realisations/toiture-hero.jpg',
+    gallery: [
+      '/div/realisations/toiture-1.jpg',
+      '/div/realisations/toiture-2.jpg',
+      '/div/realisations/toiture-3.jpg',
+      '/div/realisations/toiture-4.jpg',
+    ],
     logo: '/logo-toiture.png',
     site: 'https://toiture.zeniva.ca',
     services: [
@@ -141,6 +167,12 @@ export const divisionsData: DivisionData[] = [
       "Isolation haute performance et étanchéité à l'air pour réduire durablement vos coûts de chauffage.",
     color: '#2FA086',
     photo: '/div/isolation.jpg',
+    hero: '/div/realisations/isolation-hero.jpg',
+    gallery: [
+      '/div/realisations/isolation-1.jpg',
+      '/div/realisations/isolation-2.jpg',
+      '/div/realisations/isolation-3.jpg',
+    ],
     logo: '/logo-isolation.png',
     site: 'https://isolation.zeniva.ca',
     services: [

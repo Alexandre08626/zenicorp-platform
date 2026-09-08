@@ -176,21 +176,21 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
       </section>
 
       {/* ═══════════════ PROCESSUS ═══════════════ */}
-      <section className="section-padding relative overflow-hidden border-t border-zenicorp-line/70 bg-zenicorp-noir">
+      <section className="section-padding relative overflow-hidden border-t border-zenicorp-line/70 bg-zenicorp-surface/50">
         <div
-          className="absolute inset-0 opacity-[0.08]"
+          className="absolute inset-0 opacity-[0.05]"
           style={{
             background: `radial-gradient(ellipse 55% 60% at 15% 20%, ${accent}, transparent 70%)`,
           }}
         />
-        <div className="absolute inset-0 bp-grid-fine-noir opacity-30" />
+        <div className="absolute inset-0 bp-grid opacity-40" />
         <div className="container-zenicorp relative">
           <Reveal>
             <span className="eyebrow">Déroulement</span>
-            <h2 className="heading-2 mt-8 max-w-2xl text-white">
+            <h2 className="heading-2 mt-8 max-w-2xl">
               De la demande
               <br />
-              <span className="text-white/50">au chantier terminé.</span>
+              <span className="text-zenicorp-faint">au chantier terminé.</span>
             </h2>
           </Reveal>
 
@@ -218,19 +218,51 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
               },
             ].map((s, i) => (
               <Reveal key={s.n} delay={i * 60}>
-                <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.03] p-8 transition-colors duration-500 hover:border-cyan-400/40 hover:bg-white/[0.05] sm:p-9">
+                <div className="group h-full rounded-2xl border border-zenicorp-line bg-white p-8 transition-all duration-500 hover:-translate-y-1 hover:border-cyan-400/50 hover:shadow-[0_20px_50px_-20px_rgba(34,211,238,0.35)] sm:p-9">
                   <span
-                    className="font-mono text-xs transition-colors duration-500"
+                    className="font-mono text-xs font-bold transition-colors duration-500"
                     style={{ color: accent }}
                   >
                     {s.n}
                   </span>
-                  <h3 className="mt-6 font-heading text-xl font-semibold text-white">
+                  <h3 className="mt-6 font-heading text-xl font-bold text-zenicorp-text">
                     {s.t}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/55 transition-colors duration-500 group-hover:text-white/75">
-                    {s.d}
-                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-zenicorp-dim">{s.d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ GALERIE — réalisations photo ═══════════════ */}
+      <section className="section-padding relative border-t border-zenicorp-line/70 bg-zenicorp-surface/50">
+        <div className="container-zenicorp">
+          <Reveal>
+            <span className="eyebrow">Réalisations</span>
+            <h2 className="heading-2 mt-6">
+              Des chantiers.
+              <br />
+              <span className="text-zenicorp-faint">Des résultats.</span>
+            </h2>
+          </Reveal>
+
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
+            {division.gallery.map((src, i) => (
+              <Reveal key={src} delay={i * 60}>
+                <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl">
+                  <Image
+                    src={src}
+                    alt={`Réalisation ${division.short} du réseau ZeniCorp`}
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-[900ms] ease-premium group-hover:scale-110"
+                  />
+                  <span
+                    className="pointer-events-none absolute inset-0 opacity-25 mix-blend-color transition-opacity duration-700 group-hover:opacity-0"
+                    style={{ background: accent }}
+                  />
                 </div>
               </Reveal>
             ))}
@@ -284,30 +316,39 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
         </div>
       </section>
 
-      {/* ═══════════════ CTA ═══════════════ */}
-      <section className="relative overflow-hidden border-t border-zenicorp-noirLine bg-zenicorp-noir py-section">
-        <div className="absolute inset-0 bp-grid-noir opacity-40" />
+      {/* ═══════════════ CTA — bandeau photo ═══════════════ */}
+      <section className="relative overflow-hidden border-t border-zenicorp-line">
+        <div className="absolute inset-0">
+          <Image
+            src={division.hero}
+            alt={`Chantier ${division.short} du réseau ZeniCorp`}
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
         <div
-          className="absolute inset-0 opacity-[0.14]"
-          style={{
-            background: `radial-gradient(ellipse 60% 70% at 50% 120%, ${accent}, transparent 70%)`,
-          }}
+          className="absolute inset-0 opacity-[0.16] mix-blend-color"
+          style={{ background: accent }}
         />
 
-        <div className="container-zenicorp relative text-center">
-          <h2 className="mx-auto max-w-3xl font-heading text-display-md font-semibold text-white">
+        <div className="container-zenicorp relative py-section text-center">
+          <h2 className="mx-auto max-w-3xl font-heading text-display-md font-black text-white">
             <RevealLines
               lines={[
                 <>Votre projet {division.short.toLowerCase()},</>,
                 <>
-                  <span className="text-gold-gradient">pris en charge</span>.
+                  <span className="bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
+                    pris en charge.
+                  </span>
                 </>,
               ]}
             />
           </h2>
 
           <Reveal delay={280}>
-            <p className="mx-auto mt-8 max-w-lg text-base leading-relaxed text-white/60">
+            <p className="mx-auto mt-8 max-w-lg text-base leading-relaxed text-white/70">
               Soumission gratuite, sans engagement. Un entrepreneur certifié du réseau
               vous contacte sous {MODEL.contactDelay}.
             </p>
@@ -324,20 +365,20 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
               </Magnetic>
               <a
                 href={ZENICORP_PHONE_HREF}
-                className="btn-outline-gold border-white/30 text-white hover:bg-white/10 px-10 py-4 text-base"
+                className="btn-outline-gold border-white/40 text-white hover:bg-white/10 px-10 py-4 text-base"
               >
                 <Phone className="h-4 w-4" />
                 {ZENICORP_PHONE}
               </a>
             </div>
 
-            <p className="mt-10 text-sm text-white/50">
+            <p className="mt-10 text-sm text-white/60">
               Site de la division&nbsp;:{' '}
               <a
                 href={division.site}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-underline inline-flex items-center gap-1 text-zenicorp-gold"
+                className="link-underline inline-flex items-center gap-1 text-cyan-300"
               >
                 {division.site.replace('https://', '')}
                 <ExternalLink className="h-3.5 w-3.5" />

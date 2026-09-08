@@ -8,20 +8,20 @@ module.exports = {
     extend: {
       colors: {
         zenicorp: {
-          // Noir profond — même langage que les sites de division
+          // Noir — réservé aux overlays de photos et éléments contrastés
           noir: '#000000',
           noirSub: '#0A0A0F',
           noirLine: '#1E1E26',
           black: '#05070B',
-          void: '#0A0A0F',
-          surface: '#0E0E14',
-          darkGray: '#14141B',
-          lightGray: '#1A1A22',
-          line: '#23232D',
-          border: '#1E1E26',
-          text: '#FFFFFF',
-          dim: '#A1A1B0',
-          faint: '#6B6B7A',
+          void: '#F7F7F4',
+          surface: '#FFFFFF',
+          darkGray: '#EDEEF1',
+          lightGray: '#FAFAF8',
+          line: '#E4E5E9',
+          border: '#EDEFF2',
+          text: '#15171E',
+          dim: '#555E6E',
+          faint: '#8B93A3',
           gold: '#22D3EE',
           goldLight: '#67E8F9',
           white: '#FFFFFF',

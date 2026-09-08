@@ -1,28 +1,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ArrowUpRight, Phone } from 'lucide-react';
-import HeroCanvas from '@/components/HeroCanvas';
+import { ArrowRight, ArrowUpRight, Phone, ShieldCheck, Clock, MapPin } from 'lucide-react';
 import Magnetic from '@/components/Magnetic';
-import { Reveal, RevealLines, Stagger, StaggerItem } from '@/components/Reveal';
+import { Reveal, RevealLines } from '@/components/Reveal';
 import {
   divisionsData,
   MODEL,
   ZENICORP_PHONE,
   ZENICORP_PHONE_HREF,
 } from '@/lib/divisions-data';
-
-const TICKER = [
-  'Entrepreneurs certifiés RBQ',
-  'Québec',
-  'Soumission gratuite',
-  'Époxy',
-  'Asphalte',
-  'Toiture',
-  'Isolation',
-  `${MODEL.contractorShare} à l'entrepreneur`,
-  `Contact sous ${MODEL.contactDelay}`,
-  'Assurances vérifiées',
-];
 
 const STEPS = [
   {
@@ -51,26 +37,45 @@ export default function HomePage() {
   return (
     <main className="flex-1 overflow-x-clip">
       {/* ═══════════════════════════════════════════════════════
-          HERO — la plateforme comme infrastructure
+          HERO — photo plein écran, résultats avant tout
           ═══════════════════════════════════════════════════════ */}
-      <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden bg-zenicorp-noir">
-        <HeroCanvas colors={divisionsData.map((d) => d.color)} />
+      <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-black">
+        <Image
+          src="/div/realisations/epoxy-hero.jpg"
+          alt="Réalisations du réseau ZeniCorp — époxy, toiture, asphalte, isolation"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
 
-        <div className="container-zenicorp relative z-10 pb-12 pt-28 sm:pt-32">
+        {/* Overlay léger : la photo respire, mais le texte reste lisible */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
+        <div className="absolute inset-0 bp-grid-noir opacity-[0.12]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/60 to-transparent" />
+
+        <div className="container-zenicorp relative z-10 pb-14 pt-36 sm:pb-20">
           <div className="max-w-[54rem]">
             <Reveal>
-              <span className="eyebrow">Plateforme de construction · Québec</span>
+              <span className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-4 py-2 font-mono text-label uppercase text-white/80 backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                Plateforme de construction · Québec
+              </span>
             </Reveal>
 
-            <h1 className="mt-6 font-heading text-display-lg font-semibold text-white sm:mt-7">
+            <h1 className="mt-7 font-heading text-display-xl font-black text-white">
               <RevealLines
                 delay={100}
                 lines={[
                   <>Votre projet.</>,
                   <>
-                    Notre <span className="text-gold-gradient">réseau</span>.
+                    Notre{' '}
+                    <span className="bg-gradient-to-r from-cyan-300 via-sky-300 to-blue-400 bg-clip-text text-transparent">
+                      réseau.
+                    </span>
                   </>,
-                  <span key="c" className="text-white/45">
+                  <span key="c" className="text-white/60">
                     Une seule plateforme.
                   </span>,
                 ]}
@@ -78,128 +83,171 @@ export default function HomePage() {
             </h1>
 
             <Reveal delay={450}>
-              <p className="mt-7 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg">
-                Vous ne cherchez pas un entrepreneur. Vous décrivez vos travaux, et le
-                réseau vous assigne le spécialiste certifié qui les exécute.
+              <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/80 sm:text-xl">
+                Vous décrivez vos travaux, et le réseau vous assigne l&apos;entrepreneur
+                certifié qui les exécute. Garanties vérifiées, prix ferme, contact sous{' '}
+                {MODEL.contactDelay}.
               </p>
             </Reveal>
 
             <Reveal delay={580}>
-              <div className="mt-9 flex flex-col gap-3.5 sm:flex-row sm:items-center">
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
                 <Magnetic strength={0.18}>
                   <Link href="/projet" className="btn-gold group w-full sm:w-auto">
                     Soumettre mon projet
                     <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-1.5" />
                   </Link>
                 </Magnetic>
-                <Link
-                  href="/entrepreneur"
-                  className="btn-secondary group w-full border-white/25 text-white sm:w-auto"
-                >
+                <Link href="/entrepreneur" className="btn-secondary group w-full sm:w-auto">
                   Je suis entrepreneur
                   <ArrowUpRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </Link>
                 <a
                   href={ZENICORP_PHONE_HREF}
-                  className="link-underline inline-flex items-center gap-2 self-start px-1 py-2 text-sm text-white/70 transition-colors hover:text-zenicorp-gold sm:ml-2"
+                  className="link-underline inline-flex items-center gap-2 self-start px-1 py-2 text-sm text-white/75 transition-colors hover:text-cyan-300 sm:ml-2"
                 >
-                  <Phone className="h-4 w-4 text-zenicorp-gold" />
+                  <Phone className="h-4 w-4 text-cyan-300" />
                   {ZENICORP_PHONE}
                 </a>
               </div>
             </Reveal>
+
+            <Reveal delay={720}>
+              <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-white/15 pt-6 text-sm">
+                <span className="flex items-center gap-2 text-white/75">
+                  <ShieldCheck className="h-5 w-5 text-cyan-300" />
+                  Entrepreneurs certifiés RBQ
+                </span>
+                <span className="flex items-center gap-2 text-white/75">
+                  <Clock className="h-5 w-5 text-cyan-300" />
+                  Contact sous {MODEL.contactDelay}
+                </span>
+                <span className="flex items-center gap-2 text-white/75">
+                  <MapPin className="h-5 w-5 text-cyan-300" />
+                  Partout au Québec
+                </span>
+              </div>
+            </Reveal>
           </div>
-
-          {/* Barre de données — vocabulaire de fiche technique */}
-          <Reveal delay={800}>
-            <dl className="mt-12 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-6 border-t border-white/15 pt-6 sm:mt-14 lg:max-w-none lg:grid-cols-4">
-              {[
-                { v: 'Gratuit', l: 'Soumission de projet' },
-                { v: MODEL.signingShare, l: 'Payé à la signature' },
-                { v: MODEL.contractorShare, l: "Reversé à l'entrepreneur" },
-                { v: MODEL.contactDelay, l: 'Délai de prise de contact' },
-              ].map((s) => (
-                <div key={s.l}>
-                  <dt className="font-heading text-2xl font-semibold text-white sm:text-3xl">
-                    {s.v}
-                  </dt>
-                  <dd className="tech-label mt-1.5 block leading-relaxed text-white/50">{s.l}</dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
-        </div>
-
-        {/* Indice de scroll */}
-        <div className="pointer-events-none absolute bottom-6 right-6 hidden items-center gap-3 lg:flex">
-          <span className="tech-label text-white/50">Défiler</span>
-          <span className="relative block h-14 w-px overflow-hidden bg-white/15">
-            <span className="absolute inset-x-0 top-0 h-5 animate-[float-y_2.6s_ease-in-out_infinite] bg-zenicorp-gold" />
-          </span>
         </div>
       </section>
 
-      {/* ═══════════════ TICKER TECHNIQUE ═══════════════ */}
-      <section
-        aria-hidden="true"
-        className="relative overflow-hidden border-y border-zenicorp-noirLine bg-zenicorp-noir/70 py-4"
-      >
-        <div className="mask-fade-edges flex w-max animate-marquee gap-10 whitespace-nowrap">
-          {[0, 1].map((pass) => (
-            <div key={pass} className="flex items-center gap-10">
-              {TICKER.map((t) => (
-                <span key={t} className="flex items-center gap-10">
-                  <span className="font-mono text-label uppercase text-white/50">
-                    {t}
-                  </span>
-                  <span className="h-1 w-1 shrink-0 bg-zenicorp-gold/60" />
-                </span>
-              ))}
-            </div>
-          ))}
+      {/* ═══════════════════════════════════════════════════════
+          DIVISIONS — cartes photo riches
+          ═══════════════════════════════════════════════════════ */}
+      <section id="nos-divisions" className="section-padding relative">
+        <div className="container-zenicorp">
+          <Reveal>
+            <span className="eyebrow">Nos divisions</span>
+            <h2 className="heading-2 mt-6 max-w-2xl">
+              Quatre spécialités.
+              <br />
+              <span className="text-zenicorp-faint">Des réalisations concrètes.</span>
+            </h2>
+          </Reveal>
+
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {divisionsData.map((d, i) => (
+              <Reveal key={d.slug} delay={i * 70}>
+                <Link
+                  href={`/${d.slug}`}
+                  className="group relative block aspect-[3/4] overflow-hidden rounded-3xl"
+                >
+                  <Image
+                    src={d.hero}
+                    alt={`Travaux ${d.short} réalisés par le réseau ZeniCorp`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 25vw"
+                    className="object-cover transition-transform duration-[900ms] ease-premium group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                  <span
+                    className="absolute inset-0 opacity-30 mix-blend-color transition-opacity duration-700 group-hover:opacity-10"
+                    style={{ background: d.color }}
+                  />
+
+                  <div className="absolute inset-x-0 bottom-0 p-6">
+                    <span
+                      className="h-1 w-10 rounded-full"
+                      style={{ background: d.color }}
+                    />
+                    <h3 className="mt-4 font-heading text-2xl font-bold text-white">
+                      {d.short}
+                    </h3>
+                    <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-white/70">
+                      {d.positioning}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 font-mono text-label uppercase text-cyan-300">
+                      Voir
+                      <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════
           MANIFESTE — pourquoi la plateforme existe
           ═══════════════════════════════════════════════════════ */}
-      <section className="section-padding relative">
+      <section className="relative border-t border-zenicorp-line/70 bg-zenicorp-surface/50">
         <div className="container-zenicorp">
-          <div className="grid gap-14 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-3">
-              <Reveal>
-                <span className="eyebrow">Le problème</span>
-                <p className="mt-8 max-w-xs text-sm leading-relaxed text-zenicorp-faint">
-                  Trois soumissions à relancer, des délais qui glissent, des licences
-                  qu&apos;on ne vérifie jamais. La coordination est le vrai travail.
-                </p>
-                <span className="mt-8 block h-px w-full origin-left animate-line-grow bg-zenicorp-gold/40" />
-              </Reveal>
+          <div className="grid gap-14 py-section lg:grid-cols-12 lg:gap-10">
+            <div className="lg:col-span-5">
+              <div className="lg:sticky lg:top-32">
+                <Reveal>
+                  <span className="eyebrow">Le problème</span>
+                  <h2 className="heading-2 mt-6">
+                    Chercher un entrepreneur fiable ne devrait pas être{' '}
+                    <span className="text-zenicorp-faint">un projet.</span>
+                  </h2>
+                  <p className="body-base mt-6 max-w-sm">
+                    Trois soumissions à relancer, des délais qui glissent, des licences
+                    qu&apos;on ne vérifie jamais. La coordination est le vrai travail.
+                  </p>
+                </Reveal>
+              </div>
             </div>
 
-            <div className="lg:col-span-9">
-              <h2 className="font-heading text-display-md font-semibold leading-[1.06]">
-                <RevealLines
-                  lineClassName="text-zenicorp-text"
-                  lines={[
-                    <>Chercher un entrepreneur fiable</>,
-                    <>
-                      ne devrait pas être{' '}
-                      <span className="text-zenicorp-faint">un projet</span>
-                    </>,
-                    <>
-                      <span className="text-zenicorp-faint">en soi.</span>
-                    </>,
-                  ]}
-                />
-              </h2>
+            <div className="lg:col-span-7">
+              <Reveal>
+                <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
+                  {[
+                    { photo: '/div/realisations/epoxy-3.jpg', label: 'Époxy haute performance' },
+                    { photo: '/div/realisations/toiture-2.jpg', label: 'Toiture certifiée' },
+                    { photo: '/div/realisations/asphalte-1.jpg', label: 'Asphalte durable' },
+                    { photo: '/div/realisations/isolation-2.jpg', label: 'Isolation efficace' },
+                    { photo: '/div/realisations/epoxy-5.jpg', label: 'Finitions premium' },
+                    { photo: '/div/realisations/toiture-4.jpg', label: 'Parfaitement scellé' },
+                  ].map((g) => (
+                    <div
+                      key={g.photo}
+                      className="group relative aspect-[4/5] overflow-hidden rounded-2xl"
+                    >
+                      <Image
+                        src={g.photo}
+                        alt={g.label}
+                        fill
+                        sizes="(max-width: 640px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-700 ease-premium group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80" />
+                      <span className="absolute bottom-4 left-4 right-4 text-xs font-semibold text-white">
+                        {g.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
 
-              <Reveal delay={250}>
+              <Reveal delay={200}>
                 <p className="mt-10 max-w-2xl text-lg leading-relaxed text-zenicorp-dim">
                   ZeniCorp regroupe quatre divisions spécialisées et un réseau
-                  d&apos;entrepreneurs dont la licence RBQ et les assurances sont
-                  vérifiées avant toute assignation. Vous traitez avec une seule
-                  plateforme&nbsp;; le spécialiste, lui, ne fait que son métier.
+                  d&apos;entrepreneurs dont la licence RBQ et les assurances sont vérifiées
+                  avant toute assignation. Vous traitez avec une seule plateforme&nbsp;; le
+                  spécialiste, lui, ne fait que son métier.
                 </p>
               </Reveal>
             </div>
@@ -217,17 +265,17 @@ export default function HomePage() {
               <div className="lg:sticky lg:top-32">
                 <Reveal>
                   <span className="eyebrow">Côté client</span>
-                  <h2 className="heading-2 mt-8">
+                  <h2 className="heading-2 mt-6">
                     Quatre étapes,
                     <br />
                     <span className="text-zenicorp-faint">zéro relance.</span>
                   </h2>
-                  <p className="body-base mt-7 max-w-sm">
-                    Le parcours est identique pour un garage de 400&nbsp;pi² comme pour
-                    une toiture commerciale.
+                  <p className="body-base mt-6 max-w-sm">
+                    Le parcours est identique pour un garage de 400&nbsp;pi² comme pour une
+                    toiture commerciale.
                   </p>
                   <Magnetic strength={0.16}>
-                    <Link href="/projet" className="btn-outline-gold group mt-10">
+                    <Link href="/projet" className="btn-outline-gold group mt-8">
                       Commencer maintenant
                       <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-1.5" />
                     </Link>
@@ -239,12 +287,12 @@ export default function HomePage() {
             <ol className="lg:col-span-8 lg:py-section">
               {STEPS.map((s, i) => (
                 <Reveal as="li" key={s.n} delay={i * 50}>
-                  <div className="group grid grid-cols-[auto_1fr] gap-6 border-t border-zenicorp-line/70 py-10 transition-colors duration-500 hover:border-zenicorp-gold/30 sm:gap-10 sm:py-12">
-                    <span className="font-mono text-sm text-zenicorp-gold/70 transition-colors duration-500 group-hover:text-zenicorp-gold">
+                  <div className="group grid grid-cols-[auto_1fr] gap-6 border-t border-zenicorp-line/70 py-10 transition-colors duration-500 hover:border-cyan-400/40 sm:gap-10 sm:py-12">
+                    <span className="bg-gradient-to-b from-cyan-300 to-blue-500 bg-clip-text font-mono text-sm font-bold text-transparent">
                       {s.n}
                     </span>
                     <div>
-                      <h3 className="font-heading text-2xl font-semibold text-zenicorp-text sm:text-3xl">
+                      <h3 className="font-heading text-2xl font-bold text-zenicorp-text sm:text-3xl">
                         {s.t}
                       </h3>
                       <p className="body-base mt-4 max-w-xl">{s.d}</p>
@@ -259,123 +307,37 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          DIVISIONS — lignes éditoriales alternées, photos réelles
+          ENTREPRENEUR — apportez vos champs à la plateforme
           ═══════════════════════════════════════════════════════ */}
-      <section
-        id="nos-divisions"
-        className="section-padding relative border-t border-zenicorp-line/70 bg-zenicorp-black"
-      >
-        <div className="container-zenicorp">
-          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <Reveal>
-              <span className="eyebrow">Nos divisions</span>
-              <h2 className="heading-2 mt-8 max-w-xl">
-                Quatre spécialités.
-                <br />
-                <span className="bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent">Un seul interlocuteur.</span>
-              </h2>
-            </Reveal>
-            <Reveal delay={150}>
-              <p className="max-w-sm text-sm leading-relaxed text-zenicorp-faint lg:text-right">
-                Chaque division a son réseau d&apos;entrepreneurs, ses équipements et ses
-                garanties propres.
-              </p>
-            </Reveal>
-          </div>
-
-          <div className="mt-16 sm:mt-20">
-            {divisionsData.map((d, i) => (
-              <Reveal key={d.slug} delay={50}>
-                <Link
-                  href={`/${d.slug}`}
-                  className="group relative grid items-center gap-8 border-t border-white/10 py-10 lg:grid-cols-12 lg:gap-10 lg:py-14"
-                >
-                  {/* Filet coloré qui se déploie au survol */}
-                  <span
-                    className="absolute left-0 top-0 h-px w-0 transition-all duration-[900ms] ease-premium group-hover:w-full"
-                    style={{ background: d.color }}
-                  />
-
-                  <div className="flex items-center gap-5 lg:col-span-1">
-                    <span className="font-mono text-sm text-zenicorp-faint">
-                      0{i + 1}
-                    </span>
-                    <span
-                      className="h-2.5 w-2.5 shrink-0 rounded-full transition-transform duration-500 group-hover:scale-[1.6]"
-                      style={{ background: d.color }}
-                    />
-                  </div>
-
-                  <div className="lg:col-span-4">
-                    <h3 className="font-heading text-3xl font-semibold text-white sm:text-4xl">
-                      {d.short}
-                    </h3>
-                    <p className="mt-3 max-w-sm text-sm leading-relaxed text-zenicorp-dim">
-                      {d.positioning}
-                    </p>
-                  </div>
-
-                  <ul className="hidden lg:col-span-3 lg:block">
-                    {d.services.slice(0, 3).map((s) => (
-                      <li
-                        key={s}
-                        className="border-b border-white/10 py-2 text-xs text-zenicorp-faint transition-colors duration-500 group-hover:text-zenicorp-dim"
-                      >
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl lg:col-span-3 lg:aspect-[16/11]">
-                    <Image
-                      src={d.photo}
-                      alt={`Travaux ${d.short} réalisés par le réseau ZeniCorp`}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 30vw"
-                      className="object-cover transition-all duration-[900ms] ease-premium group-hover:scale-[1.06]"
-                    />
-                    <span
-                      className="pointer-events-none absolute inset-0 opacity-30 mix-blend-color transition-opacity duration-700 group-hover:opacity-0"
-                      style={{ background: d.color }}
-                    />
-                  </div>
-
-                  <span className="flex items-center gap-2 font-mono text-label uppercase text-cyan-300 lg:col-span-1 lg:justify-end">
-                    Voir
-                    <ArrowUpRight className="h-4 w-4 text-cyan-300 transition-transform duration-500 ease-premium group-hover:-translate-y-1 group-hover:translate-x-1" />
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-            <span className="block border-t border-white/10" />
-          </div>
+      <section className="relative overflow-hidden border-t border-zenicorp-line/70">
+        <div className="absolute inset-0">
+          <Image
+            src="/div/realisations/isolation-hero.jpg"
+            alt="Chantier du réseau ZeniCorp"
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════
-          ENTREPRENEURS — panneau inversé
-          ═══════════════════════════════════════════════════════ */}
-      <section className="relative section-padding overflow-hidden border-t border-zenicorp-line/70 bg-zenicorp-surface/60">
-        <div className="absolute inset-0 bp-grid opacity-[0.5]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_80%_35%,rgba(34, 211, 238,0.06),transparent_70%)]" />
 
         <div className="container-zenicorp relative">
-          <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
-            <div className="lg:col-span-5">
+          <div className="grid gap-12 py-section lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-6">
               <Reveal>
                 <span className="eyebrow">Côté entrepreneur</span>
-                <h2 className="heading-2 mt-8">
+                <h2 className="mt-6 font-heading text-display-md font-black text-white">
                   Des contrats.
                   <br />
-                  <span className="text-zenicorp-faint">Pas de démarchage.</span>
+                  <span className="text-white/60">Pas de démarchage.</span>
                 </h2>
-                <p className="body-base mt-7 max-w-md">
+                <p className="mt-6 max-w-md text-lg leading-relaxed text-white/80">
                   Vous êtes couvreur, poseur d&apos;époxy, isolateur ou spécialiste de
-                  l&apos;asphalte&nbsp;? La plateforme qualifie les clients et vous
-                  assigne les projets de votre secteur.
+                  l&apos;asphalte&nbsp;? La plateforme qualifie les clients et vous assigne
+                  les projets de votre secteur.
                 </p>
                 <Magnetic strength={0.16}>
-                  <Link href="/entrepreneur" className="btn-gold group mt-10">
+                  <Link href="/entrepreneur" className="btn-gold group mt-8">
                     Rejoindre le réseau — gratuit
                     <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-1.5" />
                   </Link>
@@ -383,70 +345,120 @@ export default function HomePage() {
               </Reveal>
             </div>
 
-            <div className="lg:col-span-7">
-              <Stagger className="grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2">
-                {[
-                  {
-                    k: '0 $',
-                    t: 'Adhésion',
-                    d: 'Aucun frais d’inscription, aucun abonnement mensuel.',
-                  },
-                  {
-                    k: MODEL.contractorShare,
-                    t: 'Votre part',
-                    d: 'Part du contrat que vous conservez sur chaque chantier réalisé.',
-                  },
-                  {
-                    k: MODEL.signingShare,
-                    t: 'Payé à la signature',
-                    d: 'Le client règle cette part du contrat au moment de la signature.',
-                  },
-                  {
-                    k: 'RBQ',
-                    t: 'Vérifié',
-                    d: 'Licence et assurances contrôlées à l’entrée du réseau.',
-                  },
-                ].map((b) => (
-                  <StaggerItem
-                    key={b.t}
-                    className="group bg-zenicorp-noir p-8 transition-all duration-500 hover:bg-zenicorp-darkGray sm:p-10"
-                  >
-                    <div className="bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text font-heading text-4xl font-black text-transparent sm:text-5xl">
-                      {b.k}
+            <div className="lg:col-span-6">
+              <Reveal delay={150}>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {[
+                    { k: '0 $', t: 'Adhésion', d: 'Aucun frais, aucun abonnement.' },
+                    {
+                      k: MODEL.contractorShare,
+                      t: 'Votre part',
+                      d: 'Sur chaque contrat réalisé.',
+                    },
+                    {
+                      k: MODEL.signingShare,
+                      t: 'Payé à la signature',
+                      d: 'Par le client, dès la signature.',
+                    },
+                    { k: 'RBQ', t: 'Vérifié', d: 'Licence et assurances contrôlées.' },
+                  ].map((b) => (
+                    <div
+                      key={b.t}
+                      className="glass rounded-2xl p-6 transition-colors duration-500 hover:border-cyan-400/40"
+                    >
+                      <div className="bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text font-heading text-3xl font-black text-transparent">
+                        {b.k}
+                      </div>
+                      <div className="mt-3 font-mono text-label uppercase text-white">
+                        {b.t}
+                      </div>
+                      <p className="mt-2 text-sm leading-relaxed text-white/60">{b.d}</p>
                     </div>
-                    <h3 className="mt-6 font-mono text-label uppercase text-white">
-                      {b.t}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-white/55 transition-colors duration-500 group-hover:text-white/75">
-                      {b.d}
-                    </p>
-                  </StaggerItem>
-                ))}
-              </Stagger>
+                  ))}
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          CTA FINAL — noir, dernier appel
+          GALERIE — les réalisations parlent
           ═══════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden border-t border-zenicorp-noirLine bg-zenicorp-noir py-section">
-        <div className="absolute inset-0 bp-grid-noir opacity-[0.5]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_120%,rgba(34, 211, 238,0.14),transparent_70%)]" />
+      <section className="section-padding relative">
+        <div className="container-zenicorp">
+          <Reveal>
+            <span className="eyebrow">Réalisations</span>
+            <h2 className="heading-2 mt-6">
+              Le travail parle.{' '}
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                Nos chantiers aussi.
+              </span>
+            </h2>
+          </Reveal>
 
-        <div className="container-zenicorp relative text-center">
+          <div className="mt-14 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+            {[
+              { src: '/div/realisations/epoxy-3.jpg', t: 'Époxy garage', h: 'lg:row-span-2' },
+              { src: '/div/realisations/asphalte-1.jpg', t: 'Entrée asphaltée', h: '' },
+              { src: '/div/realisations/toiture-1.jpg', t: 'Toiture neuve', h: '' },
+              { src: '/div/realisations/isolation-3.jpg', t: 'Cellulose grenier', h: '' },
+              { src: '/div/realisations/epoxy-1.jpg', t: 'Époxy commercial', h: '' },
+              { src: '/div/realisations/asphalte-2.jpg', t: 'Stationnement', h: 'lg:row-span-2' },
+              { src: '/div/realisations/toiture-2.jpg', t: 'Solins et bardeaux', h: '' },
+              { src: '/div/realisations/epoxy-4.jpg', t: 'Finition flocons', h: '' },
+            ].map((g, i) => (
+              <Reveal key={g.src} delay={i * 50}>
+                <div
+                  className={`group relative aspect-[4/5] overflow-hidden rounded-3xl lg:aspect-auto lg:min-h-[15rem] ${g.h}`}
+                >
+                  <Image
+                    src={g.src}
+                    alt={g.t}
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-[900ms] ease-premium group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <span className="absolute bottom-4 left-4 right-4 translate-y-2 text-sm font-semibold text-white opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                    {g.t}
+                  </span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          CTA FINAL — bandeau photo
+          ═══════════════════════════════════════════════════════ */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/div/realisations/asphalte-hero.jpg"
+            alt="Chantier asphalte"
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+
+        <div className="container-zenicorp relative py-section text-center">
           <Reveal>
             <span className="eyebrow justify-center">Prêt à démarrer</span>
           </Reveal>
 
-          <h2 className="mx-auto mt-9 max-w-4xl font-heading text-display-lg font-semibold text-white">
+          <h2 className="mx-auto mt-8 max-w-4xl font-heading text-display-lg font-black text-white">
             <RevealLines
               lines={[
                 <>Décrivez vos travaux.</>,
                 <>
                   Le réseau{' '}
-                  <span className="text-gold-gradient">s&apos;occupe du reste</span>.
+                  <span className="bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
+                    s&apos;occupe du reste.
+                  </span>
                 </>,
               ]}
             />
@@ -462,7 +474,7 @@ export default function HomePage() {
               </Magnetic>
               <a
                 href={ZENICORP_PHONE_HREF}
-                className="btn-outline-gold border-white/30 text-white hover:bg-white/10 px-10 py-4 text-base"
+                className="btn-outline-gold border-white/40 text-white hover:bg-white/10 px-10 py-4 text-base"
               >
                 <Phone className="h-4 w-4" />
                 {ZENICORP_PHONE}
