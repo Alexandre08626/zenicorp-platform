@@ -1,4 +1,4 @@
-export interface DivisionData {
+﻿export interface DivisionData {
   slug: string;
   name: string;
   short: string;
@@ -19,10 +19,10 @@ export interface DivisionData {
   faq: { q: string; a: string }[];
 }
 
-/** Téléphone réel ZeniCorpora — utilisé partout (affichage + lien tel:) */
+/** Téléphone réel Zenivaora — utilisé partout (affichage + lien tel:) */
 export const ZENICORP_PHONE = '581-748-7017';
 export const ZENICORP_PHONE_HREF = 'tel:+15817487017';
-export const ZENICORP_EMAIL = 'info@zenicorp.ca';
+export const ZENICORP_EMAIL = 'info@zeniva.ca';
 
 /** Modèle commercial — source unique de vérité pour éviter les contradictions entre pages.
  *  Soumission gratuite. Aucun dépôt : le client paie 30 % du contrat à la signature
@@ -37,7 +37,7 @@ export const MODEL = {
 export const divisionsData: DivisionData[] = [
   {
     slug: 'epoxy',
-    name: 'ZeniCorp Epoxy',
+    name: 'Zeniva Epoxy',
     short: 'Époxy',
     positioning:
       'Revêtements époxy et polyaspartique haut de gamme pour garages, commerces et espaces industriels.',
@@ -79,7 +79,7 @@ export const divisionsData: DivisionData[] = [
   },
   {
     slug: 'asphalte',
-    name: 'ZeniCorp Asphalte',
+    name: 'Zeniva Asphalte',
     short: 'Asphalte',
     positioning:
       'Entretien, réparation et protection des surfaces asphaltées, résidentielles et commerciales.',
@@ -120,7 +120,7 @@ export const divisionsData: DivisionData[] = [
   },
   {
     slug: 'toiture',
-    name: 'ZeniCorp Toiture',
+    name: 'Zeniva Toiture',
     short: 'Toiture',
     positioning:
       'Couvreurs certifiés pour toiture résidentielle et commerciale : bardeaux, TPO et EPDM.',
@@ -161,7 +161,7 @@ export const divisionsData: DivisionData[] = [
   },
   {
     slug: 'isolation',
-    name: 'ZeniCorp Isolation',
+    name: 'Zeniva Isolation',
     short: 'Isolation',
     positioning:
       "Isolation haute performance et étanchéité à l'air pour réduire durablement vos coûts de chauffage.",

@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next';
+﻿import type { Metadata, Viewport } from 'next';
 import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
@@ -39,22 +39,22 @@ const SITE_URL = 'https://www.zeniva.ca';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'ZeniCorp — Plateforme de construction et rénovation au Québec',
-    template: '%s | ZeniCorp',
+    default: 'Zeniva — Plateforme de construction et rénovation au Québec',
+    template: '%s | Zeniva',
   },
-  description: `ZeniCorp connecte les clients à des entrepreneurs certifiés RBQ : soumission gratuite, ${MODEL.signingShare} du contrat à la signature, ${MODEL.contractorShare} reversé à l'entrepreneur, contact sous ${MODEL.contactDelay}.`,
+  description: `Zeniva connecte les clients à des entrepreneurs certifiés RBQ : soumission gratuite, ${MODEL.signingShare} du contrat à la signature, ${MODEL.contractorShare} reversé à l'entrepreneur, contact sous ${MODEL.contactDelay}.`,
   keywords: [
     'construction',
     'rénovation',
     'entrepreneur certifié RBQ',
     'Québec',
-    'ZeniCorp',
+    'Zeniva',
     'époxy',
     'asphalte',
     'toiture',
     'isolation',
   ],
-  authors: [{ name: 'ZeniCorp' }],
+  authors: [{ name: 'Zeniva' }],
   alternates: { canonical: '/' },
   robots: { index: true, follow: true },
   icons: { icon: '/logo.png', apple: '/logo.png' },
@@ -62,14 +62,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_CA',
     url: SITE_URL,
-    siteName: 'ZeniCorp',
-    title: 'ZeniCorp — Plateforme de construction et rénovation au Québec',
+    siteName: 'Zeniva',
+    title: 'Zeniva — Plateforme de construction et rénovation au Québec',
     description:
       "Votre projet. Notre réseau d'entrepreneurs certifiés. Coordonné par une seule plateforme.",
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ZeniCorp — Plateforme de construction et rénovation',
+    title: 'Zeniva — Plateforme de construction et rénovation',
     description: "Réseau d'entrepreneurs certifiés RBQ au Québec.",
   },
 };
@@ -83,7 +83,7 @@ export const viewport: Viewport = {
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'ZeniCorp',
+  name: 'Zeniva',
   url: SITE_URL,
   logo: `${SITE_URL}/logo-wordmark.png`,
   email: ZENICORP_EMAIL,
@@ -97,7 +97,7 @@ const organizationJsonLd = {
   },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Divisions ZeniCorp',
+    name: 'Divisions Zeniva',
     itemListElement: divisionsData.map((d) => ({
       '@type': 'Offer',
       itemOffered: { '@type': 'Service', name: d.name, description: d.positioning },

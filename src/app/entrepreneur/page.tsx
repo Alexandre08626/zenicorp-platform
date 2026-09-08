@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -146,7 +146,7 @@ export default function EntrepreneurPage() {
               className="group inline-flex items-center gap-2.5 font-mono text-label uppercase text-zenicorp-dim transition-colors hover:text-zenicorp-gold"
             >
               <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-500 ease-premium group-hover:-translate-x-1" />
-              Plateforme ZeniCorp
+              Plateforme Zeniva
             </Link>
           </Reveal>
 

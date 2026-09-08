@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight, Phone, Mail, MapPin } from 'lucide-react';
 import {
@@ -44,7 +44,7 @@ export default function Footer() {
                 <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-lg ring-1 ring-white/15">
                   <Image
                     src="/logo-mark.png"
-                    alt="ZeniCorp"
+                    alt="Zeniva"
                     fill
                     sizes="32px"
                     className="object-cover"
@@ -52,7 +52,7 @@ export default function Footer() {
                 </span>
                 <span className="leading-none">
                   <span className="block font-heading text-lg font-black tracking-tight text-white">
-                    ZENI<span className="bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent">CORP</span>
+                    ZENI<span className="bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent">VA</span>
                   </span>
                   <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.28em] text-white/50">
                     Plateforme
@@ -140,7 +140,7 @@ export default function Footer() {
         {/* Mentions */}
         <div className="flex flex-col gap-4 border-t border-white/10 py-8 md:flex-row md:items-center md:justify-between">
           <p className="font-mono text-[10px] uppercase tracking-widest text-white/40">
-            © {new Date().getFullYear()} ZeniCorp — Tous droits réservés
+            © {new Date().getFullYear()} Zeniva — Tous droits réservés
           </p>
           <p className="max-w-xl text-xs leading-relaxed text-white/35">
             Les travaux sont réalisés par des entrepreneurs indépendants certifiés RBQ du

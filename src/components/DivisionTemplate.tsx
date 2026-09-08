@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Phone, ExternalLink } from 'lucide-react';
 import Magnetic from '@/components/Magnetic';
@@ -36,7 +36,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
       <section className="relative flex min-h-[78svh] flex-col justify-end overflow-hidden">
         <Image
           src={division.photo}
-          alt={`Travaux ${division.short} réalisés par le réseau ZeniCorp`}
+          alt={`Travaux ${division.short} réalisés par le réseau Zeniva`}
           fill
           priority
           sizes="100vw"
@@ -61,7 +61,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
               className="group inline-flex items-center gap-2.5 font-mono text-label uppercase text-white/70 transition-colors hover:text-white"
             >
               <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-500 ease-premium group-hover:-translate-x-1" />
-              Plateforme ZeniCorp
+              Plateforme Zeniva
             </Link>
           </Reveal>
 
@@ -77,7 +77,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
                   }}
                 >
                   <span className="h-1.5 w-1.5 rounded-full" style={{ background: accent }} />
-                  Division ZeniCorp
+                  Division Zeniva
                 </span>
               </Reveal>
 
@@ -254,7 +254,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
                 <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl">
                   <Image
                     src={src}
-                    alt={`Réalisation ${division.short} du réseau ZeniCorp`}
+                    alt={`Réalisation ${division.short} du réseau Zeniva`}
                     fill
                     sizes="(max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-[900ms] ease-premium group-hover:scale-110"
@@ -321,7 +321,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
         <div className="absolute inset-0">
           <Image
             src={division.hero}
-            alt={`Chantier ${division.short} du réseau ZeniCorp`}
+            alt={`Chantier ${division.short} du réseau Zeniva`}
             fill
             sizes="100vw"
             className="object-cover"

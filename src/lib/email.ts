@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+﻿import nodemailer from 'nodemailer';
 
 let _transporter: nodemailer.Transporter | null = null;
 
@@ -48,7 +48,7 @@ export function escapeHtmlMultiline(value: unknown): string {
 
 export async function sendEmail(opts: SendEmailOptions): Promise<boolean> {
   try {
-    const fromName = opts.fromName || 'ZeniCorp';
+    const fromName = opts.fromName || 'Zeniva';
     const from = process.env.SMTP_FROM || 'zenipay@zeniva.ca';
     await getTransporter().sendMail({
       from: `"${fromName}" <${from}>`,

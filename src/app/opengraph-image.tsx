@@ -1,8 +1,8 @@
-import { ImageResponse } from 'next/og';
+﻿import { ImageResponse } from 'next/og';
 
 // Runtime edge requis : le chemin Node de @vercel/og échoue au prerender sous Windows.
 export const runtime = 'edge';
-export const alt = 'ZeniCorp — Plateforme de construction et rénovation';
+export const alt = 'Zeniva — Plateforme de construction et rénovation';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -38,7 +38,7 @@ export default async function Image() {
             Z
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ fontSize: 38, fontWeight: 700, color: '#E8EDF4' }}>ZeniCorp</div>
+            <div style={{ fontSize: 38, fontWeight: 700, color: '#E8EDF4' }}>Zeniva</div>
             <div style={{ fontSize: 17, letterSpacing: 5, color: '#A5B0C2' }}>PLATEFORME</div>
           </div>
         </div>

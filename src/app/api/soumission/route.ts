@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+﻿import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { sendEmail, escapeHtml, escapeHtmlMultiline } from '@/lib/email';
 import { getDivisionBySlug, MODEL, ZENICORP_PHONE } from '@/lib/divisions-data';
@@ -96,13 +96,13 @@ export async function POST(req: NextRequest) {
 
     await sendEmail({
       to: String(email),
-      subject: 'ZeniCorp — Votre demande de projet est reçue',
+      subject: 'Zeniva — Votre demande de projet est reçue',
       html: `
         <div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;color:#111">
           <h2 style="color:#111;margin:0 0 16px">Votre projet est entre de bonnes mains</h2>
           <p>Bonjour <strong>${escapeHtml(prenom)}</strong>,</p>
           <p>Nous avons bien reçu votre demande pour <strong>${escapeHtml(divisionNom)}</strong>.</p>
-          <p>Un conseiller ZeniCorp valide votre demande, sans engagement de votre part. Un
+          <p>Un conseiller Zeniva valide votre demande, sans engagement de votre part. Un
              entrepreneur certifié RBQ vous contacte ensuite sous <strong>${MODEL.contactDelay}</strong>
              pour la visite et le prix ferme. Au contrat signé, vous payez <strong>${MODEL.signingShare}</strong>
              à la signature ; l'entrepreneur conserve <strong>${MODEL.contractorShare}</strong> du contrat.</p>
@@ -110,7 +110,7 @@ export async function POST(req: NextRequest) {
             <a href="${escapeHtml(divisionSite)}" style="display:inline-block;background:#2F6FED;color:#05070B;padding:14px 28px;text-decoration:none;font-weight:bold;border-radius:6px">Découvrir la division</a>
           </p>
           <p>Une question ? Appelez-nous au <strong>${ZENICORP_PHONE}</strong>.</p>
-          <p style="color:#666;font-size:13px;margin-top:28px">ZeniCorp — Votre projet. Notre réseau d'entrepreneurs certifiés.</p>
+          <p style="color:#666;font-size:13px;margin-top:28px">Zeniva — Votre projet. Notre réseau d'entrepreneurs certifiés.</p>
         </div>`,
     });
 
@@ -119,7 +119,7 @@ export async function POST(req: NextRequest) {
       subject: `NOUVELLE SOUMISSION — ${divisionNom} — ${nom}`,
       html: `
         <div style="font-family:Arial,sans-serif">
-          <h3>Nouvelle soumission ZeniCorp</h3>
+          <h3>Nouvelle soumission Zeniva</h3>
           <p><strong>Client :</strong> ${escapeHtml(nom)}<br/>
           <strong>Courriel :</strong> ${escapeHtml(email)}<br/>
           <strong>Téléphone :</strong> ${escapeHtml(telephone) || '—'}<br/>

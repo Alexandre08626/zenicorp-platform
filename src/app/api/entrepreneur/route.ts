@@ -49,10 +49,10 @@ export async function POST(req: NextRequest) {
 
     await sendEmail({
       to: String(email),
-      subject: 'ZeniCorp — Inscription entrepreneur reçue',
+      subject: 'Zeniva — Inscription entrepreneur reçue',
       html: `
         <div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;color:#111">
-          <h2 style="color:#111;margin:0 0 16px">Bienvenue dans le réseau ZeniCorp</h2>
+          <h2 style="color:#111;margin:0 0 16px">Bienvenue dans le réseau Zeniva</h2>
           <p>Bonjour <strong>${escapeHtml(prenom)}</strong>,</p>
           <p>Votre inscription (<strong>${escapeHtml(entreprise)}</strong>) est bien reçue pour la division
              <strong>${escapeHtml(divisionNom)}</strong>.</p>
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
              licence RBQ et de vos assurances. L'inscription au réseau est gratuite&nbsp;: vous conservez
              <strong>${MODEL.contractorShare}</strong> du montant de chaque contrat réalisé.</p>
           <p>Une question ? Appelez-nous au <strong>${ZENICORP_PHONE}</strong>.</p>
-          <p style="color:#666;font-size:13px;margin-top:28px">ZeniCorp — Votre projet. Notre réseau d'entrepreneurs certifiés.</p>
+          <p style="color:#666;font-size:13px;margin-top:28px">Zeniva — Votre projet. Notre réseau d'entrepreneurs certifiés.</p>
         </div>`,
     });
 

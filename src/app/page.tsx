@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, Phone, ShieldCheck, Clock, MapPin } from 'lucide-react';
 import Magnetic from '@/components/Magnetic';
@@ -42,7 +42,7 @@ export default function HomePage() {
       <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-black">
         <Image
           src="/div/realisations/epoxy-hero.jpg"
-          alt="Réalisations du réseau ZeniCorp — époxy, toiture, asphalte, isolation"
+          alt="Réalisations du réseau Zeniva — époxy, toiture, asphalte, isolation"
           fill
           priority
           sizes="100vw"
@@ -155,7 +155,7 @@ export default function HomePage() {
                 >
                   <Image
                     src={d.hero}
-                    alt={`Travaux ${d.short} réalisés par le réseau ZeniCorp`}
+                    alt={`Travaux ${d.short} réalisés par le réseau Zeniva`}
                     fill
                     sizes="(max-width: 640px) 100vw, 25vw"
                     className="object-cover transition-transform duration-[900ms] ease-premium group-hover:scale-110"
@@ -244,7 +244,7 @@ export default function HomePage() {
 
               <Reveal delay={200}>
                 <p className="mt-10 max-w-2xl text-lg leading-relaxed text-zenicorp-dim">
-                  ZeniCorp regroupe quatre divisions spécialisées et un réseau
+                  Zeniva regroupe quatre divisions spécialisées et un réseau
                   d&apos;entrepreneurs dont la licence RBQ et les assurances sont vérifiées
                   avant toute assignation. Vous traitez avec une seule plateforme&nbsp;; le
                   spécialiste, lui, ne fait que son métier.
@@ -313,7 +313,7 @@ export default function HomePage() {
         <div className="absolute inset-0">
           <Image
             src="/div/realisations/isolation-hero.jpg"
-            alt="Chantier du réseau ZeniCorp"
+            alt="Chantier du réseau Zeniva"
             fill
             sizes="100vw"
             className="object-cover"
