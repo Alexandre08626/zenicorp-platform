@@ -19,12 +19,12 @@
   }
 
   body {
-    @apply bg-zenicorp-black text-zenicorp-text antialiased;
+    @apply bg-zenicorp-void text-zenicorp-text antialiased;
     font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1;
     /* Pas de background-attachment: fixed — coûteux au scroll et cassé sur iOS. */
     background-image: radial-gradient(
       ellipse 90% 55% at 50% -10%,
-      rgba(47, 111, 237, 0.055),
+      rgba(47, 111, 237, 0.05),
       transparent 70%
     );
     background-repeat: no-repeat;
@@ -43,8 +43,8 @@
   }
 
   ::selection {
-    background: rgba(47, 111, 237, 0.28);
-    color: #fff;
+    background: rgba(47, 111, 237, 0.22);
+    color: #002244;
   }
 
   :focus-visible {
@@ -128,7 +128,7 @@
     @apply btn border border-zenicorp-line text-zenicorp-text;
   }
   .btn-secondary:hover {
-    @apply border-zenicorp-dim/50 bg-white/[0.04];
+    @apply border-zenicorp-dim/40 bg-zenicorp-black/5;
     transform: translateY(-2px);
   }
 
@@ -147,15 +147,15 @@
 
   /* ─────────── SURFACES ─────────── */
   .card {
-    @apply relative overflow-hidden border border-zenicorp-line bg-zenicorp-surface/70
+    @apply relative overflow-hidden border border-zenicorp-line bg-white
            transition-all duration-500 ease-premium;
   }
   .card:hover {
-    @apply border-zenicorp-gold/30 bg-zenicorp-surface;
+    @apply border-zenicorp-gold/40 bg-white;
   }
   .glass {
-    @apply border border-zenicorp-line bg-zenicorp-black/60 backdrop-blur-xl;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    @apply border border-zenicorp-line bg-white/80 backdrop-blur-xl;
+    box-shadow: 0 24px 60px -24px rgba(5, 7, 11, 0.18);
   }
 
   /* Trait de règle graduée — vocabulaire du plan technique */
@@ -180,8 +180,8 @@
     @apply appearance-none pr-8;
   }
   select.input-field option {
-    background-color: #0a0d13;
-    color: #e8edf4;
+    background-color: #ffffff;
+    color: #12151d;
   }
   textarea.input-field {
     @apply resize-y;
@@ -244,13 +244,24 @@
     transform: none;
   }
 
-  /* Grille de plan */
+  /* Grille de plan — variante claire (fond neutre) */
   .bp-grid {
+    background-image: linear-gradient(rgba(18, 21, 29, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(18, 21, 29, 0.05) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+  .bp-grid-fine {
+    background-image: linear-gradient(rgba(18, 21, 29, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(18, 21, 29, 0.035) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  /* Grille de plan — variante sombre (sections noires) */
+  .bp-grid-noir {
     background-image: linear-gradient(rgba(143, 160, 191, 0.09) 1px, transparent 1px),
       linear-gradient(90deg, rgba(143, 160, 191, 0.09) 1px, transparent 1px);
     background-size: 72px 72px;
   }
-  .bp-grid-fine {
+  .bp-grid-fine-noir {
     background-image: linear-gradient(rgba(143, 160, 191, 0.055) 1px, transparent 1px),
       linear-gradient(90deg, rgba(143, 160, 191, 0.055) 1px, transparent 1px);
     background-size: 18px 18px;
@@ -264,7 +275,7 @@
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   }
   .text-gold-gradient {
-    background: linear-gradient(100deg, #8fc4ff 0%, #2f6fed 45%, #0f3e9e 100%);
+    background: linear-gradient(100deg, #3f82f0 0%, #2f6fed 45%, #14449e 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -282,13 +293,13 @@
     height: 9px;
   }
   ::-webkit-scrollbar-track {
-    background: #05070b;
+    background: #f4f4f1;
   }
   ::-webkit-scrollbar-thumb {
-    background: #232b38;
+    background: #d0d4da;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #3a4453;
+    background: #b6bcc6;
   }
 }
 

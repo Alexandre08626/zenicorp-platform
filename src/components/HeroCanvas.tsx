@@ -70,8 +70,9 @@ export default function HeroCanvas({ colors }: { colors: string[] }) {
     <div ref={host} className="absolute inset-0" aria-hidden="true">
       {/* Repli statique : toujours rendu, sert de fond si WebGL est absent
           ou si l'utilisateur demande un mouvement réduit. */}
-      <div className="absolute inset-0 bp-grid mask-fade-b opacity-[0.5]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_45%_at_50%_45%,rgba(47, 111, 237,0.13),transparent_70%)]" />
+      <div className="absolute inset-0 bg-zenicorp-noir/40" />
+      <div className="absolute inset-0 bp-grid-noir mask-fade-b opacity-[0.5]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_45%_at_50%_45%,rgba(47, 111, 237,0.18),transparent_70%)]" />
 
       {mount && (
         <div
@@ -83,9 +84,9 @@ export default function HeroCanvas({ colors }: { colors: string[] }) {
       )}
 
       {/* Fondus de lisibilité : le texte doit toujours gagner contre la scène */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-zenicorp-black to-transparent" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-zenicorp-black via-zenicorp-black/80 to-transparent lg:via-zenicorp-black/55" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-zenicorp-black/90 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-zenicorp-noir to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-zenicorp-noir via-zenicorp-noir/80 to-transparent lg:via-zenicorp-noir/55" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-zenicorp-noir/90 to-transparent" />
     </div>
   );
 }

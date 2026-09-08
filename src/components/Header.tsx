@@ -44,10 +44,8 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ease-premium ${
-          scrolled || open
-            ? 'border-b border-zenicorp-line/70 bg-zenicorp-black/80 backdrop-blur-xl'
-            : 'border-b border-transparent bg-transparent'
+        className={`fixed inset-x-0 top-0 z-50 border-b border-zenicorp-noirLine bg-zenicorp-noir/85 backdrop-blur-xl transition-all duration-700 ease-premium ${
+          scrolled ? 'shadow-[0_12px_40px_-16px_rgba(0,0,0,0.35)]' : ''
         }`}
       >
         <div className="container-zenicorp">
@@ -57,55 +55,47 @@ export default function Header() {
             }`}
           >
             {/* Marque */}
-            <Link href="/" className="group flex items-center gap-3" aria-label="ZeniCorp, accueil">
-              <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-md">
+            <Link href="/" className="group flex items-center" aria-label="ZeniCorp, accueil">
+              <span className="relative h-9 w-auto overflow-hidden rounded-md ring-1 ring-white/10">
                 <Image
-                  src="/logo-mark.png"
-                  alt=""
-                  fill
-                  sizes="36px"
-                  className="object-cover transition-transform duration-700 ease-premium group-hover:scale-110"
+                  src="/logo.png"
+                  alt="ZeniCorp"
+                  width={400}
+                  height={267}
                   priority
+                  className="h-9 w-auto object-contain transition-transform duration-700 ease-premium group-hover:scale-[1.04]"
                 />
-              </span>
-              <span className="leading-none">
-                <span className="block font-heading text-lg font-semibold tracking-tight text-zenicorp-text">
-                  ZeniCorp
-                </span>
-                <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.28em] text-zenicorp-faint">
-                  Plateforme
-                </span>
               </span>
             </Link>
 
             {/* Navigation bureau */}
             <nav className="hidden items-center gap-9 lg:flex">
               <div className="group relative">
-                <button className="flex items-center gap-2 py-2 font-mono text-label uppercase text-zenicorp-dim transition-colors duration-300 group-hover:text-zenicorp-text">
+                <button className="flex items-center gap-2 py-2 font-mono text-label uppercase text-white/70 transition-colors duration-300 group-hover:text-white">
                   Divisions
                   <span className="h-1 w-1 bg-zenicorp-gold transition-transform duration-500 group-hover:scale-150" />
                 </button>
 
                 {/* Panneau divisions */}
                 <div className="invisible absolute left-1/2 top-full w-[27rem] -translate-x-1/2 pt-5 opacity-0 transition-all duration-500 ease-premium group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                  <div className="glass grid grid-cols-2 gap-px bg-zenicorp-line/40 p-px">
+                  <div className="glass grid grid-cols-2 gap-px overflow-hidden border-white/15 bg-zenicorp-noir p-px">
                     {divisionsData.map((d) => (
                       <Link
                         key={d.slug}
                         href={`/${d.slug}`}
-                        className="group/i relative bg-zenicorp-black/90 p-5 transition-colors duration-300 hover:bg-zenicorp-surface"
+                        className="group/i relative bg-zenicorp-noir p-5 transition-colors duration-300 hover:bg-zenicorp-noirSub"
                       >
                         <span
                           className="absolute left-0 top-0 h-full w-px transition-all duration-500"
                           style={{ background: d.color }}
                         />
                         <span className="flex items-center justify-between">
-                          <span className="font-heading text-base font-semibold text-zenicorp-text">
+                          <span className="font-heading text-base font-semibold text-white">
                             {d.short}
                           </span>
-                          <ArrowUpRight className="h-3.5 w-3.5 text-zenicorp-faint transition-all duration-300 group-hover/i:-translate-y-0.5 group-hover/i:translate-x-0.5 group-hover/i:text-zenicorp-gold" />
+                          <ArrowUpRight className="h-3.5 w-3.5 text-white/40 transition-all duration-300 group-hover/i:-translate-y-0.5 group-hover/i:translate-x-0.5 group-hover/i:text-zenicorp-gold" />
                         </span>
-                        <span className="mt-1.5 block text-xs leading-snug text-zenicorp-faint">
+                        <span className="mt-1.5 block text-xs leading-snug text-white/50">
                           {d.services[0]}
                         </span>
                       </Link>
@@ -116,14 +106,14 @@ export default function Header() {
 
               <Link
                 href="/entrepreneur"
-                className="link-underline py-2 font-mono text-label uppercase text-zenicorp-dim transition-colors duration-300 hover:text-zenicorp-text"
+                className="link-underline py-2 font-mono text-label uppercase text-white/70 transition-colors duration-300 hover:text-white"
               >
                 Entrepreneurs
               </Link>
 
               <a
                 href={ZENICORP_PHONE_HREF}
-                className="flex items-center gap-2 py-2 font-mono text-label uppercase text-zenicorp-dim transition-colors duration-300 hover:text-zenicorp-gold"
+                className="flex items-center gap-2 py-2 font-mono text-label uppercase text-white/70 transition-colors duration-300 hover:text-zenicorp-gold"
               >
                 <Phone className="h-3.5 w-3.5 text-zenicorp-gold" />
                 {ZENICORP_PHONE}
@@ -146,7 +136,7 @@ export default function Header() {
               </a>
               <button
                 onClick={() => setOpen((v) => !v)}
-                className="p-3 text-zenicorp-text"
+                className="p-3 text-white"
                 aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
                 aria-expanded={open}
               >
@@ -161,16 +151,16 @@ export default function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-40 flex flex-col bg-zenicorp-black lg:hidden"
+            className="fixed inset-0 z-40 flex flex-col bg-zenicorp-noir lg:hidden"
             initial={reduced ? { opacity: 0 } : { clipPath: 'inset(0 0 100% 0)' }}
             animate={reduced ? { opacity: 1 } : { clipPath: 'inset(0 0 0% 0)' }}
             exit={reduced ? { opacity: 0 } : { clipPath: 'inset(0 0 100% 0)' }}
             transition={{ duration: 0.7, ease: EASE }}
           >
-            <div className="absolute inset-0 bp-grid-fine opacity-40" />
+            <div className="absolute inset-0 bp-grid-fine-noir opacity-40" />
 
             <nav className="container-zenicorp relative flex flex-1 flex-col justify-center gap-1 pt-24 pb-10">
-              <span className="tech-label mb-6 block">Divisions</span>
+              <span className="tech-label mb-6 block text-white/50">Divisions</span>
               {divisionsData.map((d, i) => (
                 <motion.div
                   key={d.slug}
@@ -180,18 +170,18 @@ export default function Header() {
                 >
                   <Link
                     href={`/${d.slug}`}
-                    className="flex items-center justify-between border-b border-zenicorp-line/70 py-4"
+                    className="flex items-center justify-between border-b border-white/10 py-4"
                   >
                     <span className="flex items-center gap-4">
                       <span
                         className="h-2 w-2 shrink-0 rounded-full"
                         style={{ background: d.color }}
                       />
-                      <span className="font-heading text-2xl font-semibold text-zenicorp-text">
+                      <span className="font-heading text-2xl font-semibold text-white">
                         {d.short}
                       </span>
                     </span>
-                    <ArrowUpRight className="h-4 w-4 text-zenicorp-faint" />
+                    <ArrowUpRight className="h-4 w-4 text-white/40" />
                   </Link>
                 </motion.div>
               ))}
@@ -206,10 +196,13 @@ export default function Header() {
                   Soumettre un projet
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/entrepreneur" className="btn-secondary w-full py-4">
+                <Link
+                  href="/entrepreneur"
+                  className="btn-secondary w-full border-white/25 text-white py-4"
+                >
                   Je suis entrepreneur
                 </Link>
-                <a href={ZENICORP_PHONE_HREF} className="btn-outline-gold w-full py-4">
+                <a href={ZENICORP_PHONE_HREF} className="btn-outline-gold w-full border-white/30 text-white py-4">
                   <Phone className="h-4 w-4" />
                   {ZENICORP_PHONE}
                 </a>

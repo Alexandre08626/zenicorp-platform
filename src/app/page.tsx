@@ -53,7 +53,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           HERO — la plateforme comme infrastructure
           ═══════════════════════════════════════════════════════ */}
-      <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden">
+      <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden bg-zenicorp-noir">
         <HeroCanvas colors={divisionsData.map((d) => d.color)} />
 
         <div className="container-zenicorp relative z-10 pb-12 pt-28 sm:pt-32">
@@ -62,7 +62,7 @@ export default function HomePage() {
               <span className="eyebrow">Plateforme de construction · Québec</span>
             </Reveal>
 
-            <h1 className="mt-6 font-heading text-display-lg font-semibold text-zenicorp-text sm:mt-7">
+            <h1 className="mt-6 font-heading text-display-lg font-semibold text-white sm:mt-7">
               <RevealLines
                 delay={100}
                 lines={[
@@ -70,7 +70,7 @@ export default function HomePage() {
                   <>
                     Notre <span className="text-gold-gradient">réseau</span>.
                   </>,
-                  <span key="c" className="text-zenicorp-faint">
+                  <span key="c" className="text-white/45">
                     Une seule plateforme.
                   </span>,
                 ]}
@@ -78,7 +78,7 @@ export default function HomePage() {
             </h1>
 
             <Reveal delay={450}>
-              <p className="mt-7 max-w-lg text-base leading-relaxed text-zenicorp-dim sm:text-lg">
+              <p className="mt-7 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg">
                 Vous ne cherchez pas un entrepreneur. Vous décrivez vos travaux, et le
                 réseau vous assigne le spécialiste certifié qui les exécute.
               </p>
@@ -94,14 +94,14 @@ export default function HomePage() {
                 </Magnetic>
                 <Link
                   href="/entrepreneur"
-                  className="btn-secondary group w-full sm:w-auto"
+                  className="btn-secondary group w-full border-white/25 text-white sm:w-auto"
                 >
                   Je suis entrepreneur
                   <ArrowUpRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </Link>
                 <a
                   href={ZENICORP_PHONE_HREF}
-                  className="link-underline inline-flex items-center gap-2 self-start px-1 py-2 text-sm text-zenicorp-dim transition-colors hover:text-zenicorp-gold sm:ml-2"
+                  className="link-underline inline-flex items-center gap-2 self-start px-1 py-2 text-sm text-white/70 transition-colors hover:text-zenicorp-gold sm:ml-2"
                 >
                   <Phone className="h-4 w-4 text-zenicorp-gold" />
                   {ZENICORP_PHONE}
@@ -112,7 +112,7 @@ export default function HomePage() {
 
           {/* Barre de données — vocabulaire de fiche technique */}
           <Reveal delay={800}>
-            <dl className="mt-12 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-6 border-t border-zenicorp-line/70 pt-6 sm:mt-14 lg:max-w-none lg:grid-cols-4">
+            <dl className="mt-12 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-6 border-t border-white/15 pt-6 sm:mt-14 lg:max-w-none lg:grid-cols-4">
               {[
                 { v: 'Gratuit', l: 'Soumission de projet' },
                 { v: MODEL.signingShare, l: 'Payé à la signature' },
@@ -120,10 +120,10 @@ export default function HomePage() {
                 { v: MODEL.contactDelay, l: 'Délai de prise de contact' },
               ].map((s) => (
                 <div key={s.l}>
-                  <dt className="font-heading text-2xl font-semibold text-zenicorp-text sm:text-3xl">
+                  <dt className="font-heading text-2xl font-semibold text-white sm:text-3xl">
                     {s.v}
                   </dt>
-                  <dd className="tech-label mt-1.5 block leading-relaxed">{s.l}</dd>
+                  <dd className="tech-label mt-1.5 block leading-relaxed text-white/50">{s.l}</dd>
                 </div>
               ))}
             </dl>
@@ -132,8 +132,8 @@ export default function HomePage() {
 
         {/* Indice de scroll */}
         <div className="pointer-events-none absolute bottom-6 right-6 hidden items-center gap-3 lg:flex">
-          <span className="tech-label">Défiler</span>
-          <span className="relative block h-14 w-px overflow-hidden bg-zenicorp-line">
+          <span className="tech-label text-white/50">Défiler</span>
+          <span className="relative block h-14 w-px overflow-hidden bg-white/15">
             <span className="absolute inset-x-0 top-0 h-5 animate-[float-y_2.6s_ease-in-out_infinite] bg-zenicorp-gold" />
           </span>
         </div>
@@ -142,14 +142,14 @@ export default function HomePage() {
       {/* ═══════════════ TICKER TECHNIQUE ═══════════════ */}
       <section
         aria-hidden="true"
-        className="relative overflow-hidden border-y border-zenicorp-line/70 bg-zenicorp-void/60 py-4"
+        className="relative overflow-hidden border-y border-zenicorp-noirLine bg-zenicorp-noir/70 py-4"
       >
         <div className="mask-fade-edges flex w-max animate-marquee gap-10 whitespace-nowrap">
           {[0, 1].map((pass) => (
             <div key={pass} className="flex items-center gap-10">
               {TICKER.map((t) => (
                 <span key={t} className="flex items-center gap-10">
-                  <span className="font-mono text-label uppercase text-zenicorp-faint">
+                  <span className="font-mono text-label uppercase text-white/50">
                     {t}
                   </span>
                   <span className="h-1 w-1 shrink-0 bg-zenicorp-gold/60" />
@@ -355,9 +355,9 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           ENTREPRENEURS — panneau inversé
           ═══════════════════════════════════════════════════════ */}
-      <section className="relative section-padding overflow-hidden border-t border-zenicorp-line/70">
-        <div className="absolute inset-0 bp-grid-fine opacity-30" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_80%_35%,rgba(47, 111, 237,0.075),transparent_70%)]" />
+      <section className="relative section-padding overflow-hidden border-t border-zenicorp-line/70 bg-[#FCFCFA]">
+        <div className="absolute inset-0 bp-grid opacity-[0.5]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_80%_35%,rgba(47, 111, 237,0.06),transparent_70%)]" />
 
         <div className="container-zenicorp relative">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
@@ -409,15 +409,15 @@ export default function HomePage() {
                 ].map((b) => (
                   <StaggerItem
                     key={b.t}
-                    className="group bg-zenicorp-black p-8 transition-colors duration-500 hover:bg-zenicorp-surface sm:p-10"
+                    className="group bg-zenicorp-noir p-8 transition-colors duration-500 hover:bg-zenicorp-noirSub sm:p-10"
                   >
                     <div className="font-heading text-4xl font-semibold text-zenicorp-gold sm:text-5xl">
                       {b.k}
                     </div>
-                    <h3 className="mt-6 font-mono text-label uppercase text-zenicorp-text">
+                    <h3 className="mt-6 font-mono text-label uppercase text-white">
                       {b.t}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-zenicorp-faint transition-colors duration-500 group-hover:text-zenicorp-dim">
+                    <p className="mt-3 text-sm leading-relaxed text-white/55 transition-colors duration-500 group-hover:text-white/75">
                       {b.d}
                     </p>
                   </StaggerItem>
@@ -429,23 +429,24 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          CTA FINAL
+          CTA FINAL — noir, dernier appel
           ═══════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden border-t border-zenicorp-line/70 py-section">
-        <div className="absolute inset-0 bp-grid opacity-[0.45]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_120%,rgba(47, 111, 237,0.12),transparent_70%)]" />
+      <section className="relative overflow-hidden border-t border-zenicorp-noirLine bg-zenicorp-noir py-section">
+        <div className="absolute inset-0 bp-grid-noir opacity-[0.5]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_120%,rgba(47, 111, 237,0.18),transparent_70%)]" />
 
         <div className="container-zenicorp relative text-center">
           <Reveal>
             <span className="eyebrow justify-center">Prêt à démarrer</span>
           </Reveal>
 
-          <h2 className="mx-auto mt-9 max-w-4xl font-heading text-display-lg font-semibold">
+          <h2 className="mx-auto mt-9 max-w-4xl font-heading text-display-lg font-semibold text-white">
             <RevealLines
               lines={[
                 <>Décrivez vos travaux.</>,
                 <>
-                  Le réseau <span className="text-gold-gradient">s&apos;occupe du reste</span>.
+                  Le réseau{' '}
+                  <span className="text-gold-gradient">s&apos;occupe du reste</span>.
                 </>,
               ]}
             />
@@ -459,7 +460,10 @@ export default function HomePage() {
                   <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-1.5" />
                 </Link>
               </Magnetic>
-              <a href={ZENICORP_PHONE_HREF} className="btn-outline-gold px-10 py-4 text-base">
+              <a
+                href={ZENICORP_PHONE_HREF}
+                className="btn-outline-gold border-white/30 text-white hover:bg-white/10 px-10 py-4 text-base"
+              >
                 <Phone className="h-4 w-4" />
                 {ZENICORP_PHONE}
               </a>

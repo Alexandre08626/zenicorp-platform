@@ -94,6 +94,7 @@ function ProjetForm() {
     return (
       <main className="flex flex-1 items-center overflow-x-clip">
         <div className="absolute inset-0 bp-grid-fine opacity-25" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_0%,rgba(47, 111, 237,0.05),transparent_70%)]" />
         <section className="container-tight relative py-40 text-center">
           <Reveal>
             <span
@@ -231,7 +232,7 @@ function ProjetForm() {
                           type="button"
                           onClick={() => setDivision(d.slug)}
                           aria-pressed={actif}
-                          className="group relative overflow-hidden bg-zenicorp-black text-left transition-colors duration-500"
+                          className="group relative overflow-hidden bg-zenicorp-noir text-left transition-colors duration-500"
                         >
                           <span className="relative block aspect-[16/7] overflow-hidden">
                             <Image
@@ -257,10 +258,10 @@ function ProjetForm() {
 
                           <span className="flex items-center justify-between gap-3 px-6 py-5">
                             <span>
-                              <span className="block font-heading text-lg font-semibold text-zenicorp-text">
+                              <span className="block font-heading text-lg font-semibold text-white">
                                 {d.short}
                               </span>
-                              <span className="mt-1 block font-mono text-[10px] uppercase tracking-widest text-zenicorp-faint">
+                              <span className="mt-1 block font-mono text-[10px] uppercase tracking-widest text-white/50">
                                 {d.services.length} prestations
                               </span>
                             </span>
@@ -272,7 +273,7 @@ function ProjetForm() {
                               }}
                             >
                               {actif && (
-                                <Check className="h-3.5 w-3.5 text-zenicorp-black" />
+                                <Check className="h-3.5 w-3.5 text-zenicorp-noir" />
                               )}
                             </span>
                           </span>
@@ -400,7 +401,7 @@ function ProjetForm() {
                 />
 
                 {/* Modèle commercial — transparence */}
-                <div className="mt-12 border border-zenicorp-line/70 bg-zenicorp-surface/50 p-8">
+                <div className="mt-12 border border-zenicorp-line bg-zenicorp-surface/60 p-8">
                   <span className="tech-label">Le modèle, sans ambiguïté</span>
                   <dl className="mt-7 grid gap-8 sm:grid-cols-3">
                     {[
@@ -423,7 +424,7 @@ function ProjetForm() {
                 {erreur && (
                   <div
                     role="alert"
-                    className="mt-8 flex items-start gap-3 border border-red-900/60 bg-red-950/30 p-5 text-sm text-red-200"
+                    className="mt-8 flex items-start gap-3 border border-red-200 bg-red-50 p-5 text-sm text-red-700"
                   >
                     <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                     <span>{erreur}</span>

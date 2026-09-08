@@ -46,19 +46,19 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
         {/* Étalonnage : la photo devient un fond, jamais un décor bruyant.
             Les photos sources ont des résolutions inégales : un traitement
             graphique assumé vaut mieux qu'un agrandissement flou visible. */}
-        <div className="absolute inset-0 bg-zenicorp-black/55" />
+        <div className="absolute inset-0 bg-zenicorp-noir/55" />
         <div
           className="absolute inset-0 opacity-25 mix-blend-color"
           style={{ background: accent }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-zenicorp-black via-zenicorp-black/75 to-zenicorp-black/35" />
-        <div className="absolute inset-0 bp-grid-fine opacity-[0.14]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-zenicorp-noir via-zenicorp-noir/75 to-zenicorp-noir/35" />
+        <div className="absolute inset-0 bp-grid-fine-noir opacity-[0.14]" />
 
         <div className="container-zenicorp relative z-10 pb-16 pt-36 sm:pb-24">
           <Reveal>
             <Link
               href="/"
-              className="group inline-flex items-center gap-2.5 font-mono text-label uppercase text-zenicorp-dim transition-colors hover:text-zenicorp-gold"
+              className="group inline-flex items-center gap-2.5 font-mono text-label uppercase text-white/70 transition-colors hover:text-white"
             >
               <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-500 ease-premium group-hover:-translate-x-1" />
               Plateforme ZeniCorp
@@ -86,7 +86,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
               </h1>
 
               <Reveal delay={400}>
-                <p className="mt-7 max-w-2xl text-lg leading-relaxed text-zenicorp-text/85 sm:text-xl">
+                <p className="mt-7 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
                   {division.positioning}
                 </p>
               </Reveal>
@@ -104,7 +104,10 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
                       <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-1.5" />
                     </Link>
                   </Magnetic>
-                  <a href={ZENICORP_PHONE_HREF} className="btn-secondary w-full backdrop-blur">
+                  <a
+                    href={ZENICORP_PHONE_HREF}
+                    className="btn-secondary w-full border-white/25 text-white backdrop-blur"
+                  >
                     <Phone className="h-4 w-4 text-zenicorp-gold" />
                     {ZENICORP_PHONE}
                   </a>
@@ -173,24 +176,25 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
       </section>
 
       {/* ═══════════════ PROCESSUS ═══════════════ */}
-      <section className="section-padding relative overflow-hidden border-t border-zenicorp-line/70 bg-zenicorp-void/40">
+      <section className="section-padding relative overflow-hidden border-t border-zenicorp-line/70 bg-zenicorp-noir">
         <div
-          className="absolute inset-0 opacity-[0.06]"
+          className="absolute inset-0 opacity-[0.08]"
           style={{
             background: `radial-gradient(ellipse 55% 60% at 15% 20%, ${accent}, transparent 70%)`,
           }}
         />
+        <div className="absolute inset-0 bp-grid-fine-noir opacity-30" />
         <div className="container-zenicorp relative">
           <Reveal>
             <span className="eyebrow">Déroulement</span>
-            <h2 className="heading-2 mt-8 max-w-2xl">
+            <h2 className="heading-2 mt-8 max-w-2xl text-white">
               De la demande
               <br />
-              <span className="text-zenicorp-faint">au chantier terminé.</span>
+              <span className="text-white/50">au chantier terminé.</span>
             </h2>
           </Reveal>
 
-          <div className="mt-16 grid gap-px border border-zenicorp-line/70 bg-zenicorp-line/40 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 n: '01',
@@ -214,17 +218,17 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
               },
             ].map((s, i) => (
               <Reveal key={s.n} delay={i * 60}>
-                <div className="group h-full bg-zenicorp-black p-8 transition-colors duration-500 hover:bg-zenicorp-surface sm:p-9">
+                <div className="group h-full bg-zenicorp-noir p-8 transition-colors duration-500 hover:bg-zenicorp-noirSub sm:p-9">
                   <span
                     className="font-mono text-xs transition-colors duration-500"
                     style={{ color: accent }}
                   >
                     {s.n}
                   </span>
-                  <h3 className="mt-6 font-heading text-xl font-semibold text-zenicorp-text">
+                  <h3 className="mt-6 font-heading text-xl font-semibold text-white">
                     {s.t}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-zenicorp-faint transition-colors duration-500 group-hover:text-zenicorp-dim">
+                  <p className="mt-3 text-sm leading-relaxed text-white/55 transition-colors duration-500 group-hover:text-white/75">
                     {s.d}
                   </p>
                 </div>
@@ -281,17 +285,17 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
       </section>
 
       {/* ═══════════════ CTA ═══════════════ */}
-      <section className="relative overflow-hidden border-t border-zenicorp-line/70 py-section">
-        <div className="absolute inset-0 bp-grid opacity-40" />
+      <section className="relative overflow-hidden border-t border-zenicorp-noirLine bg-zenicorp-noir py-section">
+        <div className="absolute inset-0 bp-grid-noir opacity-40" />
         <div
-          className="absolute inset-0 opacity-[0.13]"
+          className="absolute inset-0 opacity-[0.14]"
           style={{
             background: `radial-gradient(ellipse 60% 70% at 50% 120%, ${accent}, transparent 70%)`,
           }}
         />
 
         <div className="container-zenicorp relative text-center">
-          <h2 className="mx-auto max-w-3xl font-heading text-display-md font-semibold">
+          <h2 className="mx-auto max-w-3xl font-heading text-display-md font-semibold text-white">
             <RevealLines
               lines={[
                 <>Votre projet {division.short.toLowerCase()},</>,
@@ -303,7 +307,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
           </h2>
 
           <Reveal delay={280}>
-            <p className="body-base mx-auto mt-8 max-w-lg">
+            <p className="mx-auto mt-8 max-w-lg text-base leading-relaxed text-white/60">
               Soumission gratuite, sans engagement. Un entrepreneur certifié du réseau
               vous contacte sous {MODEL.contactDelay}.
             </p>
@@ -318,13 +322,16 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
                   <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-1.5" />
                 </Link>
               </Magnetic>
-              <a href={ZENICORP_PHONE_HREF} className="btn-outline-gold px-10 py-4 text-base">
+              <a
+                href={ZENICORP_PHONE_HREF}
+                className="btn-outline-gold border-white/30 text-white hover:bg-white/10 px-10 py-4 text-base"
+              >
                 <Phone className="h-4 w-4" />
                 {ZENICORP_PHONE}
               </a>
             </div>
 
-            <p className="mt-10 text-sm text-zenicorp-faint">
+            <p className="mt-10 text-sm text-white/50">
               Site de la division&nbsp;:{' '}
               <a
                 href={division.site}

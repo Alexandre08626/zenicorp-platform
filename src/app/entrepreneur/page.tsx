@@ -74,6 +74,7 @@ export default function EntrepreneurPage() {
     return (
       <main className="relative flex flex-1 items-center overflow-x-clip">
         <div className="absolute inset-0 bp-grid-fine opacity-25" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_0%,rgba(47, 111, 237,0.05),transparent_70%)]" />
         <section className="container-tight relative py-40 text-center">
           <Reveal>
             <span className="mx-auto grid h-16 w-16 place-items-center border border-zenicorp-gold/50 bg-zenicorp-gold/[0.08]">
@@ -195,15 +196,15 @@ export default function EntrepreneurPage() {
               { k: 'RBQ', t: 'Vérifié', d: 'Licence et assurances contrôlées à l’entrée.' },
             ].map((x, i) => (
               <Reveal key={x.t} delay={i * 60}>
-                <div className="group h-full bg-zenicorp-black px-8 py-12 transition-colors duration-500 hover:bg-zenicorp-surface">
+                <div className="group h-full bg-zenicorp-noir px-8 py-12 transition-colors duration-500 hover:bg-zenicorp-noirSub">
                   <dt className="font-heading text-4xl font-semibold text-zenicorp-gold sm:text-5xl">
                     {x.k}
                   </dt>
                   <dd className="mt-6">
-                    <span className="block font-mono text-label uppercase text-zenicorp-text">
+                    <span className="block font-mono text-label uppercase text-white">
                       {x.t}
                     </span>
-                    <span className="mt-3 block text-sm leading-relaxed text-zenicorp-faint transition-colors duration-500 group-hover:text-zenicorp-dim">
+                    <span className="mt-3 block text-sm leading-relaxed text-white/55 transition-colors duration-500 group-hover:text-white/75">
                       {x.d}
                     </span>
                   </dd>
@@ -251,16 +252,16 @@ export default function EntrepreneurPage() {
                   },
                 ].map((x, i) => (
                   <Reveal key={x.l} delay={i * 70}>
-                    <div className="h-full bg-zenicorp-black p-8">
-                      <span className="tech-label">{x.l}</span>
+                    <div className="h-full bg-zenicorp-noir p-8">
+                      <span className="tech-label text-white/50">{x.l}</span>
                       <div
                         className={`mt-6 font-heading text-3xl font-semibold sm:text-4xl ${
-                          x.gold ? 'text-zenicorp-gold' : 'text-zenicorp-text'
+                          x.gold ? 'text-zenicorp-gold' : 'text-white'
                         }`}
                       >
                         {x.v}
                       </div>
-                      <p className="mt-3 text-xs text-zenicorp-faint">{x.s}</p>
+                      <p className="mt-3 text-xs text-white/50">{x.s}</p>
                     </div>
                   </Reveal>
                 ))}
@@ -387,7 +388,7 @@ export default function EntrepreneurPage() {
                 {erreur && (
                   <div
                     role="alert"
-                    className="mt-8 flex items-start gap-3 border border-red-900/60 bg-red-950/30 p-5 text-sm text-red-200"
+                    className="mt-8 flex items-start gap-3 border border-red-200 bg-red-50 p-5 text-sm text-red-700"
                   >
                     <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                     <span>{erreur}</span>

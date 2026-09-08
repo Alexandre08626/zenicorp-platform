@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'ZeniCorp' }],
   alternates: { canonical: '/' },
   robots: { index: true, follow: true },
-  icons: { icon: '/logo-mark.png', apple: '/logo-mark.png' },
+  icons: { icon: '/logo.png', apple: '/logo.png' },
   openGraph: {
     type: 'website',
     locale: 'fr_CA',
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#05070B',
+  themeColor: '#F4F4F1',
   width: 'device-width',
   initialScale: 1,
 };
@@ -112,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="fr-CA"
       className={`${inter.variable} ${display.variable} ${mono.variable} dark`}
     >
-      <body className="flex min-h-screen flex-col bg-zenicorp-black font-sans text-zenicorp-text antialiased">
+      <body className="flex min-h-screen flex-col bg-zenicorp-void font-sans text-zenicorp-text antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

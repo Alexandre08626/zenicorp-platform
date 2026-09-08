@@ -8,16 +8,21 @@ module.exports = {
     extend: {
       colors: {
         zenicorp: {
-          black: '#05070B',
-          void: '#020305',
-          surface: '#0A0D13',
-          darkGray: '#12161D',
-          lightGray: '#0E1117',
-          line: '#232B38',
-          border: '#1E2530',
-          text: '#E8EDF4',
-          dim: '#A5B0C2',
-          faint: '#6B7688',
+          // Noir profond des sections contrastées (hero, CTA, footer, cartes)
+          noir: '#05070B',
+          noirSub: '#0B0E14',
+          noirLine: '#1E2632',
+          // Fond clair / neutre du site
+          black: '#0A0B0E',
+          void: '#F4F4F1',
+          surface: '#FFFFFF',
+          darkGray: '#E8EAED',
+          lightGray: '#FAFAF8',
+          line: '#E2E5E9',
+          border: '#EDEFF2',
+          text: '#12151D',
+          dim: '#4A5361',
+          faint: '#8A94A6',
           gold: '#2F6FED',
           goldLight: '#6FB1FF',
           white: '#FFFFFF',
