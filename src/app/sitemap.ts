@@ -9,6 +9,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: SITE_URL, lastModified: now, changeFrequency: 'weekly', priority: 1 },
     {
+      url: `${SITE_URL}/alexandre-blais`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
       url: `${SITE_URL}/projet`,
       lastModified: now,
       changeFrequency: 'monthly',
