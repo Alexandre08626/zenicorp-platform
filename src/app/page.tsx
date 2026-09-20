@@ -399,14 +399,14 @@ export default function HomePage() {
 
           <div className="mt-14 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
             {[
-              { src: '/div/realisations/epoxy-3.jpg', t: 'Époxy garage', h: 'lg:row-span-2' },
+              { src: '/div/realisations/epoxy-3.jpg', t: 'Époxy industriel', h: 'lg:row-span-2' },
               { src: '/div/realisations/asphalte-1.jpg', t: 'Entrée asphaltée', h: '' },
               { src: '/div/realisations/toiture-1.jpg', t: 'Toiture neuve', h: '' },
               { src: '/div/realisations/isolation-3.jpg', t: 'Cellulose grenier', h: '' },
               { src: '/div/realisations/epoxy-1.jpg', t: 'Époxy commercial', h: '' },
               { src: '/div/realisations/asphalte-2.jpg', t: 'Stationnement', h: 'lg:row-span-2' },
               { src: '/div/realisations/toiture-2.jpg', t: 'Solins et bardeaux', h: '' },
-              { src: '/div/realisations/epoxy-4.jpg', t: 'Finition flocons', h: '' },
+              { src: '/div/realisations/epoxy-4.jpg', t: 'Application époxy', h: '' },
             ].map((g, i) => (
               <Reveal key={g.src} delay={i * 50}>
                 <div
