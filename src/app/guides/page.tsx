@@ -46,10 +46,10 @@ export default function GuidesIndex() {
       <section className="section-padding">
         <div className="container-zenicorp grid max-w-4xl gap-5">
           {GUIDES.map((g) => {
-            const d = getDivisionBySlug(g.division)!;
+            const d = g.division ? getDivisionBySlug(g.division) : undefined;
             return (
               <Link key={g.slug} href={`/guides/${g.slug}`} className="group border border-zenicorp-line p-7 transition-colors hover:border-zenicorp-gold/60">
-                <p className="font-mono text-label uppercase" style={{ color: d.color }}>{d.name} · {g.readingMinutes} min</p>
+                <p className="font-mono text-label uppercase" style={{ color: d ? d.color : '#FFD746' }}>{d ? d.name : 'ZeniCorp'} · {g.readingMinutes} min</p>
                 <h2 className="heading-3 mt-3 text-white">{g.title}</h2>
                 <p className="mt-3 text-base leading-relaxed text-white/70">{g.description}</p>
                 <span className="mt-5 inline-flex items-center gap-2 font-mono text-label uppercase text-zenicorp-faint transition-colors group-hover:text-zenicorp-gold">

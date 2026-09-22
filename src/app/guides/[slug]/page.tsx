@@ -40,7 +40,8 @@ function formatDate(iso: string) {
 export default function GuidePage({ params }: { params: { slug: string } }) {
   const guide = findGuide(params.slug);
   if (!guide) notFound();
-  const division = getDivisionBySlug(guide.division)!;
+  const division = guide.division ? getDivisionBySlug(guide.division) : undefined;
+  const aboutId = division ? `${division.site}/#organization` : `${SITE_URL}/#organization`;
   const url = `${SITE_URL}/guides/${guide.slug}`;
 
   // Article + FAQPage rattachés à l'entité de la division et signés par le fondateur
@@ -58,7 +59,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
         dateModified: guide.dateModified,
         author: { '@id': AUTHOR_ID },
         publisher: { '@id': `${SITE_URL}/#organization` },
-        about: { '@id': `${division.site}/#organization` },
+        about: { '@id': aboutId },
         mainEntityOfPage: { '@type': 'WebPage', '@id': url },
         keywords: guide.tags.join(', '),
         citation: guide.sources.map((s) => ({ '@type': 'CreativeWork', name: s.name, url: s.url })),
@@ -66,7 +67,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
       {
         '@type': 'FAQPage',
         '@id': `${url}#faq`,
-        about: { '@id': `${division.site}/#organization` },
+        about: { '@id': aboutId },
         mainEntity: guide.faq.map((f) => ({
           '@type': 'Question',
           name: f.q,
@@ -91,7 +92,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
       <section className="section-padding relative border-b border-zenicorp-line/70">
         <div className="container-zenicorp max-w-4xl">
           <p className="eyebrow">
-            <Link href="/guides" className="hover:text-zenicorp-gold">Guides de prix</Link> · {division.short} · {guide.readingMinutes} min
+            <Link href="/guides" className="hover:text-zenicorp-gold">Guides</Link> · {division ? division.short : 'ZeniCorp'} · {guide.readingMinutes} min
           </p>
           <h1 className="heading-1 mt-6 text-white">{guide.title}</h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/75">{guide.description}</p>
@@ -166,11 +167,11 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
           </section>
 
           <section className="mt-14 border border-zenicorp-line bg-zenicorp-surface/50 p-8">
-            <p className="eyebrow">{division.name}</p>
+            <p className="eyebrow">{division ? division.name : 'ZeniCorp — toutes les divisions'}</p>
             <h2 className="heading-3 mt-4 text-white">Prix ferme, entrepreneur certifié RBQ, contact sous 24 h.</h2>
             <div className="mt-6 flex flex-wrap gap-4">
               <Link
-                href={`/projet?division=${division.slug}`}
+                href={division ? `/projet?division=${division.slug}` : '/projet'}
                 className="inline-flex items-center gap-2.5 bg-zenicorp-gold px-5 py-3 font-mono text-label uppercase text-zenicorp-black"
               >
                 Soumettre mon projet <ArrowRight className="h-4 w-4" />

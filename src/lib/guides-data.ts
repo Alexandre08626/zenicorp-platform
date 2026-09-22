@@ -14,8 +14,8 @@ export interface GuideSection {
 
 export interface GuideData {
   slug: string;
-  /** slug de la division rattachée (epoxy, asphalte, toiture, isolation) */
-  division: string;
+  /** slug de la division rattachée (epoxy, asphalte, toiture, isolation) ; absent = guide transversal ZeniCorp */
+  division?: string;
   title: string;
   description: string;
   datePublished: string;
@@ -355,6 +355,81 @@ export const GUIDES: GuideData[] = [
       { name: 'Soumission Rénovation — Prix isolation entretoit Québec : cellulose ou uréthane', url: 'https://soumissionrenovation.ca/fr/blogue/prix-de-lisolation-dentretoit-au-quebec-cellulose-vs-urethane-gicle' },
       { name: 'UrethaneGicle.ca — Prix de l’uréthane giclé au Québec 2026', url: 'https://urethanegicle.ca/prix/cout-urethane-gicle-quebec/' },
       { name: 'Renovations Quebec — Isolation grenier au Québec 2026 : coûts, R-41 et subventions', url: 'https://renovationsqc.com/isolation-grenier-r41-quebec-2026/' },
+    ],
+  },
+  {
+    slug: 'verifier-licence-rbq-entrepreneur',
+    title: "Comment vérifier la licence RBQ d'un entrepreneur au Québec (et ce que ça garantit vraiment)",
+    description:
+      "Vérifier une licence RBQ prend 30 secondes et c'est gratuit : où chercher, quoi lire sur la fiche (catégories, cautionnement, réclamations), ce que la licence garantit — et ne garantit pas —, et les questions à poser avant de signer un contrat de rénovation.",
+    datePublished: '2026-09-22',
+    dateModified: '2026-09-22',
+    readingMinutes: 5,
+    tags: ['vérifier licence RBQ', 'entrepreneur certifié RBQ', 'registre des détenteurs de licence', 'cautionnement RBQ', 'rénovation Québec'],
+    shortAnswer:
+      "Pour vérifier la licence d'un entrepreneur au Québec, consultez gratuitement le Registre des détenteurs de licence de la Régie du bâtiment du Québec (rbq.gouv.qc.ca) en entrant le numéro de licence ou le nom de l'entreprise. La fiche montre le statut de la licence, les catégories et sous-catégories autorisées, le cautionnement de licence (20 000 $ pour un entrepreneur spécialisé, 40 000 $ pour un entrepreneur général) et le nombre de réclamations. Une licence valide est obligatoire pour presque tous les travaux de construction et de rénovation au Québec ; sans elle, vous perdez la protection du cautionnement.",
+    keyTakeaways: [
+      "Le registre RBQ est public, gratuit et couvre toutes les entreprises qui détiennent ou ont détenu une licence dans les 5 dernières années.",
+      "Vérifiez que la sous-catégorie correspond aux travaux : un entrepreneur en revêtement de sol n'est pas licencié pour refaire une toiture.",
+      "Le cautionnement de licence indemnise le client pour les acomptes versés, les travaux non achevés, les malfaçons et les vices découverts dans l'année suivant la fin des travaux.",
+      "La licence ne remplace pas l'assurance responsabilité civile ni un contrat écrit : demandez les deux.",
+      "Zeniva vérifie la licence RBQ et les assurances de chaque entrepreneur avant de l'assigner à un projet.",
+    ],
+    sections: [
+      {
+        h: 'Vérifier en 30 secondes',
+        paragraphs: [
+          "Rendez-vous sur le Registre des détenteurs de licence de la RBQ. Entrez le numéro de licence (format 0000-0000-00) ou le nom de l'entreprise. La fiche affiche : le statut de la licence (valide, suspendue, annulée), la date de délivrance, les catégories et sous-catégories de travaux autorisées, le nom du répondant, le cautionnement de licence et le nombre de réclamations payées sur ce cautionnement.",
+          "Demandez toujours le numéro de licence avant la première visite. Un entrepreneur sérieux le donne sans hésiter ; il figure normalement sur sa soumission, son contrat et son véhicule.",
+        ],
+      },
+      {
+        h: 'Quoi lire sur la fiche',
+        paragraphs: [
+          "Le statut : seul « licence valide » compte. Une licence « restreinte » ou « suspendue » est un signal d'arrêt.",
+          "Les sous-catégories : la licence RBQ est découpée par métier. Pour un plancher époxy on cherche le revêtement de sol ; pour une toiture, les travaux de couverture ; pour l'asphalte, les travaux de pavage ; pour l'isolation, l'isolation et l'étanchéité. Un entrepreneur général peut coordonner l'ensemble, mais chaque métier exécuté doit être couvert.",
+          "Le cautionnement et les réclamations : le cautionnement de licence est une garantie financière de 20 000 $ (entrepreneur spécialisé) ou 40 000 $ (entrepreneur général). Le nombre de réclamations payées est un indicateur direct de l'historique de l'entreprise.",
+        ],
+      },
+      {
+        h: 'Ce que la licence garantit — et ne garantit pas',
+        paragraphs: [
+          "Elle garantit que l'entreprise a satisfait aux exigences de la RBQ (qualification du répondant, solvabilité, probité) et qu'un cautionnement existe pour vous indemniser en cas d'acompte perdu, de travaux non parachevés, de malfaçons ou de vices découverts dans l'année suivant la fin des travaux.",
+          "Elle ne garantit pas la qualité du travail ni le respect du prix ou des délais : ça, c'est le contrat écrit et les références. Elle ne remplace pas non plus l'assurance responsabilité civile, qui couvre les dommages causés à votre propriété ou à des tiers pendant les travaux. Demandez le certificat d'assurance en même temps que la licence.",
+        ],
+      },
+      {
+        h: 'Comment fonctionne la vérification chez Zeniva',
+        paragraphs: [ZENIVA_MODEL_PARAGRAPH, "Concrètement : la licence RBQ est validée dans le registre et les assurances sont contrôlées avant toute assignation, et l'entrepreneur assigné est spécialisé dans la division concernée. Vous traitez avec une seule plateforme ; le spécialiste, lui, ne fait que son métier."],
+      },
+    ],
+    faq: [
+      {
+        q: "Comment vérifier si un entrepreneur a une licence RBQ ?",
+        a: "Consultez gratuitement le Registre des détenteurs de licence sur rbq.gouv.qc.ca en entrant le numéro de licence ou le nom de l'entreprise. La fiche indique le statut, les catégories autorisées, le cautionnement et le nombre de réclamations.",
+      },
+      {
+        q: "Une licence RBQ est-elle obligatoire pour des travaux de rénovation ?",
+        a: "Oui, pour la quasi-totalité des travaux de construction et de rénovation au Québec réalisés par un entrepreneur. Engager un entrepreneur sans licence vous prive de la protection du cautionnement de licence.",
+      },
+      {
+        q: "Qu'est-ce que le cautionnement de licence RBQ ?",
+        a: "Une garantie financière de 20 000 $ (entrepreneur spécialisé) ou 40 000 $ (entrepreneur général) qui indemnise le client pour les acomptes versés, le non-parachèvement des travaux, les malfaçons et les vices découverts dans l'année suivant la fin des travaux.",
+      },
+      {
+        q: "La licence RBQ garantit-elle la qualité des travaux ?",
+        a: "Non. Elle atteste des qualifications et de la solvabilité de l'entreprise et donne accès au cautionnement. La qualité, le prix et les délais relèvent du contrat écrit, des références et de l'assurance responsabilité de l'entrepreneur.",
+      },
+      {
+        q: 'Zeniva vérifie-t-elle la licence de ses entrepreneurs ?',
+        a: `Oui. La licence RBQ et les assurances de chaque entrepreneur sont vérifiées avant toute assignation. La soumission est gratuite, l'entrepreneur vous contacte sous ${MODEL.contactDelay} et vous payez ${MODEL.signingShare} à la signature du contrat seulement.`,
+      },
+    ],
+    sources: [
+      { name: 'Régie du bâtiment du Québec — Vérifiez si votre entrepreneur a une licence de la RBQ (2026)', url: 'https://www.rbq.gouv.qc.ca/salle-de-presse/les-nouvelles/nouvelles-detail/item/2026-02-09-verifiez-si-votre-entrepreneur-a-une-licence-de-la-rbq/' },
+      { name: 'Régie du bâtiment du Québec — Registre des détenteurs de licence', url: 'https://www.rbq.gouv.qc.ca/salle-de-presse/les-nouvelles/nouvelles-detail/item/2023-04-12-registre-des-detenteurs-de-licence-validez-une-licence-plus-facilement/' },
+      { name: 'Régie du bâtiment du Québec — Cautionnement (FAQ)', url: 'https://www.rbq.gouv.qc.ca/vous-etes/entrepreneur/foire-aux-questions-faq/cautionnement/' },
+      { name: 'Données Québec — Registre des détenteurs de licence RBQ', url: 'https://www.donneesquebec.ca/recherche/showcase/registre-des-detenteurs-de-licence-rbq' },
     ],
   },
 ];
