@@ -34,6 +34,14 @@ ZeniCorp est l'une des quatre marques de Zeniva Group (Groupe Zeniva), le groupe
 - [Soumettre un projet (client)](https://www.zeniva.ca/projet) : division, superficie, adresse, contexte — deux minutes, gratuit, sans engagement.
 - [Rejoindre le réseau (entrepreneur)](https://www.zeniva.ca/entrepreneur) : couvreurs, poseurs d'époxy, isolateurs, spécialistes de l'asphalte.
 
+## Nouvelles (annonces officielles)
+
+- [Alexandre Blais réunit quatre entreprises sous Zeniva Group](https://www.zeniva.ca/nouvelles/zeniva-group-quatre-entreprises)
+- [ZeniCorp lance une plateforme qui assigne un entrepreneur certifié RBQ en 24 h](https://www.zeniva.ca/nouvelles/zenicorp-plateforme-construction-quebec)
+- [Zeniva Travel lance Lina, assistante de voyage IA](https://www.zeniva.ca/nouvelles/zeniva-travel-lina-assistante-ia)
+- [ZeniPay lance une plateforme fintech avec spécialistes financiers IA](https://www.zeniva.ca/nouvelles/zenipay-plateforme-fintech-agents-ia)
+- [ZeniTech ouvre ses services aux PME du Québec (SEO, GEO, CRM, IA)](https://www.zeniva.ca/nouvelles/zenitech-services-pme-quebec-geo)
+
 ## Entreprise
 
 - [Zeniva Group — les quatre marques du groupe](https://www.zeniva.ca/groupe)

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { divisionsData } from '@/lib/divisions-data';
 import { GUIDES } from '@/lib/guides-data';
+import { NEWS } from '@/lib/news-data';
 
 const SITE_URL = 'https://www.zeniva.ca';
 
@@ -45,6 +46,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(g.dateModified),
       changeFrequency: 'monthly' as const,
       priority: 0.75,
+    })),
+    { url: `${SITE_URL}/nouvelles`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.7 },
+    ...NEWS.map((n) => ({
+      url: `${SITE_URL}/nouvelles/${n.slug}`,
+      lastModified: new Date(n.datePublished),
+      changeFrequency: 'yearly' as const,
+      priority: 0.6,
     })),
   ];
 }

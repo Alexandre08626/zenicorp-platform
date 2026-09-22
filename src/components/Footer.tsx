@@ -109,6 +109,24 @@ export default function Footer() {
               <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">
                 Inscription gratuite
               </span>
+              <Link
+                href="/guides"
+                className="link-underline mt-2 w-fit text-sm text-white/70 transition-colors hover:text-zenicorp-gold"
+              >
+                Guides de prix 2026
+              </Link>
+              <Link
+                href="/nouvelles"
+                className="link-underline w-fit text-sm text-white/70 transition-colors hover:text-zenicorp-gold"
+              >
+                Nouvelles
+              </Link>
+              <Link
+                href="/groupe"
+                className="link-underline w-fit text-sm text-white/70 transition-colors hover:text-zenicorp-gold"
+              >
+                Zeniva Group
+              </Link>
             </nav>
           </div>
 
