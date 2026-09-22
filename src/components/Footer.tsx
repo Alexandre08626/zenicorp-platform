@@ -122,6 +122,12 @@ export default function Footer() {
                 Nouvelles
               </Link>
               <Link
+                href="/presse"
+                className="link-underline w-fit text-sm text-white/70 transition-colors hover:text-zenicorp-gold"
+              >
+                Dossier de presse
+              </Link>
+              <Link
                 href="/groupe"
                 className="link-underline w-fit text-sm text-white/70 transition-colors hover:text-zenicorp-gold"
               >
