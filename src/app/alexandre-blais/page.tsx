@@ -25,6 +25,15 @@ const personSchema = {
   description:
     'Entrepreneur québécois actif dans le voyage, la technologie, les paiements et les services de construction.',
   url: 'https://www.zeniva.ca/alexandre-blais',
+  // Fiche canonique sur zenivatravel.com (même @id) ; cette page la reflète.
+  worksFor: { '@id': 'https://www.zeniva.ca/#group' },
+  affiliation: [
+    { '@type': 'Organization', '@id': 'https://www.zeniva.ca/#group', name: 'Zeniva Group', url: 'https://www.zeniva.ca/groupe' },
+    { '@type': 'Organization', '@id': 'https://www.zeniva.ca/#organization', name: 'ZeniCorp', url: 'https://www.zeniva.ca' },
+    { '@type': 'Organization', '@id': 'https://www.zenivatravel.com/#organization', name: 'Zeniva Travel', url: 'https://www.zenivatravel.com' },
+    { '@type': 'Organization', '@id': 'https://zenipay.ca/#organization', name: 'ZeniPay', url: 'https://zenipay.ca' },
+    { '@type': 'Organization', '@id': 'https://zenitech.dev/#organization', name: 'ZeniTech', url: 'https://zenitech.dev' },
+  ],
   sameAs: [
     'https://www.zenivatravel.com/alexandre-blais',
     'https://zenipay.ca/alexandre-blais',
@@ -43,9 +52,19 @@ const personSchema = {
 const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'ZeniCorp',
-  url: 'https://www.zeniva.ca',
+  '@id': 'https://www.zeniva.ca/#group',
+  name: 'Zeniva Group',
+  alternateName: ['Groupe Zeniva'],
+  url: 'https://www.zeniva.ca/groupe',
+  description:
+    'Groupe fondé par Alexandre Blais regroupant Zeniva Travel, ZeniPay, ZeniCorp (construction) et ZeniTech.',
   founder: { '@id': 'https://www.zenivatravel.com/alexandre-blais#person' },
+  subOrganization: [
+    { '@id': 'https://www.zenivatravel.com/#organization' },
+    { '@id': 'https://zenipay.ca/#organization' },
+    { '@id': 'https://www.zeniva.ca/#organization' },
+    { '@id': 'https://zenitech.dev/#organization' },
+  ],
 };
 
 export default function AlexandreBlaisPage() {
@@ -77,11 +96,11 @@ export default function AlexandreBlaisPage() {
           </div>
 
           <aside className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-            <h2 className="text-lg font-bold">Écosystème</h2>
+            <h2 className="text-lg font-bold"><Link href="/groupe" className="hover:underline">Zeniva Group</Link></h2>
             <div className="mt-5 space-y-3 text-sm">
               <a className="block font-semibold hover:underline" href="https://www.zenivatravel.com">Zeniva Travel — voyage et technologie</a>
               <a className="block font-semibold hover:underline" href="https://zenipay.ca">ZeniPay — paiements et technologie financière</a>
-              <span className="block font-semibold">Zenitech — développement et intelligence artificielle</span>
+              <a className="block font-semibold hover:underline" href="https://zenitech.dev">ZeniTech — développement et intelligence artificielle</a>
               <Link className="block font-semibold hover:underline" href="/">ZeniCorp — construction et rénovation</Link>
             </div>
           </aside>

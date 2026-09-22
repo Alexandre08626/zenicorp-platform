@@ -9,13 +9,17 @@ import {
   ZENICORP_PHONE,
   ZENICORP_PHONE_HREF,
 } from '@/lib/divisions-data';
+import { guidesForDivision } from '@/lib/guides-data';
 
 export default function DivisionTemplate({ division }: { division: DivisionData }) {
   const accent = division.color;
+  const guides = guidesForDivision(division.slug);
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
+    // Rattache la FAQ à l'entité de la division déclarée dans le layout (même @id).
+    about: { '@id': `${division.site}/#organization` },
     mainEntity: division.faq.map((f) => ({
       '@type': 'Question',
       name: f.q,
@@ -311,6 +315,25 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
                 </Reveal>
               ))}
               <span className="block border-t border-zenicorp-line/70" />
+
+              {guides.length > 0 && (
+                <div className="mt-10">
+                  <span className="eyebrow">Guide de prix 2026</span>
+                  {guides.map((g) => (
+                    <Link
+                      key={g.slug}
+                      href={`/guides/${g.slug}`}
+                      className="group mt-4 flex items-start justify-between gap-6 border border-zenicorp-line/70 p-6 transition-colors hover:border-zenicorp-gold/60"
+                    >
+                      <span>
+                        <span className="block font-heading text-lg font-medium leading-snug text-zenicorp-text">{g.title}</span>
+                        <span className="mt-2 block text-sm leading-relaxed text-zenicorp-dim">{g.shortAnswer}</span>
+                      </span>
+                      <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-zenicorp-faint transition-colors group-hover:text-zenicorp-gold" />
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

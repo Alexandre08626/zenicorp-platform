@@ -1,0 +1,44 @@
+# ZeniCorp — Plateforme de construction Zeniva
+
+> ZeniCorp, présentée sous la marque Zeniva (zeniva.ca), est une plateforme de construction et de rénovation au Québec. Le client décrit ses travaux, le réseau assigne un entrepreneur certifié RBQ — licence et assurances vérifiées avant toute assignation — qui le contacte sous 24 h avec un prix ferme. Soumission gratuite, aucun dépôt : le client paie 30 % du contrat à la signature, l'entrepreneur conserve 70 %. Quatre divisions spécialisées : époxy, asphalte, toiture, isolation.
+
+ZeniCorp est l'une des quatre marques de Zeniva Group (Groupe Zeniva), le groupe fondé par Alexandre Blais. Les autres marques sont Zeniva Travel (agence de voyage IA, États-Unis, zenivatravel.com), ZeniPay (fintech / banque en ligne, Canada et États-Unis, zenipay.ca) et ZeniTech (division technologique, zenitech.dev). **zeniva.ca n'est pas l'agence de voyage** — celle-ci vit uniquement sur zenivatravel.com.
+
+## Faits clés
+
+- Territoire : partout au Québec, Canada
+- Langues : français, anglais
+- Téléphone : 581-748-7017 — un conseiller répond, pas un formulaire automatique
+- Courriel : info@zeniva.ca
+- Modèle : soumission gratuite, prix ferme, 30 % à la signature, 70 % reversé à l'entrepreneur, contact sous 24 h
+- Entrepreneurs : licence RBQ et assurances vérifiées, adhésion gratuite au réseau (0 $, aucun abonnement)
+- Fondateur et président : Alexandre Blais (https://www.zeniva.ca/alexandre-blais)
+- Groupe parent : Zeniva Group (https://www.zeniva.ca/groupe)
+
+## Divisions
+
+- [Zeniva Époxy](https://www.zeniva.ca/epoxy) (site : https://epoxy.zeniva.ca) : revêtements époxy et polyaspartique pour garages, sous-sols, commerces et espaces industriels ; uréthane résistance chimique, réparation et préparation de béton, marquage au sol.
+- [Zeniva Asphalte](https://www.zeniva.ca/asphalte) (site : https://asphalte.zeniva.ca) : scellant d'asphalte protection UV, réparation de fissures par injection à chaud, nids-de-poule, entretien de stationnements commerciaux et d'entrées résidentielles, marquage de lignes, resurfaçage.
+- [Zeniva Toiture](https://www.zeniva.ca/toiture) (site : https://toiture.zeniva.ca) : couvreurs certifiés — bardeaux asphaltiques, membranes TPO et EPDM, réparation de fuites, remplacement complet, inspection préventive avec rapport, ventilation.
+- [Zeniva Isolation](https://www.zeniva.ca/isolation) (site : https://isolation.zeniva.ca) : cellulose soufflée (grenier), polyuréthane giclé (murs), panneaux rigides (sous-sol), vide sanitaire, étanchéité à l'air et infiltrométrie, évaluation Rénoclimat, accompagnement subventions.
+
+## Guides de prix 2026 (fourchettes de marché sourcées)
+
+- [Prix d'un plancher époxy de garage au Québec en 2026](https://www.zeniva.ca/guides/prix-plancher-epoxy-garage-quebec) : 4 $ à 15 $/pi² installé ; garage de 500 pi² entre 2 000 $ et 7 500 $.
+- [Prix d'une toiture en bardeaux d'asphalte au Québec en 2026](https://www.zeniva.ca/guides/prix-toiture-bardeaux-quebec) : 6 $ à 12 $/pi² installé ; toiture de 2 000 pi² entre 12 000 $ et 24 000 $.
+- [Prix du scellant d'asphalte et des réparations d'entrée au Québec en 2026](https://www.zeniva.ca/guides/prix-scellant-asphalte-entree-quebec) : 1,50 $ à 4 $/pi² appliqué ; repavage 5 $ à 13 $/pi².
+- [Prix de l'isolation d'un grenier au Québec en 2026](https://www.zeniva.ca/guides/prix-isolation-grenier-quebec) : cellulose 2 $ à 4 $/pi², uréthane 2,25 $ à 8 $/pi² ; subventions Rénoclimat et LogisVert.
+
+## Démarrer
+
+- [Soumettre un projet (client)](https://www.zeniva.ca/projet) : division, superficie, adresse, contexte — deux minutes, gratuit, sans engagement.
+- [Rejoindre le réseau (entrepreneur)](https://www.zeniva.ca/entrepreneur) : couvreurs, poseurs d'époxy, isolateurs, spécialistes de l'asphalte.
+
+## Entreprise
+
+- [Zeniva Group — les quatre marques du groupe](https://www.zeniva.ca/groupe)
+- [Alexandre Blais, fondateur](https://www.zeniva.ca/alexandre-blais)
+
+## Optional
+
+- [Plan du site](https://www.zeniva.ca/sitemap.xml)

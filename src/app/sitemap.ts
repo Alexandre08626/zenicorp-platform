@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { divisionsData } from '@/lib/divisions-data';
+import { GUIDES } from '@/lib/guides-data';
 
 const SITE_URL = 'https://www.zeniva.ca';
 
@@ -8,6 +9,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: SITE_URL, lastModified: now, changeFrequency: 'weekly', priority: 1 },
+    {
+      url: `${SITE_URL}/groupe`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
     {
       url: `${SITE_URL}/alexandre-blais`,
       lastModified: now,
@@ -31,6 +38,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
+    })),
+    { url: `${SITE_URL}/guides`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.8 },
+    ...GUIDES.map((g) => ({
+      url: `${SITE_URL}/guides/${g.slug}`,
+      lastModified: new Date(g.dateModified),
+      changeFrequency: 'monthly' as const,
+      priority: 0.75,
     })),
   ];
 }
