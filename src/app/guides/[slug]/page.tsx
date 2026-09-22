@@ -41,7 +41,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
   const guide = findGuide(params.slug);
   if (!guide) notFound();
   const division = guide.division ? getDivisionBySlug(guide.division) : undefined;
-  const aboutId = division ? `${division.site}/#organization` : `${SITE_URL}/#organization`;
+  const aboutId = division ? `${SITE_URL}/${division.slug}#organization` : `${SITE_URL}/#organization`;
   const url = `${SITE_URL}/guides/${guide.slug}`;
 
   // Article + FAQPage rattachés à l'entité de la division et signés par le fondateur

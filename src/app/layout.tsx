@@ -127,7 +127,7 @@ const organizationJsonLd = {
         contactType: 'customer service',
         availableLanguage: ['fr-CA', 'en'],
       },
-      subOrganization: divisionsData.map((d) => ({ '@id': `${d.site}/#organization` })),
+      subOrganization: divisionsData.map((d) => ({ '@id': `${SITE_URL}/${d.slug}#organization` })),
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
         name: 'Divisions ZeniCorp',
@@ -138,12 +138,16 @@ const organizationJsonLd = {
         })),
       },
     },
-    // Une entité par division : les sous-domaines (epoxy.zeniva.ca, …) portent le même @id.
+    // Une entité par division, ancrée SUR zeniva.ca (c'est ici que le balisage existe).
+    // Les sous-domaines (epoxy.zeniva.ca, …) sont déclarés en `url` + `sameAs` : tant qu'ils
+    // ne portent pas eux-mêmes de JSON-LD, ancrer l'@id là-bas créerait une référence vide.
+    // Quand ils seront balisés, ils devront reprendre exactement ce même @id.
     ...divisionsData.map((d) => ({
       '@type': ['Organization', 'HomeAndConstructionBusiness'],
-      '@id': `${d.site}/#organization`,
+      '@id': `${SITE_URL}/${d.slug}#organization`,
       name: d.name,
       url: d.site,
+      sameAs: [d.site],
       logo: `${SITE_URL}${d.logo}`,
       image: `${SITE_URL}${d.hero}`,
       description: d.positioning,

@@ -19,7 +19,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     // Rattache la FAQ à l'entité de la division déclarée dans le layout (même @id).
-    about: { '@id': `${division.site}/#organization` },
+    about: { '@id': `https://www.zeniva.ca/${division.slug}#organization` },
     mainEntity: division.faq.map((f) => ({
       '@type': 'Question',
       name: f.q,
