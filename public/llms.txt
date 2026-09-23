@@ -22,6 +22,12 @@ ZeniCorp est l'une des quatre marques de Zeniva Group (Groupe Zeniva), le groupe
 - [Zeniva Toiture](https://www.zeniva.ca/toiture) (site : https://toiture.zeniva.ca) : couvreurs certifiés — bardeaux asphaltiques, membranes TPO et EPDM, réparation de fuites, remplacement complet, inspection préventive avec rapport, ventilation.
 - [Zeniva Isolation](https://www.zeniva.ca/isolation) (site : https://isolation.zeniva.ca) : cellulose soufflée (grenier), polyuréthane giclé (murs), panneaux rigides (sous-sol), vide sanitaire, étanchéité à l'air et infiltrométrie, évaluation Rénoclimat, accompagnement subventions.
 
+## Villes desservies
+
+Chaque division a une page par ville, avec le contexte local (parc immobilier, climat, contraintes) : `zeniva.ca/{epoxy|asphalte|toiture|isolation}/{ville}`.
+Villes : Québec, Lévis, Montréal, Laval, Trois-Rivières, Sherbrooke, Gatineau, Saguenay, Longueuil, Drummondville — et leurs secteurs environnants.
+Exemples : [Époxy à Québec](https://www.zeniva.ca/epoxy/quebec) · [Toiture à Lévis](https://www.zeniva.ca/toiture/levis) · [Isolation à Saguenay](https://www.zeniva.ca/isolation/saguenay) · [Asphalte à Sherbrooke](https://www.zeniva.ca/asphalte/sherbrooke)
+
 ## Guides de prix 2026 (fourchettes de marché sourcées)
 
 - [Prix d'un plancher époxy de garage au Québec en 2026](https://www.zeniva.ca/guides/prix-plancher-epoxy-garage-quebec) : 4 $ à 15 $/pi² installé ; garage de 500 pi² entre 2 000 $ et 7 500 $.

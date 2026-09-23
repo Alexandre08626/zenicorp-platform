@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { divisionsData } from '@/lib/divisions-data';
 import { GUIDES } from '@/lib/guides-data';
 import { NEWS } from '@/lib/news-data';
+import { VILLES } from '@/lib/villes-data';
 
 const SITE_URL = 'https://www.zeniva.ca';
 
@@ -40,6 +41,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
+    // Pages locales : une URL par division et par ville desservie.
+    ...divisionsData.flatMap((d) =>
+      VILLES.map((v) => ({
+        url: `${SITE_URL}/${d.slug}/${v.slug}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      })),
+    ),
     { url: `${SITE_URL}/guides`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.8 },
     ...GUIDES.map((g) => ({
       url: `${SITE_URL}/guides/${g.slug}`,
