@@ -8,22 +8,25 @@ module.exports = {
     extend: {
       colors: {
         zenicorp: {
-          // Noir — réservé aux overlays de photos et éléments contrastés
-          noir: '#000000',
-          noirSub: '#0A0A0F',
-          noirLine: '#1E1E26',
+          // Thème « chantier numérique » : nuit graphite, plan cyan, signalisation orange.
+          noir: '#05070B',
+          noirSub: '#0A0F1A',
+          noirLine: '#1A2231',
           black: '#05070B',
-          void: '#F7F7F4',
-          surface: '#FFFFFF',
-          darkGray: '#EDEEF1',
-          lightGray: '#FAFAF8',
-          line: '#E4E5E9',
-          border: '#EDEFF2',
-          text: '#15171E',
-          dim: '#555E6E',
-          faint: '#8B93A3',
-          gold: '#22D3EE',
-          goldLight: '#67E8F9',
+          void: '#07090E',
+          surface: '#0C111B',
+          darkGray: '#111826',
+          lightGray: '#0A0F1A',
+          line: '#1C2535',
+          border: '#161E2C',
+          text: '#EDF2FA',
+          dim: '#A3B0C6',
+          faint: '#6B7A93',
+          gold: '#3CE1FF',
+          goldLight: '#8AF0FF',
+          blue: '#4696FF',
+          safety: '#FF6B1A',
+          amber: '#FFB020',
           white: '#FFFFFF',
           silver: '#C0C0C0',
           mediumGray: '#8A8A98',
@@ -41,7 +44,7 @@ module.exports = {
         // sinon les @font-face générés ne sont jamais utilisés et le site retombe
         // sur les polices système.
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        heading: ['var(--font-display)', 'Georgia', 'serif'],
+        heading: ['var(--font-display)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       fontSize: {
@@ -53,7 +56,7 @@ module.exports = {
         label: ['0.6875rem', { lineHeight: '1', letterSpacing: '0.22em' }],
       },
       spacing: {
-        section: 'clamp(5rem, 11vw, 11rem)',
+        section: 'clamp(4.5rem, 8vw, 7.5rem)',
       },
       transitionTimingFunction: {
         premium: 'cubic-bezier(0.16, 1, 0.3, 1)',
@@ -81,13 +84,32 @@ module.exports = {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        drift: {
+          '0%': { transform: 'translate3d(0,0,0) scale(1)' },
+          '100%': { transform: 'translate3d(60px,40px,0) scale(1.12)' },
+        },
+        blink: {
+          '50%': { opacity: '0' },
+        },
+        'dot-pulse': {
+          '0%,100%': { opacity: '1', transform: 'scale(1)' },
+          '50%': { opacity: '0.45', transform: 'scale(0.8)' },
+        },
+        scan: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(100%)' },
+        },
       },
       animation: {
         'fade-up': 'fade-up 0.7s cubic-bezier(0.16,1,0.3,1) both',
         'float-y': 'float-y 6s ease-in-out infinite',
         'line-grow': 'line-grow 1.1s cubic-bezier(0.16,1,0.3,1) both',
         'pulse-ring': 'pulse-ring 2.8s cubic-bezier(0.16,1,0.3,1) infinite',
-        marquee: 'marquee 38s linear infinite',
+        marquee: 'marquee 42s linear infinite',
+        drift: 'drift 18s ease-in-out infinite alternate',
+        blink: 'blink 1s steps(1) infinite',
+        'dot-pulse': 'dot-pulse 1.8s ease-in-out infinite',
+        scan: 'scan 3.2s cubic-bezier(0.65,0,0.35,1) infinite',
       },
     },
   },

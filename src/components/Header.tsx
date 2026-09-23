@@ -44,19 +44,21 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 border-b border-zenicorp-noirLine bg-zenicorp-noir/85 backdrop-blur-xl transition-all duration-700 ease-premium ${
-          scrolled ? 'shadow-[0_12px_40px_-16px_rgba(0,0,0,0.35)]' : ''
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-500 ease-premium ${
+          scrolled || open
+            ? 'border-[rgba(120,160,255,0.14)] bg-[rgba(5,7,11,0.72)] backdrop-blur-xl backdrop-saturate-150'
+            : 'border-transparent bg-transparent'
         }`}
       >
         <div className="container-zenicorp">
           <div
             className={`flex items-center justify-between transition-all duration-700 ease-premium ${
-              scrolled ? 'h-16' : 'h-20 lg:h-24'
+              scrolled ? 'h-16' : 'h-[4.5rem] lg:h-20'
             }`}
           >
             {/* Marque */}
             <Link href="/" className="group flex items-center gap-2.5" aria-label="Zeniva, accueil">
-              <span className="relative h-10 w-auto shrink-0 overflow-hidden rounded-md ring-1 ring-white/15">
+              <span className="relative h-10 w-auto shrink-0 overflow-hidden rounded-[10px] ring-1 ring-white/15 shadow-[0_0_22px_rgba(255,107,26,0.3)]">
                 <Image
                   src="/logo.png"
                   alt="Zeniva"
@@ -68,30 +70,30 @@ export default function Header() {
               </span>
               <span className="leading-none">
                 <span className="block font-heading text-base font-black tracking-tight text-white sm:text-lg">
-                  ZENIVA
+                  ZENI<span className="grad-build">VA</span>
                 </span>
                 <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.28em] text-white/50">
-                  Plateforme
+                  Construction · Tech
                 </span>
               </span>
             </Link>
 
             {/* Navigation bureau */}
-            <nav className="hidden items-center gap-9 lg:flex">
+            <nav className="hidden items-center gap-1 lg:flex">
               <div className="group relative">
-                <button className="flex items-center gap-2 py-2 font-mono text-label uppercase text-white/70 transition-colors duration-300 group-hover:text-white">
+                <button className="flex items-center gap-2 rounded-[10px] px-3.5 py-2.5 text-[0.86rem] font-semibold text-zenicorp-dim transition-colors duration-200 group-hover:bg-[rgba(120,160,255,0.08)] group-hover:text-white">
                   Divisions
-                  <span className="h-1 w-1 bg-zenicorp-gold transition-transform duration-500 group-hover:scale-150" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-zenicorp-safety transition-transform duration-500 group-hover:scale-150" />
                 </button>
 
                 {/* Panneau divisions */}
                 <div className="invisible absolute left-1/2 top-full w-[27rem] -translate-x-1/2 pt-5 opacity-0 transition-all duration-500 ease-premium group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                  <div className="glass grid grid-cols-2 gap-px overflow-hidden border-white/15 bg-zenicorp-noir p-px">
+                  <div className="glass grid grid-cols-2 gap-px overflow-hidden rounded-2xl p-px">
                     {divisionsData.map((d) => (
                       <Link
                         key={d.slug}
                         href={`/${d.slug}`}
-                        className="group/i relative bg-zenicorp-noir p-5 transition-colors duration-300 hover:bg-zenicorp-noirSub"
+                        className="group/i relative bg-zenicorp-noir/90 p-5 transition-colors duration-300 hover:bg-zenicorp-surface"
                       >
                         <span
                           className="absolute left-0 top-0 h-full w-px transition-all duration-500"
@@ -112,22 +114,31 @@ export default function Header() {
                 </div>
               </div>
 
-              <Link
-                href="/entrepreneur"
-                className="link-underline py-2 font-mono text-label uppercase text-white/70 transition-colors duration-300 hover:text-white"
-              >
-                Entrepreneurs
-              </Link>
+              {[
+                { href: '/entrepreneur', label: 'Entrepreneurs' },
+                { href: '/guides', label: 'Guides de prix' },
+                { href: '/groupe', label: 'Zeniva Group' },
+              ].map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={`rounded-[10px] px-3.5 py-2.5 text-[0.86rem] font-semibold transition-colors duration-200 hover:bg-[rgba(120,160,255,0.08)] hover:text-white ${
+                    pathname === l.href ? 'text-white' : 'text-zenicorp-dim'
+                  }`}
+                >
+                  {l.label}
+                </Link>
+              ))}
 
               <a
                 href={ZENICORP_PHONE_HREF}
-                className="flex items-center gap-2 py-2 font-mono text-label uppercase text-white/70 transition-colors duration-300 hover:text-zenicorp-gold"
+                className="ml-3 flex items-center gap-2 rounded-xl border border-[rgba(120,160,255,0.28)] bg-zenicorp-surface/60 px-4 py-2.5 font-mono text-[0.78rem] text-zenicorp-dim transition-colors duration-200 hover:border-zenicorp-gold/60 hover:text-white"
               >
                 <Phone className="h-3.5 w-3.5 text-zenicorp-gold" />
                 {ZENICORP_PHONE}
               </a>
 
-              <Link href="/projet" className="btn-gold group px-6 py-3">
+              <Link href="/projet" className="btn-gold group ml-2 px-5 py-2.5">
                 Soumettre un projet
                 <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-1" />
               </Link>
@@ -137,14 +148,14 @@ export default function Header() {
             <div className="flex items-center gap-1 lg:hidden">
               <a
                 href={ZENICORP_PHONE_HREF}
-                className="p-3 text-zenicorp-gold"
+                className="grid h-11 w-11 place-items-center rounded-xl text-zenicorp-gold"
                 aria-label={`Appeler le ${ZENICORP_PHONE}`}
               >
                 <Phone className="h-5 w-5" />
               </a>
               <button
                 onClick={() => setOpen((v) => !v)}
-                className="p-3 text-white"
+                className="grid h-11 w-11 place-items-center rounded-xl border border-[rgba(120,160,255,0.28)] text-white"
                 aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
                 aria-expanded={open}
               >
@@ -159,7 +170,7 @@ export default function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-40 flex flex-col bg-zenicorp-noir lg:hidden"
+            className="fixed inset-0 z-40 flex flex-col bg-zenicorp-noir/95 backdrop-blur-xl lg:hidden"
             initial={reduced ? { opacity: 0 } : { clipPath: 'inset(0 0 100% 0)' }}
             animate={reduced ? { opacity: 1 } : { clipPath: 'inset(0 0 0% 0)' }}
             exit={reduced ? { opacity: 0 } : { clipPath: 'inset(0 0 100% 0)' }}
@@ -178,7 +189,7 @@ export default function Header() {
                 >
                   <Link
                     href={`/${d.slug}`}
-                    className="flex items-center justify-between border-b border-white/10 py-4"
+                    className="flex items-center justify-between border-b border-[rgba(120,160,255,0.14)] py-4"
                   >
                     <span className="flex items-center gap-4">
                       <span
@@ -206,11 +217,11 @@ export default function Header() {
                 </Link>
                 <Link
                   href="/entrepreneur"
-                  className="btn-secondary w-full border-white/25 text-white py-4"
+                  className="btn-secondary w-full py-4"
                 >
                   Je suis entrepreneur
                 </Link>
-                <a href={ZENICORP_PHONE_HREF} className="btn-outline-gold w-full border-white/30 text-white py-4">
+                <a href={ZENICORP_PHONE_HREF} className="btn-outline-gold w-full py-4">
                   <Phone className="h-4 w-4" />
                   {ZENICORP_PHONE}
                 </a>
