@@ -1,4 +1,5 @@
 ﻿import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 import { Inter, Archivo, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
@@ -198,6 +199,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </div>
         <Footer />
+        {/* Orvel AI — assistant de conversation, servi par zenitech.dev */}
+        <Script
+          src="https://zenitech.dev/widget/orvel.js"
+          data-orvel-site="zenicorp"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
