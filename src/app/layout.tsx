@@ -1,10 +1,11 @@
 ﻿import type { Metadata, Viewport } from 'next';
-import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
+import { Inter, Archivo, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
 import RevealObserver from '@/components/RevealObserver';
+import Backdrop from '@/components/Backdrop';
 import {
   divisionsData,
   MODEL,
@@ -18,11 +19,11 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-/** Display architectural : géométrique, technique, sans le côté « mariage » d'un didone. */
-const display = Space_Grotesk({
+/** Display industriel : grotesque de signalisation, dense et solide comme un chantier. */
+const display = Archivo({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['500', '600', '700'],
+  weight: ['500', '600', '700', '800', '900'],
   variable: '--font-display',
 });
 
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#F7F7F4',
+  themeColor: '#07090E',
   width: 'device-width',
   initialScale: 1,
 };
@@ -178,7 +179,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="fr-CA"
       className={`${inter.variable} ${display.variable} ${mono.variable} dark`}
     >
-      <body className="flex min-h-screen flex-col bg-zenicorp-void font-sans text-zenicorp-text antialiased">
+      <body className="flex min-h-screen flex-col font-sans text-zenicorp-text antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
@@ -189,6 +190,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Aller au contenu
         </a>
+        <Backdrop />
         <SmoothScroll />
         <RevealObserver />
         <Header />

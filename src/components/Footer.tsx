@@ -11,24 +11,25 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-zenicorp-noirLine bg-zenicorp-noir">
-      <div className="absolute inset-0 bp-grid-fine-noir opacity-25" />
+    <footer className="relative overflow-hidden border-t border-[rgba(120,160,255,0.14)] bg-zenicorp-noir/80 backdrop-blur">
+      <div aria-hidden className="absolute inset-x-0 top-0 h-px" style={{ background: 'linear-gradient(90deg,transparent,#3ce1ff 30%,#ff6b1a 70%,transparent)' }} />
+      <div className="absolute inset-0 bp-grid opacity-40 mask-fade-b" />
 
       <div className="container-zenicorp relative">
         {/* Bandeau d'appel */}
-        <div className="grid gap-10 border-b border-white/10 py-16 lg:grid-cols-12 lg:items-end">
+        <div className="grid gap-10 border-b border-[rgba(120,160,255,0.14)] py-16 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
             <span className="eyebrow">Parlons de votre projet</span>
-            <p className="mt-7 font-heading text-display-sm font-semibold text-white">
+            <p className="mt-6 font-heading text-display-sm font-extrabold text-white">
               Un conseiller répond au téléphone.
               <br />
-              <span className="text-white/50">Pas un formulaire automatique.</span>
+              <span className="grad-build">Pas un formulaire automatique.</span>
             </p>
           </div>
           <div className="lg:col-span-4 lg:text-right">
             <a
               href={ZENICORP_PHONE_HREF}
-              className="group inline-flex items-center gap-3 font-heading text-2xl font-semibold text-zenicorp-gold sm:text-3xl"
+              className="group inline-flex items-center gap-3 rounded-2xl border border-[rgba(120,160,255,0.28)] bg-zenicorp-surface/70 px-6 py-4 font-mono text-xl font-medium text-white transition-colors hover:border-zenicorp-gold/60 sm:text-2xl"
             >
               <Phone className="h-5 w-5" />
               <span className="link-underline">{ZENICORP_PHONE}</span>
@@ -41,7 +42,7 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <div className="flex items-center">
               <span className="inline-flex items-center gap-2.5">
-                <span className="relative h-10 w-auto shrink-0 overflow-hidden rounded-md ring-1 ring-white/15">
+                <span className="relative h-10 w-auto shrink-0 overflow-hidden rounded-[10px] ring-1 ring-white/15 shadow-[0_0_22px_rgba(255,107,26,0.3)]">
                   <Image
                     src="/logo.png"
                     alt="Zeniva"
@@ -52,10 +53,10 @@ export default function Footer() {
                 </span>
                 <span className="leading-none">
                   <span className="block font-heading text-lg font-black tracking-tight text-white">
-                    ZENIVA
+                    ZENI<span className="grad-build">VA</span>
                   </span>
                   <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.28em] text-white/50">
-                    Plateforme
+                    Construction · Tech
                   </span>
                 </span>
               </span>
@@ -73,7 +74,7 @@ export default function Footer() {
                 <Link
                   key={d.slug}
                   href={`/${d.slug}`}
-                  className="group flex items-center justify-between border-b border-white/10 py-3 text-sm text-white/70 transition-colors duration-300 hover:text-white"
+                  className="group flex items-center justify-between border-b border-[rgba(120,160,255,0.12)] py-3 text-sm text-white/70 transition-colors duration-300 hover:text-white"
                 >
                   <span className="flex items-center gap-3">
                     <span
@@ -162,9 +163,18 @@ export default function Footer() {
         </div>
 
         {/* Mentions */}
-        <div className="flex flex-col gap-4 border-t border-white/10 py-8 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-4 border-t border-[rgba(120,160,255,0.14)] py-8 md:flex-row md:items-center md:justify-between">
           <p className="font-mono text-[10px] uppercase tracking-widest text-white/40">
             © {new Date().getFullYear()} Zeniva — Tous droits réservés
+            <span className="mx-2 text-white/20">·</span>
+            <a
+              href="https://zenitech.dev"
+              target="_blank"
+              rel="noopener"
+              className="transition-colors hover:text-zenicorp-gold"
+            >
+              Technologie ZeniTech ↗
+            </a>
           </p>
           <p className="max-w-xl text-xs leading-relaxed text-white/35">
             Les travaux sont réalisés par des entrepreneurs indépendants certifiés RBQ du

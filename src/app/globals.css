@@ -3,10 +3,21 @@
 @tailwind utilities;
 
 /* ════════════════════════════════════════════════════════════
-   ZENICORP — DESIGN SYSTEM
-   Concept : plan d'architecte qui se matérialise.
-   Graphite profond, or structurel, annotations monospace.
+   ZENIVA — DESIGN SYSTEM « CHANTIER NUMÉRIQUE »
+   Nuit graphite + grille de plan. Deux familles d'accents :
+   la tech (cyan / bleu électrique) et le chantier (orange sécurité / ambre).
+   Même vocabulaire que zenitech.dev : halos, spotlight, mono, terminal.
    ════════════════════════════════════════════════════════════ */
+
+:root {
+  --z-cyan: #3ce1ff;
+  --z-blue: #4696ff;
+  --z-safety: #ff6b1a;
+  --z-amber: #ffb020;
+  --z-line: rgba(120, 160, 255, 0.14);
+  --z-line2: rgba(120, 160, 255, 0.28);
+  --z-grad-build: linear-gradient(100deg, #ff6b1a 0%, #ffb020 100%);
+}
 
 @layer base {
   * {
@@ -16,41 +27,38 @@
   html {
     /* Pas de scroll-behavior: smooth — Lenis gère le scroll (double smoothing sinon). */
     -webkit-text-size-adjust: 100%;
+    color-scheme: dark;
+    background: #07090e;
   }
 
   body {
-    @apply bg-zenicorp-void text-zenicorp-text antialiased;
-    font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1;
-    /* Pas de background-attachment: fixed — coûteux au scroll et cassé sur iOS. */
-    background-image: radial-gradient(
-      ellipse 90% 55% at 50% -10%,
-      rgba(34, 211, 238, 0.04),
-      transparent 70%
-    );
-    background-repeat: no-repeat;
+    @apply text-zenicorp-text antialiased;
+    /* Transparent : le fond vit sur <html> pour laisser voir le Backdrop (z-index négatif). */
+    background: transparent;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 
-  /* Grain filmique global — donne de la matière au dégradé, évite le plat numérique */
+  /* Grain filmique global — donne de la matière au noir, évite le plat numérique */
   body::after {
     content: '';
     position: fixed;
     inset: 0;
     z-index: 60;
     pointer-events: none;
-    opacity: 0.032;
+    opacity: 0.05;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   ::selection {
-    background: rgba(34, 211, 238, 0.25);
+    background: rgba(255, 107, 26, 0.4);
     color: #fff;
   }
 
   :focus-visible {
-    outline: 2px solid rgba(34, 211, 238, 0.7);
+    outline: 2px solid rgba(60, 225, 255, 0.8);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 4px;
   }
 
   h1,
@@ -65,25 +73,25 @@
 @layer components {
   /* ─────────── STRUCTURE ─────────── */
   .container-zenicorp {
-    @apply mx-auto w-full max-w-[86rem] px-5 sm:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-[86rem] px-4 sm:px-8 lg:px-12;
   }
   .container-tight {
-    @apply mx-auto w-full max-w-4xl px-5 sm:px-8;
+    @apply mx-auto w-full max-w-4xl px-4 sm:px-8;
   }
   .section-padding {
-    padding-top: clamp(4.5rem, 10vw, 10rem);
-    padding-bottom: clamp(4.5rem, 10vw, 10rem);
+    padding-top: clamp(4rem, 7.5vw, 7rem);
+    padding-bottom: clamp(4rem, 7.5vw, 7rem);
   }
 
   /* ─────────── TYPOGRAPHIE ─────────── */
   .heading-1 {
-    @apply font-heading font-semibold text-display-lg text-zenicorp-text;
+    @apply font-heading font-extrabold text-display-lg text-zenicorp-text;
   }
   .heading-2 {
-    @apply font-heading font-semibold text-display-md text-zenicorp-text;
+    @apply font-heading font-extrabold text-display-md text-zenicorp-text;
   }
   .heading-3 {
-    @apply font-heading font-semibold text-display-sm text-zenicorp-text;
+    @apply font-heading font-bold text-display-sm text-zenicorp-text;
   }
   .body-large {
     @apply text-lg leading-relaxed text-zenicorp-dim sm:text-xl;
@@ -92,43 +100,87 @@
     @apply text-base leading-relaxed text-zenicorp-dim;
   }
 
-  /* Annotation type plan d'architecte */
+  /* Dégradé signature : la tech (cyan → bleu) rencontre le chantier (orange → ambre) */
+  .grad-text {
+    background-image: linear-gradient(90deg, #3ce1ff 0%, #4696ff 34%, #ff6b1a 72%, #ffb020 100%);
+    background-image: linear-gradient(in oklch 90deg, #3ce1ff 0%, #4696ff 34%, #ff6b1a 72%, #ffb020 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  .grad-build {
+    background-image: var(--z-grad-build);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  .grad-tech {
+    background-image: linear-gradient(100deg, #8af0ff 0%, #3ce1ff 40%, #4696ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Annotation de plan : trait + libellé mono */
   .eyebrow {
-    @apply inline-flex items-center gap-2.5 font-mono text-label uppercase text-cyan-300;
+    @apply inline-flex items-center gap-3 font-mono text-label uppercase text-zenicorp-gold;
   }
   .eyebrow::before {
     content: '';
-    @apply h-px w-8 bg-cyan-400/50;
+    @apply h-px w-7 bg-zenicorp-gold;
   }
   .tech-label {
     @apply font-mono text-label uppercase text-zenicorp-faint;
   }
 
+  /* Pastille d'état (même langage que zenitech.dev) */
+  .chip {
+    @apply inline-flex items-center gap-2.5 rounded-full border px-3.5 py-2 font-mono text-[0.7rem] font-medium uppercase tracking-[0.14em] text-zenicorp-dim backdrop-blur;
+    border-color: var(--z-line2);
+    background: rgba(12, 17, 27, 0.6);
+  }
+  .chip-dot {
+    @apply h-2 w-2 shrink-0 animate-dot-pulse rounded-full;
+    background: var(--z-cyan);
+    box-shadow: 0 0 12px var(--z-cyan);
+  }
+
   /* ─────────── BOUTONS ─────────── */
   .btn {
     @apply relative inline-flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap
-           rounded-full px-7 py-3.5 text-sm font-bold tracking-tight transition-all duration-500 ease-premium;
+           rounded-xl px-6 py-3.5 text-sm font-bold tracking-tight transition-all duration-300 ease-premium;
   }
+  /* Action principale : orange chantier → ambre */
   .btn-gold {
-    @apply btn bg-gradient-to-r from-cyan-400 to-blue-600 text-black;
-    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.4);
+    @apply btn text-zenicorp-black;
+    background: var(--z-grad-build);
+    box-shadow: 0 10px 30px -8px rgba(255, 107, 26, 0.55);
   }
   .btn-gold:hover {
-    box-shadow: 0 10px 40px -6px rgba(34, 211, 238, 0.55);
-    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 14px 40px -6px rgba(255, 176, 32, 0.6), 0 0 0 1px rgba(255, 176, 32, 0.6);
+    transform: translateY(-2px);
   }
   .btn-outline-gold {
-    @apply btn border border-cyan-400/40 text-cyan-300;
+    @apply btn border text-zenicorp-text;
+    border-color: var(--z-line2);
+    background: rgba(12, 17, 27, 0.6);
   }
   .btn-outline-gold:hover {
-    @apply border-cyan-400 bg-cyan-400/10;
+    border-color: rgba(60, 225, 255, 0.6);
+    background: rgba(60, 225, 255, 0.06);
     transform: translateY(-2px);
   }
   .btn-secondary {
-    @apply btn border border-zenicorp-line bg-white text-zenicorp-text;
+    @apply btn border text-zenicorp-text backdrop-blur;
+    border-color: var(--z-line2);
+    background: rgba(12, 17, 27, 0.7);
   }
   .btn-secondary:hover {
-    @apply border-cyan-400/50 bg-cyan-400/10;
+    border-color: rgba(60, 225, 255, 0.6);
+    background: rgba(60, 225, 255, 0.08);
     transform: translateY(-2px);
   }
 
@@ -147,31 +199,152 @@
 
   /* ─────────── SURFACES ─────────── */
   .card {
-    @apply relative overflow-hidden border border-zenicorp-line bg-white
+    @apply relative overflow-hidden rounded-2xl border bg-zenicorp-surface/80
            transition-all duration-500 ease-premium;
+    border-color: var(--z-line);
   }
   .card:hover {
-    @apply border-cyan-400/40 bg-white;
+    border-color: var(--z-line2);
   }
   .glass {
-    @apply border border-zenicorp-line bg-white/80 backdrop-blur-xl;
-    box-shadow: 0 24px 60px -24px rgba(5, 7, 11, 0.15);
+    @apply border backdrop-blur-xl;
+    border-color: var(--z-line2);
+    background: rgba(12, 17, 27, 0.72);
+    box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Carte « spotlight » : bordure et halo suivent le curseur (--mx / --my posés par Backdrop) */
+  .spot {
+    position: relative;
+    isolation: isolate;
+  }
+  .spot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    padding: 1px;
+    pointer-events: none;
+    background: radial-gradient(
+      340px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(60, 225, 255, 0.75),
+      rgba(255, 107, 26, 0.5) 40%,
+      transparent 70%
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+  .spot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(120, 160, 255, 0.1), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+  .spot:hover::before,
+  .spot:hover::after {
+    opacity: 1;
+  }
+
+  /* Contour dégradé de 1 px (numéros d'étapes, pastilles) */
+  .grad-ring {
+    padding: 1px;
+    background: linear-gradient(135deg, #3ce1ff, #4696ff 40%, #ff6b1a 80%, #ffb020);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Cadre à bordure dégradée (contact, showcase) */
+  .frame-grad {
+    @apply relative rounded-[28px] p-px;
+    background: linear-gradient(135deg, rgba(60, 225, 255, 0.55), rgba(70, 150, 255, 0.25) 40%, rgba(255, 107, 26, 0.45) 75%, rgba(255, 176, 32, 0.55));
+  }
+
+  /* Coins de visée (viseur / relevé de chantier) */
+  .hud {
+    position: relative;
+  }
+  .hud::before,
+  .hud::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+    z-index: 3;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hud::before {
+    left: 12px;
+    top: 12px;
+    border-left: 2px solid var(--hud, var(--z-cyan));
+    border-top: 2px solid var(--hud, var(--z-cyan));
+  }
+  .hud::after {
+    right: 12px;
+    bottom: 12px;
+    border-right: 2px solid var(--hud, var(--z-cyan));
+    border-bottom: 2px solid var(--hud, var(--z-cyan));
+  }
+  .hud:hover::before {
+    left: 8px;
+    top: 8px;
+  }
+  .hud:hover::after {
+    right: 8px;
+    bottom: 8px;
+  }
+
+  /* Bande de signalisation chantier */
+  .hazard {
+    background-image: repeating-linear-gradient(-45deg, var(--z-amber) 0 10px, #0a0f1a 10px 20px);
+  }
+  .hazard-soft {
+    background-image: repeating-linear-gradient(-45deg, rgba(255, 176, 32, 0.1) 0 1px, transparent 1px 9px);
   }
 
   /* Trait de règle graduée — vocabulaire du plan technique */
   .rule-ticks {
     background-image: repeating-linear-gradient(
       to right,
-      rgba(161, 161, 176, 0.28) 0 1px,
+      rgba(120, 160, 255, 0.3) 0 1px,
       transparent 1px 10px
     );
   }
 
+  /* Ligne de cote : |←—— libellé ——→| */
+  .dim-line {
+    @apply relative flex items-center gap-3 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-zenicorp-faint;
+  }
+  .dim-line::before,
+  .dim-line::after {
+    content: '';
+    @apply h-px flex-1;
+    background: linear-gradient(90deg, rgba(120, 160, 255, 0.45), rgba(120, 160, 255, 0.15));
+  }
+  .dim-line::after {
+    background: linear-gradient(90deg, rgba(120, 160, 255, 0.15), rgba(120, 160, 255, 0.45));
+  }
+
   /* ─────────── FORMULAIRES ─────────── */
   .input-field {
-    @apply w-full border-0 border-b border-white/15 bg-transparent px-0 py-3.5
-           text-zenicorp-text transition-colors duration-300
-           placeholder:text-zenicorp-faint/70 focus:border-cyan-400 focus:outline-none;
+    @apply w-full rounded-xl border bg-zenicorp-black/70 px-4 py-3.5
+           text-zenicorp-text transition-all duration-300
+           placeholder:text-zenicorp-faint/70 focus:outline-none;
+    border-color: var(--z-line2);
+  }
+  .input-field:focus {
+    border-color: var(--z-cyan);
+    box-shadow: 0 0 0 3px rgba(60, 225, 255, 0.15);
   }
   .input-field:focus-visible {
     outline: none;
@@ -180,19 +353,19 @@
     @apply appearance-none pr-8;
   }
   select.input-field option {
-    background-color: #ffffff;
-    color: #15171e;
+    background-color: #0c111b;
+    color: #edf2fa;
   }
   textarea.input-field {
     @apply resize-y;
   }
   .label {
-    @apply mb-1 block font-mono text-label uppercase text-zenicorp-faint;
+    @apply mb-2 block font-mono text-label uppercase text-zenicorp-faint;
   }
 
   .badge-gold {
-    @apply inline-flex items-center gap-2 border border-cyan-400/30 bg-cyan-400/[0.07]
-           px-3 py-1.5 font-mono text-label uppercase text-cyan-300;
+    @apply inline-flex items-center gap-2 rounded-lg border border-zenicorp-gold/30 bg-zenicorp-gold/[0.07]
+           px-3 py-1.5 font-mono text-label uppercase text-zenicorp-gold;
   }
 }
 
@@ -246,9 +419,9 @@
 
   /* Grille de plan — sur fond noir */
   .bp-grid {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 72px 72px;
+    background-image: linear-gradient(rgba(120, 160, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(120, 160, 255, 0.06) 1px, transparent 1px);
+    background-size: 64px 64px;
   }
   .bp-grid-fine {
     background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
@@ -275,7 +448,7 @@
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   }
   .text-gold-gradient {
-    background: linear-gradient(100deg, #89f6ff 0%, #22d3ee 45%, #3b82f6 100%);
+    background: linear-gradient(100deg, #3ce1ff 0%, #4696ff 45%, #ff6b1a 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -296,10 +469,11 @@
     background: #05070b;
   }
   ::-webkit-scrollbar-thumb {
-    background: #23232d;
+    background: #1c2535;
+    border-radius: 9px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #3a3a46;
+    background: #2b3850;
   }
 }
 
@@ -317,6 +491,11 @@
   .btn-secondary:hover,
   .btn-outline-gold:hover {
     transform: none;
+  }
+  .animate-marquee,
+  .animate-drift,
+  .animate-scan {
+    animation: none !important;
   }
   /* Aucun contenu ne doit rester masqué en mouvement réduit */
   .js [data-reveal],

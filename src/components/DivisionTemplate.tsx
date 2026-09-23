@@ -50,13 +50,14 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
         {/* Étalonnage : la photo devient un fond, jamais un décor bruyant.
             Les photos sources ont des résolutions inégales : un traitement
             graphique assumé vaut mieux qu'un agrandissement flou visible. */}
-        <div className="absolute inset-0 bg-zenicorp-noir/55" />
+        <div className="absolute inset-0 bg-zenicorp-noir/25" />
         <div
-          className="absolute inset-0 opacity-25 mix-blend-color"
+          className="absolute inset-0 opacity-20 mix-blend-color"
           style={{ background: accent }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-zenicorp-noir via-zenicorp-noir/75 to-zenicorp-noir/35" />
-        <div className="absolute inset-0 bp-grid-fine-noir opacity-[0.14]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-zenicorp-void via-zenicorp-void/55 to-zenicorp-void/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-zenicorp-void/80 via-zenicorp-void/30 to-transparent" />
+        <div className="absolute inset-0 bp-grid opacity-50" />
 
         <div className="container-zenicorp relative z-10 pb-16 pt-36 sm:pb-24">
           <Reveal>
@@ -73,7 +74,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
             <div className="lg:col-span-8">
               <Reveal delay={80}>
                 <span
-                  className="inline-flex items-center gap-2.5 border px-3 py-1.5 font-mono text-label uppercase backdrop-blur"
+                  className="inline-flex items-center gap-2.5 rounded-full border px-3.5 py-2 font-mono text-label uppercase backdrop-blur"
                   style={{
                     color: accent,
                     borderColor: `${accent}66`,
@@ -85,7 +86,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
                 </span>
               </Reveal>
 
-              <h1 className="mt-7 font-heading text-display-lg font-semibold text-white">
+              <h1 className="mt-7 font-heading text-display-xl font-black text-white">
                 <RevealLines delay={160} lines={[<>{division.short}</>]} />
               </h1>
 
@@ -110,7 +111,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
                   </Magnetic>
                   <a
                     href={ZENICORP_PHONE_HREF}
-                    className="btn-secondary w-full border-white/25 text-white backdrop-blur"
+                    className="btn-secondary w-full font-mono"
                   >
                     <Phone className="h-4 w-4 text-zenicorp-gold" />
                     {ZENICORP_PHONE}
@@ -222,14 +223,14 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
               },
             ].map((s, i) => (
               <Reveal key={s.n} delay={i * 60}>
-                <div className="group h-full rounded-2xl border border-zenicorp-line bg-white p-8 transition-all duration-500 hover:-translate-y-1 hover:border-cyan-400/50 hover:shadow-[0_20px_50px_-20px_rgba(34,211,238,0.35)] sm:p-9">
+                <div className="spot group h-full rounded-[20px] border border-[rgba(120,160,255,0.14)] bg-gradient-to-b from-[#0E1524] to-[#0A0F1A] p-8 transition-transform duration-300 hover:-translate-y-1 sm:p-9">
                   <span
-                    className="font-mono text-xs font-bold transition-colors duration-500"
-                    style={{ color: accent }}
+                    className="grid h-11 w-11 place-items-center rounded-xl border bg-zenicorp-noir/80 font-mono text-sm font-bold"
+                    style={{ color: accent, borderColor: `${accent}66` }}
                   >
                     {s.n}
                   </span>
-                  <h3 className="mt-6 font-heading text-xl font-bold text-zenicorp-text">
+                  <h3 className="mt-6 font-heading text-xl font-extrabold text-zenicorp-text">
                     {s.t}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-zenicorp-dim">{s.d}</p>
@@ -255,7 +256,10 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
           <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
             {division.gallery.map((src, i) => (
               <Reveal key={src} delay={i * 60}>
-                <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl">
+                <div
+                  className="hud group relative aspect-[4/3] overflow-hidden rounded-[20px] border border-[rgba(120,160,255,0.12)]"
+                  style={{ ['--hud' as string]: accent } as React.CSSProperties}
+                >
                   <Image
                     src={src}
                     alt={`Réalisation ${division.short} du réseau Zeniva`}
@@ -323,7 +327,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
                     <Link
                       key={g.slug}
                       href={`/guides/${g.slug}`}
-                      className="group mt-4 flex items-start justify-between gap-6 border border-zenicorp-line/70 p-6 transition-colors hover:border-zenicorp-gold/60"
+                      className="spot group mt-4 flex items-start justify-between gap-6 rounded-2xl border border-[rgba(120,160,255,0.14)] bg-zenicorp-surface/60 p-6 transition-colors"
                     >
                       <span>
                         <span className="block font-heading text-lg font-medium leading-snug text-zenicorp-text">{g.title}</span>
@@ -341,6 +345,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
 
       {/* ═══════════════ CTA — bandeau photo ═══════════════ */}
       <section className="relative overflow-hidden border-t border-zenicorp-line">
+        <div aria-hidden className="hazard relative z-10 h-2.5 w-full opacity-90" />
         <div className="absolute inset-0">
           <Image
             src={division.hero}
@@ -349,7 +354,8 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-black/70" />
+          <div className="absolute inset-0 bg-zenicorp-void/80" />
+          <div className="absolute inset-0 bp-grid opacity-60" />
         </div>
         <div
           className="absolute inset-0 opacity-[0.16] mix-blend-color"
@@ -362,9 +368,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
               lines={[
                 <>Votre projet {division.short.toLowerCase()},</>,
                 <>
-                  <span className="bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
-                    pris en charge.
-                  </span>
+                  <span className="grad-text">pris en charge.</span>
                 </>,
               ]}
             />
@@ -388,7 +392,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
               </Magnetic>
               <a
                 href={ZENICORP_PHONE_HREF}
-                className="btn-outline-gold border-white/40 text-white hover:bg-white/10 px-10 py-4 text-base"
+                className="btn-outline-gold px-10 py-4 font-mono text-base"
               >
                 <Phone className="h-4 w-4" />
                 {ZENICORP_PHONE}
@@ -401,7 +405,7 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
                 href={division.site}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-underline inline-flex items-center gap-1 text-cyan-300"
+                className="link-underline inline-flex items-center gap-1 text-zenicorp-gold"
               >
                 {division.site.replace('https://', '')}
                 <ExternalLink className="h-3.5 w-3.5" />
