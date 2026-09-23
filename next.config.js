@@ -9,6 +9,20 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
+  // Canonique : le domaine nu et www servaient tous deux un 200, donc Google voyait
+  // deux copies de chaque page. On redirige l'apex vers www, la forme utilisee par les
+  // canoniques, le sitemap, robots.txt et les @id du graphe d'entites.
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'zeniva.ca' }],
+        destination: 'https://www.zeniva.ca/:path*',
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     return [
       {
