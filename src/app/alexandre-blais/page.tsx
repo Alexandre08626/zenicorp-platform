@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import { Reveal, RevealLines } from '@/components/Reveal';
+import { divisionsData } from '@/lib/divisions-data';
 
 export const metadata: Metadata = {
   title: 'Alexandre Blais — Entrepreneur québécois | ZeniCorp',
@@ -71,62 +74,121 @@ const orgSchema = {
   ],
 };
 
+const GROUP = [
+  { name: 'Zeniva Travel', d: 'Voyage et technologie', href: 'https://www.zenivatravel.com', ext: true, c: '#3CE1FF' },
+  { name: 'ZeniPay', d: 'Paiements et technologie financière', href: 'https://zenipay.ca', ext: true, c: '#4696FF' },
+  { name: 'ZeniTech', d: 'Développement et intelligence artificielle', href: 'https://zenitech.dev', ext: true, c: '#FF28D2' },
+  { name: 'ZeniCorp', d: 'Construction et rénovation', href: '/', ext: false, c: '#FF6B1A' },
+];
+
 export default function AlexandreBlaisPage() {
   return (
-    <main className="min-h-screen bg-white text-slate-900">
+    <main className="flex-1 overflow-x-clip">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
 
-      <section className="border-b border-slate-200 bg-slate-950 px-6 py-20 text-white">
-        <div className="mx-auto max-w-5xl">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-400">Fondateur · Entrepreneur · Québec</p>
-          <h1 className="max-w-4xl text-4xl font-bold leading-tight md:text-6xl">Alexandre Blais</h1>
-          <p className="mt-6 max-w-3xl text-xl leading-relaxed text-slate-300">
-            Entrepreneur québécois à l’origine de plusieurs projets développés au Canada et aux États-Unis dans le voyage, la technologie, les paiements numériques et les services de construction.
-          </p>
+      {/* ═══════════════ EN-TÊTE ═══════════════ */}
+      <section className="relative">
+        <div className="container-zenicorp pb-16 pt-36 sm:pb-20 sm:pt-40">
+          <Reveal>
+            <span className="chip">
+              <span className="chip-dot" />
+              Fondateur · Entrepreneur · Québec
+            </span>
+          </Reveal>
+          <h1 className="mt-7 font-heading text-display-xl font-black text-white">
+            <RevealLines
+              delay={100}
+              lines={[
+                <>Alexandre</>,
+                <>
+                  <span className="grad-text">Blais.</span>
+                </>,
+              ]}
+            />
+          </h1>
+          <Reveal delay={350}>
+            <p className="body-large mt-7 max-w-3xl">
+              Entrepreneur québécois à l’origine de plusieurs projets développés au Canada et aux États-Unis dans le voyage, la technologie, les paiements numériques et les services de construction.
+            </p>
+          </Reveal>
         </div>
+        <div aria-hidden className="hazard h-2 w-full opacity-80" />
       </section>
 
-      <section className="px-6 py-16">
-        <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-[1.3fr_0.7fr]">
-          <div>
-            <h2 className="text-3xl font-bold">Parcours entrepreneurial</h2>
-            <p className="mt-5 leading-8 text-slate-600">
+      {/* ═══════════════ PARCOURS + GROUPE ═══════════════ */}
+      <section className="section-padding relative">
+        <div className="container-zenicorp grid gap-12 lg:grid-cols-12 lg:gap-10">
+          <Reveal className="lg:col-span-7">
+            <span className="eyebrow">Parcours</span>
+            <h2 className="heading-2 mt-5">Parcours entrepreneurial</h2>
+            <p className="body-large mt-6">
               Alexandre Blais développe un écosystème de projets qui combine opérations traditionnelles et technologies numériques. Son travail touche notamment le voyage sur mesure avec Zeniva, les technologies financières et de paiement avec ZeniPay, le développement technologique avec Zenitech ainsi que la mise en relation et la coordination de projets de construction par ZeniCorp.
             </p>
-            <p className="mt-5 leading-8 text-slate-600">
+            <p className="body-large mt-5">
               ZeniCorp regroupe actuellement des activités spécialisées en revêtements époxy, entretien d’asphalte, toiture et isolation. La plateforme vise à simplifier le parcours client, de la demande initiale jusqu’à l’assignation d’un entrepreneur du réseau.
             </p>
-          </div>
+          </Reveal>
 
-          <aside className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-            <h2 className="text-lg font-bold"><Link href="/groupe" className="hover:underline">Zeniva Group</Link></h2>
-            <div className="mt-5 space-y-3 text-sm">
-              <a className="block font-semibold hover:underline" href="https://www.zenivatravel.com">Zeniva Travel — voyage et technologie</a>
-              <a className="block font-semibold hover:underline" href="https://zenipay.ca">ZeniPay — paiements et technologie financière</a>
-              <a className="block font-semibold hover:underline" href="https://zenitech.dev">ZeniTech — développement et intelligence artificielle</a>
-              <Link className="block font-semibold hover:underline" href="/">ZeniCorp — construction et rénovation</Link>
-            </div>
-          </aside>
+          <Reveal delay={120} className="lg:col-span-5">
+            <aside className="frame-grad rounded-[22px]">
+              <div className="rounded-[21px] bg-gradient-to-b from-[#0E1524] to-[#070a12] p-6 sm:p-7">
+                <h2 className="font-heading text-xl font-extrabold text-white">
+                  <Link href="/groupe" className="link-underline">Zeniva Group</Link>
+                </h2>
+                <div className="mt-5 flex flex-col gap-2.5">
+                  {GROUP.map((g) => {
+                    const inner = (
+                      <>
+                        <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: g.c, boxShadow: `0 0 10px ${g.c}` }} />
+                        <span className="flex-1">
+                          <span className="block font-semibold text-white">{g.name}</span>
+                          <span className="block text-sm text-zenicorp-dim">{g.d}</span>
+                        </span>
+                        <ArrowUpRight className="h-4 w-4 text-zenicorp-faint transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-zenicorp-gold" />
+                      </>
+                    );
+                    const cls =
+                      'spot group flex items-center gap-3.5 rounded-xl border border-[rgba(120,160,255,0.14)] bg-black/30 px-4 py-3 transition-colors';
+                    return g.ext ? (
+                      <a key={g.name} href={g.href} className={cls}>{inner}</a>
+                    ) : (
+                      <Link key={g.name} href={g.href} className={cls}>{inner}</Link>
+                    );
+                  })}
+                </div>
+              </div>
+            </aside>
+          </Reveal>
         </div>
       </section>
 
-      <section className="bg-slate-50 px-6 py-16">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-3xl font-bold">ZeniCorp</h2>
-          <p className="mt-4 max-w-3xl leading-8 text-slate-600">
-            Le réseau ZeniCorp est structuré autour de quatre divisions spécialisées : Époxy, Asphalte, Toiture et Isolation. Chacune dispose de son propre parcours de demande et s’inscrit dans une plateforme commune de gestion des projets.
-          </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              ['Époxy', '/epoxy'],
-              ['Asphalte', '/asphalte'],
-              ['Toiture', '/toiture'],
-              ['Isolation', '/isolation'],
-            ].map(([label, href]) => (
-              <Link key={href} href={href} className="rounded-xl border border-slate-200 bg-white p-5 font-bold hover:border-slate-400">
-                {label} →
-              </Link>
+      {/* ═══════════════ ZENICORP ═══════════════ */}
+      <section className="section-padding relative border-t border-[rgba(120,160,255,0.1)]">
+        <div className="container-zenicorp">
+          <Reveal className="max-w-3xl">
+            <span className="eyebrow">Construction</span>
+            <h2 className="heading-2 mt-5">
+              Zeni<span className="grad-build">Corp</span>
+            </h2>
+            <p className="body-large mt-6">
+              Le réseau ZeniCorp est structuré autour de quatre divisions spécialisées : Époxy, Asphalte, Toiture et Isolation. Chacune dispose de son propre parcours de demande et s’inscrit dans une plateforme commune de gestion des projets.
+            </p>
+          </Reveal>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {divisionsData.map((d, i) => (
+              <Reveal key={d.slug} delay={i * 60}>
+                <Link
+                  href={`/${d.slug}`}
+                  className="spot group flex items-center justify-between rounded-[18px] border border-[rgba(120,160,255,0.14)] bg-gradient-to-b from-[#0E1524] to-[#0A0F1A] p-5 transition-transform duration-300 hover:-translate-y-1"
+                >
+                  <span className="flex items-center gap-3">
+                    <span className="h-2 w-2 rounded-full" style={{ background: d.color, boxShadow: `0 0 10px ${d.color}` }} />
+                    <span className="font-heading text-lg font-extrabold text-white">{d.short}</span>
+                  </span>
+                  <ArrowUpRight className="h-4 w-4 text-zenicorp-faint transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-zenicorp-gold" />
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
