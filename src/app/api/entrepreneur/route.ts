@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { sendEmail, escapeHtml, escapeHtmlMultiline } from '@/lib/email';
 import { getDivisionBySlug, MODEL, ZENICORP_PHONE } from '@/lib/divisions-data';
+import { notifyAccountCreated } from '@/lib/notify';
 
 export const dynamic = 'force-dynamic';
 
@@ -46,6 +47,16 @@ export async function POST(req: NextRequest) {
       }
       return NextResponse.json({ error: `Base de données indisponible : ${insertError.message}` }, { status: 500 });
     }
+
+    // Confirmation SMS via le service central (le courriel est déjà envoyé ci-dessous)
+    await notifyAccountCreated({
+      name: String(nom).trim(),
+      email: String(email).trim().toLowerCase(),
+      phone: String(telephone),
+      loginUrl: 'https://www.zeniva.ca',
+      accountLabel: 'votre inscription entrepreneur',
+      channels: ['sms'],
+    });
 
     await sendEmail({
       to: String(email),
