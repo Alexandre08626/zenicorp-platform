@@ -123,28 +123,6 @@ export const NEWS: NewsItem[] = [
       { label: 'Comment fonctionnent les répartitions de commissions (article)', href: 'https://zenipay.ca/blog/how-commission-splits-work-travel-agents-platforms' },
     ],
   },
-  {
-    slug: 'zenitech-services-pme-quebec-geo',
-    title: 'ZeniTech ouvre ses services aux PME du Québec : sites web, SEO, GEO, CRM, automatisation et agents IA — testés d’abord sur les entreprises du groupe',
-    summary:
-      "La division technologique de Zeniva Group offre aux entreprises les outils qu'elle a construits pour Zeniva Travel, ZeniPay et ZeniCorp. Service phare : le GEO — faire recommander une entreprise par ChatGPT, Claude, Gemini et Perplexity. Diagnostic gratuit.",
-    datePublished: '2026-09-22',
-    dateline: 'Québec, QC',
-    aboutId: 'https://zenitech.dev/#organization',
-    brand: 'ZeniTech',
-    paragraphs: [
-      "ZeniTech, division technologique de Zeniva Group, offre maintenant aux entreprises du Québec, du Canada et des États-Unis les outils qu'elle a construits pour Zeniva Travel, ZeniPay et ZeniCorp : création de sites web, référencement (SEO), GEO — Generative Engine Optimization —, marketing numérique, CRM et pipeline de ventes, code sur mesure, automatisation et agents IA.",
-      "Le GEO est le service phare : faire recommander une entreprise par ChatGPT, Claude, Gemini et Perplexity quand un client leur pose la question. ZeniTech l'a d'abord appliqué aux quatre marques du groupe — graphe d'entités partagé, données structurées, fichiers llms.txt, contenu citable — et publie un guide en français sur le sujet à zenitech.dev/geo.",
-      "ZeniTech offre un diagnostic gratuit : poser aux modèles les questions que les clients d'une entreprise leur posent, et montrer qui ils recommandent.",
-    ],
-    quote:
-      "Une réponse d'IA n'a pas de page 2. Soit vous êtes dans la réponse, soit vous n'existez pas pour ce client-là.",
-    boilerplate: 'ZeniTech est la division technologique de Zeniva Group, basée à Québec. Téléphone : 581-748-7017. zenitech.dev',
-    links: [
-      { label: "C'est quoi le GEO ? (guide)", href: 'https://zenitech.dev/geo' },
-      { label: 'ZeniTech', href: 'https://zenitech.dev' },
-    ],
-  },
 ];
 
 export function findNews(slug: string): NewsItem | undefined {

@@ -20,6 +20,13 @@ const nextConfig = {
         destination: 'https://www.zeniva.ca/:path*',
         permanent: true,
       },
+      // L'annonce de ZeniTech passait devant zenitech.dev dans Bing/Google sur « Zenitech » :
+      // l'article est retiré et son adresse renvoie au site de ZeniTech (301 = le lien lui profite).
+      {
+        source: '/nouvelles/zenitech-services-pme-quebec-geo',
+        destination: 'https://zenitech.dev/',
+        permanent: true,
+      },
     ];
   },
 
