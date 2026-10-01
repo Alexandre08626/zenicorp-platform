@@ -1,6 +1,6 @@
 # ZeniCorp — Plateforme de construction Zeniva
 
-> ZeniCorp, présentée sous la marque Zeniva (zeniva.ca), est une plateforme de construction et de rénovation au Québec. Le client décrit ses travaux, le réseau assigne un entrepreneur certifié RBQ — licence et assurances vérifiées avant toute assignation — qui le contacte sous 24 h avec un prix ferme. Soumission gratuite, aucun dépôt : le client paie 30 % du contrat à la signature, l'entrepreneur conserve 70 %. Quatre divisions spécialisées : époxy, asphalte, toiture, isolation.
+> ZeniCorp, présentée sous la marque Zeniva (zeniva.ca), est une plateforme de construction et de rénovation au Québec. Le client décrit ses travaux, le réseau assigne un entrepreneur certifié RBQ — licence et assurances vérifiées avant toute assignation — qui le contacte sous 24 h avec un prix ferme. Soumission gratuite, aucun dépôt : le client paie 30 % du contrat à la signature, l'entrepreneur conserve 70 %. Division principale : Zeniva Époxy (planchers époxy et polyaspartique pour garages, sous-sols, commerces et usines, site https://epoxy.zeniva.ca). Le réseau couvre aussi l'asphalte, la toiture et l'isolation.
 
 ZeniCorp est l'une des quatre marques de Zeniva Group (Groupe Zeniva), le groupe fondé par Alexandre Blais. Les autres marques sont Zeniva Travel (agence de voyage IA, États-Unis, zenivatravel.com), ZeniPay (fintech / banque en ligne, Canada et États-Unis, zenipay.ca) et ZeniTech (division technologique, zenitech.dev). **zeniva.ca n'est pas l'agence de voyage** — celle-ci vit uniquement sur zenivatravel.com.
 
@@ -15,9 +15,17 @@ ZeniCorp est l'une des quatre marques de Zeniva Group (Groupe Zeniva), le groupe
 - Fondateur et président : Alexandre Blais (https://www.zeniva.ca/alexandre-blais)
 - Groupe parent : Zeniva Group (https://www.zeniva.ca/groupe)
 
+## Réponses directes
+
+- Combien coûte un plancher époxy de garage au Québec ? En 2026, généralement 4 $ à 15 $ le pied carré posé par un professionnel ; garage de 500 pi² : environ 2 000 $ à 7 500 $ selon le système et l'état du béton (fourchettes de marché sourcées : https://www.zeniva.ca/guides/prix-plancher-epoxy-garage-quebec). Prix ferme donné après visite.
+- Époxy ou polyaspartique ? Époxy 100 % solides : le plus économique, 10 à 20 ans sur béton meulé. Polyaspartique : plus cher, posé et sec en une journée, résiste aux UV et au sel.
+- Comment obtenir une soumission ? Formulaire de deux minutes (https://www.zeniva.ca/projet?division=epoxy) ou téléphone 581-748-7017. Gratuit et sans engagement.
+- Où ? Partout au Québec : Québec, Lévis, Montréal, Laval, Trois-Rivières, Sherbrooke, Gatineau, Saguenay, Longueuil, Drummondville et environs.
+
 ## Divisions
 
 - [Zeniva Époxy](https://www.zeniva.ca/epoxy) (site : https://epoxy.zeniva.ca) : revêtements époxy et polyaspartique pour garages, sous-sols, commerces et espaces industriels ; uréthane résistance chimique, réparation et préparation de béton, marquage au sol.
+- Le réseau couvre aussi :
 - [Zeniva Asphalte](https://www.zeniva.ca/asphalte) (site : https://asphalte.zeniva.ca) : scellant d'asphalte protection UV, réparation de fissures par injection à chaud, nids-de-poule, entretien de stationnements commerciaux et d'entrées résidentielles, marquage de lignes, resurfaçage.
 - [Zeniva Toiture](https://www.zeniva.ca/toiture) (site : https://toiture.zeniva.ca) : couvreurs certifiés — bardeaux asphaltiques, membranes TPO et EPDM, réparation de fuites, remplacement complet, inspection préventive avec rapport, ventilation.
 - [Zeniva Isolation](https://www.zeniva.ca/isolation) (site : https://isolation.zeniva.ca) : cellulose soufflée (grenier), polyuréthane giclé (murs), panneaux rigides (sous-sol), vide sanitaire, étanchéité à l'air et infiltrométrie, évaluation Rénoclimat, accompagnement subventions.
@@ -47,7 +55,6 @@ Exemples : [Époxy à Québec](https://www.zeniva.ca/epoxy/quebec) · [Toiture �
 - [ZeniCorp lance une plateforme qui assigne un entrepreneur certifié RBQ en 24 h](https://www.zeniva.ca/nouvelles/zenicorp-plateforme-construction-quebec)
 - [Zeniva Travel lance Lina, assistante de voyage IA](https://www.zeniva.ca/nouvelles/zeniva-travel-lina-assistante-ia)
 - [ZeniPay lance une plateforme fintech avec spécialistes financiers IA](https://www.zeniva.ca/nouvelles/zenipay-plateforme-fintech-agents-ia)
-- [ZeniTech ouvre ses services aux PME du Québec (SEO, GEO, CRM, IA)](https://www.zeniva.ca/nouvelles/zenitech-services-pme-quebec-geo)
 
 ## Entreprise
 

@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Phone, ExternalLink } from 'lucide-react';
 import Magnetic from '@/components/Magnetic';
@@ -27,11 +27,29 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
     })),
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Zeniva', item: 'https://www.zeniva.ca' },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: division.h1 ?? division.name,
+        item: `https://www.zeniva.ca/${division.slug}`,
+      },
+    ],
+  };
+
   return (
     <main className="flex-1 overflow-x-clip">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       {/* ═══════════════════════════════════════════════════════
@@ -86,14 +104,27 @@ export default function DivisionTemplate({ division }: { division: DivisionData 
                 </span>
               </Reveal>
 
-              <h1 className="mt-7 font-heading text-display-xl font-black text-white">
-                <RevealLines delay={160} lines={[<>{division.short}</>]} />
+              <h1
+                className={`mt-7 font-heading font-black text-white ${
+                  division.h1 ? 'text-[clamp(2.4rem,6vw,5rem)] leading-[1.02] tracking-[-0.03em]' : 'text-display-xl'
+                }`}
+              >
+                <RevealLines delay={160} lines={[<>{division.h1 ?? division.short}</>]} />
               </h1>
 
               <Reveal delay={400}>
                 <p className="mt-7 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
                   {division.positioning}
                 </p>
+                {!division.paused && (
+                  <a
+                    href={division.site}
+                    className="mt-6 inline-flex items-center gap-2 font-mono text-sm text-white/85 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white"
+                  >
+                    Voir les finis et réalisations sur {division.site.replace('https://', '')}
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                )}
               </Reveal>
             </div>
 

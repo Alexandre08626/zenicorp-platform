@@ -1,4 +1,4 @@
-﻿import type { Metadata, Viewport } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { Inter, Archivo, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
@@ -44,8 +44,10 @@ export const metadata: Metadata = {
     default: 'Zeniva — Plateforme de construction et rénovation au Québec',
     template: '%s | Zeniva',
   },
-  description: `Zeniva connecte les clients à des entrepreneurs certifiés RBQ : soumission gratuite, ${MODEL.signingShare} du contrat à la signature, ${MODEL.contractorShare} reversé à l'entrepreneur, contact sous ${MODEL.contactDelay}.`,
+  description: `Plancher époxy et travaux de rénovation au Québec par des entrepreneurs certifiés RBQ : soumission gratuite, prix ferme après visite, contact sous ${MODEL.contactDelay}. ${ZENICORP_PHONE}.`,
   keywords: [
+    'plancher époxy',
+    'époxy garage',
     'construction',
     'rénovation',
     'entrepreneur certifié RBQ',

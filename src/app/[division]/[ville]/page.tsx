@@ -28,13 +28,23 @@ export function generateMetadata({ params }: { params: { division: string; ville
   const d = getDivisionBySlug(params.division);
   const v = getVille(params.ville);
   if (!d || !v) return { title: 'Page introuvable' };
-  const title = `${d.short} à ${v.nom} — entrepreneur certifié RBQ`;
+  const title =
+    d.slug === 'epoxy'
+      ? `Plancher époxy à ${v.nom} — soumission gratuite`
+      : `${d.short} à ${v.nom} — entrepreneur certifié RBQ`;
   const description = `${d.short} à ${v.nom} et dans la région ${v.region} : soumission gratuite, prix ferme, entrepreneur certifié RBQ qui vous contacte sous ${MODEL.contactDelay}. ${d.positioning}`;
   return {
     title,
     description,
     alternates: { canonical: `/${d.slug}/${v.slug}` },
-    openGraph: { title, description, url: `${SITE_URL}/${d.slug}/${v.slug}`, type: 'website', locale: 'fr_CA' },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/${d.slug}/${v.slug}`,
+      type: 'website',
+      locale: 'fr_CA',
+      images: [{ url: d.photo, alt: `${d.short} à ${v.nom}` }],
+    },
   };
 }
 
@@ -144,7 +154,7 @@ export default function DivisionVillePage({ params }: { params: { division: stri
             <Link href={`/${d.slug}`} className="hover:text-zenicorp-gold">{d.name}</Link> · {v.region}
           </p>
           <h1 className="heading-1 mt-6 max-w-3xl text-white">
-            {d.short} à {v.nom}
+            {d.slug === 'epoxy' ? 'Plancher époxy' : d.short} à {v.nom}
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">{d.positioning}</p>
           <div className="mt-8 flex flex-wrap gap-4">

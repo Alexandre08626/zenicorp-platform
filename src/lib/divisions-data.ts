@@ -1,4 +1,4 @@
-﻿export interface DivisionData {
+export interface DivisionData {
   slug: string;
   name: string;
   short: string;
@@ -17,6 +17,14 @@
   site: string;
   services: string[];
   faq: { q: string; a: string }[];
+  /** Titre <title> orienté intention d'achat (sinon : name) */
+  seoTitle?: string;
+  /** Meta description orientée intention d'achat (sinon : positioning) */
+  seoDescription?: string;
+  /** H1 de la page division (sinon : short) */
+  h1?: string;
+  /** Division mise en veille : affichée en retrait, jamais mise en avant */
+  paused?: boolean;
 }
 
 /** Téléphone réel Zenivaora — utilisé partout (affichage + lien tel:) */
@@ -53,6 +61,10 @@ export const divisionsData: DivisionData[] = [
     ],
     logo: '/logo-epoxy.png',
     site: 'https://epoxy.zeniva.ca',
+    seoTitle: 'Plancher époxy au Québec : garage, sous-sol, commerce | Zeniva',
+    seoDescription:
+      "Plancher époxy ou polyaspartique pour garage, sous-sol, commerce ou usine au Québec. Béton meulé, fissures réparées, prix ferme après visite. Fourchette 2026 : 4 $ à 15 $/pi². Soumission gratuite : 581-748-7017.",
+    h1: 'Plancher époxy au Québec',
     services: [
       'Époxy résidentiel (garages, sous-sols)',
       'Époxy commercial (boutiques, restaurants)',
@@ -63,6 +75,18 @@ export const divisionsData: DivisionData[] = [
       'Marquage au sol stationnement',
     ],
     faq: [
+      {
+        q: 'Combien coûte un plancher époxy de garage au Québec ?',
+        a: "En 2026, un plancher de garage en époxy posé par un professionnel coûte généralement de 4 $ à 15 $ le pied carré au Québec, selon le système (époxy clair, 100 % solides avec flocons, métallique ou polyaspartique) et l'état du béton. Pour un garage de 500 pi², comptez environ 2 000 $ à 7 500 $. Ces fourchettes viennent de guides de prix québécois publiés pour 2026 (détail et sources dans notre guide de prix). Le prix ferme de votre projet est donné après la visite.",
+      },
+      {
+        q: 'Époxy ou polyaspartique : lequel choisir pour un garage ?',
+        a: "L'époxy 100 % solides est le choix le plus économique pour un garage intérieur et dure généralement de 10 à 20 ans sur un béton bien préparé. Le polyaspartique coûte plus cher, mais se pose et sèche en une journée, ne jaunit pas aux UV et résiste mieux au sel de déglaçage. Beaucoup de systèmes combinent les deux : une base époxy et une couche de finition polyaspartique.",
+      },
+      {
+        q: 'Un kit d’époxy de quincaillerie suffit-il ?',
+        a: "Un kit posé soi-même coûte de 1 $ à 2 $ le pied carré en matériaux, mais dure souvent de 1 à 3 ans, parce que le béton n'est pas meulé et que la couche est mince. Un système professionnel posé sur béton meulé au diamant dure de 10 à 20 ans. La différence se joue sur la préparation, pas sur la couleur.",
+      },
       {
         q: 'Combien de temps avant de pouvoir rouler sur le plancher ?',
         a: "Avec un polyaspartique, la circulation à pied est possible après quelques heures et un véhicule après 24 h. Un système époxy classique demande généralement 48 à 72 h. Le délai exact est confirmé par l'entrepreneur assigné selon le produit et la température.",
@@ -79,6 +103,7 @@ export const divisionsData: DivisionData[] = [
   },
   {
     slug: 'asphalte',
+    paused: true,
     name: 'Zeniva Asphalte',
     short: 'Asphalte',
     positioning:
@@ -120,6 +145,7 @@ export const divisionsData: DivisionData[] = [
   },
   {
     slug: 'toiture',
+    paused: true,
     name: 'Zeniva Toiture',
     short: 'Toiture',
     positioning:
@@ -161,6 +187,7 @@ export const divisionsData: DivisionData[] = [
   },
   {
     slug: 'isolation',
+    paused: true,
     name: 'Zeniva Isolation',
     short: 'Isolation',
     positioning:
@@ -208,5 +235,9 @@ export function getDivisionBySlug(slug: string): DivisionData | undefined {
 export function getAllDivisions(): DivisionData[] {
   return divisionsData;
 }
+
+/** Divisions mises en avant (les divisions en veille restent accessibles, mais en retrait). */
+export const activeDivisions = divisionsData.filter((d) => !d.paused);
+export const pausedDivisions = divisionsData.filter((d) => d.paused);
 
 export const divisionSlugs = divisionsData.map((d) => d.slug);

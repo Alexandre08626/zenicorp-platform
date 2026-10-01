@@ -35,11 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    { url: `${SITE_URL}/presse`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.5 },
+    // Époxy = division mise en avant ; les divisions en veille restent listées, en retrait.
     ...divisionsData.map((d) => ({
       url: `${SITE_URL}/${d.slug}`,
       lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
+      changeFrequency: d.paused ? ('monthly' as const) : ('weekly' as const),
+      priority: d.paused ? 0.5 : 0.95,
     })),
     // Pages locales : une URL par division et par ville desservie.
     ...divisionsData.flatMap((d) =>
@@ -47,7 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${SITE_URL}/${d.slug}/${v.slug}`,
         lastModified: now,
         changeFrequency: 'monthly' as const,
-        priority: 0.7,
+        priority: d.paused ? 0.4 : 0.8,
       })),
     ),
     { url: `${SITE_URL}/guides`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.8 },

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -13,11 +14,46 @@ import { Reveal, RevealLines } from '@/components/Reveal';
 import BlueprintScanner from '@/components/BlueprintScanner';
 import DispatchTerminal from '@/components/DispatchTerminal';
 import {
-  divisionsData,
+  getDivisionBySlug,
+  pausedDivisions,
   MODEL,
   ZENICORP_PHONE,
   ZENICORP_PHONE_HREF,
 } from '@/lib/divisions-data';
+import { VILLES } from '@/lib/villes-data';
+
+const EPOXY = getDivisionBySlug('epoxy')!;
+
+export const metadata: Metadata = {
+  title: { absolute: 'Plancher époxy et rénovation au Québec — entrepreneurs RBQ | Zeniva' },
+  description:
+    'Plancher époxy de garage, sous-sol ou commerce au Québec, posé par un entrepreneur certifié RBQ. Soumission gratuite en 2 minutes, prix ferme après visite. Appelez le 581-748-7017.',
+  alternates: { canonical: '/' },
+};
+
+/** FAQ en langage naturel : les questions que les gens posent à Google et aux assistants IA. */
+const HOME_FAQ = [
+  {
+    q: 'Combien coûte un plancher époxy de garage au Québec en 2026 ?',
+    a: "Généralement de 4 $ à 15 $ le pied carré, posé par un professionnel, selon le système choisi (époxy clair, époxy 100 % solides avec flocons, métallique ou polyaspartique) et l'état du béton. Pour un garage de 500 pi², comptez environ 2 000 $ à 7 500 $. Ces fourchettes viennent de guides de prix québécois publiés pour 2026 ; le prix ferme de votre projet est donné après la visite.",
+  },
+  {
+    q: 'Comment fonctionne Zeniva ?',
+    a: `Vous décrivez vos travaux en deux minutes, en ligne ou au ${ZENICORP_PHONE}. Un conseiller valide la demande, puis un entrepreneur certifié RBQ du réseau vous contacte sous ${MODEL.contactDelay} pour la visite et un prix ferme. La soumission est gratuite et sans engagement ; vous payez ${MODEL.signingShare} du contrat seulement à la signature.`,
+  },
+  {
+    q: 'Les entrepreneurs du réseau sont-ils vérifiés ?',
+    a: "Oui. La licence de la Régie du bâtiment du Québec (RBQ) et les assurances de l'entrepreneur sont vérifiées avant qu'un projet lui soit assigné. Vous pouvez aussi vérifier vous-même n'importe quelle licence dans le registre public et gratuit de la RBQ.",
+  },
+  {
+    q: 'Dans quelles villes Zeniva pose-t-elle des planchers époxy ?',
+    a: `Partout au Québec, notamment à ${VILLES.map((v) => v.nom).join(', ')} et dans leurs environs.`,
+  },
+  {
+    q: 'Faut-il payer quelque chose pour obtenir une soumission ?',
+    a: 'Non. La soumission est gratuite et sans engagement. Rien n’est facturé avant la signature d’un contrat.',
+  },
+];
 
 const STEPS = [
   {
@@ -43,30 +79,40 @@ const STEPS = [
 ];
 
 const HERO_META = [
-  { k: '4', l: 'Divisions spécialisées' },
+  { k: '4–15 $', l: 'Prix marché époxy / pi² (2026)' },
   { k: MODEL.contactDelay, l: 'Délai de contact' },
   { k: '0 $', l: 'Pour soumettre' },
   { k: 'RBQ', l: 'Licence vérifiée' },
 ];
 
 const GALLERY = [
-  { src: '/div/realisations/epoxy-3.jpg', t: 'Époxy industriel', div: 'epoxy', h: 'lg:row-span-2' },
-  { src: '/div/realisations/asphalte-1.jpg', t: 'Entrée asphaltée', div: 'asphalte', h: '' },
-  { src: '/div/realisations/toiture-1.jpg', t: 'Toiture neuve', div: 'toiture', h: '' },
-  { src: '/div/realisations/isolation-3.jpg', t: 'Cellulose grenier', div: 'isolation', h: 'lg:col-span-2' },
-  { src: '/div/realisations/epoxy-1.jpg', t: 'Époxy commercial', div: 'epoxy', h: '' },
-  { src: '/div/realisations/asphalte-2.jpg', t: 'Stationnement', div: 'asphalte', h: 'lg:row-span-2' },
-  { src: '/div/realisations/toiture-2.jpg', t: 'Solins et bardeaux', div: 'toiture', h: 'lg:col-span-2' },
-  { src: '/div/realisations/epoxy-4.jpg', t: 'Application époxy', div: 'epoxy', h: '' },
+  { src: '/div/realisations/epoxy-3.jpg', t: 'Époxy industriel', h: 'lg:row-span-2' },
+  { src: '/div/realisations/epoxy-hero.jpg', t: 'Plancher de garage', h: 'lg:col-span-2' },
+  { src: '/div/realisations/epoxy-1.jpg', t: 'Époxy commercial', h: '' },
+  { src: '/div/realisations/epoxy-5.jpg', t: 'Finition lustrée', h: 'lg:row-span-2' },
+  { src: '/div/realisations/epoxy-4.jpg', t: 'Application époxy', h: 'lg:col-span-2' },
+  { src: '/div/realisations/epoxy-2.jpg', t: 'Revêtement époxy', h: '' },
 ];
 
-const colorOf = (slug: string) => divisionsData.find((d) => d.slug === slug)?.color ?? '#3CE1FF';
 
 export default function HomePage() {
-  const tickerItems = divisionsData.flatMap((d) => d.services.slice(0, 4));
+  const tickerItems = EPOXY.services;
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: HOME_FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
 
   return (
     <main className="flex-1 overflow-x-clip">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* ═══════════════════════════════════════════════════════
           HERO — texte + scanner « plan → réalisé »
           ═══════════════════════════════════════════════════════ */}
@@ -76,7 +122,7 @@ export default function HomePage() {
             <Reveal>
               <span className="chip">
                 <span className="chip-dot" />
-                Plateforme de construction · Québec
+                Plancher époxy · Rénovation · Québec
               </span>
             </Reveal>
 
@@ -84,12 +130,12 @@ export default function HomePage() {
               <RevealLines
                 delay={100}
                 lines={[
-                  <>Votre projet.</>,
+                  <>Plancher époxy.</>,
                   <>
-                    Notre <span className="grad-text">réseau.</span>
+                    Entrepreneurs <span className="grad-text">RBQ.</span>
                   </>,
                   <span key="c" className="text-white/45">
-                    Une seule plateforme.
+                    Partout au Québec.
                   </span>,
                 ]}
               />
@@ -97,18 +143,22 @@ export default function HomePage() {
 
             <Reveal delay={420}>
               <p className="mt-7 max-w-xl text-lg leading-relaxed text-zenicorp-dim sm:text-xl">
-                Vous décrivez vos travaux, et le réseau vous assigne{' '}
-                <b className="font-semibold text-white">l&apos;entrepreneur certifié</b> qui les
-                exécute. Garanties vérifiées, prix ferme, contact sous{' '}
-                <b className="font-semibold text-white">{MODEL.contactDelay}</b>.
+                Garage, sous-sol, commerce ou usine&nbsp;: décrivez vos travaux et un{' '}
+                <b className="font-semibold text-white">entrepreneur certifié RBQ</b> vous
+                contacte sous <b className="font-semibold text-white">{MODEL.contactDelay}</b>{' '}
+                pour la visite et un prix ferme.{' '}
+                <Link href="/epoxy" className="link-underline text-white">
+                  Voir nos planchers époxy
+                </Link>
+                .
               </p>
             </Reveal>
 
             <Reveal delay={540}>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <Magnetic strength={0.18}>
-                  <Link href="/projet" className="btn-gold group w-full px-7 py-4 text-[0.95rem] sm:w-auto">
-                    Soumettre mon projet
+                  <Link href="/projet?division=epoxy" className="btn-gold group w-full px-7 py-4 text-[0.95rem] sm:w-auto">
+                    Soumission gratuite
                     <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-1.5" />
                   </Link>
                 </Magnetic>
@@ -171,73 +221,94 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           DIVISIONS — cartes spotlight
           ═══════════════════════════════════════════════════════ */}
-      <section id="nos-divisions" className="section-padding relative">
+      <section id="epoxy" className="section-padding relative">
         <div className="container-zenicorp">
-          <Reveal className="max-w-3xl">
-            <span className="eyebrow">Nos divisions</span>
-            <h2 className="heading-2 mt-5">
-              Quatre spécialités.{' '}
-              <span className="text-zenicorp-faint">Des réalisations concrètes.</span>
-            </h2>
-            <p className="body-large mt-5 max-w-2xl">
-              Chaque division a ses entrepreneurs, ses produits et ses méthodes. La
-              plateforme, elle, reste la même : une demande, un spécialiste assigné.
-            </p>
-          </Reveal>
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
+            <Reveal className="lg:col-span-6">
+              <div
+                className="hud relative aspect-[4/3] overflow-hidden rounded-[24px] border border-[rgba(120,160,255,0.14)]"
+                style={{ ['--hud' as string]: EPOXY.color } as React.CSSProperties}
+              >
+                <Image
+                  src={EPOXY.hero}
+                  alt="Plancher de garage en époxy posé au Québec"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              </div>
+            </Reveal>
 
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {divisionsData.map((d, i) => (
-              <Reveal key={d.slug} delay={i * 70} className="h-full">
-                <Link
-                  href={`/${d.slug}`}
-                  className="spot group flex h-full flex-col overflow-hidden rounded-[20px] border border-[rgba(120,160,255,0.14)] bg-gradient-to-b from-[#0E1524] to-[#0A0F1A] transition-transform duration-300 hover:-translate-y-1"
-                >
-                  <div
-                    className="hud relative aspect-[4/3] overflow-hidden"
-                    style={{ ['--hud' as string]: d.color } as React.CSSProperties}
-                  >
-                    <Image
-                      src={d.hero}
-                      alt={`Travaux ${d.short} réalisés par le réseau Zeniva`}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-[900ms] ease-premium group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E1524] via-[#0E1524]/20 to-transparent" />
-                    <span
-                      className="absolute inset-0 opacity-25 mix-blend-color transition-opacity duration-700 group-hover:opacity-0"
-                      style={{ background: d.color }}
-                    />
-                    <span className="absolute right-4 top-4 z-[4] rounded-md bg-black/50 px-2 py-1 font-mono text-[10px] tracking-[0.14em] text-white/80 backdrop-blur">
-                      DIV-0{i + 1}
-                    </span>
-                  </div>
-
-                  <div className="relative z-[3] flex flex-1 flex-col gap-3 p-6">
-                    <div className="flex items-center gap-3">
-                      <span className="h-2 w-2 rounded-full" style={{ background: d.color, boxShadow: `0 0 12px ${d.color}` }} />
-                      <h3 className="font-heading text-xl font-extrabold text-white">{d.short}</h3>
-                    </div>
-                    <p className="flex-1 text-sm leading-relaxed text-zenicorp-dim">{d.positioning}</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {d.services.slice(0, 3).map((s) => (
-                        <span
-                          key={s}
-                          className="rounded-md border border-[rgba(120,160,255,0.14)] bg-black/30 px-2 py-1 font-mono text-[0.62rem] text-zenicorp-dim"
-                        >
-                          {s.split(' (')[0]}
-                        </span>
-                      ))}
-                    </div>
-                    <span className="mt-2 inline-flex items-center gap-1.5 font-mono text-label uppercase text-zenicorp-gold">
-                      Explorer la division
-                      <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                    </span>
-                  </div>
+            <Reveal delay={100} className="lg:col-span-6">
+              <span className="eyebrow">Zeniva Époxy</span>
+              <h2 className="heading-2 mt-5">
+                Planchers époxy et polyaspartique,{' '}
+                <span className="text-zenicorp-faint">posés sur un béton bien préparé.</span>
+              </h2>
+              <p className="body-large mt-5 max-w-xl">
+                Garages, sous-sols, commerces, restaurants et espaces industriels. Le béton est
+                meulé et les fissures réparées avant l&apos;application&nbsp;: c&apos;est ce
+                qui fait durer un plancher de 10 à 20 ans plutôt que deux hivers.
+              </p>
+              <ul className="mt-7 grid gap-2.5 sm:grid-cols-2">
+                {EPOXY.services.map((s) => (
+                  <li key={s} className="flex items-start gap-2.5 text-[0.95rem] text-zenicorp-dim">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-zenicorp-gold" />
+                    {s}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Link href="/projet?division=epoxy" className="btn-gold group px-7 py-4">
+                  Soumission époxy gratuite
+                  <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-1.5" />
                 </Link>
-              </Reveal>
-            ))}
+                <Link href="/epoxy" className="btn-secondary group px-7 py-4">
+                  Tout sur nos planchers époxy
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+              <p className="mt-6 text-sm leading-relaxed text-zenicorp-dim">
+                Finis métalliques, flocons et naturels&nbsp;:{' '}
+                <a href={EPOXY.site} className="link-underline text-zenicorp-gold">
+                  epoxy.zeniva.ca
+                </a>
+                {' '}· Prix 2026&nbsp;:{' '}
+                <Link
+                  href="/guides/prix-plancher-epoxy-garage-quebec"
+                  className="link-underline text-zenicorp-gold"
+                >
+                  combien coûte un plancher époxy de garage
+                </Link>
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-zenicorp-faint">
+                Époxy près de chez vous&nbsp;:{' '}
+                {VILLES.map((v, i) => (
+                  <span key={v.slug}>
+                    <Link href={`/epoxy/${v.slug}`} className="hover:text-white">
+                      {v.nom}
+                    </Link>
+                    {i < VILLES.length - 1 ? ' · ' : ''}
+                  </span>
+                ))}
+              </p>
+            </Reveal>
           </div>
+
+          {pausedDivisions.length > 0 && (
+            <p className="mt-12 border-t border-[rgba(120,160,255,0.1)] pt-6 text-xs text-zenicorp-faint">
+              Autres spécialités du réseau&nbsp;:{' '}
+              {pausedDivisions.map((d, i) => (
+                <span key={d.slug}>
+                  <Link href={`/${d.slug}`} className="hover:text-white">
+                    {d.short}
+                  </Link>
+                  {i < pausedDivisions.length - 1 ? ' · ' : ''}
+                </span>
+              ))}
+            </p>
+          )}
         </div>
       </section>
 
@@ -312,8 +383,8 @@ export default function HomePage() {
               <div className="mt-4 grid grid-cols-3 gap-4">
                 {[
                   { photo: '/div/realisations/epoxy-5.jpg', label: 'Finitions premium' },
-                  { photo: '/div/realisations/toiture-4.jpg', label: 'Parfaitement scellé' },
-                  { photo: '/div/realisations/isolation-2.jpg', label: 'Isolation efficace' },
+                  { photo: '/div/realisations/epoxy-1.jpg', label: 'Béton meulé, fissures réparées' },
+                  { photo: '/div/realisations/epoxy-4.jpg', label: 'Application en couches' },
                 ].map((g) => (
                   <div key={g.photo} className="hud group relative aspect-[4/3] overflow-hidden rounded-2xl">
                     <Image
@@ -334,8 +405,8 @@ export default function HomePage() {
 
             <Reveal delay={200}>
               <p className="mt-8 max-w-2xl text-lg leading-relaxed text-zenicorp-dim">
-                Zeniva regroupe quatre divisions spécialisées et un réseau
-                d&apos;entrepreneurs dont la licence RBQ et les assurances sont vérifiées
+                Zeniva regroupe des divisions spécialisées, à commencer par l&apos;époxy, et un
+                réseau d&apos;entrepreneurs dont la licence RBQ et les assurances sont vérifiées
                 avant toute assignation. Vous traitez avec une seule plateforme&nbsp;; le
                 spécialiste, lui, ne fait que son métier.
               </p>
@@ -355,8 +426,8 @@ export default function HomePage() {
               Quatre étapes, <span className="grad-tech">zéro relance.</span>
             </h2>
             <p className="body-large mt-5 max-w-xl">
-              Le parcours est identique pour un garage de 400&nbsp;pi² comme pour une
-              toiture commerciale.
+              Le parcours est identique pour un garage de 400&nbsp;pi² comme pour un
+              plancher commercial ou industriel.
             </p>
           </Reveal>
 
@@ -403,7 +474,7 @@ export default function HomePage() {
         <div aria-hidden className="hazard h-2.5 w-full opacity-90" />
         <div className="absolute inset-0 top-2.5">
           <Image
-            src="/div/realisations/isolation-hero.jpg"
+            src="/div/realisations/epoxy-3.jpg"
             alt=""
             fill
             sizes="100vw"
@@ -424,9 +495,9 @@ export default function HomePage() {
                   <span className="grad-build">Pas de démarchage.</span>
                 </h2>
                 <p className="mt-6 max-w-md text-lg leading-relaxed text-zenicorp-dim">
-                  Vous êtes couvreur, poseur d&apos;époxy, isolateur ou spécialiste de
-                  l&apos;asphalte&nbsp;? La plateforme qualifie les clients et vous assigne
-                  les projets de votre secteur.
+                  Vous êtes poseur d&apos;époxy ou entrepreneur spécialisé certifié
+                  RBQ&nbsp;? La plateforme qualifie les clients et vous assigne les projets de
+                  votre secteur.
                 </p>
                 <Magnetic strength={0.16}>
                   <Link href="/entrepreneur" className="btn-gold group mt-8">
@@ -481,16 +552,13 @@ export default function HomePage() {
               </h2>
             </div>
             <div className="flex shrink-0 flex-wrap gap-2 md:flex-nowrap">
-              {divisionsData.map((d) => (
-                <Link
-                  key={d.slug}
-                  href={`/${d.slug}`}
-                  className="inline-flex items-center gap-2 rounded-lg border border-[rgba(120,160,255,0.14)] px-3 py-1.5 font-mono text-[0.7rem] text-zenicorp-dim transition-colors hover:border-[rgba(120,160,255,0.35)] hover:text-white"
-                >
-                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: d.color }} />
-                  {d.short}
-                </Link>
-              ))}
+              <Link
+                href="/epoxy"
+                className="inline-flex items-center gap-2 rounded-lg border border-[rgba(120,160,255,0.14)] px-3 py-1.5 font-mono text-[0.7rem] text-zenicorp-dim transition-colors hover:border-[rgba(120,160,255,0.35)] hover:text-white"
+              >
+                <span className="h-1.5 w-1.5 rounded-full" style={{ background: EPOXY.color }} />
+                Planchers époxy
+              </Link>
             </div>
           </Reveal>
 
@@ -499,7 +567,7 @@ export default function HomePage() {
               <Reveal key={g.src} delay={i * 50} className={g.h}>
                 <div
                   className="hud group relative aspect-[4/5] h-full overflow-hidden rounded-[20px] border border-[rgba(120,160,255,0.12)] lg:aspect-auto"
-                  style={{ ['--hud' as string]: colorOf(g.div) } as React.CSSProperties}
+                  style={{ ['--hud' as string]: EPOXY.color } as React.CSSProperties}
                 >
                   <Image
                     src={g.src}
@@ -518,6 +586,37 @@ export default function HomePage() {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ FAQ — réponses directes (Google, assistants IA) ═══════════════ */}
+      <section className="section-padding relative border-t border-[rgba(120,160,255,0.1)]">
+        <div className="container-zenicorp grid gap-12 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-4">
+            <Reveal>
+              <span className="eyebrow">Questions fréquentes</span>
+              <h2 className="heading-2 mt-5">Réponses directes.</h2>
+            </Reveal>
+          </div>
+          <div className="lg:col-span-8">
+            {HOME_FAQ.map((f) => (
+              <details key={f.q} className="group border-t border-[rgba(120,160,255,0.14)]">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-6">
+                  <h3 className="font-heading text-lg font-medium leading-snug text-white sm:text-xl">
+                    {f.q}
+                  </h3>
+                  <span
+                    aria-hidden
+                    className="mt-1 font-mono text-zenicorp-gold transition-transform duration-300 group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="max-w-2xl pb-7 text-base leading-relaxed text-zenicorp-dim">{f.a}</p>
+              </details>
+            ))}
+            <span className="block border-t border-[rgba(120,160,255,0.14)]" />
           </div>
         </div>
       </section>
@@ -554,7 +653,7 @@ export default function HomePage() {
 
                 <div className="relative flex flex-col gap-3 lg:col-span-5">
                   <Magnetic strength={0.2}>
-                    <Link href="/projet" className="btn-gold group w-full py-4 text-base">
+                    <Link href="/projet?division=epoxy" className="btn-gold group w-full py-4 text-base">
                       Soumettre mon projet
                       <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-1.5" />
                     </Link>

@@ -1,9 +1,8 @@
-﻿'use client';
+'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
 import {
   ArrowLeft,
   ArrowRight,
@@ -22,21 +21,19 @@ import {
 } from '@/lib/divisions-data';
 
 function ProjetForm() {
-  const params = useSearchParams();
-
   const [step, setStep] = useState<'projet' | 'confirmation'>('projet');
   const [division, setDivision] = useState('');
   const [envoi, setEnvoi] = useState(false);
   const [erreur, setErreur] = useState('');
 
-  // La page est prérendue statiquement : les search params ne sont connus qu'après
-  // hydratation. On applique la présélection ici pour éviter tout écart d'hydratation.
+  // La page est prérendue statiquement (formulaire visible dans le HTML, pour Google
+  // et pour un affichage immédiat). La présélection ?division= est lue après hydratation.
   useEffect(() => {
-    const preset = params.get('division');
+    const preset = new URLSearchParams(window.location.search).get('division');
     if (preset && divisionsData.some((d) => d.slug === preset)) {
       setDivision((actuel) => actuel || preset);
     }
-  }, [params]);
+  }, []);
 
   const [form, setForm] = useState({
     nom: '',
@@ -52,14 +49,14 @@ function ProjetForm() {
   const update = (field: string, value: string) =>
     setForm((f) => ({ ...f, [field]: value }));
 
+  // Seuls les champs utiles pour rappeler le client sont obligatoires : chaque champ
+  // obligatoire en plus fait abandonner des visiteurs. Adresse, code postal et superficie
+  // se précisent au téléphone.
   const complet =
     form.nom &&
     form.telephone &&
-    form.email &&
-    form.adresse &&
+    form.email.includes('@') &&
     form.ville &&
-    form.codePostal &&
-    form.superficie &&
     form.description &&
     division;
 
@@ -333,10 +330,17 @@ function ProjetForm() {
                       ac: 'postal-code',
                       type: 'text',
                     },
-                  ].map((f) => (
+                  ].map((f) => {
+                    const requis = ['nom', 'telephone', 'email', 'ville'].includes(f.id);
+                    return (
                     <div key={f.id}>
                       <label className="label" htmlFor={f.id}>
-                        {f.l} <span className="text-zenicorp-gold">*</span>
+                        {f.l}{' '}
+                        {requis ? (
+                          <span className="text-zenicorp-gold">*</span>
+                        ) : (
+                          <span className="text-zenicorp-faint">(facultatif)</span>
+                        )}
                       </label>
                       <input
                         id={f.id}
@@ -346,14 +350,15 @@ function ProjetForm() {
                         onChange={(e) => update(f.id, e.target.value)}
                         placeholder={f.ph}
                         autoComplete={f.ac}
-                        required
+                        required={requis}
                       />
                     </div>
-                  ))}
+                    );
+                  })}
 
                   <div className="sm:col-span-2">
                     <label className="label" htmlFor="superficie">
-                      Superficie approximative <span className="text-zenicorp-gold">*</span>
+                      Superficie approximative <span className="text-zenicorp-faint">(facultatif)</span>
                     </label>
                     <input
                       id="superficie"
@@ -361,7 +366,6 @@ function ProjetForm() {
                       value={form.superficie}
                       onChange={(e) => update('superficie', e.target.value)}
                       placeholder="Ex. : 400 pi²"
-                      required
                     />
                   </div>
                 </div>
@@ -406,8 +410,8 @@ function ProjetForm() {
                   <dl className="mt-7 grid gap-8 sm:grid-cols-3">
                     {[
                       { k: 'Gratuit', l: 'Soumission de votre projet, sans engagement' },
-                      { k: MODEL.signingShare, l: 'Payé par vous à la signature du contrat' },
-                      { k: MODEL.contractorShare, l: "Reversé à l'entrepreneur sur le contrat" },
+                      { k: 'Prix ferme', l: 'Confirmé par écrit après la visite, avant tout contrat' },
+                      { k: MODEL.signingShare, l: 'Payé par vous à la signature du contrat, pas avant' },
                     ].map((x) => (
                       <div key={x.l}>
                         <dt className="font-heading text-3xl font-semibold text-zenicorp-gold">
@@ -480,17 +484,5 @@ function ProjetForm() {
 }
 
 export default function ProjetPage() {
-  return (
-    <Suspense
-      fallback={
-        <main className="flex-1">
-          <div className="container-zenicorp py-40">
-            <p className="tech-label">Chargement du formulaire…</p>
-          </div>
-        </main>
-      }
-    >
-      <ProjetForm />
-    </Suspense>
-  );
+  return <ProjetForm />;
 }
