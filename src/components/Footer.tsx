@@ -175,6 +175,15 @@ export default function Footer() {
             >
               Technologie ZeniTech ↗
             </a>
+            <span className="mx-2 text-white/20">·</span>
+            <a
+              href="https://zenitech.dev/agents-ia"
+              target="_blank"
+              rel="noopener"
+              className="transition-colors hover:text-zenicorp-gold"
+            >
+              Agents IA par métier — Zenitech
+            </a>
           </p>
           <p className="max-w-xl text-xs leading-relaxed text-white/35">
             Les travaux sont réalisés par des entrepreneurs indépendants certifiés RBQ du
